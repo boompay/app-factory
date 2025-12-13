@@ -284,7 +284,7 @@ export async function uploadSignature(
 
   logger.info(`Creating asset record for signature`);
   try {
-    const assetResponse = await api.createAsset(app.id!, assetPayload, undefined, 60000, 3);
+    const assetResponse = await api.createAsset(app.id!, assetPayload, undefined, 60000);
     const assetData = await assetResponse.json();
     
     if (assetData.asset?.global_id) {

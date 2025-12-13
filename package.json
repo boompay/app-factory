@@ -1,7 +1,8 @@
 {
   "scripts": {
     "start": "tsx runner.ts",
-    "dev": "tsx runner.ts"
+    "dev": "tsx runner.ts",
+    "run": "tsx runner.ts"
   },
   "devDependencies": {
     "@types/node": "^24.10.1",

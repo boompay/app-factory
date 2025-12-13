@@ -36,7 +36,7 @@ export async function getMessages(token: string) {
   return data["hydra:member"] ?? [];
 }
 
-// Wait for email (polling, like mailslurp.waitForLatestEmail)
+// Wait for email (polling)
 export async function waitForEmail(
   token: string,
   timeout = 30000,

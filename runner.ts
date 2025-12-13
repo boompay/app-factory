@@ -43,12 +43,14 @@ async function saveApplicationSnapshot(
   await writeTestData(filePath, appResponse);
 }
 
-async function run(link: string): Promise<void> {
+async function run(link: string, env?: string): Promise<void> {
   try {
     // Clear log files before each run
     await clearLogFiles();
 
-    loadEnv(APP_CONFIG.ENV);
+    const environment = env || APP_CONFIG.ENV;
+    logger.info(`Using environment: ${environment}`);
+    loadEnv(environment);
     validateRequiredEnv();
 
     const applicationToken = link.split("/").pop();
@@ -179,8 +181,9 @@ async function run(link: string): Promise<void> {
 // Main execution
 const magicLink =
   process.argv[2] ||
-  "https://screen.staging2.boompay.app/a/P3K9j7Jwx5WI5UQz65j2";
-run(magicLink).catch((error) => {
+  "https://screen.staging.boompay.app/a/jV2HE3Q7ljzojiao9Z32";
+const environment = process.argv[3]; // Optional environment parameter
+run(magicLink, environment).catch((error) => {
   logger.error("Fatal error:", error);
   process.exit(1);
 });

@@ -55,3 +55,4 @@ current-app.json
 coverage/
 .nyc_output/
 *.lcov
+test-data/application.json

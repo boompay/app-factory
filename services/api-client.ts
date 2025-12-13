@@ -95,7 +95,7 @@ export class ApiClient {
    */
   public async getApplicationDetails(applicationId: string): Promise<any> {
     return this.get(`/screen/applications/${applicationId}`, {
-      timeout: 10000,
+      timeout: 30000,
     } as ApiRequestOptions);
   }
 

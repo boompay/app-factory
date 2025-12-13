@@ -1,0 +1,23 @@
+{
+  "unit_id": 150452,
+  "app_token": "P3K9j7Jwx5WI5UQz65j2",
+  "bearer_token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE2MjQzOCwiZXhwIjoxNzY1NjE2NjYyLCJpYXQiOjE3NjU2MTU3NjIsImp0aSI6ImRmZDNlZTc0LTg3N2MtNGUwMC04NWIyLWYxMzI0OGI0M2RlMSIsInR5cGUiOiJhY2Nlc3MifQ.gnJCle6nmVRpbkgXLorPvu759SRfsqyIJhqCwVxACfc",
+  "refresh_token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE2MjQzOCwic2Vzc2lvbl9pZCI6MjQ0NDQ2LCJqdGkiOiIwYWEyYjZlYy02Y2M2LTQ2N2YtYWI5Yy03NmI1NWU2ODBiMTQiLCJleHAiOjE3NjgyMDc3NjIsImlhdCI6MTc2NTYxNTc2MiwidHlwZSI6InJlZnJlc2gifQ.eVtIbYl57VzYVQ0pGLVzLaeEM2RM0elJ-FFaUaoKy2M",
+  "applicant": {
+    "phone": "(878) 381-6206",
+    "otp": 451056,
+    "id": 3026,
+    "email": "1nr7jfgsyxag@mail.tm",
+    "first_name": "Eino",
+    "last_name": "Jakubowski",
+    "middle_name": "Angel"
+  },
+  "id": 2724,
+  "verifications": {
+    "personal_details": "23460",
+    "housing_history": "23461",
+    "identity": "23462",
+    "combined_income": "23463",
+    "submission_disclosure": "23467"
+  }
+}

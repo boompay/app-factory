@@ -66,6 +66,10 @@ export const APP_CONFIG = {
 ```
 
 ## Usage
+### Before running
+
+1. Application enrollment link should be copied from the shosen unit page.
+2. **Important!** verification template for property must be "AppFactory". Working with any template is not implemented yet.
 
 ### Running the Application
 

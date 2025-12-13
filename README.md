@@ -68,7 +68,7 @@ export const APP_CONFIG = {
 ## Usage
 ### Before running
 
-1. Application enrollment link should be copied from the shosen unit page.
+1. Application enrollment link should be copied from the chosen unit page.
 2. **Important!** verification template for property must be "AppFactory". Working with any template is not implemented yet.
 
 ### Running the Application
@@ -87,9 +87,14 @@ tsx runner.ts "https://screen.staging.boompay.app/a/your-token"
 
 **Using npm scripts:**
 ```bash
-# With arguments
+# With arguments (note the space after --)
 npm start -- "https://screen.staging.boompay.app/a/your-token" "stg2"
+
+# Or using the run script
+npm run run -- "https://screen.staging.boompay.app/a/your-token" "stg1"
 ```
+
+> **Important:** Always include a space after `--` when passing arguments to npm scripts. Without the space, npm will incorrectly parse the arguments. Be aware that both arguments should be linked with same environvrnt.
 
 **Using npx:**
 ```bash

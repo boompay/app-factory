@@ -1,5 +1,5 @@
 export const APP_CONFIG = {
-  ENV: "stg1",
+  ENV: "stg2",
   PATHS: {
     CURRENT_APP: "./current-app.json",
     TEST_DATA_APPLICATION: "./test-data/application.json",

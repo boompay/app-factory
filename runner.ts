@@ -1,6 +1,7 @@
 import { loadEnv } from "./env";
 import { AuthTokenProvider, LoggerProvider } from "./services";
 import { APP_CONFIG } from "./config";
+import { AppInfo } from "./models";
 import {
   readAppInfo,
   writeAppInfo,
@@ -65,7 +66,17 @@ async function run(link: string, env?: string): Promise<void> {
     // Load app info and initialize API
     // Note: ApiClient is initialized once and reused across all workflows
     // to maintain consistent token state and enable automatic token refresh
-    const app = await readAppInfo(APP_CONFIG.PATHS.CURRENT_APP);
+    // getBearerToken() creates current-app.json, so it should exist at this point
+    let app: AppInfo;
+    try {
+      app = await readAppInfo(APP_CONFIG.PATHS.CURRENT_APP);
+    } catch (error) {
+      throw new Error(
+        `Failed to read app info after authentication. ` +
+        `This may indicate that getBearerToken() did not create the file successfully. ` +
+        `Original error: ${error instanceof Error ? error.message : String(error)}`
+      );
+    }
     validateAppInfo(app);
     const api = await initializeApi(app);
 

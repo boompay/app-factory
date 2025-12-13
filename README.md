@@ -77,23 +77,14 @@ The application accepts two command-line arguments:
 
 **Using tsx directly:**
 ```bash
-# With both magic link and environment
-tsx runner.ts "https://screen.staging.boompay.app/a/your-token" "stg1"
-
 # With only magic link (uses default environment from config)
 tsx runner.ts "https://screen.staging.boompay.app/a/your-token"
-
-# Using default magic link (for testing)
-tsx runner.ts
 ```
 
 **Using npm scripts:**
 ```bash
 # With arguments
 npm start -- "https://screen.staging.boompay.app/a/your-token" "stg2"
-
-# Or using the run script
-npm run run -- "https://screen.staging.boompay.app/a/your-token" "stg1"
 ```
 
 **Using npx:**

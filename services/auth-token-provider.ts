@@ -18,7 +18,7 @@ export class AuthTokenProvider {
     this.logger = LoggerProvider.create("auth-token-provider");
   }
 
-  public async getBearerToken(applicationToken: string): Promise<void> {
+  public async getBearerToken(applicationToken: string): Promise<AppInfo> {
     let appInfo: AppInfo;
     const currentAppPath = "./current-app.json";
     this.logger.info(
@@ -93,7 +93,9 @@ export class AuthTokenProvider {
         otp: parseInt(this.OTPCode),
       },
     };
+    // Write file for persistence, but return the data directly to avoid file I/O dependency
     fs.writeFileSync(currentAppPath, JSON.stringify(appInfo, null, 2), "utf-8");
     this.logger.info(`Received bearer token: ${bearerToken}`);
+    return appInfo;
   }
 }

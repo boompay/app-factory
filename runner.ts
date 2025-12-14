@@ -61,22 +61,12 @@ async function run(link: string, env?: string): Promise<void> {
     // AuthTokenProvider needs the base URL, not the application token
     const baseUrl = process.env.BASE_URL!;
     const tokenProvider = new AuthTokenProvider(baseUrl);
-    await tokenProvider.getBearerToken(validatedToken);
+    // getBearerToken() returns AppInfo directly and also writes it to current-app.json for persistence
+    const app = await tokenProvider.getBearerToken(validatedToken);
 
-    // Load app info and initialize API
+    // Validate and initialize API
     // Note: ApiClient is initialized once and reused across all workflows
     // to maintain consistent token state and enable automatic token refresh
-    // getBearerToken() creates current-app.json, so it should exist at this point
-    let app: AppInfo;
-    try {
-      app = await readAppInfo(APP_CONFIG.PATHS.CURRENT_APP);
-    } catch (error) {
-      throw new Error(
-        `Failed to read app info after authentication. ` +
-        `This may indicate that getBearerToken() did not create the file successfully. ` +
-        `Original error: ${error instanceof Error ? error.message : String(error)}`
-      );
-    }
     validateAppInfo(app);
     const api = await initializeApi(app);
 
@@ -192,8 +182,8 @@ async function run(link: string, env?: string): Promise<void> {
 // Main execution
 const magicLink =
   process.argv[2] ||
-  "https://screen.staging2.boompay.app/a/mGGjLxRA3BlhWoCRwGqV";
-const environment = process.argv[3] || APP_CONFIG.ENV; // Optional environment parameter
+  "https://screen.staging.boompay.app/a/DfmlqHeL6gqNU3aLKAJd";
+const environment = process.argv[3]; // Optional environment parameter
 run(magicLink, environment).catch((error) => {
   logger.error("Fatal error:", error);
   process.exit(1);

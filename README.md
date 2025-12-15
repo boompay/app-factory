@@ -69,7 +69,7 @@ export const APP_CONFIG = {
 ### Before running
 
 1. Application enrollment link should be copied from the chosen unit page.
-2. **Important!** verification template for property must be "AppFactory". Working with any template is not implemented yet.
+2. **Important!** verification template for property must be "AppFactory - DO NOT TOUCH!!!". Working with any template is not implemented yet.
 
 ### Running the Application
 

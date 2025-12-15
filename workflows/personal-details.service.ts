@@ -239,6 +239,62 @@ export async function passSubmissionDisclosure(
   logger.info(`Signature uploaded with asset ID: ${signatureAssetId}`);
 }
 
+type UploadedFileInfo = {
+  url: string;
+  size: number;
+  filename: string;
+  contentType: string;
+};
+
+/**
+ * Common helper that:
+ * 1) requests a presigned URL
+ * 2) reads the local file
+ * 3) uploads the file to S3
+ * and returns basic metadata about the uploaded file.
+ */
+async function presignAndUploadFile(
+  api: ApiClient,
+  filePath: string,
+  explicitContentType?: string
+): Promise<UploadedFileInfo> {
+  const filename = filePath.split(/[/\\]/).pop() || "document";
+
+  const inferredContentType =
+    explicitContentType ??
+    (filename.endsWith(".pdf")
+      ? CONTENT_TYPES.PDF
+      : filename.endsWith(".svg")
+      ? "image/svg+xml"
+      : CONTENT_TYPES.OCTET_STREAM);
+
+  logger.info(`Getting presigned URL for file: ${filename}`);
+  const presignResponse = await api.getPresignedUrl(
+    filename,
+    inferredContentType
+  );
+  const presignData: PresignResponse = await presignResponse.json();
+
+  if (!presignData.url) {
+    throw new Error("Failed to get presigned URL: missing url in response");
+  }
+
+  logger.info(`Reading file from: ${filePath}`);
+  const fileBuffer = await readFileAsBuffer(filePath);
+  const fileSize = fileBuffer.length;
+
+  logger.info(`Uploading file to S3: ${presignData.url}`);
+  await uploadFileToS3Bucket(presignData.url, fileBuffer, inferredContentType);
+  logger.info(`File uploaded successfully to S3`);
+
+  return {
+    url: presignData.url,
+    size: fileSize,
+    filename,
+    contentType: inferredContentType,
+  };
+}
+
 /**
  * Uploads a signature SVG file and returns the asset global_id
  * @param api - The API client
@@ -251,34 +307,20 @@ export async function uploadSignature(
   app: AppInfo,
   filePath: string
 ): Promise<string> {
-  // Step 1: Get presigned URL
-  const filename = filePath.split(/[/\\]/).pop() || "signature.svg";
-  const contentType = "image/svg+xml";
-  
-  logger.info(`Getting presigned URL for signature file: ${filename}`);
-  const presignResponse = await api.getPresignedUrl(filename, contentType);
-  const presignData: PresignResponse = await presignResponse.json();
-  
-  if (!presignData.url) {
-    throw new Error("Failed to get presigned URL: missing url in response");
-  }
-
-  // Step 2: Read file and upload to S3
-  logger.info(`Reading signature file from: ${filePath}`);
-  const fileBuffer = await readFileAsBuffer(filePath);
-  const fileSize = fileBuffer.length;
-
-  logger.info(`Uploading signature to S3: ${presignData.url}`);
-  await uploadFileToS3Bucket(presignData.url, fileBuffer, contentType);
-  logger.info(`Signature uploaded successfully to S3`);
+  // Reuse common helper with explicit SVG content type
+  const uploaded = await presignAndUploadFile(
+    api,
+    filePath,
+    "image/svg+xml"
+  );
 
   // Step 3: Create asset and get global_id
   const assetPayload = {
-    url: presignData.url,
+    url: uploaded.url,
     metadata: {
-      size: fileSize,
-      original_filename: filename,
-      content_type: contentType,
+      size: uploaded.size,
+      original_filename: uploaded.filename,
+      content_type: uploaded.contentType,
     },
   };
 
@@ -311,39 +353,19 @@ export async function uploadDocument(
     throw new Error("incomeSourceId is required for document upload");
   }
 
-  // Step 1: Get presigned URL
-  const filename = filePath.split(/[/\\]/).pop() || "document.pdf";
-  const contentType = filename.endsWith(".pdf") 
-    ? CONTENT_TYPES.PDF 
-    : CONTENT_TYPES.OCTET_STREAM;
-  
-  logger.info(`Getting presigned URL for file: ${filename}`);
-  const presignResponse = await api.getPresignedUrl(filename, contentType);
-  const presignData: PresignResponse = await presignResponse.json();
-  
-  if (!presignData.url) {
-    throw new Error("Failed to get presigned URL: missing url in response");
-  }
-
-  // Step 2: Read file and upload to S3
-  logger.info(`Reading file from: ${filePath}`);
-  const fileBuffer = await readFileAsBuffer(filePath);
-  const fileSize = fileBuffer.length;
-
-  logger.info(`Uploading file to S3: ${presignData.url}`);
-  await uploadFileToS3Bucket(presignData.url, fileBuffer, contentType);
-  logger.info(`File uploaded successfully to S3`);
+  // Reuse common helper for presign + upload
+  const uploaded = await presignAndUploadFile(api, filePath);
 
   // Step 3: Create document record
   const documentPayload = {
     documents: [
       {
         document_type: documentType,
-        url: presignData.url,
+        url: uploaded.url,
         metadata: {
-          size: fileSize,
-          original_filename: filename,
-          content_type: contentType,
+          size: uploaded.size,
+          original_filename: uploaded.filename,
+          content_type: uploaded.contentType,
         },
       },
     ],

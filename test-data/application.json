@@ -1,39 +1,41 @@
 {
   "application": {
-    "id": 2724,
+    "id": 4158,
     "partner": {
       "slug": "mark-brower-properties",
       "name": "Boom Screen (Mark Brower)",
       "email": "richard@markrent.com",
-      "logo_url": "https://boom-staging.s3.amazonaws.com/staging/f3d7aa21794fbd0a5a420f60bdf8991e.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6RCWFKPAV7ADZIA6%2F20251213%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251213T084934Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=4611f98e1030e8ec01ac80377f0e59d886b8d24a52c1c546dda10bf2e7ae51fc",
+      "logo_url": "https://boom-staging.s3.amazonaws.com/staging/f3d7aa21794fbd0a5a420f60bdf8991e.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6RCWFKPAV7ADZIA6%2F20251215%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251215T163647Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=31a98239fcc34d49b73614638582a54c1721ca9a421bb48f5f62cd5c8ae5dbd3",
       "is_sites_and_communities": true,
       "id": 368,
       "colors": {
         "primary": {
-          "20": "#F5FCFF",
-          "50": "#E5F7FF",
-          "100": "#B3E7FF",
-          "200": "#80D6FF",
-          "400": "#1AB6FF",
-          "500": "#004D71",
-          "600": "#007AB3",
-          "700": "#005780",
-          "800": "#00344D",
-          "900": "#00344D"
+          "20": "#a4e2ff",
+          "50": "#71d2ff",
+          "100": "#3ec2ff",
+          "200": "#0bb1ff",
+          "300": "#0092d7",
+          "400": "#0070a4",
+          "500": "#004d71",
+          "600": "#004667",
+          "700": "#003f5d",
+          "800": "#003852",
+          "900": "#003148"
         }
       },
       "base_border_radius": null,
       "font_family": null,
       "font_family_link": null,
-      "google_analytics_id": "G-PG1HC1MDRH",
+      "google_analytics_id": null,
       "partner_features": [
-        "chat"
+        "chat",
+        "property_owner"
       ],
       "property_management_system": "manage_america"
     },
     "verification_template": {
-      "has_move_in_date_limit": false,
-      "max_move_in_days": 0,
+      "has_move_in_date_limit": null,
+      "max_move_in_days": null,
       "settings": {
         "applicant": {
           "identity_verification": {
@@ -70,33 +72,33 @@
       }
     },
     "unit": {
-      "id": 150452,
-      "title": "sd",
+      "id": 172209,
+      "title": "2341 E 18th St",
       "property": {
-        "name": "Old Prop",
+        "name": "2341 E 18th St",
         "address": {
-          "address1": "23423 N 123rd St",
-          "address2": "2",
-          "city": "Scottsdale",
-          "state_or_province": "AZ",
-          "postal_code": "85255",
+          "address1": "2341 E 18th St",
+          "address2": "",
+          "city": "Chattanooga",
+          "state_or_province": "TN",
+          "postal_code": "37404",
           "country": "US",
           "lat": null,
           "lng": null,
-          "one_line_address": "23423 N 123rd St, 2, Scottsdale, AZ, 85255, US"
+          "one_line_address": "2341 E 18th St, Chattanooga, TN, 37404, US"
         }
       },
       "monthly_rent_amount": {
-        "cents": 234500,
+        "cents": 189000,
         "currency": "USD"
       },
       "home_rent_amount": null,
       "site_rent_amount": null,
-      "available_at": "2025-09-22T00:00:00.000+00:00",
+      "available_at": "2025-12-13T00:00:00.000+00:00",
       "partner_name": "Boom Screen (Mark Brower)"
     },
     "monthly_rent_amount": {
-      "cents": 234500,
+      "cents": 0,
       "currency": "USD"
     },
     "home_rent_amount": null,
@@ -107,18 +109,18 @@
     },
     "applicants": [
       {
-        "id": 3026,
-        "application_id": 2724,
+        "id": 4764,
+        "application_id": 4158,
         "role": "applicant",
-        "first_name": "Eino",
-        "last_name": "Jakubowski",
-        "middle_name": "Angel",
-        "email": "1nr7jfgsyxag@mail.tm",
-        "application_status": "started",
+        "first_name": "Carter",
+        "last_name": "Franecki",
+        "middle_name": "Noah",
+        "email": "bej9frly79@mail.tm",
+        "application_status": "submitted",
         "retry_identity_verification_status": "not_available",
         "verifications": [
           {
-            "id": 23460,
+            "id": 38259,
             "name": "rental_application",
             "title": "verifications.personal-details.title",
             "description": "verifications.personal-details.description",
@@ -134,37 +136,37 @@
             "income_sources": [],
             "steps": [
               {
-                "id": 26202,
+                "id": 42701,
                 "index": 0,
                 "name": "personal_details"
               },
               {
-                "id": 26203,
+                "id": 42702,
                 "index": 1,
                 "name": "dependents"
               },
               {
-                "id": 26204,
+                "id": 42703,
                 "index": 2,
                 "name": "emergency_contacts"
               },
               {
-                "id": 26205,
+                "id": 42704,
                 "index": 3,
                 "name": "pets"
               },
               {
-                "id": 26206,
+                "id": 42705,
                 "index": 4,
                 "name": "vehicles"
               },
               {
-                "id": 26207,
+                "id": 42706,
                 "index": 5,
                 "name": "military_first_responder_teacher"
               },
               {
-                "id": 26208,
+                "id": 42707,
                 "index": 6,
                 "name": "lead_source"
               }
@@ -172,7 +174,7 @@
             "requirements": null
           },
           {
-            "id": 23461,
+            "id": 38260,
             "name": "housing_history",
             "title": "verifications.housing-history.title",
             "description": "verifications.housing-history.description",
@@ -188,7 +190,7 @@
             "income_sources": [],
             "steps": [
               {
-                "id": 26209,
+                "id": 42708,
                 "index": 0,
                 "name": "address"
               }
@@ -198,11 +200,11 @@
             }
           },
           {
-            "id": 23462,
+            "id": 38261,
             "name": "identity_verification",
             "title": "verifications.identity-verification.applicant-title",
             "description": "verifications.identity-verification.applicant-description",
-            "status": "started",
+            "status": "verified",
             "estimated_time": 300,
             "index": 2,
             "editable": false,
@@ -216,7 +218,7 @@
             "requirements": null
           },
           {
-            "id": 23463,
+            "id": 38262,
             "name": "combined_income_verification",
             "title": "verifications.combined-income.title",
             "description": "verifications.combined-income.description",
@@ -230,34 +232,34 @@
             },
             "incomes": [
               {
-                "id": 187,
+                "id": 328,
                 "type": "self_employment",
                 "status": "processing",
                 "pay_period": "monthly",
                 "amount": {
-                  "cents": 726300,
+                  "cents": 771700,
                   "currency": "USD"
                 },
-                "start_date": "2016-05-11",
+                "start_date": "2023-02-08",
                 "additional_data": {
-                  "company": "Ullrich, Aufderhar and Jones",
-                  "job_title": "Future Communications Orchestrator"
+                  "company": "West and Sons",
+                  "job_title": "Central Usability Associate"
                 }
               }
             ],
             "income_sources": [
               {
-                "id": 177,
+                "id": 309,
                 "status": "processing",
                 "type": "paystub",
-                "income_id": 187,
+                "income_id": 328,
                 "items": [],
                 "has_available_items": false
               }
             ],
             "steps": [
               {
-                "id": 26210,
+                "id": 42709,
                 "index": 0,
                 "name": "combined_income"
               }
@@ -265,7 +267,7 @@
             "requirements": null
           },
           {
-            "id": 23464,
+            "id": 38263,
             "name": "credit_report",
             "title": "Credit report",
             "description": "Equifax credit report and score",
@@ -283,7 +285,7 @@
             "requirements": null
           },
           {
-            "id": 23465,
+            "id": 38264,
             "name": "criminal_report",
             "title": "National criminal report (US)",
             "description": "CIC criminal background report",
@@ -301,7 +303,7 @@
             "requirements": null
           },
           {
-            "id": 23466,
+            "id": 38265,
             "name": "eviction_report",
             "title": "Housing court report",
             "description": "Housing court report",
@@ -319,7 +321,7 @@
             "requirements": null
           },
           {
-            "id": 23467,
+            "id": 38266,
             "name": "submission_disclosure",
             "title": "Review the application",
             "description": ".",
@@ -335,7 +337,7 @@
             "income_sources": [],
             "steps": [
               {
-                "id": 26211,
+                "id": 42710,
                 "index": 0,
                 "name": "submission_disclosure_step"
               }
@@ -344,43 +346,45 @@
           }
         ],
         "stream_chat_token": null,
-        "stream_chat_id": "applicant-customer-162438",
-        "stream_chat_name": "Eino Angel Jakubowski",
+        "stream_chat_id": "applicant-customer-165042",
+        "stream_chat_name": "Carter Noah Franecki",
         "application": {
-          "id": 2724,
+          "id": 4158,
           "partner": {
             "slug": "mark-brower-properties",
             "name": "Boom Screen (Mark Brower)",
             "email": "richard@markrent.com",
-            "logo_url": "https://boom-staging.s3.amazonaws.com/staging/f3d7aa21794fbd0a5a420f60bdf8991e.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6RCWFKPAV7ADZIA6%2F20251213%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251213T084934Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=4611f98e1030e8ec01ac80377f0e59d886b8d24a52c1c546dda10bf2e7ae51fc",
+            "logo_url": "https://boom-staging.s3.amazonaws.com/staging/f3d7aa21794fbd0a5a420f60bdf8991e.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6RCWFKPAV7ADZIA6%2F20251215%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251215T163647Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=31a98239fcc34d49b73614638582a54c1721ca9a421bb48f5f62cd5c8ae5dbd3",
             "is_sites_and_communities": true,
             "id": 368,
             "colors": {
               "primary": {
-                "20": "#F5FCFF",
-                "50": "#E5F7FF",
-                "100": "#B3E7FF",
-                "200": "#80D6FF",
-                "400": "#1AB6FF",
-                "500": "#004D71",
-                "600": "#007AB3",
-                "700": "#005780",
-                "800": "#00344D",
-                "900": "#00344D"
+                "20": "#a4e2ff",
+                "50": "#71d2ff",
+                "100": "#3ec2ff",
+                "200": "#0bb1ff",
+                "300": "#0092d7",
+                "400": "#0070a4",
+                "500": "#004d71",
+                "600": "#004667",
+                "700": "#003f5d",
+                "800": "#003852",
+                "900": "#003148"
               }
             },
             "base_border_radius": null,
             "font_family": null,
             "font_family_link": null,
-            "google_analytics_id": "G-PG1HC1MDRH",
+            "google_analytics_id": null,
             "partner_features": [
-              "chat"
+              "chat",
+              "property_owner"
             ],
             "property_management_system": "manage_america"
           },
           "verification_template": {
-            "has_move_in_date_limit": false,
-            "max_move_in_days": 0,
+            "has_move_in_date_limit": null,
+            "max_move_in_days": null,
             "settings": {
               "applicant": {
                 "identity_verification": {
@@ -417,33 +421,33 @@
             }
           },
           "unit": {
-            "id": 150452,
-            "title": "sd",
+            "id": 172209,
+            "title": "2341 E 18th St",
             "property": {
-              "name": "Old Prop",
+              "name": "2341 E 18th St",
               "address": {
-                "address1": "23423 N 123rd St",
-                "address2": "2",
-                "city": "Scottsdale",
-                "state_or_province": "AZ",
-                "postal_code": "85255",
+                "address1": "2341 E 18th St",
+                "address2": "",
+                "city": "Chattanooga",
+                "state_or_province": "TN",
+                "postal_code": "37404",
                 "country": "US",
                 "lat": null,
                 "lng": null,
-                "one_line_address": "23423 N 123rd St, 2, Scottsdale, AZ, 85255, US"
+                "one_line_address": "2341 E 18th St, Chattanooga, TN, 37404, US"
               }
             },
             "monthly_rent_amount": {
-              "cents": 234500,
+              "cents": 189000,
               "currency": "USD"
             },
             "home_rent_amount": null,
             "site_rent_amount": null,
-            "available_at": "2025-09-22T00:00:00.000+00:00",
+            "available_at": "2025-12-13T00:00:00.000+00:00",
             "partner_name": "Boom Screen (Mark Brower)"
           },
           "monthly_rent_amount": {
-            "cents": 234500,
+            "cents": 0,
             "currency": "USD"
           },
           "home_rent_amount": null,
@@ -454,18 +458,18 @@
           },
           "applicants": [
             {
-              "id": 3026,
-              "application_id": 2724,
+              "id": 4764,
+              "application_id": 4158,
               "role": "applicant",
-              "first_name": "Eino",
-              "last_name": "Jakubowski",
-              "middle_name": "Angel",
-              "email": "1nr7jfgsyxag@mail.tm",
-              "application_status": "started",
+              "first_name": "Carter",
+              "last_name": "Franecki",
+              "middle_name": "Noah",
+              "email": "bej9frly79@mail.tm",
+              "application_status": "submitted",
               "retry_identity_verification_status": "not_available",
               "verifications": [
                 {
-                  "id": 23460,
+                  "id": 38259,
                   "name": "rental_application",
                   "title": "verifications.personal-details.title",
                   "description": "verifications.personal-details.description",
@@ -481,7 +485,7 @@
                   "income_sources": []
                 },
                 {
-                  "id": 23461,
+                  "id": 38260,
                   "name": "housing_history",
                   "title": "verifications.housing-history.title",
                   "description": "verifications.housing-history.description",
@@ -497,11 +501,11 @@
                   "income_sources": []
                 },
                 {
-                  "id": 23462,
+                  "id": 38261,
                   "name": "identity_verification",
                   "title": "verifications.identity-verification.applicant-title",
                   "description": "verifications.identity-verification.applicant-description",
-                  "status": "started",
+                  "status": "verified",
                   "estimated_time": 300,
                   "index": 2,
                   "editable": false,
@@ -513,7 +517,7 @@
                   "income_sources": []
                 },
                 {
-                  "id": 23463,
+                  "id": 38262,
                   "name": "combined_income_verification",
                   "title": "verifications.combined-income.title",
                   "description": "verifications.combined-income.description",
@@ -527,34 +531,34 @@
                   },
                   "incomes": [
                     {
-                      "id": 187,
+                      "id": 328,
                       "type": "self_employment",
                       "status": "processing",
                       "pay_period": "monthly",
                       "amount": {
-                        "cents": 726300,
+                        "cents": 771700,
                         "currency": "USD"
                       },
-                      "start_date": "2016-05-11",
+                      "start_date": "2023-02-08",
                       "additional_data": {
-                        "company": "Ullrich, Aufderhar and Jones",
-                        "job_title": "Future Communications Orchestrator"
+                        "company": "West and Sons",
+                        "job_title": "Central Usability Associate"
                       }
                     }
                   ],
                   "income_sources": [
                     {
-                      "id": 177,
+                      "id": 309,
                       "status": "processing",
                       "type": "paystub",
-                      "income_id": 187,
+                      "income_id": 328,
                       "items": [],
                       "has_available_items": false
                     }
                   ]
                 },
                 {
-                  "id": 23464,
+                  "id": 38263,
                   "name": "credit_report",
                   "title": "Credit report",
                   "description": "Equifax credit report and score",
@@ -570,7 +574,7 @@
                   "income_sources": []
                 },
                 {
-                  "id": 23465,
+                  "id": 38264,
                   "name": "criminal_report",
                   "title": "National criminal report (US)",
                   "description": "CIC criminal background report",
@@ -586,7 +590,7 @@
                   "income_sources": []
                 },
                 {
-                  "id": 23466,
+                  "id": 38265,
                   "name": "eviction_report",
                   "title": "Housing court report",
                   "description": "Housing court report",
@@ -602,7 +606,7 @@
                   "income_sources": []
                 },
                 {
-                  "id": 23467,
+                  "id": 38266,
                   "name": "submission_disclosure",
                   "title": "Review the application",
                   "description": ".",
@@ -619,15 +623,15 @@
                 }
               ],
               "stream_chat_token": null,
-              "stream_chat_id": "applicant-customer-162438",
-              "stream_chat_name": "Eino Angel Jakubowski"
+              "stream_chat_id": "applicant-customer-165042",
+              "stream_chat_name": "Carter Noah Franecki"
             }
           ],
-          "status": "started",
-          "screening_status": "not_started",
+          "status": "submitted",
+          "screening_status": "processing",
           "desired_move_in_date": "2025-12-31",
           "conditions": [],
-          "partner_name_in_submission_disclosure": "Old Prop",
+          "partner_name_in_submission_disclosure": "2341 E 18th St",
           "has_multiple_applicants": null,
           "has_multiple_guarantors": null
         },
@@ -642,59 +646,23 @@
         "can_checkout": true,
         "ineligible_to_checkout_reason": null,
         "requirements": [],
-        "intercom_id": "applicant-3026",
+        "intercom_id": "applicant-4764",
         "is_manual": false,
         "discount_info": null,
         "invited_by_applicant_id": null,
         "has_passed_invite_flow": true
       }
     ],
-    "status": "started",
-    "screening_status": "not_started",
+    "status": "submitted",
+    "screening_status": "processing",
     "desired_move_in_date": "2025-12-31",
     "conditions": [],
-    "partner_name_in_submission_disclosure": "Old Prop",
+    "partner_name_in_submission_disclosure": "2341 E 18th St",
     "has_multiple_applicants": null,
     "has_multiple_guarantors": null,
     "verifications": [
       {
-        "id": 23464,
-        "name": "credit_report",
-        "title": "Credit report",
-        "description": "Equifax credit report and score",
-        "status": "pending",
-        "estimated_time": 0,
-        "index": 4,
-        "editable": false,
-        "progress": {
-          "total_steps": 0,
-          "filled_steps": 0
-        },
-        "incomes": [],
-        "income_sources": [],
-        "steps": [],
-        "requirements": null
-      },
-      {
-        "id": 23465,
-        "name": "criminal_report",
-        "title": "National criminal report (US)",
-        "description": "CIC criminal background report",
-        "status": "pending",
-        "estimated_time": 0,
-        "index": 5,
-        "editable": false,
-        "progress": {
-          "total_steps": 0,
-          "filled_steps": 0
-        },
-        "incomes": [],
-        "income_sources": [],
-        "steps": [],
-        "requirements": null
-      },
-      {
-        "id": 23466,
+        "id": 38265,
         "name": "eviction_report",
         "title": "Housing court report",
         "description": "Housing court report",
@@ -712,25 +680,7 @@
         "requirements": null
       },
       {
-        "id": 23462,
-        "name": "identity_verification",
-        "title": "verifications.identity-verification.applicant-title",
-        "description": "verifications.identity-verification.applicant-description",
-        "status": "started",
-        "estimated_time": 300,
-        "index": 2,
-        "editable": false,
-        "progress": {
-          "total_steps": 0,
-          "filled_steps": 0
-        },
-        "incomes": [],
-        "income_sources": [],
-        "steps": [],
-        "requirements": null
-      },
-      {
-        "id": 23460,
+        "id": 38259,
         "name": "rental_application",
         "title": "verifications.personal-details.title",
         "description": "verifications.personal-details.description",
@@ -746,37 +696,37 @@
         "income_sources": [],
         "steps": [
           {
-            "id": 26202,
+            "id": 42701,
             "index": 0,
             "name": "personal_details"
           },
           {
-            "id": 26203,
+            "id": 42702,
             "index": 1,
             "name": "dependents"
           },
           {
-            "id": 26204,
+            "id": 42703,
             "index": 2,
             "name": "emergency_contacts"
           },
           {
-            "id": 26205,
+            "id": 42704,
             "index": 3,
             "name": "pets"
           },
           {
-            "id": 26206,
+            "id": 42705,
             "index": 4,
             "name": "vehicles"
           },
           {
-            "id": 26207,
+            "id": 42706,
             "index": 5,
             "name": "military_first_responder_teacher"
           },
           {
-            "id": 26208,
+            "id": 42707,
             "index": 6,
             "name": "lead_source"
           }
@@ -784,56 +734,25 @@
         "requirements": null
       },
       {
-        "id": 23463,
-        "name": "combined_income_verification",
-        "title": "verifications.combined-income.title",
-        "description": "verifications.combined-income.description",
-        "status": "finished",
-        "estimated_time": 900,
-        "index": 3,
-        "editable": true,
+        "id": 38263,
+        "name": "credit_report",
+        "title": "Credit report",
+        "description": "Equifax credit report and score",
+        "status": "pending",
+        "estimated_time": 0,
+        "index": 4,
+        "editable": false,
         "progress": {
-          "total_steps": 1,
+          "total_steps": 0,
           "filled_steps": 0
         },
-        "incomes": [
-          {
-            "id": 187,
-            "type": "self_employment",
-            "status": "processing",
-            "pay_period": "monthly",
-            "amount": {
-              "cents": 726300,
-              "currency": "USD"
-            },
-            "start_date": "2016-05-11",
-            "additional_data": {
-              "company": "Ullrich, Aufderhar and Jones",
-              "job_title": "Future Communications Orchestrator"
-            }
-          }
-        ],
-        "income_sources": [
-          {
-            "id": 177,
-            "status": "processing",
-            "type": "paystub",
-            "income_id": 187,
-            "items": [],
-            "has_available_items": false
-          }
-        ],
-        "steps": [
-          {
-            "id": 26210,
-            "index": 0,
-            "name": "combined_income"
-          }
-        ],
+        "incomes": [],
+        "income_sources": [],
+        "steps": [],
         "requirements": null
       },
       {
-        "id": 23461,
+        "id": 38260,
         "name": "housing_history",
         "title": "verifications.housing-history.title",
         "description": "verifications.housing-history.description",
@@ -849,7 +768,7 @@
         "income_sources": [],
         "steps": [
           {
-            "id": 26209,
+            "id": 42708,
             "index": 0,
             "name": "address"
           }
@@ -859,7 +778,7 @@
         }
       },
       {
-        "id": 23467,
+        "id": 38266,
         "name": "submission_disclosure",
         "title": "Review the application",
         "description": ".",
@@ -875,27 +794,112 @@
         "income_sources": [],
         "steps": [
           {
-            "id": 26211,
+            "id": 42710,
             "index": 0,
             "name": "submission_disclosure_step"
+          }
+        ],
+        "requirements": null
+      },
+      {
+        "id": 38264,
+        "name": "criminal_report",
+        "title": "National criminal report (US)",
+        "description": "CIC criminal background report",
+        "status": "pending",
+        "estimated_time": 0,
+        "index": 5,
+        "editable": false,
+        "progress": {
+          "total_steps": 0,
+          "filled_steps": 0
+        },
+        "incomes": [],
+        "income_sources": [],
+        "steps": [],
+        "requirements": null
+      },
+      {
+        "id": 38261,
+        "name": "identity_verification",
+        "title": "verifications.identity-verification.applicant-title",
+        "description": "verifications.identity-verification.applicant-description",
+        "status": "verified",
+        "estimated_time": 300,
+        "index": 2,
+        "editable": false,
+        "progress": {
+          "total_steps": 0,
+          "filled_steps": 0
+        },
+        "incomes": [],
+        "income_sources": [],
+        "steps": [],
+        "requirements": null
+      },
+      {
+        "id": 38262,
+        "name": "combined_income_verification",
+        "title": "verifications.combined-income.title",
+        "description": "verifications.combined-income.description",
+        "status": "finished",
+        "estimated_time": 900,
+        "index": 3,
+        "editable": true,
+        "progress": {
+          "total_steps": 1,
+          "filled_steps": 0
+        },
+        "incomes": [
+          {
+            "id": 328,
+            "type": "self_employment",
+            "status": "processing",
+            "pay_period": "monthly",
+            "amount": {
+              "cents": 771700,
+              "currency": "USD"
+            },
+            "start_date": "2023-02-08",
+            "additional_data": {
+              "company": "West and Sons",
+              "job_title": "Central Usability Associate"
+            }
+          }
+        ],
+        "income_sources": [
+          {
+            "id": 309,
+            "status": "processing",
+            "type": "paystub",
+            "income_id": 328,
+            "items": [],
+            "has_available_items": false
+          }
+        ],
+        "steps": [
+          {
+            "id": 42709,
+            "index": 0,
+            "name": "combined_income"
           }
         ],
         "requirements": null
       }
     ],
     "current_applicant": {
-      "id": 3026,
-      "application_id": 2724,
+      "id": 4764,
+      "application_id": 4158,
       "role": "applicant",
-      "first_name": "Eino",
-      "last_name": "Jakubowski",
-      "middle_name": "Angel",
-      "email": "1nr7jfgsyxag@mail.tm",
-      "application_status": "started",
+      "first_name": "Carter",
+      "last_name": "Franecki",
+      "middle_name": "Noah",
+      "email": "bej9frly79@mail.tm",
+      "application_status": "submitted",
       "retry_identity_verification_status": "not_available",
       "verifications": [
         {
-          "id": 23460,
+          "id": 38259,
           "name": "rental_application",
           "title": "verifications.personal-details.title",
           "description": "verifications.personal-details.description",
@@ -911,37 +915,37 @@
           "income_sources": [],
           "steps": [
             {
-              "id": 26202,
+              "id": 42701,
               "index": 0,
               "name": "personal_details"
             },
             {
-              "id": 26203,
+              "id": 42702,
               "index": 1,
               "name": "dependents"
             },
             {
-              "id": 26204,
+              "id": 42703,
               "index": 2,
               "name": "emergency_contacts"
             },
             {
-              "id": 26205,
+              "id": 42704,
               "index": 3,
               "name": "pets"
             },
             {
-              "id": 26206,
+              "id": 42705,
               "index": 4,
               "name": "vehicles"
             },
             {
-              "id": 26207,
+              "id": 42706,
               "index": 5,
               "name": "military_first_responder_teacher"
             },
             {
-              "id": 26208,
+              "id": 42707,
               "index": 6,
               "name": "lead_source"
             }
@@ -949,7 +953,7 @@
           "requirements": null
         },
         {
-          "id": 23461,
+          "id": 38260,
           "name": "housing_history",
           "title": "verifications.housing-history.title",
           "description": "verifications.housing-history.description",
@@ -965,7 +969,7 @@
           "income_sources": [],
           "steps": [
             {
-              "id": 26209,
+              "id": 42708,
               "index": 0,
               "name": "address"
             }
@@ -975,11 +979,11 @@
           }
         },
         {
-          "id": 23462,
+          "id": 38261,
           "name": "identity_verification",
           "title": "verifications.identity-verification.applicant-title",
           "description": "verifications.identity-verification.applicant-description",
-          "status": "started",
+          "status": "verified",
           "estimated_time": 300,
           "index": 2,
           "editable": false,
@@ -993,7 +997,7 @@
           "requirements": null
         },
         {
-          "id": 23463,
+          "id": 38262,
           "name": "combined_income_verification",
           "title": "verifications.combined-income.title",
           "description": "verifications.combined-income.description",
@@ -1007,34 +1011,34 @@
           },
           "incomes": [
             {
-              "id": 187,
+              "id": 328,
               "type": "self_employment",
               "status": "processing",
               "pay_period": "monthly",
               "amount": {
-                "cents": 726300,
+                "cents": 771700,
                 "currency": "USD"
               },
-              "start_date": "2016-05-11",
+              "start_date": "2023-02-08",
               "additional_data": {
-                "company": "Ullrich, Aufderhar and Jones",
-                "job_title": "Future Communications Orchestrator"
+                "company": "West and Sons",
+                "job_title": "Central Usability Associate"
               }
             }
           ],
           "income_sources": [
             {
-              "id": 177,
+              "id": 309,
               "status": "processing",
               "type": "paystub",
-              "income_id": 187,
+              "income_id": 328,
               "items": [],
               "has_available_items": false
             }
           ],
           "steps": [
             {
-              "id": 26210,
+              "id": 42709,
               "index": 0,
               "name": "combined_income"
             }
@@ -1042,7 +1046,7 @@
           "requirements": null
         },
         {
-          "id": 23464,
+          "id": 38263,
           "name": "credit_report",
           "title": "Credit report",
           "description": "Equifax credit report and score",
@@ -1060,7 +1064,7 @@
           "requirements": null
         },
         {
-          "id": 23465,
+          "id": 38264,
           "name": "criminal_report",
           "title": "National criminal report (US)",
           "description": "CIC criminal background report",
@@ -1078,7 +1082,7 @@
           "requirements": null
         },
         {
-          "id": 23466,
+          "id": 38265,
           "name": "eviction_report",
           "title": "Housing court report",
           "description": "Housing court report",
@@ -1096,7 +1100,7 @@
           "requirements": null
         },
         {
-          "id": 23467,
+          "id": 38266,
           "name": "submission_disclosure",
           "title": "Review the application",
           "description": ".",
@@ -1112,7 +1116,7 @@
           "income_sources": [],
           "steps": [
             {
-              "id": 26211,
+              "id": 42710,
               "index": 0,
               "name": "submission_disclosure_step"
             }
@@ -1121,43 +1125,45 @@
         }
       ],
       "stream_chat_token": null,
-      "stream_chat_id": "applicant-customer-162438",
-      "stream_chat_name": "Eino Angel Jakubowski",
+      "stream_chat_id": "applicant-customer-165042",
+      "stream_chat_name": "Carter Noah Franecki",
       "application": {
-        "id": 2724,
+        "id": 4158,
         "partner": {
           "slug": "mark-brower-properties",
           "name": "Boom Screen (Mark Brower)",
           "email": "richard@markrent.com",
-          "logo_url": "https://boom-staging.s3.amazonaws.com/staging/f3d7aa21794fbd0a5a420f60bdf8991e.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6RCWFKPAV7ADZIA6%2F20251213%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251213T084934Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=4611f98e1030e8ec01ac80377f0e59d886b8d24a52c1c546dda10bf2e7ae51fc",
+          "logo_url": "https://boom-staging.s3.amazonaws.com/staging/f3d7aa21794fbd0a5a420f60bdf8991e.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6RCWFKPAV7ADZIA6%2F20251215%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251215T163648Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=d0f8be2b0cd810ccb45089e5ea2e4d0de4753349f56e4a96356c517e9b14b55e",
           "is_sites_and_communities": true,
           "id": 368,
           "colors": {
             "primary": {
-              "20": "#F5FCFF",
-              "50": "#E5F7FF",
-              "100": "#B3E7FF",
-              "200": "#80D6FF",
-              "400": "#1AB6FF",
-              "500": "#004D71",
-              "600": "#007AB3",
-              "700": "#005780",
-              "800": "#00344D",
-              "900": "#00344D"
+              "20": "#a4e2ff",
+              "50": "#71d2ff",
+              "100": "#3ec2ff",
+              "200": "#0bb1ff",
+              "300": "#0092d7",
+              "400": "#0070a4",
+              "500": "#004d71",
+              "600": "#004667",
+              "700": "#003f5d",
+              "800": "#003852",
+              "900": "#003148"
             }
           },
           "base_border_radius": null,
           "font_family": null,
           "font_family_link": null,
-          "google_analytics_id": "G-PG1HC1MDRH",
+          "google_analytics_id": null,
           "partner_features": [
-            "chat"
+            "chat",
+            "property_owner"
           ],
           "property_management_system": "manage_america"
         },
         "verification_template": {
-          "has_move_in_date_limit": false,
-          "max_move_in_days": 0,
+          "has_move_in_date_limit": null,
+          "max_move_in_days": null,
           "settings": {
             "applicant": {
               "identity_verification": {
@@ -1194,33 +1200,33 @@
           }
         },
         "unit": {
-          "id": 150452,
-          "title": "sd",
+          "id": 172209,
+          "title": "2341 E 18th St",
           "property": {
-            "name": "Old Prop",
+            "name": "2341 E 18th St",
             "address": {
-              "address1": "23423 N 123rd St",
-              "address2": "2",
-              "city": "Scottsdale",
-              "state_or_province": "AZ",
-              "postal_code": "85255",
+              "address1": "2341 E 18th St",
+              "address2": "",
+              "city": "Chattanooga",
+              "state_or_province": "TN",
+              "postal_code": "37404",
               "country": "US",
               "lat": null,
               "lng": null,
-              "one_line_address": "23423 N 123rd St, 2, Scottsdale, AZ, 85255, US"
+              "one_line_address": "2341 E 18th St, Chattanooga, TN, 37404, US"
             }
           },
           "monthly_rent_amount": {
-            "cents": 234500,
+            "cents": 189000,
             "currency": "USD"
           },
           "home_rent_amount": null,
           "site_rent_amount": null,
-          "available_at": "2025-09-22T00:00:00.000+00:00",
+          "available_at": "2025-12-13T00:00:00.000+00:00",
           "partner_name": "Boom Screen (Mark Brower)"
         },
         "monthly_rent_amount": {
-          "cents": 234500,
+          "cents": 0,
           "currency": "USD"
         },
         "home_rent_amount": null,
@@ -1231,18 +1237,18 @@
         },
         "applicants": [
           {
-            "id": 3026,
-            "application_id": 2724,
+            "id": 4764,
+            "application_id": 4158,
             "role": "applicant",
-            "first_name": "Eino",
-            "last_name": "Jakubowski",
-            "middle_name": "Angel",
-            "email": "1nr7jfgsyxag@mail.tm",
-            "application_status": "started",
+            "first_name": "Carter",
+            "last_name": "Franecki",
+            "middle_name": "Noah",
+            "email": "bej9frly79@mail.tm",
+            "application_status": "submitted",
             "retry_identity_verification_status": "not_available",
             "verifications": [
               {
-                "id": 23460,
+                "id": 38259,
                 "name": "rental_application",
                 "title": "verifications.personal-details.title",
                 "description": "verifications.personal-details.description",
@@ -1258,7 +1264,7 @@
                 "income_sources": []
               },
               {
-                "id": 23461,
+                "id": 38260,
                 "name": "housing_history",
                 "title": "verifications.housing-history.title",
                 "description": "verifications.housing-history.description",
@@ -1274,11 +1280,11 @@
                 "income_sources": []
               },
               {
-                "id": 23462,
+                "id": 38261,
                 "name": "identity_verification",
                 "title": "verifications.identity-verification.applicant-title",
                 "description": "verifications.identity-verification.applicant-description",
-                "status": "started",
+                "status": "verified",
                 "estimated_time": 300,
                 "index": 2,
                 "editable": false,
@@ -1290,7 +1296,7 @@
                 "income_sources": []
               },
               {
-                "id": 23463,
+                "id": 38262,
                 "name": "combined_income_verification",
                 "title": "verifications.combined-income.title",
                 "description": "verifications.combined-income.description",
@@ -1304,34 +1310,34 @@
                 },
                 "incomes": [
                   {
-                    "id": 187,
+                    "id": 328,
                     "type": "self_employment",
                     "status": "processing",
                     "pay_period": "monthly",
                     "amount": {
-                      "cents": 726300,
+                      "cents": 771700,
                       "currency": "USD"
                     },
-                    "start_date": "2016-05-11",
+                    "start_date": "2023-02-08",
                     "additional_data": {
-                      "company": "Ullrich, Aufderhar and Jones",
-                      "job_title": "Future Communications Orchestrator"
+                      "company": "West and Sons",
+                      "job_title": "Central Usability Associate"
                     }
                   }
                 ],
                 "income_sources": [
                   {
-                    "id": 177,
+                    "id": 309,
                     "status": "processing",
                     "type": "paystub",
-                    "income_id": 187,
+                    "income_id": 328,
                     "items": [],
                     "has_available_items": false
                   }
                 ]
               },
               {
-                "id": 23464,
+                "id": 38263,
                 "name": "credit_report",
                 "title": "Credit report",
                 "description": "Equifax credit report and score",
@@ -1347,7 +1353,7 @@
                 "income_sources": []
               },
               {
-                "id": 23465,
+                "id": 38264,
                 "name": "criminal_report",
                 "title": "National criminal report (US)",
                 "description": "CIC criminal background report",
@@ -1363,7 +1369,7 @@
                 "income_sources": []
               },
               {
-                "id": 23466,
+                "id": 38265,
                 "name": "eviction_report",
                 "title": "Housing court report",
                 "description": "Housing court report",
@@ -1379,7 +1385,7 @@
                 "income_sources": []
               },
               {
-                "id": 23467,
+                "id": 38266,
                 "name": "submission_disclosure",
                 "title": "Review the application",
                 "description": ".",
@@ -1396,15 +1402,15 @@
               }
             ],
             "stream_chat_token": null,
-            "stream_chat_id": "applicant-customer-162438",
-            "stream_chat_name": "Eino Angel Jakubowski"
+            "stream_chat_id": "applicant-customer-165042",
+            "stream_chat_name": "Carter Noah Franecki"
           }
         ],
-        "status": "started",
-        "screening_status": "not_started",
+        "status": "submitted",
+        "screening_status": "processing",
         "desired_move_in_date": "2025-12-31",
         "conditions": [],
-        "partner_name_in_submission_disclosure": "Old Prop",
+        "partner_name_in_submission_disclosure": "2341 E 18th St",
         "has_multiple_applicants": null,
         "has_multiple_guarantors": null
       },
@@ -1419,7 +1425,7 @@
       "can_checkout": true,
       "ineligible_to_checkout_reason": null,
       "requirements": [],
-      "intercom_id": "applicant-3026",
+      "intercom_id": "applicant-4764",
       "is_manual": false,
       "discount_info": null,
       "invited_by_applicant_id": null,

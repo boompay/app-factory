@@ -29,6 +29,22 @@ import { STATUS } from "./constants";
 const logger = LoggerProvider.create("application-runner");
 
 /**
+ * Extracts the environment from a magic link URL
+ * @param link - The magic link URL
+ * @returns The environment string (stg1, stg2, etc.) or undefined if not found
+ */
+function extractEnvironmentFromLink(link: string): string {
+  if (link.includes(".staging2.")) {
+    return "stg2";
+  }
+  if (link.includes(".staging.")) {
+    return "stg1";
+  }
+  // Fallback to default from config if pattern doesn't match
+  return APP_CONFIG.ENV;
+}
+
+/**
  * Saves a snapshot of application details to a test data file
  * @param api - The API client
  * @param applicationId - The application ID
@@ -44,13 +60,13 @@ async function saveApplicationSnapshot(
   await writeTestData(filePath, appResponse);
 }
 
-async function run(link: string, env?: string): Promise<void> {
+async function run(link: string): Promise<void> {
   try {
     // Clear log files before each run
     await clearLogFiles();
 
-    const environment = env || APP_CONFIG.ENV;
-    logger.info(`Using environment: ${environment}`);
+    const environment = extractEnvironmentFromLink(link);
+    logger.info(`Using environment: ${environment} (extracted from link)`);
     loadEnv(environment);
     validateRequiredEnv();
 
@@ -182,9 +198,8 @@ async function run(link: string, env?: string): Promise<void> {
 // Main execution
 const magicLink =
   process.argv[2] ||
-  "https://screen.staging2.boompay.app/a/BtV3cBYXJpvytRoOnYDP";
-const environment = process.argv[3]; // Optional environment parameter
-run(magicLink, environment).catch((error) => {
+  "https://screen.staging.boompay.app/a/DfmlqHeL6gqNU3aLKAJd";
+run(magicLink).catch((error) => {
   logger.error("Fatal error:", error);
   process.exit(1);
 });

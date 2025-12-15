@@ -182,7 +182,7 @@ async function run(link: string, env?: string): Promise<void> {
 // Main execution
 const magicLink =
   process.argv[2] ||
-  "https://screen.staging.boompay.app/a/DfmlqHeL6gqNU3aLKAJd";
+  "https://screen.staging2.boompay.app/a/BtV3cBYXJpvytRoOnYDP";
 const environment = process.argv[3]; // Optional environment parameter
 run(magicLink, environment).catch((error) => {
   logger.error("Fatal error:", error);

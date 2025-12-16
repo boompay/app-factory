@@ -1,4 +1,3 @@
-import { loadEnv } from "./env";
 import { AuthTokenProvider, LoggerProvider } from "./services";
 import { APP_CONFIG } from "./config";
 import { AppInfo } from "./models";
@@ -29,19 +28,25 @@ import { STATUS } from "./constants";
 const logger = LoggerProvider.create("application-runner");
 
 /**
- * Extracts the environment from a magic link URL
+ * Extracts the BASE_URL from a magic link URL
  * @param link - The magic link URL
- * @returns The environment string (stg1, stg2, etc.) or undefined if not found
+ * @returns The BASE_URL (e.g., https://api.staging.boompay.app)
  */
-function extractEnvironmentFromLink(link: string): string {
-  if (link.includes(".staging2.")) {
-    return "stg2";
+function extractBaseUrlFromLink(link: string): string {
+  try {
+    const url = new URL(link);
+    const hostname = url.hostname;
+    
+    // Replace 'screen' with 'api' in the hostname
+    // screen.staging.boompay.app -> api.staging.boompay.app
+    // screen.staging2.boompay.app -> api.staging2.boompay.app
+    const apiHostname = hostname.replace(/^screen\./, "api.");
+    
+    // Construct the base URL with the same protocol
+    return `${url.protocol}//${apiHostname}`;
+  } catch (error) {
+    throw new Error(`Invalid magic link URL: ${link}`);
   }
-  if (link.includes(".staging.")) {
-    return "stg1";
-  }
-  // Fallback to default from config if pattern doesn't match
-  return APP_CONFIG.ENV;
 }
 
 /**
@@ -65,9 +70,11 @@ async function run(link: string): Promise<void> {
     // Clear log files before each run
     await clearLogFiles();
 
-    const environment = extractEnvironmentFromLink(link);
-    logger.info(`Using environment: ${environment} (extracted from link)`);
-    loadEnv(environment);
+    // Extract BASE_URL from magic link and set it in environment
+    const baseUrl = extractBaseUrlFromLink(link);
+    process.env.BASE_URL = baseUrl;
+    logger.info(`Using BASE_URL: ${baseUrl} (extracted from link)`);
+
     validateRequiredEnv();
 
     const applicationToken = link.split("/").pop();
@@ -75,7 +82,6 @@ async function run(link: string): Promise<void> {
 
     // Initialize authentication
     // AuthTokenProvider needs the base URL, not the application token
-    const baseUrl = process.env.BASE_URL!;
     const tokenProvider = new AuthTokenProvider(baseUrl);
     // getBearerToken() returns AppInfo directly and also writes it to current-app.json for persistence
     const app = await tokenProvider.getBearerToken(validatedToken);

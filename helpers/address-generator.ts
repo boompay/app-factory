@@ -1,7 +1,4 @@
 import fetch from "node-fetch";
-import { loadEnv } from "../env";
-
-loadEnv("stg2");
 
 export interface FakeAddress {
   housenumber: string;

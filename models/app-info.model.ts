@@ -14,6 +14,18 @@ export interface AppInfo {
     first_name?: string;
     last_name?: string;
     middle_name?: string;
+    address?:{
+      full_address?: string;
+      address_components?: {
+        address1?: string;
+        address2?: string;
+        city?: string;
+        state?: string;
+        zip?: string;
+        country?: string;
+        county?: string;
+      };
+    }
   };
   verifications?: {
     personal_details?: string;

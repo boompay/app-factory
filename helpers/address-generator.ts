@@ -1,4 +1,8 @@
 import fetch from "node-fetch";
+import { config } from "dotenv";
+
+// Load .env file if it exists (for GEOAPIFY_API_KEY)
+config();
 
 export interface FakeAddress {
   housenumber: string;

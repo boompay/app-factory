@@ -38,9 +38,10 @@ function extractBaseUrlFromLink(link: string): string {
     const hostname = url.hostname;
     
     // Replace 'screen' with 'api' in the hostname
-    // screen.staging.boompay.app -> api.staging.boompay.app
-    // screen.staging2.boompay.app -> api.staging2.boompay.app
-    const apiHostname = hostname.replace(/^screen\./, "api.");
+    // Handles two patterns:
+    // 1. screen.staging.boompay.app -> api.staging.boompay.app
+    // 2. boompay-client-1837-screen.review.boompay.app -> boompay-client-1837-api.review.boompay.app
+    const apiHostname = hostname.replace(/screen(?=\.)/, "api");
     
     // Construct the base URL with the same protocol
     return `${url.protocol}//${apiHostname}`;

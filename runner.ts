@@ -66,6 +66,7 @@ async function saveApplicationSnapshot(
   await writeTestData(filePath, appResponse);
 }
 
+//Main runner function
 async function run(link: string): Promise<void> {
   try {
     // Clear log files before each run
@@ -82,7 +83,6 @@ async function run(link: string): Promise<void> {
     const validatedToken = validateApplicationToken(applicationToken);
 
     // Initialize authentication
-    // AuthTokenProvider needs the base URL, not the application token
     const tokenProvider = new AuthTokenProvider(baseUrl);
     // getBearerToken() returns AppInfo directly and also writes it to current-app.json for persistence
     const app = await tokenProvider.getBearerToken(validatedToken);

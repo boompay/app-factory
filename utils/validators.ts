@@ -25,3 +25,26 @@ export function validateApplicationToken(applicationToken: string | undefined): 
   return applicationToken;
 }
 
+/**
+ * Extracts the BASE_URL from a magic link URL
+ * @param link - The magic link URL
+ * @returns The BASE_URL (e.g., https://api.staging.boompay.app)
+ */
+export function extractBaseUrlFromLink(link: string): string {
+  try {
+    const url = new URL(link);
+    const hostname = url.hostname;
+    
+    // Replace 'screen' with 'api' in the hostname
+    // Handles two patterns:
+    // 1. screen.staging.boompay.app -> api.staging.boompay.app
+    // 2. boompay-client-1837-screen.review.boompay.app -> boompay-client-1837-api.review.boompay.app
+    const apiHostname = hostname.replace(/screen(?=\.)/, "api");
+    
+    // Construct the base URL with the same protocol
+    return `${url.protocol}//${apiHostname}`;
+  } catch (error) {
+    throw new Error(`Invalid magic link URL: ${link}`);
+  }
+}
+

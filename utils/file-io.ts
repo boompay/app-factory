@@ -2,6 +2,7 @@ import fs from "fs/promises";
 import path from "path";
 import fetch, { Response } from "node-fetch";
 import { AppInfo } from "../models";
+import { ApiClient } from "../services";
 
 export async function readAppInfo(filePath: string): Promise<AppInfo> {
   try {
@@ -144,5 +145,28 @@ export async function readFileAsBuffer(filePath: string): Promise<Buffer> {
       throw new Error(`Failed to read file ${filePath}: ${error.message}`);
     }
     throw new Error(`Failed to read file ${filePath}: ${String(error)}`);
+  }
+}
+
+/**
+ * Saves a snapshot of application details to a test data file
+ * @param api - The API client
+ * @param applicationId - The application ID
+ * @param filePath - Path to save the test data
+ */
+export async function saveApplicationSnapshot(
+  api: ApiClient,
+  applicationId: string,
+  filePath: string
+): Promise<void> {
+  try {
+    const appResponseRaw = await api.getApplicationDetails(applicationId);
+    const appResponse = await appResponseRaw.json();
+    await writeTestData(filePath, appResponse);
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(`Failed to save application snapshot: ${error.message}`);
+    }
+    throw new Error(`Failed to save application snapshot: ${String(error)}`);
   }
 }

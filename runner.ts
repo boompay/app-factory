@@ -1,15 +1,15 @@
 import { AuthTokenProvider, LoggerProvider } from "./services";
 import { APP_CONFIG } from "./config";
-import { AppInfo } from "./models";
 import {
-  readAppInfo,
   writeAppInfo,
   writeTestData,
   validateAppInfo,
   validateRequiredEnv,
   validateApplicationToken,
+  extractBaseUrlFromLink,
   clearLogFiles,
   getLastDayOfCurrentMonth,
+  saveApplicationSnapshot,
 } from "./utils";
 import {
   initializeApi,
@@ -22,49 +22,9 @@ import {
 import { waitFor } from "./helpers";
 import { setupVerifications } from "./workflows";
 import { submitPersonalDetails, submitHousingHistory } from "./workflows";
-import { ApiClient } from "./services";
 import { STATUS } from "./constants";
 
 const logger = LoggerProvider.create("application-runner");
-
-/**
- * Extracts the BASE_URL from a magic link URL
- * @param link - The magic link URL
- * @returns The BASE_URL (e.g., https://api.staging.boompay.app)
- */
-function extractBaseUrlFromLink(link: string): string {
-  try {
-    const url = new URL(link);
-    const hostname = url.hostname;
-    
-    // Replace 'screen' with 'api' in the hostname
-    // Handles two patterns:
-    // 1. screen.staging.boompay.app -> api.staging.boompay.app
-    // 2. boompay-client-1837-screen.review.boompay.app -> boompay-client-1837-api.review.boompay.app
-    const apiHostname = hostname.replace(/screen(?=\.)/, "api");
-    
-    // Construct the base URL with the same protocol
-    return `${url.protocol}//${apiHostname}`;
-  } catch (error) {
-    throw new Error(`Invalid magic link URL: ${link}`);
-  }
-}
-
-/**
- * Saves a snapshot of application details to a test data file
- * @param api - The API client
- * @param applicationId - The application ID
- * @param filePath - Path to save the test data
- */
-async function saveApplicationSnapshot(
-  api: ApiClient,
-  applicationId: string,
-  filePath: string
-): Promise<void> {
-  const appResponseRaw = await api.getApplicationDetails(applicationId);
-  const appResponse = await appResponseRaw.json();
-  await writeTestData(filePath, appResponse);
-}
 
 //Main runner function
 async function run(link: string): Promise<void> {

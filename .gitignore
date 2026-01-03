@@ -69,6 +69,5 @@ node_modules/.package-lock.json
 package-lock.json
 test-data/application.json
 test-data/applicant.json
-workflows/personal-details.service.ts
 test-data/applicant.json
 test-data/application.json

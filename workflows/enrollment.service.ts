@@ -1,5 +1,5 @@
 import { ApiClient, LoggerProvider } from "../services";
-import { AppInfo } from "../models";
+import { AppInfo, getCurrentApplicant } from "../models";
 import { randomFullName, createTestInbox } from "../helpers";
 import { transformStatusFields } from "../utils";
 
@@ -50,14 +50,18 @@ export async function enrollApplication(
 
   // Update app with enrollment data
   app.id = enrollResponse.application.id;
-  if (!app.applicant) {
-    app.applicant = {};
+  if (!app.applicants) {
+    app.applicants = [];
   }
-  app.applicant.id = enrollResponse.application.current_applicant.id;
-  app.applicant.email = email;
-  app.applicant.first_name = user.first;
-  app.applicant.last_name = user.last;
-  app.applicant.middle_name = user.middle;
+  // Update or create the first applicant
+  if (app.applicants.length === 0) {
+    app.applicants.push({});
+  }
+  app.applicants[0].id = enrollResponse.application.current_applicant.id;
+  app.applicants[0].email = email;
+  app.applicants[0].first_name = user.first;
+  app.applicants[0].last_name = user.last;
+  app.applicants[0].middle_name = user.middle;
 
   return { enrollResponse, user, email };
 }
@@ -72,10 +76,14 @@ export async function startApplicationFlow(
   const startResponse = await startResponseRaw.json();
   await writeTestData(testDataPaths.application, startResponse);
 
-  const passInviteResponseRaw = await api.passInviteFlow(app.applicant!.id!);
+  const currentApplicant = getCurrentApplicant(app);
+  if (!currentApplicant || !currentApplicant.id) {
+    throw new Error("Current applicant not found or missing ID");
+  }
+  const passInviteResponseRaw = await api.passInviteFlow(currentApplicant.id);
   const passInviteResponse = await passInviteResponseRaw.json();
   await writeTestData(testDataPaths.applicant, passInviteResponse);
-  logger.info(`Passed invite flow for applicant ID: ${app.applicant!.id}`);
+  logger.info(`Passed invite flow for applicant ID: ${currentApplicant.id}`);
 }
 
 export async function submitApplication(
@@ -88,5 +96,9 @@ export async function submitApplication(
   // Transform the response: status "started" → "submitted", application_status "finished" → "submitted"
   const payload = transformStatusFields(appResponse);
   await api.updateApplication(app.id!, payload);
-  logger.info(`Application ${app.id!} for applicant ${app.applicant!.id!} with phone number ${app.applicant!.phone!} successfully submitted`);
+  const currentApplicant = getCurrentApplicant(app);
+  if (!currentApplicant || !currentApplicant.id || !currentApplicant.phone) {
+    throw new Error("Current applicant not found or missing required fields");
+  }
+  logger.info(`Application ${app.id!} for applicant ${currentApplicant.id} with phone number ${currentApplicant.phone} successfully submitted`);
 }

@@ -1,3 +1,25 @@
+export interface Applicant {
+  id?: string;
+  phone?: string;
+  otp?: number;
+  email?: string;
+  first_name?: string;
+  last_name?: string;
+  middle_name?: string;
+  address?: {
+    full_address?: string;
+    address_components?: {
+      address1?: string;
+      address2?: string;
+      city?: string;
+      state?: string;
+      zip?: string;
+      country?: string;
+      county?: string;
+    };
+  };
+}
+
 export interface AppInfo {
   id?: string;
   app_token: string;
@@ -6,27 +28,7 @@ export interface AppInfo {
   unit_id: string;
   incomeId?: string;
   incomeSourceId?: string;
-  applicant?: {
-    id?: string;
-    phone?: string;
-    otp?: number;
-    email?: string;
-    first_name?: string;
-    last_name?: string;
-    middle_name?: string;
-    address?:{
-      full_address?: string;
-      address_components?: {
-        address1?: string;
-        address2?: string;
-        city?: string;
-        state?: string;
-        zip?: string;
-        country?: string;
-        county?: string;
-      };
-    }
-  };
+  applicants?: Applicant[];
   verifications?: {
     personal_details?: string;
     housing_history?: string;
@@ -34,4 +36,14 @@ export interface AppInfo {
     combined_income?: string;
     submission_disclosure?: string;
   };
+}
+
+/**
+ * Gets the current applicant from the applicants array.
+ * Returns the first applicant if available, or undefined if the array is empty.
+ * @param app - The AppInfo object
+ * @returns The current applicant or undefined
+ */
+export function getCurrentApplicant(app: AppInfo): Applicant | undefined {
+  return app.applicants && app.applicants.length > 0 ? app.applicants[0] : undefined;
 }

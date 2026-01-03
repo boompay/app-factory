@@ -1,5 +1,6 @@
 import { AuthTokenProvider, LoggerProvider } from "./services";
 import { APP_CONFIG } from "./config";
+import { getCurrentApplicant } from "./models";
 import {
   writeAppInfo,
   writeTestData,
@@ -73,7 +74,11 @@ async function run(link: string): Promise<void> {
 
     //Submit IDV by Fast-Track
     logger.info("Starting identity verification process");
-    let payload = { application_id: app.id, applicant_id: app.applicant!.id };
+    const currentApplicant = getCurrentApplicant(app);
+    if (!currentApplicant || !currentApplicant.id) {
+      throw new Error("Current applicant not found or missing ID");
+    }
+    let payload = { application_id: app.id, applicant_id: currentApplicant.id };
     await api.createTestIdentityVerification(payload);
     logger.info("Waiting for identity verification to complete...Take your time");
 
@@ -155,7 +160,14 @@ async function run(link: string): Promise<void> {
       APP_CONFIG.PATHS.TEST_DATA_APPLICATION
     );
 
-    logger.info(`Completed application flow for application ID: ${app.id}. Applicant name is ${app.applicant!.first_name!} ${app.applicant!.middle_name![0]}. ${app.applicant!.last_name!}`);
+    const finalApplicant = getCurrentApplicant(app);
+    if (!finalApplicant) {
+      throw new Error("Current applicant not found");
+    }
+    const middleInitial = finalApplicant.middle_name && finalApplicant.middle_name.length > 0 
+      ? `${finalApplicant.middle_name[0]}. ` 
+      : "";
+    logger.info(`Completed application flow for application ID: ${app.id}. Applicant name is ${finalApplicant.first_name || ""} ${middleInitial}${finalApplicant.last_name || ""}`);
   } catch (error) {
     logger.error("Error running application flow:", error);
     throw error;

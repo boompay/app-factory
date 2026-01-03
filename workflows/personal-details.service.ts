@@ -1,5 +1,5 @@
 import { ApiClient } from "../services";
-import { AppInfo } from "../models";
+import { AppInfo, getCurrentApplicant } from "../models";
 import { PersonalDetailsStepConfig } from "../types";
 import { APP_CONFIG } from "../config";
 import { LoggerProvider } from "../services";
@@ -39,16 +39,21 @@ export async function submitPersonalDetailsSteps(
 export function createPersonalDetailsStepsConfig(
   app: AppInfo
 ): PersonalDetailsStepConfig[] {
+  const currentApplicant = getCurrentApplicant(app);
+  if (!currentApplicant) {
+    throw new Error("Current applicant not found");
+  }
+  
   return [
     {
       stepName: APP_CONFIG.STEP_NAMES.PERSONAL_DETAILS,
       getPayload: () => ({
         data: {
-          contact_first_name: app.applicant!.first_name!,
-          contact_last_name: app.applicant!.last_name!,
-          contact_middle_name: app.applicant!.middle_name!,
-          contact_email: app.applicant!.email!,
-          contact_phone_number: app.applicant!.phone!,
+          contact_first_name: currentApplicant.first_name!,
+          contact_last_name: currentApplicant.last_name!,
+          contact_middle_name: currentApplicant.middle_name!,
+          contact_email: currentApplicant.email!,
+          contact_phone_number: currentApplicant.phone!,
         },
       }),
     },
@@ -221,9 +226,16 @@ export async function passSubmissionDisclosure(
 ): Promise<void> {
   // Upload signature and get asset global_id
   const signatureAssetId = await uploadSignature(api, app, "./test-data/signature.svg");
+  const currentApplicant = getCurrentApplicant(app);
+  if (!currentApplicant) {
+    throw new Error("Current applicant not found");
+  }
+  const middleInitial = currentApplicant.middle_name && currentApplicant.middle_name.length > 0 
+    ? `${currentApplicant.middle_name[0]}. ` 
+    : "";
   const signatureAssetIdPayload = {
     data: {
-      full_name: `${app.applicant!.first_name!} ${app.applicant!.middle_name![0]}. ${app.applicant!.last_name!}`,
+      full_name: `${currentApplicant.first_name || ""} ${middleInitial}${currentApplicant.last_name || ""}`,
       signature: signatureAssetId
     }
   };

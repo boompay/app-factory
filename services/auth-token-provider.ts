@@ -88,10 +88,12 @@ export class AuthTokenProvider {
       app_token: applicationToken,
       bearer_token: bearerToken,
       refresh_token: refreshToken,
-      applicant: {
-        phone: this.phoneNumber,
-        otp: parseInt(this.OTPCode),
-      },
+      applicants: [
+        {
+          phone: this.phoneNumber,
+          otp: parseInt(this.OTPCode),
+        },
+      ],
     };
     // Write file for persistence, but return the data directly to avoid file I/O dependency
     fs.writeFileSync(currentAppPath, JSON.stringify(appInfo, null, 2), "utf-8");

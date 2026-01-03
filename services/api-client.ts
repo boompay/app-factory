@@ -277,7 +277,7 @@ export class ApiClient {
     };
 
     return this.post(
-      "screen/plaid/create_test_identity_verification",
+      "/screen/plaid/create_test_identity_verification",
       requestOptions
     );
   }

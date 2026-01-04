@@ -3,6 +3,7 @@ import path from "path";
 import fetch, { Response } from "node-fetch";
 import { AppInfo } from "../models";
 import { ApiClient } from "../services";
+import { withRetry } from "./retry";
 
 export async function readAppInfo(filePath: string): Promise<AppInfo> {
   try {
@@ -153,16 +154,34 @@ export async function readFileAsBuffer(filePath: string): Promise<Buffer> {
  * @param api - The API client
  * @param applicationId - The application ID
  * @param filePath - Path to save the test data
+ * @param delayMs - Optional delay before fetching (useful after operations that trigger backend processing)
  */
 export async function saveApplicationSnapshot(
   api: ApiClient,
   applicationId: string,
-  filePath: string
+  filePath: string,
+  delayMs?: number
 ): Promise<void> {
   try {
-    const appResponseRaw = await api.getApplicationDetails(applicationId);
-    const appResponse = await appResponseRaw.json();
-    await writeTestData(filePath, appResponse);
+    // Add delay if specified (e.g., after submitting application to allow backend processing)
+    if (delayMs && delayMs > 0) {
+      await new Promise((resolve) => setTimeout(resolve, delayMs));
+    }
+
+    // Use retry logic for network errors like "socket hang up"
+    // Use longer timeout if delay was specified (indicates heavy backend processing)
+    const timeout = delayMs && delayMs > 0 ? 60000 : 30000;
+    await withRetry(
+      async () => {
+        const appResponseRaw = await api.getApplicationDetails(applicationId, timeout);
+        const appResponse = await appResponseRaw.json();
+        await writeTestData(filePath, appResponse);
+      },
+      {
+        maxAttempts: 3,
+        retryableErrors: ["socket hang up", "ECONNRESET", "ETIMEDOUT", "timeout"],
+      }
+    );
   } catch (error) {
     if (error instanceof Error) {
       throw new Error(`Failed to save application snapshot: ${error.message}`);

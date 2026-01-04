@@ -20,12 +20,14 @@ import {
   passSubmissionDisclosure,
   submitApplication,
 } from "./workflows";
-import { waitFor } from "./helpers";
+import { createTestInbox, randomFullName, waitFor } from "./helpers";
 import { setupVerifications } from "./workflows";
 import { submitPersonalDetails, submitHousingHistory } from "./workflows";
 import { STATUS } from "./constants";
 
 const logger = LoggerProvider.create("application-runner");
+let applicantIndex = 1;
+let newMagicLink: string | undefined;
 
 //Main runner function
 async function run(link: string): Promise<void> {
@@ -152,14 +154,6 @@ async function run(link: string): Promise<void> {
       APP_CONFIG.PATHS.TEST_DATA_APPLICATION
     );
 
-    //Submit application
-    await submitApplication(api, app);
-    await saveApplicationSnapshot(
-      api,
-      app.id!,
-      APP_CONFIG.PATHS.TEST_DATA_APPLICATION
-    );
-
     const finalApplicant = getCurrentApplicant(app);
     if (!finalApplicant) {
       throw new Error("Current applicant not found");
@@ -167,7 +161,41 @@ async function run(link: string): Promise<void> {
     const middleInitial = finalApplicant.middle_name && finalApplicant.middle_name.length > 0 
       ? `${finalApplicant.middle_name[0]}. ` 
       : "";
+
+    if(applicantIndex < APP_CONFIG.ACTORS.APPLICANT) {
+      if (await api.getApplicationDetails(app.id!).then(res => res.json()).then(data => !data.application.has_multiple_applicants)) {
+        await api.patchApplication(app.id!, {"has_multiple_applicants":true});
+      }
+      const nextUser = randomFullName();
+      const nextMail = await createTestInbox();
+      const email = nextMail.email;
+      const nextApplicantInvitePayload = {
+        application_id: app.id!,
+        email: email,
+        first_name: nextUser.first,
+        last_name: nextUser.last,
+        role: "applicant",
+      }
+      await api.inviteCoApplicant(nextApplicantInvitePayload);
+      const magicLinksResp = await api.getMagicLinks(app.id!);
+      const magicLinksData = await magicLinksResp.json();
+      newMagicLink = magicLinksData.magic_links.application_link;
+      applicantIndex++;
+    }
+
+    //Submit application
+    await submitApplication(api, app);
+    await saveApplicationSnapshot(
+      api,
+      app.id!,
+      APP_CONFIG.PATHS.TEST_DATA_APPLICATION,
+      2000 
+    );
     logger.info(`Completed application flow for application ID: ${app.id}. Applicant name is ${finalApplicant.first_name || ""} ${middleInitial}${finalApplicant.last_name || ""}`);
+
+    if (newMagicLink) {
+      await run(newMagicLink);
+    }
   } catch (error) {
     logger.error("Error running application flow:", error);
     throw error;
@@ -177,7 +205,7 @@ async function run(link: string): Promise<void> {
 // Main execution
 const magicLink =
   process.argv[2] ||
-  "https://screen.staging.boompay.app/a/DfmlqHeL6gqNU3aLKAJd";
+  "https://screen.staging2.boompay.app/a/TWZMxUfaZBd2wsFiZoKK";
 run(magicLink).catch((error) => {
   logger.error("Fatal error:", error);
   process.exit(1);

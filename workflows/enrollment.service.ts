@@ -55,13 +55,13 @@ export async function enrollApplication(
   }
   // Update or create the first applicant
   if (app.applicants.length === 0) {
-    app.applicants.push({});
+    app.applicants.unshift({});
   }
   app.applicants[0].id = enrollResponse.application.current_applicant.id;
-  app.applicants[0].email = email;
-  app.applicants[0].first_name = user.first;
-  app.applicants[0].last_name = user.last;
-  app.applicants[0].middle_name = user.middle;
+  app.applicants[0]!.email = email;
+  app.applicants[0]!.first_name = user.first;
+  app.applicants[0]!.last_name = user.last;
+  app.applicants[0]!.middle_name = user.middle;
 
   return { enrollResponse, user, email };
 }

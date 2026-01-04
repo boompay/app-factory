@@ -91,11 +91,12 @@ export class ApiClient {
   /**
    * Makes a GET request to retrieve application details by its ID.
    * @param applicationId - The application ID
+   * @param timeoutMs - Optional timeout in milliseconds (default: 30000)
    * @returns whole application data
    */
-  public async getApplicationDetails(applicationId: string): Promise<any> {
+  public async getApplicationDetails(applicationId: string, timeoutMs: number = 30000): Promise<any> {
     return this.get(`/screen/applications/${applicationId}`, {
-      timeout: 30000,
+      timeout: timeoutMs,
     } as ApiRequestOptions);
   }
 
@@ -119,6 +120,30 @@ export class ApiClient {
 
     return this.post(
       `/screen/applications/${applicationId}/submit_application`,
+      requestOptions
+    );
+  }
+
+  /**
+   * Makes a PATCH request to update an application's part.
+   * @param applicationId - the ID of the application to update
+   * @param payload - the payload to update the application
+   * @returns - the new application schema
+   */
+  public async patchApplication(
+    applicationId: string,
+    payload: any,
+    options?: ApiRequestOptions,
+    timeoutMs: number = 30000
+  ): Promise<any> {
+    const requestOptions: ApiRequestOptions = {
+      ...(options || {}),
+      data: payload,
+      timeout: timeoutMs,
+    };
+
+    return this.patch(
+      `/screen/applications/${applicationId}`,
       requestOptions
     );
   }
@@ -194,6 +219,44 @@ export class ApiClient {
     return this.post(
       "/screen/applications/enroll_with_magic_link",
       requestOptions
+    );
+  }
+
+  /**
+   * Makes a POST request to invite a co-applicant using a magic link token.
+   * @param payload - invitation payload with application and applicant info
+   * @returns - the new applicant schema
+   */
+  public async inviteCoApplicant(
+    payload: any,
+    options?: ApiRequestOptions,
+    timeoutMs: number = 60000
+  ): Promise<any> {
+    const requestOptions: ApiRequestOptions = {
+      ...(options || {}),
+      data: payload,
+      timeout: timeoutMs,
+    };
+
+    return this.post(
+      "/screen/magic_links/invite_co_applicant",
+      requestOptions
+    );
+  }
+
+  /**
+   * Makes a GET request to retrieve application's magic links.
+   * @param applicationId - The application ID
+   * @returns whole magic links data
+   */
+  public async getMagicLinks(
+    applicationId: string
+  ): Promise<any> {
+    return this.get(
+      `/screen/applications/${applicationId}/magic_links`,
+      {
+        timeout: 10000,
+      } as ApiRequestOptions
     );
   }
 

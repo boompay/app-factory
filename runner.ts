@@ -28,8 +28,13 @@ import { STATUS } from "./constants";
 
 const logger = LoggerProvider.create("application-runner");
 
+export function resetRunnerState(): void {
+  applicantIndex = 1;
+  newMagicLink = undefined;
+}
+
 //Main runner function
-async function run(link: string): Promise<void> {
+export async function run(link: string): Promise<void> {
   try {
     // Clear log files before each run
     await clearLogFiles();
@@ -178,11 +183,16 @@ async function run(link: string): Promise<void> {
   }
 }
 
-// Main execution
-const magicLink =
-  process.argv[2] ||
-  "https://screen.staging2.boompay.app/a/MCzt7UT5V2iZqbgRTSIv";
-run(magicLink).catch((error) => {
-  logger.error("Fatal error:", error);
-  process.exit(1);
-});
+// CLI execution guard
+const isDirectExecution = process.argv[1] &&
+  (process.argv[1].endsWith("runner.ts") || process.argv[1].endsWith("runner"));
+
+if (isDirectExecution) {
+  const magicLink =
+    process.argv[2] ||
+    "https://screen.staging2.boompay.app/a/MCzt7UT5V2iZqbgRTSIv";
+  run(magicLink).catch((error) => {
+    logger.error("Fatal error:", error);
+    process.exit(1);
+  });
+}

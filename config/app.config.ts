@@ -10,8 +10,7 @@ export const APP_CONFIG = {
     HOUSING_HISTORY: "housing_history",
     IDENTITY: "identity",
     COMBINED_INCOME: "combined_income",
-    SUBMISSION_DISCLOSURE: "submission_disclosure"
-
+    SUBMISSION_DISCLOSURE: "submission_disclosure",
   },
   STEP_NAMES: {
     PERSONAL_DETAILS: "personal_details",
@@ -49,5 +48,23 @@ export const APP_CONFIG = {
     APPLICANT: 0,
     OCCUPANT: 0,
     GUARANTOR: 0,
+  },
+};
+
+const DEFAULT_CONFIG = JSON.parse(JSON.stringify(APP_CONFIG));
+
+export function applyConfigOverrides(overrides: Record<string, any>): void {
+  for (const section of ["ACTORS", "DEFAULT_VALUES", "TIMEOUTS", "RETRY"] as const) {
+    if (overrides[section]) {
+      Object.assign(APP_CONFIG[section], overrides[section]);
+    }
   }
-} as const;
+}
+
+export function resetConfig(): void {
+  for (const key of Object.keys(DEFAULT_CONFIG)) {
+    if (typeof DEFAULT_CONFIG[key] === "object" && DEFAULT_CONFIG[key] !== null) {
+      Object.assign((APP_CONFIG as any)[key], JSON.parse(JSON.stringify(DEFAULT_CONFIG[key])));
+    }
+  }
+}

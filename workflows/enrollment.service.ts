@@ -1,7 +1,9 @@
 import { ApiClient, LoggerProvider } from "../services";
-import { AppInfo, getCurrentApplicant } from "../models";
+import { AppInfo, Email, getCurrentApplicant } from "../models";
 import { randomFullName, createTestInbox } from "../helpers";
 import { transformStatusFields } from "../utils";
+import { APP_CONFIG } from "../config";
+import { inviteCoApplicant } from "./applicant-invitation.service";
 
 const logger = LoggerProvider.create("application-enrollment");
 
@@ -28,17 +30,17 @@ export async function enrollApplication(
 ): Promise<{
   enrollResponse: any;
   user: ReturnType<typeof randomFullName>;
-  email: string;
+  email: Email;
 }> {
   const user = randomFullName();
   const mail = await createTestInbox();
-  const email = mail.email;
+  const email = mail;
 
   const enrollResponseRaw = await api.enrollWithMagicLink({
     magic_link_token: applicationToken,
     unit_id: app.unit_id,
     applicant: {
-      email: email,
+      email: email.email,
       first_name: user.first,
       last_name: user.last,
       middle_name: user.middle,
@@ -72,6 +74,8 @@ export async function startApplicationFlow(
   writeTestData: (filePath: string, data: any) => Promise<void>,
   testDataPaths: { application: string; applicant: string }
 ): Promise<void> {
+  let applicantIndex = APP_CONFIG.ACTORS.APPLICANT;
+  let guarantorsIndex = APP_CONFIG.ACTORS.GUARANTOR;
   const startResponseRaw = await api.startApplication(app.id!);
   const startResponse = await startResponseRaw.json();
   await writeTestData(testDataPaths.application, startResponse);
@@ -80,6 +84,19 @@ export async function startApplicationFlow(
   if (!currentApplicant || !currentApplicant.id) {
     throw new Error("Current applicant not found or missing ID");
   }
+  
+  //Invite co-applicant if there are multiple applicants
+  while(applicantIndex > 0) {    
+    const { magicLink } = await inviteCoApplicant(api, app, "applicant");
+    applicantIndex--;
+  }
+  
+  //Invite guarantors if there are guarantors
+  while(guarantorsIndex > 0) {    
+    const { magicLink } = await inviteCoApplicant(api, app, "co_signer");
+    guarantorsIndex--;
+  }
+
   const passInviteResponseRaw = await api.passInviteFlow(currentApplicant.id);
   const passInviteResponse = await passInviteResponseRaw.json();
   await writeTestData(testDataPaths.applicant, passInviteResponse);

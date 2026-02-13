@@ -1,8 +1,16 @@
+export interface Email{
+  email: string;
+  password: string;
+  token: string;
+  accountId: string;
+}
+
 export interface Applicant {
   id?: string;
+  invite_magic_link?: string;
   phone?: string;
   otp?: number;
-  email?: string;
+  email?: Email;
   first_name?: string;
   last_name?: string;
   middle_name?: string;

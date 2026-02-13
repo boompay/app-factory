@@ -52,7 +52,7 @@ export function createPersonalDetailsStepsConfig(
           contact_first_name: currentApplicant.first_name!,
           contact_last_name: currentApplicant.last_name!,
           contact_middle_name: currentApplicant.middle_name!,
-          contact_email: currentApplicant.email!,
+          contact_email: currentApplicant.email!.email,
           contact_phone_number: currentApplicant.phone!,
         },
       }),

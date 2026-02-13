@@ -1,6 +1,6 @@
 import { AuthTokenProvider, LoggerProvider } from "./services";
 import { APP_CONFIG } from "./config";
-import { getCurrentApplicant } from "./models";
+import { getCurrentApplicant, Email } from "./models";
 import {
   writeAppInfo,
   writeTestData,
@@ -19,15 +19,14 @@ import {
   submitCombinedIncome,
   passSubmissionDisclosure,
   submitApplication,
+  inviteCoApplicant,
 } from "./workflows";
-import { createTestInbox, randomFullName, waitFor } from "./helpers";
+import { waitFor } from "./helpers";
 import { setupVerifications } from "./workflows";
 import { submitPersonalDetails, submitHousingHistory } from "./workflows";
 import { STATUS } from "./constants";
 
 const logger = LoggerProvider.create("application-runner");
-let applicantIndex = 1;
-let newMagicLink: string | undefined;
 
 //Main runner function
 async function run(link: string): Promise<void> {
@@ -62,11 +61,12 @@ async function run(link: string): Promise<void> {
       app,
       validatedToken
     );
-
+    app.applicants![0].invite_magic_link = link;
+    
     // Setup verifications
     setupVerifications(app, enrollResponse);
     await writeAppInfo(APP_CONFIG.PATHS.CURRENT_APP, app);
-    logger.info(`Enrolled application ID: ${app.id} for ${email}`);
+    logger.info(`Enrolled application ID: ${app.id} for ${email.email}`);
 
     // Start application flow
     await startApplicationFlow(api, app, writeTestData, {
@@ -162,27 +162,6 @@ async function run(link: string): Promise<void> {
       ? `${finalApplicant.middle_name[0]}. ` 
       : "";
 
-    if(applicantIndex < APP_CONFIG.ACTORS.APPLICANT) {
-      if (await api.getApplicationDetails(app.id!).then(res => res.json()).then(data => !data.application.has_multiple_applicants)) {
-        await api.patchApplication(app.id!, {"has_multiple_applicants":true});
-      }
-      const nextUser = randomFullName();
-      const nextMail = await createTestInbox();
-      const email = nextMail.email;
-      const nextApplicantInvitePayload = {
-        application_id: app.id!,
-        email: email,
-        first_name: nextUser.first,
-        last_name: nextUser.last,
-        role: "applicant",
-      }
-      await api.inviteCoApplicant(nextApplicantInvitePayload);
-      const magicLinksResp = await api.getMagicLinks(app.id!);
-      const magicLinksData = await magicLinksResp.json();
-      newMagicLink = magicLinksData.magic_links.application_link;
-      applicantIndex++;
-    }
-
     //Submit application
     await submitApplication(api, app);
     await saveApplicationSnapshot(
@@ -192,10 +171,7 @@ async function run(link: string): Promise<void> {
       2000 
     );
     logger.info(`Completed application flow for application ID: ${app.id}. Applicant name is ${finalApplicant.first_name || ""} ${middleInitial}${finalApplicant.last_name || ""}`);
-
-    if (newMagicLink) {
-      await run(newMagicLink);
-    }
+    
   } catch (error) {
     logger.error("Error running application flow:", error);
     throw error;
@@ -205,7 +181,7 @@ async function run(link: string): Promise<void> {
 // Main execution
 const magicLink =
   process.argv[2] ||
-  "https://screen.staging2.boompay.app/a/TWZMxUfaZBd2wsFiZoKK";
+  "https://screen.staging2.boompay.app/a/MCzt7UT5V2iZqbgRTSIv";
 run(magicLink).catch((error) => {
   logger.error("Fatal error:", error);
   process.exit(1);

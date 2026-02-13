@@ -1,24 +1,43 @@
 {
   "application": {
-    "id": 17,
+    "id": 4725,
     "partner": {
-      "slug": "carter-kirlin-and-legros",
-      "name": "Carter, Kirlin and Legros",
-      "email": "sheldon_dach@goodwin-bahringer.biz",
-      "logo_url": null,
-      "is_sites_and_communities": false,
-      "id": 1,
-      "colors": null,
+      "slug": "mark-brower-properties",
+      "name": "Boom Screen (Mark Brower)",
+      "email": "richard@markrent.com",
+      "logo_url": "https://boom-staging.s3.amazonaws.com/staging/f3d7aa21794fbd0a5a420f60bdf8991e.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6RCWFKPAV7ADZIA6%2F20260210%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260210T215148Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=d034132d2cfa4b6d2f08a0139710f521f28b25861d5ab37ed92a03352432b509",
+      "is_sites_and_communities": true,
+      "is_home_site_rent": false,
+      "id": 368,
+      "colors": {
+        "primary": {
+          "20": "#a4e2ff",
+          "50": "#71d2ff",
+          "100": "#3ec2ff",
+          "200": "#0bb1ff",
+          "300": "#0092d7",
+          "400": "#0070a4",
+          "500": "#004d71",
+          "600": "#004667",
+          "700": "#003f5d",
+          "800": "#003852",
+          "900": "#003148"
+        }
+      },
       "base_border_radius": null,
       "font_family": null,
       "font_family_link": null,
       "google_analytics_id": null,
-      "partner_features": [],
-      "property_management_system": null
+      "partner_features": [
+        "chat",
+        "property_owner"
+      ],
+      "property_management_system": "manage_america"
     },
     "verification_template": {
       "has_move_in_date_limit": null,
       "max_move_in_days": null,
+      "criteria_rent_type": "home",
       "settings": {
         "applicant": {
           "identity_verification": {
@@ -50,118 +69,157 @@
       },
       "allow_role": {
         "applicant": true,
-        "co_signer": false,
-        "occupant": false
+        "co_signer": true,
+        "occupant": true
       }
     },
     "unit": {
-      "id": 88,
-      "title": "Unit hx3yf0uc",
+      "id": 167924,
+      "title": "Renaissanse",
       "property": {
-        "name": "Cremin-Koch",
+        "name": "District 14",
         "address": {
-          "address1": "265 Gottlieb Roads",
+          "address1": "2345 Parsons Ave",
           "address2": "",
-          "city": "New Wesleyburgh",
-          "state_or_province": "SC",
-          "postal_code": "39319",
+          "city": "Columbus",
+          "state_or_province": "OH",
+          "postal_code": "43207",
           "country": "US",
           "lat": null,
           "lng": null,
-          "one_line_address": "265 Gottlieb Roads, New Wesleyburgh, SC, 39319, US"
+          "one_line_address": "2345 Parsons Ave, Columbus, OH, 43207, US"
         }
       },
       "monthly_rent_amount": {
-        "cents": 27984,
+        "cents": 300000,
         "currency": "USD"
       },
       "home_rent_amount": {
-        "cents": 0,
+        "cents": 200000,
         "currency": "USD"
       },
       "site_rent_amount": {
-        "cents": 0,
+        "cents": 100000,
         "currency": "USD"
       },
-      "available_at": "2025-12-16T20:17:22.288+00:00",
-      "partner_name": "Carter, Kirlin and Legros"
+      "criteria_rent_type": "home",
+      "available_at": "2025-09-30T00:00:00.000+00:00",
+      "partner_name": "Boom Screen (Mark Brower)"
     },
     "monthly_rent_amount": {
-      "cents": 27984,
+      "cents": 200000,
       "currency": "USD"
     },
     "home_rent_amount": {
-      "cents": 0,
+      "cents": 200000,
       "currency": "USD"
     },
     "site_rent_amount": {
-      "cents": 0,
+      "cents": 100000,
       "currency": "USD"
     },
     "base_rent_amount": {
-      "cents": 27984,
+      "cents": 200000,
       "currency": "USD"
     },
     "applicants": [
       {
-        "id": 22,
-        "application_id": 17,
+        "id": 5381,
+        "application_id": 4725,
         "role": "applicant",
-        "first_name": "Maci",
-        "last_name": "Stark",
-        "middle_name": "Jaden",
-        "email": "l6hd1aik52l@mail.tm",
-        "application_status": "submitted",
+        "first_name": "Makenna",
+        "last_name": "Funk",
+        "middle_name": "Anderson",
+        "email": "yrhx108mhxj_@dollicons.com",
+        "application_status": "started",
         "retry_identity_verification_status": "not_available",
         "verifications": [
           {
-            "id": 139,
+            "id": 42060,
             "name": "rental_application",
             "title": "verifications.personal-details.title",
             "description": "verifications.personal-details.description",
-            "status": "finished",
+            "status": "pending",
+            "vendor": "",
+            "settings": {
+              "pets_step_enabled": true,
+              "pets_step_required": {
+                "age": "optional",
+                "name": "optional",
+                "breed": "required",
+                "photo": "optional",
+                "weight": "required",
+                "supporting_documents": "optional"
+              },
+              "additional_questions": [],
+              "vehicles_step_enabled": true,
+              "vehicles_step_required": {
+                "make": "required",
+                "year": "required",
+                "color": "required",
+                "model": "required",
+                "license_plate_state": "required",
+                "license_plate_number": "required"
+              },
+              "dependents_step_enabled": true,
+              "dependents_step_required": {
+                "dob": "required"
+              },
+              "lead_source_step_enabled": true,
+              "lead_source_step_required": true,
+              "personal_details_step_enabled": true,
+              "emergency_contacts_step_enabled": true,
+              "emergency_contacts_step_required": {
+                "email": "optional",
+                "phone_number": "required",
+                "relationship": "optional"
+              },
+              "additional_questions_step_enabled": false,
+              "military_first_responder_teacher_step_enabled": true
+            },
             "estimated_time": 480,
             "index": 0,
             "editable": true,
             "progress": {
               "total_steps": 7,
-              "filled_steps": 7
+              "filled_steps": 0
             },
             "incomes": [],
             "income_sources": [],
+            "start_requirements": [],
             "steps": [
               {
-                "id": 11,
+                "id": 47593,
                 "index": 0,
                 "name": "personal_details"
               },
               {
-                "id": 12,
+                "id": 47594,
                 "index": 1,
                 "name": "dependents"
               },
               {
-                "id": 13,
+                "id": 47595,
                 "index": 2,
                 "name": "emergency_contacts"
               },
               {
-                "id": 14,
+                "id": 47596,
                 "index": 3,
                 "name": "pets"
               },
               {
-                "id": 15,
+                "id": 47597,
                 "index": 4,
                 "name": "vehicles"
               },
               {
-                "id": 16,
+                "id": 47598,
                 "index": 5,
                 "name": "military_first_responder_teacher"
               },
               {
-                "id": 17,
+                "id": 47599,
                 "index": 6,
                 "name": "lead_source"
               }
@@ -169,23 +227,43 @@
             "requirements": null
           },
           {
-            "id": 140,
+            "id": 42061,
             "name": "housing_history",
             "title": "verifications.housing-history.title",
             "description": "verifications.housing-history.description",
-            "status": "finished",
+            "status": "pending",
+            "vendor": "",
+            "settings": {
+              "address_step_enabled": true,
+              "rent_option_required": {
+                "landlord_phone": true,
+                "lease_document": false,
+                "monthly_payment": true,
+                "reason_for_leaving": true
+              },
+              "other_option_required": {
+                "housing_status": true,
+                "reason_for_leaving": false
+              },
+              "own_home_option_required": {
+                "reason_for_leaving": true,
+                "monthly_mortgage_payment": true
+              },
+              "min_required_continuous_rental_history": 2
+            },
             "estimated_time": 600,
             "index": 1,
             "editable": true,
             "progress": {
               "total_steps": 1,
-              "filled_steps": 1
+              "filled_steps": 0
             },
             "incomes": [],
             "income_sources": [],
+            "start_requirements": [],
             "steps": [
               {
-                "id": 18,
+                "id": 47600,
                 "index": 0,
                 "name": "address"
               }
@@ -195,11 +273,20 @@
             }
           },
           {
-            "id": 141,
+            "id": 42062,
             "name": "identity_verification",
             "title": "verifications.identity-verification.applicant-title",
             "description": "verifications.identity-verification.applicant-description",
-            "status": "verified",
+            "status": "pending",
+            "vendor": "plaid",
+            "settings": {
+              "selfie_check": false,
+              "identity_abuse_check": {
+                "stolen_identity_threshold": 90,
+                "synthetic_identity_threshold": 70
+              },
+              "prevent_apply_if_failed": false
+            },
             "estimated_time": 300,
             "index": 2,
             "editable": false,
@@ -209,15 +296,120 @@
             },
             "incomes": [],
             "income_sources": [],
+            "start_requirements": [],
             "steps": [],
             "requirements": null
           },
           {
-            "id": 142,
+            "id": 42063,
             "name": "combined_income_verification",
             "title": "verifications.combined-income.title",
             "description": "verifications.combined-income.description",
-            "status": "finished",
+            "status": "pending",
+            "vendor": "",
+            "settings": {
+              "other": {
+                "w2": {
+                  "allowed": true,
+                  "timeframe": {
+                    "unit": "year",
+                    "value": 1
+                  }
+                },
+                "paystub": {
+                  "allowed": true,
+                  "timeframe": {
+                    "unit": "month",
+                    "value": 3
+                  }
+                },
+                "bank_allowed": true,
+                "bank_statement": {
+                  "allowed": false,
+                  "timeframe": {
+                    "unit": "month",
+                    "value": 3
+                  }
+                },
+                "payroll_allowed": true
+              },
+              "employment": {
+                "w2": {
+                  "allowed": true,
+                  "timeframe": {
+                    "unit": "year",
+                    "value": 1
+                  }
+                },
+                "fields": {
+                  "job_title": "required",
+                  "supervisor": {
+                    "email": "required",
+                    "phone": "required",
+                    "last_name": "required",
+                    "first_name": "required"
+                  }
+                },
+                "paystub": {
+                  "allowed": true,
+                  "timeframe": {
+                    "unit": "month",
+                    "value": 3
+                  }
+                },
+                "bank_allowed": true,
+                "bank_statement": {
+                  "allowed": true,
+                  "timeframe": {
+                    "unit": "month",
+                    "value": 2
+                  }
+                },
+                "payroll_allowed": true
+              },
+              "offer_letter": {
+                "fields": {
+                  "job_title": "required",
+                  "supervisor": {
+                    "email": "required",
+                    "phone": "required",
+                    "last_name": "required",
+                    "first_name": "required"
+                  }
+                }
+              },
+              "self_employment": {
+                "w2": {
+                  "allowed": true,
+                  "timeframe": {
+                    "unit": "year",
+                    "value": 1
+                  }
+                },
+                "fields": {
+                  "job_title": "required"
+                },
+                "paystub": {
+                  "allowed": true,
+                  "timeframe": {
+                    "unit": "month",
+                    "value": 3
+                  }
+                },
+                "bank_allowed": true,
+                "bank_statement": {
+                  "allowed": false,
+                  "timeframe": {
+                    "unit": "month",
+                    "value": 3
+                  }
+                },
+                "payroll_allowed": true
+              },
+              "housing_assistance_upload": "required",
+              "housing_assistance_program_enabled": true,
+              "combined_income_verification_enabled": true
+            },
             "estimated_time": 900,
             "index": 3,
             "editable": true,
@@ -225,36 +417,14 @@
               "total_steps": 1,
               "filled_steps": 0
             },
-            "incomes": [
-              {
-                "id": 2,
-                "type": "self_employment",
-                "status": "processing",
-                "pay_period": "monthly",
-                "amount": {
-                  "cents": 791000,
-                  "currency": "USD"
-                },
-                "start_date": "2018-01-13",
-                "additional_data": {
-                  "company": "Carroll - Lebsack",
-                  "job_title": "District Security Director"
-                }
-              }
-            ],
-            "income_sources": [
-              {
-                "id": 2,
-                "status": "processing",
-                "type": "paystub",
-                "income_id": 2,
-                "items": [],
-                "has_available_items": false
-              }
+            "incomes": [],
+            "income_sources": [],
+            "start_requirements": [
+              "identity_verification"
             ],
             "steps": [
               {
-                "id": 19,
+                "id": 47601,
                 "index": 0,
                 "name": "combined_income"
               }
@@ -262,11 +432,35 @@
             "requirements": null
           },
           {
-            "id": 143,
+            "id": 42064,
             "name": "credit_report",
             "title": "Credit report",
             "description": "Equifax credit report and score",
-            "status": "finished",
+            "status": "pending",
+            "vendor": "transunion",
+            "settings": {
+              "vendor": "transunion",
+              "pricing": [
+                {
+                  "name": "credit_report_05402",
+                  "amount": {
+                    "cents": 600,
+                    "currency": "USD"
+                  }
+                },
+                {
+                  "name": "credit_report_05206",
+                  "amount": {
+                    "cents": 800,
+                    "currency": "USD"
+                  }
+                }
+              ],
+              "model_number": "05206",
+              "execution_mode": "automatic",
+              "exclude_medical_debt": false,
+              "exclude_student_debt": false
+            },
             "estimated_time": 0,
             "index": 4,
             "editable": false,
@@ -276,15 +470,22 @@
             },
             "incomes": [],
             "income_sources": [],
+            "start_requirements": [],
             "steps": [],
             "requirements": null
           },
           {
-            "id": 144,
+            "id": 42065,
             "name": "criminal_report",
             "title": "National criminal report (US)",
             "description": "CIC criminal background report",
-            "status": "processing",
+            "status": "pending",
+            "vendor": "cleara",
+            "settings": {
+              "vendor": "cleara",
+              "hide_report": false,
+              "execution_mode": "automatic"
+            },
             "estimated_time": 0,
             "index": 5,
             "editable": false,
@@ -294,15 +495,21 @@
             },
             "incomes": [],
             "income_sources": [],
+            "start_requirements": [],
             "steps": [],
             "requirements": null
           },
           {
-            "id": 145,
+            "id": 42066,
             "name": "eviction_report",
             "title": "Housing court report",
             "description": "Housing court report",
             "status": "pending",
+            "vendor": "cleara",
+            "settings": {
+              "vendor": "cleara",
+              "execution_mode": "automatic"
+            },
             "estimated_time": 0,
             "index": 6,
             "editable": false,
@@ -312,27 +519,33 @@
             },
             "incomes": [],
             "income_sources": [],
+            "start_requirements": [],
             "steps": [],
             "requirements": null
           },
           {
-            "id": 146,
+            "id": 42067,
             "name": "submission_disclosure",
             "title": "Review the application",
             "description": ".",
-            "status": "finished",
+            "status": "pending",
+            "vendor": "",
+            "settings": {
+              "additional_text": ""
+            },
             "estimated_time": 60,
             "index": 7,
             "editable": true,
             "progress": {
               "total_steps": 1,
-              "filled_steps": 1
+              "filled_steps": 0
             },
             "incomes": [],
             "income_sources": [],
+            "start_requirements": [],
             "steps": [
               {
-                "id": 20,
+                "id": 47602,
                 "index": 0,
                 "name": "submission_disclosure_step"
               }
@@ -340,29 +553,48 @@
             "requirements": null
           }
         ],
-        "stream_chat_token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiYXBwbGljYW50LWN1c3RvbWVyLTU0In0.UYDDYqUUFG--rj80gxSXtFXlRcGKzOcFLX7TMwuFyXA",
-        "stream_chat_id": "applicant-customer-54",
-        "stream_chat_name": "Maci Jaden Stark",
+        "stream_chat_token": null,
+        "stream_chat_id": "applicant-customer-165932",
+        "stream_chat_name": "Makenna Anderson Funk",
         "application": {
-          "id": 17,
+          "id": 4725,
           "partner": {
-            "slug": "carter-kirlin-and-legros",
-            "name": "Carter, Kirlin and Legros",
-            "email": "sheldon_dach@goodwin-bahringer.biz",
-            "logo_url": null,
-            "is_sites_and_communities": false,
-            "id": 1,
-            "colors": null,
+            "slug": "mark-brower-properties",
+            "name": "Boom Screen (Mark Brower)",
+            "email": "richard@markrent.com",
+            "logo_url": "https://boom-staging.s3.amazonaws.com/staging/f3d7aa21794fbd0a5a420f60bdf8991e.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6RCWFKPAV7ADZIA6%2F20260210%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260210T215148Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=d034132d2cfa4b6d2f08a0139710f521f28b25861d5ab37ed92a03352432b509",
+            "is_sites_and_communities": true,
+            "is_home_site_rent": false,
+            "id": 368,
+            "colors": {
+              "primary": {
+                "20": "#a4e2ff",
+                "50": "#71d2ff",
+                "100": "#3ec2ff",
+                "200": "#0bb1ff",
+                "300": "#0092d7",
+                "400": "#0070a4",
+                "500": "#004d71",
+                "600": "#004667",
+                "700": "#003f5d",
+                "800": "#003852",
+                "900": "#003148"
+              }
+            },
             "base_border_radius": null,
             "font_family": null,
             "font_family_link": null,
             "google_analytics_id": null,
-            "partner_features": [],
-            "property_management_system": null
+            "partner_features": [
+              "chat",
+              "property_owner"
+            ],
+            "property_management_system": "manage_america"
           },
           "verification_template": {
             "has_move_in_date_limit": null,
             "max_move_in_days": null,
+            "criteria_rent_type": "home",
             "settings": {
               "applicant": {
                 "identity_verification": {
@@ -394,108 +626,176 @@
             },
             "allow_role": {
               "applicant": true,
-              "co_signer": false,
-              "occupant": false
+              "co_signer": true,
+              "occupant": true
             }
           },
           "unit": {
-            "id": 88,
-            "title": "Unit hx3yf0uc",
+            "id": 167924,
+            "title": "Renaissanse",
             "property": {
-              "name": "Cremin-Koch",
+              "name": "District 14",
               "address": {
-                "address1": "265 Gottlieb Roads",
+                "address1": "2345 Parsons Ave",
                 "address2": "",
-                "city": "New Wesleyburgh",
-                "state_or_province": "SC",
-                "postal_code": "39319",
+                "city": "Columbus",
+                "state_or_province": "OH",
+                "postal_code": "43207",
                 "country": "US",
                 "lat": null,
                 "lng": null,
-                "one_line_address": "265 Gottlieb Roads, New Wesleyburgh, SC, 39319, US"
+                "one_line_address": "2345 Parsons Ave, Columbus, OH, 43207, US"
               }
             },
             "monthly_rent_amount": {
-              "cents": 27984,
+              "cents": 300000,
               "currency": "USD"
             },
             "home_rent_amount": {
-              "cents": 0,
+              "cents": 200000,
               "currency": "USD"
             },
             "site_rent_amount": {
-              "cents": 0,
+              "cents": 100000,
               "currency": "USD"
             },
-            "available_at": "2025-12-16T20:17:22.288+00:00",
-            "partner_name": "Carter, Kirlin and Legros"
+            "criteria_rent_type": "home",
+            "available_at": "2025-09-30T00:00:00.000+00:00",
+            "partner_name": "Boom Screen (Mark Brower)"
           },
           "monthly_rent_amount": {
-            "cents": 27984,
+            "cents": 200000,
             "currency": "USD"
           },
           "home_rent_amount": {
-            "cents": 0,
+            "cents": 200000,
             "currency": "USD"
           },
           "site_rent_amount": {
-            "cents": 0,
+            "cents": 100000,
             "currency": "USD"
           },
           "base_rent_amount": {
-            "cents": 27984,
+            "cents": 200000,
             "currency": "USD"
           },
           "applicants": [
             {
-              "id": 22,
-              "application_id": 17,
+              "id": 5381,
+              "application_id": 4725,
               "role": "applicant",
-              "first_name": "Maci",
-              "last_name": "Stark",
-              "middle_name": "Jaden",
-              "email": "l6hd1aik52l@mail.tm",
-              "application_status": "submitted",
+              "first_name": "Makenna",
+              "last_name": "Funk",
+              "middle_name": "Anderson",
+              "email": "yrhx108mhxj_@dollicons.com",
+              "application_status": "started",
               "retry_identity_verification_status": "not_available",
               "verifications": [
                 {
-                  "id": 139,
+                  "id": 42060,
                   "name": "rental_application",
                   "title": "verifications.personal-details.title",
                   "description": "verifications.personal-details.description",
-                  "status": "finished",
+                  "status": "pending",
+                  "vendor": "",
+                  "settings": {
+                    "pets_step_enabled": true,
+                    "pets_step_required": {
+                      "age": "optional",
+                      "name": "optional",
+                      "breed": "required",
+                      "photo": "optional",
+                      "weight": "required",
+                      "supporting_documents": "optional"
+                    },
+                    "additional_questions": [],
+                    "vehicles_step_enabled": true,
+                    "vehicles_step_required": {
+                      "make": "required",
+                      "year": "required",
+                      "color": "required",
+                      "model": "required",
+                      "license_plate_state": "required",
+                      "license_plate_number": "required"
+                    },
+                    "dependents_step_enabled": true,
+                    "dependents_step_required": {
+                      "dob": "required"
+                    },
+                    "lead_source_step_enabled": true,
+                    "lead_source_step_required": true,
+                    "personal_details_step_enabled": true,
+                    "emergency_contacts_step_enabled": true,
+                    "emergency_contacts_step_required": {
+                      "email": "optional",
+                      "phone_number": "required",
+                      "relationship": "optional"
+                    },
+                    "additional_questions_step_enabled": false,
+                    "military_first_responder_teacher_step_enabled": true
+                  },
                   "estimated_time": 480,
                   "index": 0,
                   "editable": true,
                   "progress": {
                     "total_steps": 7,
-                    "filled_steps": 7
+                    "filled_steps": 0
                   },
                   "incomes": [],
-                  "income_sources": []
+                  "income_sources": [],
+                  "start_requirements": []
                 },
                 {
-                  "id": 140,
+                  "id": 42061,
                   "name": "housing_history",
                   "title": "verifications.housing-history.title",
                   "description": "verifications.housing-history.description",
-                  "status": "finished",
+                  "status": "pending",
+                  "vendor": "",
+                  "settings": {
+                    "address_step_enabled": true,
+                    "rent_option_required": {
+                      "landlord_phone": true,
+                      "lease_document": false,
+                      "monthly_payment": true,
+                      "reason_for_leaving": true
+                    },
+                    "other_option_required": {
+                      "housing_status": true,
+                      "reason_for_leaving": false
+                    },
+                    "own_home_option_required": {
+                      "reason_for_leaving": true,
+                      "monthly_mortgage_payment": true
+                    },
+                    "min_required_continuous_rental_history": 2
+                  },
                   "estimated_time": 600,
                   "index": 1,
                   "editable": true,
                   "progress": {
                     "total_steps": 1,
-                    "filled_steps": 1
+                    "filled_steps": 0
                   },
                   "incomes": [],
-                  "income_sources": []
+                  "income_sources": [],
+                  "start_requirements": []
                 },
                 {
-                  "id": 141,
+                  "id": 42062,
                   "name": "identity_verification",
                   "title": "verifications.identity-verification.applicant-title",
                   "description": "verifications.identity-verification.applicant-description",
-                  "status": "verified",
+                  "status": "pending",
+                  "vendor": "plaid",
+                  "settings": {
+                    "selfie_check": false,
+                    "identity_abuse_check": {
+                      "stolen_identity_threshold": 90,
+                      "synthetic_identity_threshold": 70
+                    },
+                    "prevent_apply_if_failed": false
+                  },
                   "estimated_time": 300,
                   "index": 2,
                   "editable": false,
@@ -504,14 +804,119 @@
                     "filled_steps": 0
                   },
                   "incomes": [],
-                  "income_sources": []
+                  "income_sources": [],
+                  "start_requirements": []
                 },
                 {
-                  "id": 142,
+                  "id": 42063,
                   "name": "combined_income_verification",
                   "title": "verifications.combined-income.title",
                   "description": "verifications.combined-income.description",
-                  "status": "finished",
+                  "status": "pending",
+                  "vendor": "",
+                  "settings": {
+                    "other": {
+                      "w2": {
+                        "allowed": true,
+                        "timeframe": {
+                          "unit": "year",
+                          "value": 1
+                        }
+                      },
+                      "paystub": {
+                        "allowed": true,
+                        "timeframe": {
+                          "unit": "month",
+                          "value": 3
+                        }
+                      },
+                      "bank_allowed": true,
+                      "bank_statement": {
+                        "allowed": false,
+                        "timeframe": {
+                          "unit": "month",
+                          "value": 3
+                        }
+                      },
+                      "payroll_allowed": true
+                    },
+                    "employment": {
+                      "w2": {
+                        "allowed": true,
+                        "timeframe": {
+                          "unit": "year",
+                          "value": 1
+                        }
+                      },
+                      "fields": {
+                        "job_title": "required",
+                        "supervisor": {
+                          "email": "required",
+                          "phone": "required",
+                          "last_name": "required",
+                          "first_name": "required"
+                        }
+                      },
+                      "paystub": {
+                        "allowed": true,
+                        "timeframe": {
+                          "unit": "month",
+                          "value": 3
+                        }
+                      },
+                      "bank_allowed": true,
+                      "bank_statement": {
+                        "allowed": true,
+                        "timeframe": {
+                          "unit": "month",
+                          "value": 2
+                        }
+                      },
+                      "payroll_allowed": true
+                    },
+                    "offer_letter": {
+                      "fields": {
+                        "job_title": "required",
+                        "supervisor": {
+                          "email": "required",
+                          "phone": "required",
+                          "last_name": "required",
+                          "first_name": "required"
+                        }
+                      }
+                    },
+                    "self_employment": {
+                      "w2": {
+                        "allowed": true,
+                        "timeframe": {
+                          "unit": "year",
+                          "value": 1
+                        }
+                      },
+                      "fields": {
+                        "job_title": "required"
+                      },
+                      "paystub": {
+                        "allowed": true,
+                        "timeframe": {
+                          "unit": "month",
+                          "value": 3
+                        }
+                      },
+                      "bank_allowed": true,
+                      "bank_statement": {
+                        "allowed": false,
+                        "timeframe": {
+                          "unit": "month",
+                          "value": 3
+                        }
+                      },
+                      "payroll_allowed": true
+                    },
+                    "housing_assistance_upload": "required",
+                    "housing_assistance_program_enabled": true,
+                    "combined_income_verification_enabled": true
+                  },
                   "estimated_time": 900,
                   "index": 3,
                   "editable": true,
@@ -519,40 +924,42 @@
                     "total_steps": 1,
                     "filled_steps": 0
                   },
-                  "incomes": [
-                    {
-                      "id": 2,
-                      "type": "self_employment",
-                      "status": "processing",
-                      "pay_period": "monthly",
-                      "amount": {
-                        "cents": 791000,
-                        "currency": "USD"
-                      },
-                      "start_date": "2018-01-13",
-                      "additional_data": {
-                        "company": "Carroll - Lebsack",
-                        "job_title": "District Security Director"
-                      }
-                    }
-                  ],
-                  "income_sources": [
-                    {
-                      "id": 2,
-                      "status": "processing",
-                      "type": "paystub",
-                      "income_id": 2,
-                      "items": [],
-                      "has_available_items": false
-                    }
+                  "incomes": [],
+                  "income_sources": [],
+                  "start_requirements": [
+                    "identity_verification"
                   ]
                 },
                 {
-                  "id": 143,
+                  "id": 42064,
                   "name": "credit_report",
                   "title": "Credit report",
                   "description": "Equifax credit report and score",
-                  "status": "finished",
+                  "status": "pending",
+                  "vendor": "transunion",
+                  "settings": {
+                    "vendor": "transunion",
+                    "pricing": [
+                      {
+                        "name": "credit_report_05402",
+                        "amount": {
+                          "cents": 600,
+                          "currency": "USD"
+                        }
+                      },
+                      {
+                        "name": "credit_report_05206",
+                        "amount": {
+                          "cents": 800,
+                          "currency": "USD"
+                        }
+                      }
+                    ],
+                    "model_number": "05206",
+                    "execution_mode": "automatic",
+                    "exclude_medical_debt": false,
+                    "exclude_student_debt": false
+                  },
                   "estimated_time": 0,
                   "index": 4,
                   "editable": false,
@@ -561,14 +968,21 @@
                     "filled_steps": 0
                   },
                   "incomes": [],
-                  "income_sources": []
+                  "income_sources": [],
+                  "start_requirements": []
                 },
                 {
-                  "id": 144,
+                  "id": 42065,
                   "name": "criminal_report",
                   "title": "National criminal report (US)",
                   "description": "CIC criminal background report",
-                  "status": "processing",
+                  "status": "pending",
+                  "vendor": "cleara",
+                  "settings": {
+                    "vendor": "cleara",
+                    "hide_report": false,
+                    "execution_mode": "automatic"
+                  },
                   "estimated_time": 0,
                   "index": 5,
                   "editable": false,
@@ -577,14 +991,20 @@
                     "filled_steps": 0
                   },
                   "incomes": [],
-                  "income_sources": []
+                  "income_sources": [],
+                  "start_requirements": []
                 },
                 {
-                  "id": 145,
+                  "id": 42066,
                   "name": "eviction_report",
                   "title": "Housing court report",
                   "description": "Housing court report",
                   "status": "pending",
+                  "vendor": "cleara",
+                  "settings": {
+                    "vendor": "cleara",
+                    "execution_mode": "automatic"
+                  },
                   "estimated_time": 0,
                   "index": 6,
                   "editable": false,
@@ -593,37 +1013,44 @@
                     "filled_steps": 0
                   },
                   "incomes": [],
-                  "income_sources": []
+                  "income_sources": [],
+                  "start_requirements": []
                 },
                 {
-                  "id": 146,
+                  "id": 42067,
                   "name": "submission_disclosure",
                   "title": "Review the application",
                   "description": ".",
-                  "status": "finished",
+                  "status": "pending",
+                  "vendor": "",
+                  "settings": {
+                    "additional_text": ""
+                  },
                   "estimated_time": 60,
                   "index": 7,
                   "editable": true,
                   "progress": {
                     "total_steps": 1,
-                    "filled_steps": 1
+                    "filled_steps": 0
                   },
                   "incomes": [],
-                  "income_sources": []
+                  "income_sources": [],
+                  "start_requirements": []
                 }
               ],
-              "stream_chat_token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiYXBwbGljYW50LWN1c3RvbWVyLTU0In0.UYDDYqUUFG--rj80gxSXtFXlRcGKzOcFLX7TMwuFyXA",
-              "stream_chat_id": "applicant-customer-54",
-              "stream_chat_name": "Maci Jaden Stark"
+              "stream_chat_token": null,
+              "stream_chat_id": "applicant-customer-165932",
+              "stream_chat_name": "Makenna Anderson Funk"
             }
           ],
-          "status": "submitted",
-          "screening_status": "processing",
-          "desired_move_in_date": "2025-12-31",
+          "status": "started",
+          "screening_status": "not_started",
+          "desired_move_in_date": null,
           "conditions": [],
-          "partner_name_in_submission_disclosure": "Carter, Kirlin and Legros",
+          "partner_name_in_submission_disclosure": "District 14",
           "has_multiple_applicants": null,
-          "has_multiple_guarantors": null
+          "has_multiple_guarantors": null,
+          "allow_occupants": null
         },
         "fee": {
           "cents": 0,
@@ -633,56 +1060,264 @@
           "cents": 0,
           "currency": "USD"
         },
-        "can_checkout": true,
-        "ineligible_to_checkout_reason": null,
-        "requirements": [],
-        "intercom_id": "applicant-22",
+        "can_checkout": false,
+        "ineligible_to_checkout_reason": "requirements_not_met",
+        "requirements": [
+          {
+            "requirement": "housing_history_more_than_2_years"
+          }
+        ],
+        "intercom_id": "applicant-5381",
         "is_manual": false,
         "discount_info": null,
         "invited_by_applicant_id": null,
-        "has_passed_invite_flow": true
+        "has_passed_invite_flow": false,
+        "can_invite_others": true
       }
     ],
-    "status": "submitted",
-    "screening_status": "processing",
-    "desired_move_in_date": "2025-12-31",
+    "status": "started",
+    "screening_status": "not_started",
+    "desired_move_in_date": null,
     "conditions": [],
-    "partner_name_in_submission_disclosure": "Carter, Kirlin and Legros",
+    "partner_name_in_submission_disclosure": "District 14",
     "has_multiple_applicants": null,
     "has_multiple_guarantors": null,
+    "allow_occupants": null,
     "verifications": [
       {
-        "id": 140,
-        "name": "housing_history",
-        "title": "verifications.housing-history.title",
-        "description": "verifications.housing-history.description",
-        "status": "finished",
-        "estimated_time": 600,
-        "index": 1,
+        "id": 42060,
+        "name": "rental_application",
+        "title": "verifications.personal-details.title",
+        "description": "verifications.personal-details.description",
+        "status": "pending",
+        "vendor": "",
+        "settings": {
+          "pets_step_enabled": true,
+          "pets_step_required": {
+            "age": "optional",
+            "name": "optional",
+            "breed": "required",
+            "photo": "optional",
+            "weight": "required",
+            "supporting_documents": "optional"
+          },
+          "additional_questions": [],
+          "vehicles_step_enabled": true,
+          "vehicles_step_required": {
+            "make": "required",
+            "year": "required",
+            "color": "required",
+            "model": "required",
+            "license_plate_state": "required",
+            "license_plate_number": "required"
+          },
+          "dependents_step_enabled": true,
+          "dependents_step_required": {
+            "dob": "required"
+          },
+          "lead_source_step_enabled": true,
+          "lead_source_step_required": true,
+          "personal_details_step_enabled": true,
+          "emergency_contacts_step_enabled": true,
+          "emergency_contacts_step_required": {
+            "email": "optional",
+            "phone_number": "required",
+            "relationship": "optional"
+          },
+          "additional_questions_step_enabled": false,
+          "military_first_responder_teacher_step_enabled": true
+        },
+        "estimated_time": 480,
+        "index": 0,
         "editable": true,
         "progress": {
-          "total_steps": 1,
-          "filled_steps": 1
+          "total_steps": 7,
+          "filled_steps": 0
         },
         "incomes": [],
         "income_sources": [],
+        "start_requirements": [],
         "steps": [
           {
-            "id": 18,
+            "id": 47593,
             "index": 0,
-            "name": "address"
+            "name": "personal_details"
+          },
+          {
+            "id": 47594,
+            "index": 1,
+            "name": "dependents"
+          },
+          {
+            "id": 47595,
+            "index": 2,
+            "name": "emergency_contacts"
+          },
+          {
+            "id": 47596,
+            "index": 3,
+            "name": "pets"
+          },
+          {
+            "id": 47597,
+            "index": 4,
+            "name": "vehicles"
+          },
+          {
+            "id": 47598,
+            "index": 5,
+            "name": "military_first_responder_teacher"
+          },
+          {
+            "id": 47599,
+            "index": 6,
+            "name": "lead_source"
           }
         ],
-        "requirements": {
-          "min_years_continuous_rental_history": 2
-        }
+        "requirements": null
       },
       {
-        "id": 145,
+        "id": 42063,
+        "name": "combined_income_verification",
+        "title": "verifications.combined-income.title",
+        "description": "verifications.combined-income.description",
+        "status": "pending",
+        "vendor": "",
+        "settings": {
+          "other": {
+            "w2": {
+              "allowed": true,
+              "timeframe": {
+                "unit": "year",
+                "value": 1
+              }
+            },
+            "paystub": {
+              "allowed": true,
+              "timeframe": {
+                "unit": "month",
+                "value": 3
+              }
+            },
+            "bank_allowed": true,
+            "bank_statement": {
+              "allowed": false,
+              "timeframe": {
+                "unit": "month",
+                "value": 3
+              }
+            },
+            "payroll_allowed": true
+          },
+          "employment": {
+            "w2": {
+              "allowed": true,
+              "timeframe": {
+                "unit": "year",
+                "value": 1
+              }
+            },
+            "fields": {
+              "job_title": "required",
+              "supervisor": {
+                "email": "required",
+                "phone": "required",
+                "last_name": "required",
+                "first_name": "required"
+              }
+            },
+            "paystub": {
+              "allowed": true,
+              "timeframe": {
+                "unit": "month",
+                "value": 3
+              }
+            },
+            "bank_allowed": true,
+            "bank_statement": {
+              "allowed": true,
+              "timeframe": {
+                "unit": "month",
+                "value": 2
+              }
+            },
+            "payroll_allowed": true
+          },
+          "offer_letter": {
+            "fields": {
+              "job_title": "required",
+              "supervisor": {
+                "email": "required",
+                "phone": "required",
+                "last_name": "required",
+                "first_name": "required"
+              }
+            }
+          },
+          "self_employment": {
+            "w2": {
+              "allowed": true,
+              "timeframe": {
+                "unit": "year",
+                "value": 1
+              }
+            },
+            "fields": {
+              "job_title": "required"
+            },
+            "paystub": {
+              "allowed": true,
+              "timeframe": {
+                "unit": "month",
+                "value": 3
+              }
+            },
+            "bank_allowed": true,
+            "bank_statement": {
+              "allowed": false,
+              "timeframe": {
+                "unit": "month",
+                "value": 3
+              }
+            },
+            "payroll_allowed": true
+          },
+          "housing_assistance_upload": "required",
+          "housing_assistance_program_enabled": true,
+          "combined_income_verification_enabled": true
+        },
+        "estimated_time": 900,
+        "index": 3,
+        "editable": true,
+        "progress": {
+          "total_steps": 1,
+          "filled_steps": 0
+        },
+        "incomes": [],
+        "income_sources": [],
+        "start_requirements": [
+          "identity_verification"
+        ],
+        "steps": [
+          {
+            "id": 47601,
+            "index": 0,
+            "name": "combined_income"
+          }
+        ],
+        "requirements": null
+      },
+      {
+        "id": 42066,
         "name": "eviction_report",
         "title": "Housing court report",
         "description": "Housing court report",
         "status": "pending",
+        "vendor": "cleara",
+        "settings": {
+          "vendor": "cleara",
+          "execution_mode": "automatic"
+        },
         "estimated_time": 0,
         "index": 6,
         "editable": false,
@@ -692,160 +1327,71 @@
         },
         "incomes": [],
         "income_sources": [],
+        "start_requirements": [],
         "steps": [],
         "requirements": null
       },
       {
-        "id": 142,
-        "name": "combined_income_verification",
-        "title": "verifications.combined-income.title",
-        "description": "verifications.combined-income.description",
-        "status": "finished",
-        "estimated_time": 900,
-        "index": 3,
+        "id": 42061,
+        "name": "housing_history",
+        "title": "verifications.housing-history.title",
+        "description": "verifications.housing-history.description",
+        "status": "pending",
+        "vendor": "",
+        "settings": {
+          "address_step_enabled": true,
+          "rent_option_required": {
+            "landlord_phone": true,
+            "lease_document": false,
+            "monthly_payment": true,
+            "reason_for_leaving": true
+          },
+          "other_option_required": {
+            "housing_status": true,
+            "reason_for_leaving": false
+          },
+          "own_home_option_required": {
+            "reason_for_leaving": true,
+            "monthly_mortgage_payment": true
+          },
+          "min_required_continuous_rental_history": 2
+        },
+        "estimated_time": 600,
+        "index": 1,
         "editable": true,
         "progress": {
           "total_steps": 1,
           "filled_steps": 0
         },
-        "incomes": [
-          {
-            "id": 2,
-            "type": "self_employment",
-            "status": "processing",
-            "pay_period": "monthly",
-            "amount": {
-              "cents": 791000,
-              "currency": "USD"
-            },
-            "start_date": "2018-01-13",
-            "additional_data": {
-              "company": "Carroll - Lebsack",
-              "job_title": "District Security Director"
-            }
-          }
-        ],
-        "income_sources": [
-          {
-            "id": 2,
-            "status": "processing",
-            "type": "paystub",
-            "income_id": 2,
-            "items": [],
-            "has_available_items": false
-          }
-        ],
-        "steps": [
-          {
-            "id": 19,
-            "index": 0,
-            "name": "combined_income"
-          }
-        ],
-        "requirements": null
-      },
-      {
-        "id": 139,
-        "name": "rental_application",
-        "title": "verifications.personal-details.title",
-        "description": "verifications.personal-details.description",
-        "status": "finished",
-        "estimated_time": 480,
-        "index": 0,
-        "editable": true,
-        "progress": {
-          "total_steps": 7,
-          "filled_steps": 7
-        },
         "incomes": [],
         "income_sources": [],
+        "start_requirements": [],
         "steps": [
           {
-            "id": 11,
+            "id": 47600,
             "index": 0,
-            "name": "personal_details"
-          },
-          {
-            "id": 12,
-            "index": 1,
-            "name": "dependents"
-          },
-          {
-            "id": 13,
-            "index": 2,
-            "name": "emergency_contacts"
-          },
-          {
-            "id": 14,
-            "index": 3,
-            "name": "pets"
-          },
-          {
-            "id": 15,
-            "index": 4,
-            "name": "vehicles"
-          },
-          {
-            "id": 16,
-            "index": 5,
-            "name": "military_first_responder_teacher"
-          },
-          {
-            "id": 17,
-            "index": 6,
-            "name": "lead_source"
+            "name": "address"
           }
         ],
-        "requirements": null
+        "requirements": {
+          "min_years_continuous_rental_history": 2
+        }
       },
       {
-        "id": 146,
-        "name": "submission_disclosure",
-        "title": "Review the application",
-        "description": ".",
-        "status": "finished",
-        "estimated_time": 60,
-        "index": 7,
-        "editable": true,
-        "progress": {
-          "total_steps": 1,
-          "filled_steps": 1
-        },
-        "incomes": [],
-        "income_sources": [],
-        "steps": [
-          {
-            "id": 20,
-            "index": 0,
-            "name": "submission_disclosure_step"
-          }
-        ],
-        "requirements": null
-      },
-      {
-        "id": 144,
-        "name": "criminal_report",
-        "title": "National criminal report (US)",
-        "description": "CIC criminal background report",
-        "status": "processing",
-        "estimated_time": 0,
-        "index": 5,
-        "editable": false,
-        "progress": {
-          "total_steps": 0,
-          "filled_steps": 0
-        },
-        "incomes": [],
-        "income_sources": [],
-        "steps": [],
-        "requirements": null
-      },
-      {
-        "id": 141,
+        "id": 42062,
         "name": "identity_verification",
         "title": "verifications.identity-verification.applicant-title",
         "description": "verifications.identity-verification.applicant-description",
-        "status": "verified",
+        "status": "pending",
+        "vendor": "plaid",
+        "settings": {
+          "selfie_check": false,
+          "identity_abuse_check": {
+            "stolen_identity_threshold": 90,
+            "synthetic_identity_threshold": 70
+          },
+          "prevent_apply_if_failed": false
+        },
         "estimated_time": 300,
         "index": 2,
         "editable": false,
@@ -855,15 +1401,65 @@
         },
         "incomes": [],
         "income_sources": [],
+        "start_requirements": [],
         "steps": [],
         "requirements": null
       },
       {
-        "id": 143,
+        "id": 42065,
+        "name": "criminal_report",
+        "title": "National criminal report (US)",
+        "description": "CIC criminal background report",
+        "status": "pending",
+        "vendor": "cleara",
+        "settings": {
+          "vendor": "cleara",
+          "hide_report": false,
+          "execution_mode": "automatic"
+        },
+        "estimated_time": 0,
+        "index": 5,
+        "editable": false,
+        "progress": {
+          "total_steps": 0,
+          "filled_steps": 0
+        },
+        "incomes": [],
+        "income_sources": [],
+        "start_requirements": [],
+        "steps": [],
+        "requirements": null
+      },
+      {
+        "id": 42064,
         "name": "credit_report",
         "title": "Credit report",
         "description": "Equifax credit report and score",
-        "status": "finished",
+        "status": "pending",
+        "vendor": "transunion",
+        "settings": {
+          "vendor": "transunion",
+          "pricing": [
+            {
+              "name": "credit_report_05402",
+              "amount": {
+                "cents": 600,
+                "currency": "USD"
+              }
+            },
+            {
+              "name": "credit_report_05206",
+              "amount": {
+                "cents": 800,
+                "currency": "USD"
+              }
+            }
+          ],
+          "model_number": "05206",
+          "execution_mode": "automatic",
+          "exclude_medical_debt": false,
+          "exclude_student_debt": false
+        },
         "estimated_time": 0,
         "index": 4,
         "editable": false,
@@ -873,548 +1469,39 @@
         },
         "incomes": [],
         "income_sources": [],
+        "start_requirements": [],
         "steps": [],
         "requirements": null
-      }
-    ],
-    "current_applicant": {
-      "id": 22,
-      "application_id": 17,
-      "role": "applicant",
-      "first_name": "Maci",
-      "last_name": "Stark",
-      "middle_name": "Jaden",
-      "email": "l6hd1aik52l@mail.tm",
-      "application_status": "submitted",
-      "retry_identity_verification_status": "not_available",
-      "verifications": [
-        {
-          "id": 139,
-          "name": "rental_application",
-          "title": "verifications.personal-details.title",
-          "description": "verifications.personal-details.description",
-          "status": "finished",
-          "estimated_time": 480,
-          "index": 0,
-          "editable": true,
-          "progress": {
-            "total_steps": 7,
-            "filled_steps": 7
-          },
-          "incomes": [],
-          "income_sources": [],
-          "steps": [
-            {
-              "id": 11,
-              "index": 0,
-              "name": "personal_details"
-            },
-            {
-              "id": 12,
-              "index": 1,
-              "name": "dependents"
-            },
-            {
-              "id": 13,
-              "index": 2,
-              "name": "emergency_contacts"
-            },
-            {
-              "id": 14,
-              "index": 3,
-              "name": "pets"
-            },
-            {
-              "id": 15,
-              "index": 4,
-              "name": "vehicles"
-            },
-            {
-              "id": 16,
-              "index": 5,
-              "name": "military_first_responder_teacher"
-            },
-            {
-              "id": 17,
-              "index": 6,
-              "name": "lead_source"
-            }
-          ],
-          "requirements": null
+      },
+      {
+        "id": 42067,
+        "name": "submission_disclosure",
+        "title": "Review the application",
+        "description": ".",
+        "status": "pending",
+        "vendor": "",
+        "settings": {
+          "additional_text": ""
         },
-        {
-          "id": 140,
-          "name": "housing_history",
-          "title": "verifications.housing-history.title",
-          "description": "verifications.housing-history.description",
-          "status": "finished",
-          "estimated_time": 600,
-          "index": 1,
-          "editable": true,
-          "progress": {
-            "total_steps": 1,
-            "filled_steps": 1
-          },
-          "incomes": [],
-          "income_sources": [],
-          "steps": [
-            {
-              "id": 18,
-              "index": 0,
-              "name": "address"
-            }
-          ],
-          "requirements": {
-            "min_years_continuous_rental_history": 2
-          }
+        "estimated_time": 60,
+        "index": 7,
+        "editable": true,
+        "progress": {
+          "total_steps": 1,
+          "filled_steps": 0
         },
-        {
-          "id": 141,
-          "name": "identity_verification",
-          "title": "verifications.identity-verification.applicant-title",
-          "description": "verifications.identity-verification.applicant-description",
-          "status": "verified",
-          "estimated_time": 300,
-          "index": 2,
-          "editable": false,
-          "progress": {
-            "total_steps": 0,
-            "filled_steps": 0
-          },
-          "incomes": [],
-          "income_sources": [],
-          "steps": [],
-          "requirements": null
-        },
-        {
-          "id": 142,
-          "name": "combined_income_verification",
-          "title": "verifications.combined-income.title",
-          "description": "verifications.combined-income.description",
-          "status": "finished",
-          "estimated_time": 900,
-          "index": 3,
-          "editable": true,
-          "progress": {
-            "total_steps": 1,
-            "filled_steps": 0
-          },
-          "incomes": [
-            {
-              "id": 2,
-              "type": "self_employment",
-              "status": "processing",
-              "pay_period": "monthly",
-              "amount": {
-                "cents": 791000,
-                "currency": "USD"
-              },
-              "start_date": "2018-01-13",
-              "additional_data": {
-                "company": "Carroll - Lebsack",
-                "job_title": "District Security Director"
-              }
-            }
-          ],
-          "income_sources": [
-            {
-              "id": 2,
-              "status": "processing",
-              "type": "paystub",
-              "income_id": 2,
-              "items": [],
-              "has_available_items": false
-            }
-          ],
-          "steps": [
-            {
-              "id": 19,
-              "index": 0,
-              "name": "combined_income"
-            }
-          ],
-          "requirements": null
-        },
-        {
-          "id": 143,
-          "name": "credit_report",
-          "title": "Credit report",
-          "description": "Equifax credit report and score",
-          "status": "finished",
-          "estimated_time": 0,
-          "index": 4,
-          "editable": false,
-          "progress": {
-            "total_steps": 0,
-            "filled_steps": 0
-          },
-          "incomes": [],
-          "income_sources": [],
-          "steps": [],
-          "requirements": null
-        },
-        {
-          "id": 144,
-          "name": "criminal_report",
-          "title": "National criminal report (US)",
-          "description": "CIC criminal background report",
-          "status": "processing",
-          "estimated_time": 0,
-          "index": 5,
-          "editable": false,
-          "progress": {
-            "total_steps": 0,
-            "filled_steps": 0
-          },
-          "incomes": [],
-          "income_sources": [],
-          "steps": [],
-          "requirements": null
-        },
-        {
-          "id": 145,
-          "name": "eviction_report",
-          "title": "Housing court report",
-          "description": "Housing court report",
-          "status": "pending",
-          "estimated_time": 0,
-          "index": 6,
-          "editable": false,
-          "progress": {
-            "total_steps": 0,
-            "filled_steps": 0
-          },
-          "incomes": [],
-          "income_sources": [],
-          "steps": [],
-          "requirements": null
-        },
-        {
-          "id": 146,
-          "name": "submission_disclosure",
-          "title": "Review the application",
-          "description": ".",
-          "status": "finished",
-          "estimated_time": 60,
-          "index": 7,
-          "editable": true,
-          "progress": {
-            "total_steps": 1,
-            "filled_steps": 1
-          },
-          "incomes": [],
-          "income_sources": [],
-          "steps": [
-            {
-              "id": 20,
-              "index": 0,
-              "name": "submission_disclosure_step"
-            }
-          ],
-          "requirements": null
-        }
-      ],
-      "stream_chat_token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiYXBwbGljYW50LWN1c3RvbWVyLTU0In0.UYDDYqUUFG--rj80gxSXtFXlRcGKzOcFLX7TMwuFyXA",
-      "stream_chat_id": "applicant-customer-54",
-      "stream_chat_name": "Maci Jaden Stark",
-      "application": {
-        "id": 17,
-        "partner": {
-          "slug": "carter-kirlin-and-legros",
-          "name": "Carter, Kirlin and Legros",
-          "email": "sheldon_dach@goodwin-bahringer.biz",
-          "logo_url": null,
-          "is_sites_and_communities": false,
-          "id": 1,
-          "colors": null,
-          "base_border_radius": null,
-          "font_family": null,
-          "font_family_link": null,
-          "google_analytics_id": null,
-          "partner_features": [],
-          "property_management_system": null
-        },
-        "verification_template": {
-          "has_move_in_date_limit": null,
-          "max_move_in_days": null,
-          "settings": {
-            "applicant": {
-              "identity_verification": {
-                "prevent_apply_if_failed": false,
-                "identity_abuse_check": {
-                  "stolen_identity_threshold": 90,
-                  "synthetic_identity_threshold": 70
-                }
-              }
-            },
-            "co_signer": {
-              "identity_verification": {
-                "prevent_apply_if_failed": false,
-                "identity_abuse_check": {
-                  "stolen_identity_threshold": 90,
-                  "synthetic_identity_threshold": 70
-                }
-              }
-            },
-            "occupant": {
-              "identity_verification": {
-                "prevent_apply_if_failed": false,
-                "identity_abuse_check": {
-                  "stolen_identity_threshold": 90,
-                  "synthetic_identity_threshold": 70
-                }
-              }
-            }
-          },
-          "allow_role": {
-            "applicant": true,
-            "co_signer": false,
-            "occupant": false
-          }
-        },
-        "unit": {
-          "id": 88,
-          "title": "Unit hx3yf0uc",
-          "property": {
-            "name": "Cremin-Koch",
-            "address": {
-              "address1": "265 Gottlieb Roads",
-              "address2": "",
-              "city": "New Wesleyburgh",
-              "state_or_province": "SC",
-              "postal_code": "39319",
-              "country": "US",
-              "lat": null,
-              "lng": null,
-              "one_line_address": "265 Gottlieb Roads, New Wesleyburgh, SC, 39319, US"
-            }
-          },
-          "monthly_rent_amount": {
-            "cents": 27984,
-            "currency": "USD"
-          },
-          "home_rent_amount": {
-            "cents": 0,
-            "currency": "USD"
-          },
-          "site_rent_amount": {
-            "cents": 0,
-            "currency": "USD"
-          },
-          "available_at": "2025-12-16T20:17:22.288+00:00",
-          "partner_name": "Carter, Kirlin and Legros"
-        },
-        "monthly_rent_amount": {
-          "cents": 27984,
-          "currency": "USD"
-        },
-        "home_rent_amount": {
-          "cents": 0,
-          "currency": "USD"
-        },
-        "site_rent_amount": {
-          "cents": 0,
-          "currency": "USD"
-        },
-        "base_rent_amount": {
-          "cents": 27984,
-          "currency": "USD"
-        },
-        "applicants": [
+        "incomes": [],
+        "income_sources": [],
+        "start_requirements": [],
+        "steps": [
           {
-            "id": 22,
-            "application_id": 17,
-            "role": "applicant",
-            "first_name": "Maci",
-            "last_name": "Stark",
-            "middle_name": "Jaden",
-            "email": "l6hd1aik52l@mail.tm",
-            "application_status": "submitted",
-            "retry_identity_verification_status": "not_available",
-            "verifications": [
-              {
-                "id": 139,
-                "name": "rental_application",
-                "title": "verifications.personal-details.title",
-                "description": "verifications.personal-details.description",
-                "status": "finished",
-                "estimated_time": 480,
-                "index": 0,
-                "editable": true,
-                "progress": {
-                  "total_steps": 7,
-                  "filled_steps": 7
-                },
-                "incomes": [],
-                "income_sources": []
-              },
-              {
-                "id": 140,
-                "name": "housing_history",
-                "title": "verifications.housing-history.title",
-                "description": "verifications.housing-history.description",
-                "status": "finished",
-                "estimated_time": 600,
-                "index": 1,
-                "editable": true,
-                "progress": {
-                  "total_steps": 1,
-                  "filled_steps": 1
-                },
-                "incomes": [],
-                "income_sources": []
-              },
-              {
-                "id": 141,
-                "name": "identity_verification",
-                "title": "verifications.identity-verification.applicant-title",
-                "description": "verifications.identity-verification.applicant-description",
-                "status": "verified",
-                "estimated_time": 300,
-                "index": 2,
-                "editable": false,
-                "progress": {
-                  "total_steps": 0,
-                  "filled_steps": 0
-                },
-                "incomes": [],
-                "income_sources": []
-              },
-              {
-                "id": 142,
-                "name": "combined_income_verification",
-                "title": "verifications.combined-income.title",
-                "description": "verifications.combined-income.description",
-                "status": "finished",
-                "estimated_time": 900,
-                "index": 3,
-                "editable": true,
-                "progress": {
-                  "total_steps": 1,
-                  "filled_steps": 0
-                },
-                "incomes": [
-                  {
-                    "id": 2,
-                    "type": "self_employment",
-                    "status": "processing",
-                    "pay_period": "monthly",
-                    "amount": {
-                      "cents": 791000,
-                      "currency": "USD"
-                    },
-                    "start_date": "2018-01-13",
-                    "additional_data": {
-                      "company": "Carroll - Lebsack",
-                      "job_title": "District Security Director"
-                    }
-                  }
-                ],
-                "income_sources": [
-                  {
-                    "id": 2,
-                    "status": "submitted",
-                    "type": "paystub",
-                    "income_id": 2,
-                    "items": [],
-                    "has_available_items": false
-                  }
-                ]
-              },
-              {
-                "id": 143,
-                "name": "credit_report",
-                "title": "Credit report",
-                "description": "Equifax credit report and score",
-                "status": "finished",
-                "estimated_time": 0,
-                "index": 4,
-                "editable": false,
-                "progress": {
-                  "total_steps": 0,
-                  "filled_steps": 0
-                },
-                "incomes": [],
-                "income_sources": []
-              },
-              {
-                "id": 144,
-                "name": "criminal_report",
-                "title": "National criminal report (US)",
-                "description": "CIC criminal background report",
-                "status": "processing",
-                "estimated_time": 0,
-                "index": 5,
-                "editable": false,
-                "progress": {
-                  "total_steps": 0,
-                  "filled_steps": 0
-                },
-                "incomes": [],
-                "income_sources": []
-              },
-              {
-                "id": 145,
-                "name": "eviction_report",
-                "title": "Housing court report",
-                "description": "Housing court report",
-                "status": "pending",
-                "estimated_time": 0,
-                "index": 6,
-                "editable": false,
-                "progress": {
-                  "total_steps": 0,
-                  "filled_steps": 0
-                },
-                "incomes": [],
-                "income_sources": []
-              },
-              {
-                "id": 146,
-                "name": "submission_disclosure",
-                "title": "Review the application",
-                "description": ".",
-                "status": "finished",
-                "estimated_time": 60,
-                "index": 7,
-                "editable": true,
-                "progress": {
-                  "total_steps": 1,
-                  "filled_steps": 1
-                },
-                "incomes": [],
-                "income_sources": []
-              }
-            ],
-            "stream_chat_token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiYXBwbGljYW50LWN1c3RvbWVyLTU0In0.UYDDYqUUFG--rj80gxSXtFXlRcGKzOcFLX7TMwuFyXA",
-            "stream_chat_id": "applicant-customer-54",
-            "stream_chat_name": "Maci Jaden Stark"
+            "id": 47602,
+            "index": 0,
+            "name": "submission_disclosure_step"
           }
         ],
-        "status": "submitted",
-        "screening_status": "processing",
-        "desired_move_in_date": "2025-12-31",
-        "conditions": [],
-        "partner_name_in_submission_disclosure": "Carter, Kirlin and Legros",
-        "has_multiple_applicants": null,
-        "has_multiple_guarantors": null
-      },
-      "fee": {
-        "cents": 0,
-        "currency": "USD"
-      },
-      "application_fee": {
-        "cents": 0,
-        "currency": "USD"
-      },
-      "can_checkout": true,
-      "ineligible_to_checkout_reason": null,
-      "requirements": [],
-      "intercom_id": "applicant-22",
-      "is_manual": false,
-      "discount_info": null,
-      "invited_by_applicant_id": null,
-      "has_passed_invite_flow": true
-    }
+        "requirements": null
+      }
+    ]
   }
 }

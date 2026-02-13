@@ -46,8 +46,8 @@ export const APP_CONFIG = {
     BACKOFF_MAX_MS: 10000,
   },
   ACTORS: {
-    APPLICANT: 2,
+    APPLICANT: 0,
     OCCUPANT: 0,
-    GARANTOR: 0,
+    GUARANTOR: 0,
   }
 } as const;

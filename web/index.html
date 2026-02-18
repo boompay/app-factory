@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>App Factory — BoomScreen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --pink: #E6007E;
+      --pink-light: #FFF0F7;
+      --pink-hover: #CC006E;
+      --pink-glow: rgba(230, 0, 126, 0.12);
+      --bg: #FAFAFA;
+      --surface: #FFFFFF;
+      --border: #E8E8E8;
+      --border-focus: #D0D0D0;
+      --text: #1A1A1A;
+      --text-secondary: #6B6B6B;
+      --text-muted: #999999;
+      --terminal-bg: #0D1117;
+      --terminal-text: #C9D1D9;
+      --terminal-green: #7EE787;
+      --terminal-yellow: #F0C674;
+      --terminal-red: #F97583;
+      --terminal-dim: #484F58;
+      --radius: 10px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.05), 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    .header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 32px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo {
+      width: 32px;
+      height: 32px;
+      background: var(--pink);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo svg { width: 18px; height: 18px; }
+
+    .header-title {
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .header-title span {
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .status-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 100px;
+      background: #F0FFF4;
+      color: #22863A;
+      border: 1px solid #C6E6CC;
+    }
+
+    .status-badge.running {
+      background: var(--pink-light);
+      color: var(--pink);
+      border-color: #F5C0DC;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #22863A;
+    }
+
+    .status-badge.running .status-dot {
+      background: var(--pink);
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    /* Layout */
+    .layout {
+      display: grid;
+      grid-template-columns: 420px 1fr;
+      gap: 0;
+      height: calc(100vh - 60px);
+    }
+
+    /* Form Panel */
+    .form-panel {
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+      padding: 24px;
+    }
+
+    .form-panel::-webkit-scrollbar { width: 5px; }
+    .form-panel::-webkit-scrollbar-track { background: transparent; }
+    .form-panel::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+
+    /* Magic Link */
+    .magic-link-section {
+      margin-bottom: 24px;
+    }
+
+    .magic-link-section label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+
+    .magic-link-input-wrap {
+      display: flex;
+      gap: 8px;
+    }
+
+    .magic-link-input-wrap input {
+      flex: 1;
+      padding: 10px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: var(--text);
+      background: var(--bg);
+      transition: border-color 0.15s, box-shadow 0.15s;
+      outline: none;
+    }
+
+    .magic-link-input-wrap input:focus {
+      border-color: var(--pink);
+      box-shadow: 0 0 0 3px var(--pink-glow);
+    }
+
+    .magic-link-input-wrap input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .btn-run {
+      padding: 10px 22px;
+      background: var(--pink);
+      color: white;
+      border: none;
+      border-radius: var(--radius);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+      white-space: nowrap;
+      letter-spacing: 0.01em;
+    }
+
+    .btn-run:hover:not(:disabled) {
+      background: var(--pink-hover);
+      box-shadow: 0 2px 8px rgba(230, 0, 126, 0.25);
+    }
+
+    .btn-run:active:not(:disabled) {
+      transform: scale(0.97);
+    }
+
+    .btn-run:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* Sections */
+    .config-section {
+      margin-bottom: 6px;
+    }
+
+    .section-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 12px 0;
+      border: none;
+      background: none;
+      cursor: pointer;
+      border-bottom: 1px solid var(--border);
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .section-toggle-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    .section-toggle h3 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    .section-chevron {
+      width: 16px;
+      height: 16px;
+      color: var(--text-muted);
+      transition: transform 0.2s ease;
+    }
+
+    .config-section.open .section-chevron {
+      transform: rotate(180deg);
+    }
+
+    .section-body {
+      display: none;
+      padding: 16px 0 8px;
+    }
+
+    .config-section.open .section-body {
+      display: block;
+    }
+
+    /* Form Fields */
+    .field-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .field-grid.cols-3 {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .field label {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      letter-spacing: 0.02em;
+    }
+
+    .field input,
+    .field select {
+      padding: 8px 10px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      color: var(--text);
+      background: var(--bg);
+      transition: border-color 0.15s, box-shadow 0.15s;
+      outline: none;
+    }
+
+    .field input:focus,
+    .field select:focus {
+      border-color: var(--pink);
+      box-shadow: 0 0 0 3px var(--pink-glow);
+    }
+
+    .field input[type="number"] {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+    }
+
+    /* Log Panel */
+    .log-panel {
+      background: var(--terminal-bg);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .log-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      border-bottom: 1px solid #21262D;
+      flex-shrink: 0;
+    }
+
+    .log-header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .log-header h3 {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--terminal-text);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .log-count {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--terminal-dim);
+      background: #161B22;
+      padding: 2px 8px;
+      border-radius: 10px;
+    }
+
+    .btn-clear-log {
+      background: none;
+      border: 1px solid #30363D;
+      color: var(--terminal-dim);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .btn-clear-log:hover {
+      color: var(--terminal-text);
+      border-color: #484F58;
+    }
+
+    .log-output {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px 20px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      line-height: 1.7;
+      color: var(--terminal-text);
+    }
+
+    .log-output::-webkit-scrollbar { width: 6px; }
+    .log-output::-webkit-scrollbar-track { background: transparent; }
+    .log-output::-webkit-scrollbar-thumb { background: #30363D; border-radius: 10px; }
+
+    .log-line {
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    .log-line .ts {
+      color: var(--terminal-dim);
+      margin-right: 6px;
+    }
+
+    .log-line.info .lvl { color: var(--terminal-green); }
+    .log-line.warn .lvl { color: var(--terminal-yellow); }
+    .log-line.error .lvl { color: var(--terminal-red); font-weight: 500; }
+    .log-line.error { color: var(--terminal-red); }
+
+    .log-empty {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      color: var(--terminal-dim);
+      font-family: 'Montserrat', sans-serif;
+      gap: 8px;
+    }
+
+    .log-empty-icon {
+      font-size: 28px;
+      opacity: 0.4;
+    }
+
+    .log-empty p {
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      padding: 12px 20px;
+      border-radius: var(--radius);
+      font-size: 13px;
+      font-weight: 500;
+      color: white;
+      z-index: 200;
+      animation: toastIn 0.3s ease, toastOut 0.3s ease 2.7s forwards;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    }
+
+    .toast.error { background: #CF222E; }
+    .toast.success { background: #1A7F37; }
+
+    @keyframes toastIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes toastOut {
+      from { opacity: 1; transform: translateY(0); }
+      to { opacity: 0; transform: translateY(12px); }
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+      }
+
+      .form-panel {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        max-height: 50vh;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-left">
+      <div class="logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+        </svg>
+      </div>
+      <div class="header-title">App Factory <span>/ BoomScreen</span></div>
+    </div>
+    <div id="statusBadge" class="status-badge">
+      <div class="status-dot"></div>
+      <span id="statusText">Idle</span>
+    </div>
+  </header>
+
+  <div class="layout">
+    <div class="form-panel">
+      <!-- Magic Link -->
+      <div class="magic-link-section">
+        <label for="magicLink">Magic Link</label>
+        <div class="magic-link-input-wrap">
+          <input type="text" id="magicLink" placeholder="https://screen.staging.boompay.app/a/..." autocomplete="off" spellcheck="false">
+          <button class="btn-run" id="btnRun" type="button">Run</button>
+        </div>
+      </div>
+
+      <!-- Actors -->
+      <div class="config-section open" data-section="actors">
+        <button class="section-toggle" type="button">
+          <div class="section-toggle-left">
+            <div class="section-icon" style="background:#FFF0F7; color:#E6007E;">&#128101;</div>
+            <h3>Actors</h3>
+          </div>
+          <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="section-body">
+          <div class="field-grid cols-3">
+            <div class="field">
+              <label>Applicants</label>
+              <input type="number" id="cfg-ACTORS-APPLICANT" min="1" max="10">
+            </div>
+            <div class="field">
+              <label>Occupants</label>
+              <input type="number" id="cfg-ACTORS-OCCUPANT" min="0" max="10">
+            </div>
+            <div class="field">
+              <label>Guarantors</label>
+              <input type="number" id="cfg-ACTORS-GARANTOR" min="0" max="10">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Default Values -->
+      <div class="config-section" data-section="defaults">
+        <button class="section-toggle" type="button">
+          <div class="section-toggle-left">
+            <div class="section-icon" style="background:#F0F4FF; color:#3B5BDB;">&#9998;</div>
+            <h3>Default Values</h3>
+          </div>
+          <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="section-body">
+          <div class="field-grid">
+            <div class="field">
+              <label>Dependents</label>
+              <select id="cfg-DEFAULT_VALUES-DEPENDENTS">
+                <option value="No">No</option>
+                <option value="Yes">Yes</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Pets</label>
+              <select id="cfg-DEFAULT_VALUES-PETS">
+                <option value="No">No</option>
+                <option value="Yes">Yes</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Vehicles</label>
+              <select id="cfg-DEFAULT_VALUES-VEHICLES">
+                <option value="No">No</option>
+                <option value="Yes">Yes</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Military</label>
+              <select id="cfg-DEFAULT_VALUES-MILITARY_FIRST_RESPONDER_TEACHER">
+                <option value="No">No</option>
+                <option value="Yes">Yes</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Lead Source</label>
+              <input type="text" id="cfg-DEFAULT_VALUES-LEAD_SOURCE">
+            </div>
+            <div class="field">
+              <label>Housing Type</label>
+              <input type="text" id="cfg-DEFAULT_VALUES-HOUSING_TYPE">
+            </div>
+            <div class="field" style="grid-column: 1 / -1;">
+              <label>Emergency Contact Relationship</label>
+              <input type="text" id="cfg-DEFAULT_VALUES-EMERGENCY_CONTACT_RELATIONSHIP">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Timeouts -->
+      <div class="config-section" data-section="timeouts">
+        <button class="section-toggle" type="button">
+          <div class="section-toggle-left">
+            <div class="section-icon" style="background:#FFF8E1; color:#E8A100;">&#9203;</div>
+            <h3>Timeouts</h3>
+          </div>
+          <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="section-body">
+          <div class="field-grid">
+            <div class="field">
+              <label>API Request (ms)</label>
+              <input type="number" id="cfg-TIMEOUTS-API_REQUEST" min="1000" step="1000">
+            </div>
+            <div class="field">
+              <label>Long Request (ms)</label>
+              <input type="number" id="cfg-TIMEOUTS-API_LONG_REQUEST" min="1000" step="1000">
+            </div>
+            <div class="field">
+              <label>IDV Wait (ms)</label>
+              <input type="number" id="cfg-TIMEOUTS-IDENTITY_VERIFICATION_WAIT" min="1000" step="1000">
+            </div>
+            <div class="field">
+              <label>IDV Check (ms)</label>
+              <input type="number" id="cfg-TIMEOUTS-IDENTITY_VERIFICATION_CHECK" min="1000" step="1000">
+            </div>
+            <div class="field">
+              <label>IDV Interval (ms)</label>
+              <input type="number" id="cfg-TIMEOUTS-IDENTITY_VERIFICATION_INTERVAL" min="1000" step="1000">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Retry -->
+      <div class="config-section" data-section="retry">
+        <button class="section-toggle" type="button">
+          <div class="section-toggle-left">
+            <div class="section-icon" style="background:#F0FFF4; color:#1A7F37;">&#8635;</div>
+            <h3>Retry</h3>
+          </div>
+          <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="section-body">
+          <div class="field-grid cols-3">
+            <div class="field">
+              <label>Max Attempts</label>
+              <input type="number" id="cfg-RETRY-MAX_ATTEMPTS" min="1" max="10">
+            </div>
+            <div class="field">
+              <label>Backoff Base (ms)</label>
+              <input type="number" id="cfg-RETRY-BACKOFF_BASE_MS" min="100" step="100">
+            </div>
+            <div class="field">
+              <label>Backoff Max (ms)</label>
+              <input type="number" id="cfg-RETRY-BACKOFF_MAX_MS" min="1000" step="1000">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Log Panel -->
+    <div class="log-panel">
+      <div class="log-header">
+        <div class="log-header-left">
+          <h3>Output</h3>
+          <span class="log-count" id="logCount">0 lines</span>
+        </div>
+        <button class="btn-clear-log" id="btnClearLog" type="button">Clear</button>
+      </div>
+      <div class="log-output" id="logOutput">
+        <div class="log-empty" id="logEmpty">
+          <div class="log-empty-icon">&#9889;</div>
+          <p>Paste a magic link and hit Run</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const $ = (sel) => document.querySelector(sel);
+    const btnRun = $("#btnRun");
+    const magicLinkInput = $("#magicLink");
+    const logOutput = $("#logOutput");
+    const logEmpty = $("#logEmpty");
+    const logCount = $("#logCount");
+    const statusBadge = $("#statusBadge");
+    const statusText = $("#statusText");
+    const btnClearLog = $("#btnClearLog");
+
+    let lineCount = 0;
+    let evtSource = null;
+    let autoScroll = true;
+
+    // Track auto-scroll: disable if user scrolls up, re-enable if at bottom
+    logOutput.addEventListener("scroll", () => {
+      const threshold = 40;
+      autoScroll = logOutput.scrollHeight - logOutput.scrollTop - logOutput.clientHeight < threshold;
+    });
+
+    // Section toggles
+    document.querySelectorAll(".section-toggle").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        btn.closest(".config-section").classList.toggle("open");
+      });
+    });
+
+    // Load config defaults
+    async function loadConfig() {
+      try {
+        const res = await fetch("/api/config");
+        const config = await res.json();
+        for (const [section, values] of Object.entries(config)) {
+          for (const [key, val] of Object.entries(values)) {
+            const el = document.getElementById("cfg-" + section + "-" + key);
+            if (el) el.value = val;
+          }
+        }
+      } catch (e) {
+        console.error("Failed to load config:", e);
+      }
+    }
+
+    // Check initial status
+    async function checkStatus() {
+      try {
+        const res = await fetch("/api/status");
+        const data = await res.json();
+        setRunning(data.running);
+      } catch (e) { /* ignore */ }
+    }
+
+    function setRunning(running) {
+      btnRun.disabled = running;
+      btnRun.textContent = running ? "Running..." : "Run";
+      statusBadge.className = "status-badge" + (running ? " running" : "");
+      statusText.textContent = running ? "Running" : "Idle";
+    }
+
+    // Collect overrides from form
+    function collectOverrides() {
+      const overrides = {};
+      document.querySelectorAll("[id^='cfg-']").forEach((el) => {
+        const parts = el.id.replace("cfg-", "").split("-");
+        const section = parts[0];
+        const key = parts.slice(1).join("_");
+        if (!overrides[section]) overrides[section] = {};
+        const val = el.value;
+        if (el.type === "number") {
+          overrides[section][key] = Number(val);
+        } else {
+          overrides[section][key] = val;
+        }
+      });
+      return overrides;
+    }
+
+    // Show toast
+    function showToast(msg, type) {
+      type = type || "error";
+      const existing = document.querySelector(".toast");
+      if (existing) existing.remove();
+      const toast = document.createElement("div");
+      toast.className = "toast " + type;
+      toast.textContent = msg;
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 3000);
+    }
+
+    // Create a log line element
+    function createLogLine(entry) {
+      const line = document.createElement("div");
+      line.className = "log-line " + entry.level;
+
+      const ts = document.createElement("span");
+      ts.className = "ts";
+      const time = entry.timestamp ? new Date(entry.timestamp).toLocaleTimeString() : "";
+      ts.textContent = time;
+
+      const lvl = document.createElement("span");
+      lvl.className = "lvl";
+      lvl.textContent = "[" + entry.level.toUpperCase() + "] ";
+
+      line.appendChild(ts);
+      line.appendChild(lvl);
+      line.appendChild(document.createTextNode(entry.message));
+      return line;
+    }
+
+    // Create a system line element
+    function createSystemLine(msg) {
+      const line = document.createElement("div");
+      line.className = "log-line";
+      line.style.color = "#58A6FF";
+      line.style.fontWeight = "500";
+      line.textContent = "--- " + msg + " ---";
+      return line;
+    }
+
+    // Append log line
+    function appendLog(entry) {
+      if (entry.message === "__RUN_COMPLETE__") {
+        setRunning(false);
+        logOutput.appendChild(createSystemLine("Run complete."));
+        if (autoScroll) logOutput.scrollTop = logOutput.scrollHeight;
+        return;
+      }
+
+      logEmpty.style.display = "none";
+
+      logOutput.appendChild(createLogLine(entry));
+
+      lineCount++;
+      logCount.textContent = lineCount + " line" + (lineCount === 1 ? "" : "s");
+
+      if (autoScroll) {
+        logOutput.scrollTop = logOutput.scrollHeight;
+      }
+    }
+
+    // Clear log output safely
+    function clearLog() {
+      while (logOutput.firstChild) {
+        logOutput.removeChild(logOutput.firstChild);
+      }
+      lineCount = 0;
+      logCount.textContent = "0 lines";
+      logEmpty.style.display = "";
+      logOutput.appendChild(logEmpty);
+    }
+
+    // SSE connection
+    function connectSSE() {
+      if (evtSource) evtSource.close();
+      evtSource = new EventSource("/api/logs");
+      evtSource.onmessage = function(e) {
+        try {
+          const entry = JSON.parse(e.data);
+          appendLog(entry);
+        } catch (err) { /* ignore parse errors */ }
+      };
+    }
+
+    // Clear log button
+    btnClearLog.addEventListener("click", clearLog);
+
+    // Run button
+    btnRun.addEventListener("click", async () => {
+      const link = magicLinkInput.value.trim();
+      if (!link) {
+        showToast("Please paste a magic link");
+        magicLinkInput.focus();
+        return;
+      }
+
+      // Clear log for new run
+      clearLog();
+
+      const overrides = collectOverrides();
+
+      try {
+        const res = await fetch("/api/run", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ magicLink: link, overrides: overrides }),
+        });
+
+        if (res.status === 409) {
+          showToast("A run is already in progress");
+          return;
+        }
+
+        if (!res.ok) {
+          const data = await res.json().catch(() => ({}));
+          showToast(data.error || "Failed to start run");
+          return;
+        }
+
+        setRunning(true);
+        logOutput.appendChild(createSystemLine("Run started"));
+      } catch (e) {
+        showToast("Network error — is the server running?");
+      }
+    });
+
+    // Enter key submits
+    magicLinkInput.addEventListener("keydown", function(e) {
+      if (e.key === "Enter" && !btnRun.disabled) btnRun.click();
+    });
+
+    // Init
+    loadConfig();
+    checkStatus();
+    connectSSE();
+  </script>
+</body>
+</html>

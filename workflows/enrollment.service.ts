@@ -75,7 +75,7 @@ export async function startApplicationFlow(
   testDataPaths: { application: string; applicant: string }
 ): Promise<void> {
   let applicantIndex = APP_CONFIG.ACTORS.APPLICANT;
-  let guarantorsIndex = APP_CONFIG.ACTORS.GUARANTOR;
+  let guarantorIndex = APP_CONFIG.ACTORS.GUARANTOR;
   const startResponseRaw = await api.startApplication(app.id!);
   const startResponse = await startResponseRaw.json();
   await writeTestData(testDataPaths.application, startResponse);
@@ -92,9 +92,9 @@ export async function startApplicationFlow(
   }
   
   //Invite guarantors if there are guarantors
-  while(guarantorsIndex > 0) {    
+  while(guarantorIndex > 0) {    
     const { magicLink } = await inviteCoApplicant(api, app, "co_signer");
-    guarantorsIndex--;
+    guarantorIndex--;
   }
 
   const passInviteResponseRaw = await api.passInviteFlow(currentApplicant.id);

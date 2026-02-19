@@ -1,16 +1,16 @@
 {
-  "id": 3147,
-  "application_id": 2860,
+  "id": 5445,
+  "application_id": 4782,
   "role": "applicant",
-  "first_name": "Anika",
-  "last_name": "Hilll",
-  "middle_name": "London",
-  "email": "le6klzdpnvn_@dollicons.com",
+  "first_name": "Paige",
+  "last_name": "Ullrich",
+  "middle_name": "Hayden",
+  "email": "xzgbxg-otpd9@dollicons.com",
   "application_status": "started",
   "retry_identity_verification_status": "not_available",
   "verifications": [
     {
-      "id": 24391,
+      "id": 42478,
       "name": "rental_application",
       "title": "verifications.personal-details.title",
       "description": "verifications.personal-details.description",
@@ -19,32 +19,22 @@
       "settings": {
         "pets_step_enabled": true,
         "pets_step_required": {
-          "age": false,
-          "name": false,
-          "breed": true,
-          "photo": false,
-          "weight": true,
-          "supporting_documents": false
+          "age": "optional",
+          "name": "optional",
+          "breed": "required",
+          "photo": "optional",
+          "weight": "required",
+          "supporting_documents": "optional"
         },
-        "additional_questions": [
-          {
-            "name": "screenshot of credit karma",
-            "type": "string",
-            "title": "screenshot of credit karma",
-            "config": {
-              "widget_type": "document_upload"
-            },
-            "required": false
-          }
-        ],
+        "additional_questions": [],
         "vehicles_step_enabled": true,
         "vehicles_step_required": {
-          "make": true,
-          "year": true,
-          "color": true,
-          "model": true,
-          "license_plate_state": true,
-          "license_plate_number": true
+          "make": "required",
+          "year": "required",
+          "color": "required",
+          "model": "required",
+          "license_plate_state": "required",
+          "license_plate_number": "required"
         },
         "dependents_step_enabled": true,
         "dependents_step_required": {
@@ -55,9 +45,9 @@
         "personal_details_step_enabled": true,
         "emergency_contacts_step_enabled": true,
         "emergency_contacts_step_required": {
-          "email": false,
-          "phone_number": true,
-          "relationship": false
+          "email": "optional",
+          "phone_number": "required",
+          "relationship": "optional"
         },
         "additional_questions_step_enabled": false,
         "military_first_responder_teacher_step_enabled": true
@@ -74,37 +64,37 @@
       "start_requirements": [],
       "steps": [
         {
-          "id": 27202,
+          "id": 48037,
           "index": 0,
           "name": "personal_details"
         },
         {
-          "id": 27203,
+          "id": 48038,
           "index": 1,
           "name": "dependents"
         },
         {
-          "id": 27204,
+          "id": 48039,
           "index": 2,
           "name": "emergency_contacts"
         },
         {
-          "id": 27205,
+          "id": 48040,
           "index": 3,
           "name": "pets"
         },
         {
-          "id": 27206,
+          "id": 48041,
           "index": 4,
           "name": "vehicles"
         },
         {
-          "id": 27207,
+          "id": 48042,
           "index": 5,
           "name": "military_first_responder_teacher"
         },
         {
-          "id": 27208,
+          "id": 48043,
           "index": 6,
           "name": "lead_source"
         }
@@ -112,7 +102,7 @@
       "requirements": null
     },
     {
-      "id": 24392,
+      "id": 42479,
       "name": "housing_history",
       "title": "verifications.housing-history.title",
       "description": "verifications.housing-history.description",
@@ -148,7 +138,7 @@
       "start_requirements": [],
       "steps": [
         {
-          "id": 27209,
+          "id": 48044,
           "index": 0,
           "name": "address"
         }
@@ -158,7 +148,7 @@
       }
     },
     {
-      "id": 24393,
+      "id": 42480,
       "name": "identity_verification",
       "title": "verifications.identity-verification.applicant-title",
       "description": "verifications.identity-verification.applicant-description",
@@ -186,7 +176,7 @@
       "requirements": null
     },
     {
-      "id": 24394,
+      "id": 42481,
       "name": "combined_income_verification",
       "title": "verifications.combined-income.title",
       "description": "verifications.combined-income.description",
@@ -200,12 +190,6 @@
               "unit": "year",
               "value": 1
             }
-          },
-          "fields": {
-            "start_date": "required",
-            "paid_by_from": "required",
-            "pre_tax_amount": "required",
-            "income_description": "required"
           },
           "paystub": {
             "allowed": true,
@@ -250,10 +234,10 @@
           },
           "bank_allowed": true,
           "bank_statement": {
-            "allowed": false,
+            "allowed": true,
             "timeframe": {
               "unit": "month",
-              "value": 3
+              "value": 2
             }
           },
           "payroll_allowed": true
@@ -266,8 +250,7 @@
               "phone": "required",
               "last_name": "required",
               "first_name": "required"
-            },
-            "upload_offer_letter": "required"
+            }
           }
         },
         "self_employment": {
@@ -316,7 +299,7 @@
       ],
       "steps": [
         {
-          "id": 27210,
+          "id": 48045,
           "index": 0,
           "name": "combined_income"
         }
@@ -324,7 +307,99 @@
       "requirements": null
     },
     {
-      "id": 24395,
+      "id": 42482,
+      "name": "credit_report",
+      "title": "Credit report",
+      "description": "Equifax credit report and score",
+      "status": "pending",
+      "vendor": "equifax",
+      "settings": {
+        "vendor": "equifax",
+        "pricing": [
+          {
+            "name": "credit_report_05402",
+            "amount": {
+              "cents": 600,
+              "currency": "USD"
+            }
+          },
+          {
+            "name": "credit_report_05206",
+            "amount": {
+              "cents": 800,
+              "currency": "USD"
+            }
+          }
+        ],
+        "model_number": "05206",
+        "execution_mode": "automatic",
+        "exclude_medical_debt": false,
+        "exclude_student_debt": false
+      },
+      "estimated_time": 0,
+      "index": 4,
+      "editable": false,
+      "progress": {
+        "total_steps": 0,
+        "filled_steps": 0
+      },
+      "incomes": [],
+      "income_sources": [],
+      "start_requirements": [],
+      "steps": [],
+      "requirements": null
+    },
+    {
+      "id": 42483,
+      "name": "criminal_report",
+      "title": "National criminal report (US)",
+      "description": "CIC criminal background report",
+      "status": "pending",
+      "vendor": "cleara",
+      "settings": {
+        "vendor": "cleara",
+        "hide_report": false,
+        "execution_mode": "automatic"
+      },
+      "estimated_time": 0,
+      "index": 5,
+      "editable": false,
+      "progress": {
+        "total_steps": 0,
+        "filled_steps": 0
+      },
+      "incomes": [],
+      "income_sources": [],
+      "start_requirements": [],
+      "steps": [],
+      "requirements": null
+    },
+    {
+      "id": 42484,
+      "name": "eviction_report",
+      "title": "Housing court report",
+      "description": "Housing court report",
+      "status": "pending",
+      "vendor": "cleara",
+      "settings": {
+        "vendor": "cleara",
+        "execution_mode": "automatic"
+      },
+      "estimated_time": 0,
+      "index": 6,
+      "editable": false,
+      "progress": {
+        "total_steps": 0,
+        "filled_steps": 0
+      },
+      "incomes": [],
+      "income_sources": [],
+      "start_requirements": [],
+      "steps": [],
+      "requirements": null
+    },
+    {
+      "id": 42485,
       "name": "submission_disclosure",
       "title": "Review the application",
       "description": ".",
@@ -334,7 +409,7 @@
         "additional_text": ""
       },
       "estimated_time": 60,
-      "index": 4,
+      "index": 7,
       "editable": true,
       "progress": {
         "total_steps": 1,
@@ -345,7 +420,7 @@
       "start_requirements": [],
       "steps": [
         {
-          "id": 27211,
+          "id": 48046,
           "index": 0,
           "name": "submission_disclosure_step"
         }
@@ -354,45 +429,47 @@
     }
   ],
   "stream_chat_token": null,
-  "stream_chat_id": "applicant-customer-162613",
-  "stream_chat_name": "Anika London Hilll",
+  "stream_chat_id": "applicant-customer-166017",
+  "stream_chat_name": "Paige Hayden Ullrich",
   "application": {
-    "id": 2860,
+    "id": 4782,
     "partner": {
       "slug": "mark-brower-properties",
       "name": "Boom Screen (Mark Brower)",
       "email": "richard@markrent.com",
-      "logo_url": "https://boom-staging.s3.amazonaws.com/staging/f3d7aa21794fbd0a5a420f60bdf8991e.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6RCWFKPAV7ADZIA6%2F20260210%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260210T214504Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=2c04194a6f49d19ab9ff64d3fd1ec6a4f3b84a0f0992b11f586d9d1f230eb8e8",
+      "logo_url": "https://boom-staging.s3.amazonaws.com/staging/f3d7aa21794fbd0a5a420f60bdf8991e.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6RCWFKPAV7ADZIA6%2F20260219%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260219T005347Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=944cad0ca165df77bc146a87bc29c288a5bfc7b9714002fbaf18f8dfad204395",
       "is_sites_and_communities": true,
       "is_home_site_rent": false,
       "id": 368,
       "colors": {
         "primary": {
-          "20": "#F5FCFF",
-          "50": "#E5F7FF",
-          "100": "#B3E7FF",
-          "200": "#80D6FF",
-          "400": "#1AB6FF",
-          "500": "#004D71",
-          "600": "#007AB3",
-          "700": "#005780",
-          "800": "#00344D",
-          "900": "#00344D"
+          "20": "#a4e2ff",
+          "50": "#71d2ff",
+          "100": "#3ec2ff",
+          "200": "#0bb1ff",
+          "300": "#0092d7",
+          "400": "#0070a4",
+          "500": "#004d71",
+          "600": "#004667",
+          "700": "#003f5d",
+          "800": "#003852",
+          "900": "#003148"
         }
       },
       "base_border_radius": null,
       "font_family": null,
       "font_family_link": null,
-      "google_analytics_id": "G-PG1HC1MDRH",
+      "google_analytics_id": null,
       "partner_features": [
-        "chat"
+        "chat",
+        "property_owner"
       ],
       "property_management_system": "manage_america"
     },
     "verification_template": {
-      "has_move_in_date_limit": false,
-      "max_move_in_days": 0,
-      "criteria_rent_type": "both",
+      "has_move_in_date_limit": null,
+      "max_move_in_days": null,
+      "criteria_rent_type": "home",
       "settings": {
         "applicant": {
           "identity_verification": {
@@ -429,68 +506,68 @@
       }
     },
     "unit": {
-      "id": 150459,
-      "title": "LosLocos",
+      "id": 167924,
+      "title": "Renaissanse",
       "property": {
-        "name": "District 13",
+        "name": "District 14",
         "address": {
-          "address1": "55 Fruit St",
+          "address1": "2345 Parsons Ave",
           "address2": "",
-          "city": "Boston",
-          "state_or_province": "NE",
-          "postal_code": "02114",
+          "city": "Columbus",
+          "state_or_province": "OH",
+          "postal_code": "43207",
           "country": "US",
           "lat": null,
           "lng": null,
-          "one_line_address": "55 Fruit St, Boston, NE, 02114, US"
+          "one_line_address": "2345 Parsons Ave, Columbus, OH, 43207, US"
         }
       },
       "monthly_rent_amount": {
-        "cents": 280000,
+        "cents": 300000,
         "currency": "USD"
       },
       "home_rent_amount": {
-        "cents": 145000,
+        "cents": 200000,
         "currency": "USD"
       },
       "site_rent_amount": {
-        "cents": 135000,
+        "cents": 100000,
         "currency": "USD"
       },
-      "criteria_rent_type": "both",
-      "available_at": "2025-10-01T00:00:00.000+00:00",
+      "criteria_rent_type": "home",
+      "available_at": "2025-09-30T00:00:00.000+00:00",
       "partner_name": "Boom Screen (Mark Brower)"
     },
     "monthly_rent_amount": {
-      "cents": 280000,
+      "cents": 200000,
       "currency": "USD"
     },
     "home_rent_amount": {
-      "cents": 145000,
+      "cents": 200000,
       "currency": "USD"
     },
     "site_rent_amount": {
-      "cents": 135000,
+      "cents": 100000,
       "currency": "USD"
     },
     "base_rent_amount": {
-      "cents": 280000,
+      "cents": 200000,
       "currency": "USD"
     },
     "applicants": [
       {
-        "id": 3147,
-        "application_id": 2860,
+        "id": 5445,
+        "application_id": 4782,
         "role": "applicant",
-        "first_name": "Anika",
-        "last_name": "Hilll",
-        "middle_name": "London",
-        "email": "le6klzdpnvn_@dollicons.com",
+        "first_name": "Paige",
+        "last_name": "Ullrich",
+        "middle_name": "Hayden",
+        "email": "xzgbxg-otpd9@dollicons.com",
         "application_status": "started",
         "retry_identity_verification_status": "not_available",
         "verifications": [
           {
-            "id": 24391,
+            "id": 42478,
             "name": "rental_application",
             "title": "verifications.personal-details.title",
             "description": "verifications.personal-details.description",
@@ -499,32 +576,22 @@
             "settings": {
               "pets_step_enabled": true,
               "pets_step_required": {
-                "age": false,
-                "name": false,
-                "breed": true,
-                "photo": false,
-                "weight": true,
-                "supporting_documents": false
+                "age": "optional",
+                "name": "optional",
+                "breed": "required",
+                "photo": "optional",
+                "weight": "required",
+                "supporting_documents": "optional"
               },
-              "additional_questions": [
-                {
-                  "name": "screenshot of credit karma",
-                  "type": "string",
-                  "title": "screenshot of credit karma",
-                  "config": {
-                    "widget_type": "document_upload"
-                  },
-                  "required": false
-                }
-              ],
+              "additional_questions": [],
               "vehicles_step_enabled": true,
               "vehicles_step_required": {
-                "make": true,
-                "year": true,
-                "color": true,
-                "model": true,
-                "license_plate_state": true,
-                "license_plate_number": true
+                "make": "required",
+                "year": "required",
+                "color": "required",
+                "model": "required",
+                "license_plate_state": "required",
+                "license_plate_number": "required"
               },
               "dependents_step_enabled": true,
               "dependents_step_required": {
@@ -535,9 +602,9 @@
               "personal_details_step_enabled": true,
               "emergency_contacts_step_enabled": true,
               "emergency_contacts_step_required": {
-                "email": false,
-                "phone_number": true,
-                "relationship": false
+                "email": "optional",
+                "phone_number": "required",
+                "relationship": "optional"
               },
               "additional_questions_step_enabled": false,
               "military_first_responder_teacher_step_enabled": true
@@ -554,7 +621,7 @@
             "start_requirements": []
           },
           {
-            "id": 24392,
+            "id": 42479,
             "name": "housing_history",
             "title": "verifications.housing-history.title",
             "description": "verifications.housing-history.description",
@@ -590,7 +657,7 @@
             "start_requirements": []
           },
           {
-            "id": 24393,
+            "id": 42480,
             "name": "identity_verification",
             "title": "verifications.identity-verification.applicant-title",
             "description": "verifications.identity-verification.applicant-description",
@@ -616,7 +683,7 @@
             "start_requirements": []
           },
           {
-            "id": 24394,
+            "id": 42481,
             "name": "combined_income_verification",
             "title": "verifications.combined-income.title",
             "description": "verifications.combined-income.description",
@@ -630,12 +697,6 @@
                     "unit": "year",
                     "value": 1
                   }
-                },
-                "fields": {
-                  "start_date": "required",
-                  "paid_by_from": "required",
-                  "pre_tax_amount": "required",
-                  "income_description": "required"
                 },
                 "paystub": {
                   "allowed": true,
@@ -680,10 +741,10 @@
                 },
                 "bank_allowed": true,
                 "bank_statement": {
-                  "allowed": false,
+                  "allowed": true,
                   "timeframe": {
                     "unit": "month",
-                    "value": 3
+                    "value": 2
                   }
                 },
                 "payroll_allowed": true
@@ -696,8 +757,7 @@
                     "phone": "required",
                     "last_name": "required",
                     "first_name": "required"
-                  },
-                  "upload_offer_letter": "required"
+                  }
                 }
               },
               "self_employment": {
@@ -746,7 +806,93 @@
             ]
           },
           {
-            "id": 24395,
+            "id": 42482,
+            "name": "credit_report",
+            "title": "Credit report",
+            "description": "Equifax credit report and score",
+            "status": "pending",
+            "vendor": "equifax",
+            "settings": {
+              "vendor": "equifax",
+              "pricing": [
+                {
+                  "name": "credit_report_05402",
+                  "amount": {
+                    "cents": 600,
+                    "currency": "USD"
+                  }
+                },
+                {
+                  "name": "credit_report_05206",
+                  "amount": {
+                    "cents": 800,
+                    "currency": "USD"
+                  }
+                }
+              ],
+              "model_number": "05206",
+              "execution_mode": "automatic",
+              "exclude_medical_debt": false,
+              "exclude_student_debt": false
+            },
+            "estimated_time": 0,
+            "index": 4,
+            "editable": false,
+            "progress": {
+              "total_steps": 0,
+              "filled_steps": 0
+            },
+            "incomes": [],
+            "income_sources": [],
+            "start_requirements": []
+          },
+          {
+            "id": 42483,
+            "name": "criminal_report",
+            "title": "National criminal report (US)",
+            "description": "CIC criminal background report",
+            "status": "pending",
+            "vendor": "cleara",
+            "settings": {
+              "vendor": "cleara",
+              "hide_report": false,
+              "execution_mode": "automatic"
+            },
+            "estimated_time": 0,
+            "index": 5,
+            "editable": false,
+            "progress": {
+              "total_steps": 0,
+              "filled_steps": 0
+            },
+            "incomes": [],
+            "income_sources": [],
+            "start_requirements": []
+          },
+          {
+            "id": 42484,
+            "name": "eviction_report",
+            "title": "Housing court report",
+            "description": "Housing court report",
+            "status": "pending",
+            "vendor": "cleara",
+            "settings": {
+              "vendor": "cleara",
+              "execution_mode": "automatic"
+            },
+            "estimated_time": 0,
+            "index": 6,
+            "editable": false,
+            "progress": {
+              "total_steps": 0,
+              "filled_steps": 0
+            },
+            "incomes": [],
+            "income_sources": [],
+            "start_requirements": []
+          },
+          {
+            "id": 42485,
             "name": "submission_disclosure",
             "title": "Review the application",
             "description": ".",
@@ -756,7 +902,7 @@
               "additional_text": ""
             },
             "estimated_time": 60,
-            "index": 4,
+            "index": 7,
             "editable": true,
             "progress": {
               "total_steps": 1,
@@ -768,35 +914,35 @@
           }
         ],
         "stream_chat_token": null,
-        "stream_chat_id": "applicant-customer-162613",
-        "stream_chat_name": "Anika London Hilll"
+        "stream_chat_id": "applicant-customer-166017",
+        "stream_chat_name": "Paige Hayden Ullrich"
       }
     ],
     "status": "started",
     "screening_status": "not_started",
     "desired_move_in_date": null,
     "conditions": [],
-    "partner_name_in_submission_disclosure": "District 13",
+    "partner_name_in_submission_disclosure": "District 14",
     "has_multiple_applicants": true,
-    "has_multiple_guarantors": true,
+    "has_multiple_guarantors": null,
     "allow_occupants": null
   },
   "fee": {
-    "cents": 0,
+    "cents": 6000,
     "currency": "USD"
   },
   "application_fee": {
-    "cents": 0,
+    "cents": 6000,
     "currency": "USD"
   },
   "can_checkout": false,
-  "ineligible_to_checkout_reason": "requirements_not_met",
+  "ineligible_to_checkout_reason": "application_is_not_finished",
   "requirements": [
     {
       "requirement": "housing_history_more_than_2_years"
     }
   ],
-  "intercom_id": "applicant-3147",
+  "intercom_id": "applicant-5445",
   "is_manual": false,
   "discount_info": null,
   "invited_by_applicant_id": null,

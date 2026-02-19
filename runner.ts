@@ -28,8 +28,11 @@ import { STATUS } from "./constants";
 
 const logger = LoggerProvider.create("application-runner");
 
+let applicantIndex = APP_CONFIG.ACTORS.APPLICANT;
+let newMagicLink: string | undefined;
+
 export function resetRunnerState(): void {
-  applicantIndex = 1;
+  applicantIndex = APP_CONFIG.ACTORS.APPLICANT;
   newMagicLink = undefined;
 }
 

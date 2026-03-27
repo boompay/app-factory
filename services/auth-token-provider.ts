@@ -100,4 +100,71 @@ export class AuthTokenProvider {
     this.logger.info(`Received bearer token: ${bearerToken}`);
     return appInfo;
   }
+
+  public async updateBearerToken(applicationToken: string, app: AppInfo): Promise<AppInfo> {
+    const currentAppPath = "./current-app.json";
+    this.logger.info(
+      `Updating bearer token for application token: ${applicationToken}`
+    );
+    const apiRequestContext = await request.newContext({
+      baseURL: this.authUrl,
+      extraHTTPHeaders: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const responseCheck = await apiRequestContext.get(
+      "/screen/magic_links/check",
+      {
+        params: {
+          token: applicationToken,
+        },
+      }
+    );
+    
+    if (!responseCheck.ok()) {
+      const errorText = await responseCheck.text();
+      this.logger.error(`Failed to check magic link: ${responseCheck.status()} ${errorText}`);
+      throw new Error(`Failed to check magic link: ${responseCheck.status()} ${errorText}`);
+    }
+    
+    let applicant = app.applicants?.find((applicant) => applicant.invite_magic_link?.includes(applicationToken));
+    if (!applicant) {
+      this.logger.error(`Applicant not found in app info: ${JSON.stringify(app)}`);
+      throw new Error(`Applicant not found in app info: ${JSON.stringify(app)}`);
+    }
+    applicant.phone = generateRandomUsCaPhone("national");
+    applicant.otp = randomInt(100000, 999999);
+
+    const responseSendOtp = await apiRequestContext.post(
+      "/screen/auth/send_otp",
+      {
+        data: {
+          phone: applicant.phone,
+          unit_id: app.unit_id,
+          token: applicationToken,
+        },
+      }
+    );
+    let data = await responseSendOtp.json().catch(() => ({} as any));
+    if (!data.success) {
+      this.logger.error(`Failed to send OTP: ${JSON.stringify(data)}`);
+      throw new Error("Failed to send OTP");
+    }
+    const responseSignIn = await apiRequestContext.post(
+      "/screen/auth/jwt/sign_in",
+      {
+        data: {
+          phone: applicant.phone,
+          otp: applicant.otp,
+        },
+      }
+    );
+    data = await responseSignIn.json().catch(() => ({} as any));
+    app.bearer_token = data.access_token;
+    app.refresh_token = data.refresh_token;
+    fs.writeFileSync(currentAppPath, JSON.stringify(app, null, 2), "utf-8");
+    this.logger.info(`Updated bearer token: ${app.bearer_token}`);
+    return app;
+  }
 }

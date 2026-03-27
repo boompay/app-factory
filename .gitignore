@@ -64,10 +64,8 @@ current-app.json
 coverage/
 .nyc_output/
 *.lcov
-test-data/application.json
 node_modules/.package-lock.json
 package-lock.json
 test-data/application.json
-test-data/applicant.json
 test-data/applicant.json
 test-data/application.json

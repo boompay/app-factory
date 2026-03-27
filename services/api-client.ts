@@ -99,7 +99,7 @@ export class ApiClient {
       timeout: timeoutMs,
     } as ApiRequestOptions);
   }
-
+  
   /**
    * Makes a POST request to update an application.
    * @param applicationId - the ID of the application to update

@@ -1,16 +1,17 @@
 {
-  "id": 5535,
-  "application_id": 4864,
+  "id": 5688,
+  "application_id": 5006,
   "role": "applicant",
-  "first_name": "Berneice",
-  "last_name": "Raynor",
-  "middle_name": "Dakota",
-  "email": "_7rd_lk2ullc@dollicons.com",
+  "first_name": "Johnson",
+  "last_name": "Schinner",
+  "middle_name": "Corey",
+  "email": "v99bp7ua8aj2@sharebot.net",
   "application_status": "started",
   "retry_identity_verification_status": "not_available",
+  "fast_track_idv_status": "idle",
   "verifications": [
     {
-      "id": 43173,
+      "id": 44226,
       "name": "rental_application",
       "title": "verifications.personal-details.title",
       "description": "verifications.personal-details.description",
@@ -65,37 +66,37 @@
       "bypass_document_verification_enabled": false,
       "steps": [
         {
-          "id": 48685,
+          "id": 49802,
           "index": 0,
           "name": "personal_details"
         },
         {
-          "id": 48686,
+          "id": 49803,
           "index": 1,
           "name": "dependents"
         },
         {
-          "id": 48687,
+          "id": 49804,
           "index": 2,
           "name": "emergency_contacts"
         },
         {
-          "id": 48688,
+          "id": 49805,
           "index": 3,
           "name": "pets"
         },
         {
-          "id": 48689,
+          "id": 49806,
           "index": 4,
           "name": "vehicles"
         },
         {
-          "id": 48690,
+          "id": 49807,
           "index": 5,
           "name": "military_first_responder_teacher"
         },
         {
-          "id": 48691,
+          "id": 49808,
           "index": 6,
           "name": "lead_source"
         }
@@ -103,7 +104,7 @@
       "requirements": null
     },
     {
-      "id": 43174,
+      "id": 44227,
       "name": "housing_history",
       "title": "verifications.housing-history.title",
       "description": "verifications.housing-history.description",
@@ -140,7 +141,7 @@
       "bypass_document_verification_enabled": false,
       "steps": [
         {
-          "id": 48692,
+          "id": 49809,
           "index": 0,
           "name": "address"
         }
@@ -150,7 +151,7 @@
       }
     },
     {
-      "id": 43175,
+      "id": 44228,
       "name": "identity_verification",
       "title": "verifications.identity-verification.applicant-title",
       "description": "verifications.identity-verification.applicant-description",
@@ -179,7 +180,7 @@
       "requirements": null
     },
     {
-      "id": 43176,
+      "id": 44229,
       "name": "combined_income_verification",
       "title": "verifications.combined-income.title",
       "description": "verifications.combined-income.description",
@@ -303,7 +304,7 @@
       "bypass_document_verification_enabled": null,
       "steps": [
         {
-          "id": 48693,
+          "id": 49810,
           "index": 0,
           "name": "combined_income"
         }
@@ -311,14 +312,14 @@
       "requirements": null
     },
     {
-      "id": 43177,
+      "id": 44230,
       "name": "credit_report",
       "title": "Credit report",
       "description": "Equifax credit report and score",
       "status": "pending",
-      "vendor": "transunion",
+      "vendor": "equifax",
       "settings": {
-        "vendor": "transunion",
+        "vendor": "equifax",
         "pricing": [
           {
             "name": "credit_report_05402",
@@ -333,10 +334,17 @@
               "cents": 800,
               "currency": "USD"
             }
+          },
+          {
+            "name": "credit_report_00AP4",
+            "amount": {
+              "cents": 600,
+              "currency": "USD"
+            }
           }
         ],
         "model_number": "05206",
-        "execution_mode": "manual",
+        "execution_mode": "automatic",
         "exclude_medical_debt": false,
         "exclude_student_debt": false
       },
@@ -355,7 +363,7 @@
       "requirements": null
     },
     {
-      "id": 43178,
+      "id": 44231,
       "name": "criminal_report",
       "title": "National criminal report (US)",
       "description": "CIC criminal background report",
@@ -381,7 +389,7 @@
       "requirements": null
     },
     {
-      "id": 43179,
+      "id": 44232,
       "name": "eviction_report",
       "title": "Housing court report",
       "description": "Housing court report",
@@ -406,7 +414,7 @@
       "requirements": null
     },
     {
-      "id": 43180,
+      "id": 44233,
       "name": "submission_disclosure",
       "title": "Review the application",
       "description": ".",
@@ -428,7 +436,7 @@
       "bypass_document_verification_enabled": false,
       "steps": [
         {
-          "id": 48694,
+          "id": 49811,
           "index": 0,
           "name": "submission_disclosure_step"
         }
@@ -437,15 +445,15 @@
     }
   ],
   "stream_chat_token": null,
-  "stream_chat_id": "applicant-customer-166165",
-  "stream_chat_name": "Berneice Dakota Raynor",
+  "stream_chat_id": "applicant-customer-166500",
+  "stream_chat_name": "Johnson Corey Schinner",
   "application": {
-    "id": 4864,
+    "id": 5006,
     "partner": {
       "slug": "mark-brower-properties",
       "name": "Boom Screen (Mark Brower)",
       "email": "richard@markrent.com",
-      "logo_url": "https://boom-staging.s3.amazonaws.com/staging/f3d7aa21794fbd0a5a420f60bdf8991e.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6RCWFKPAV7ADZIA6%2F20260227%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260227T101339Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=0bf13ee8ac4ae84e793619a68d17684cbf339a7a4e0dc944035851e5810eb538",
+      "logo_url": "https://boom-staging.s3.amazonaws.com/staging/f3d7aa21794fbd0a5a420f60bdf8991e.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6RCWFKPAV7ADZIA6%2F20260326%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260326T170823Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=7243f3f0aa1a7a810f01599ccf1cc7f10ee1bfd5d7b690d79576e0100c0a7649",
       "is_sites_and_communities": true,
       "is_home_site_rent": false,
       "id": 368,
@@ -564,18 +572,19 @@
     },
     "applicants": [
       {
-        "id": 5535,
-        "application_id": 4864,
+        "id": 5688,
+        "application_id": 5006,
         "role": "applicant",
-        "first_name": "Berneice",
-        "last_name": "Raynor",
-        "middle_name": "Dakota",
-        "email": "_7rd_lk2ullc@dollicons.com",
+        "first_name": "Johnson",
+        "last_name": "Schinner",
+        "middle_name": "Corey",
+        "email": "v99bp7ua8aj2@sharebot.net",
         "application_status": "started",
         "retry_identity_verification_status": "not_available",
+        "fast_track_idv_status": "idle",
         "verifications": [
           {
-            "id": 43173,
+            "id": 44226,
             "name": "rental_application",
             "title": "verifications.personal-details.title",
             "description": "verifications.personal-details.description",
@@ -630,7 +639,7 @@
             "bypass_document_verification_enabled": false
           },
           {
-            "id": 43174,
+            "id": 44227,
             "name": "housing_history",
             "title": "verifications.housing-history.title",
             "description": "verifications.housing-history.description",
@@ -667,7 +676,7 @@
             "bypass_document_verification_enabled": false
           },
           {
-            "id": 43175,
+            "id": 44228,
             "name": "identity_verification",
             "title": "verifications.identity-verification.applicant-title",
             "description": "verifications.identity-verification.applicant-description",
@@ -694,7 +703,7 @@
             "bypass_document_verification_enabled": false
           },
           {
-            "id": 43176,
+            "id": 44229,
             "name": "combined_income_verification",
             "title": "verifications.combined-income.title",
             "description": "verifications.combined-income.description",
@@ -818,14 +827,14 @@
             "bypass_document_verification_enabled": null
           },
           {
-            "id": 43177,
+            "id": 44230,
             "name": "credit_report",
             "title": "Credit report",
             "description": "Equifax credit report and score",
             "status": "pending",
-            "vendor": "transunion",
+            "vendor": "equifax",
             "settings": {
-              "vendor": "transunion",
+              "vendor": "equifax",
               "pricing": [
                 {
                   "name": "credit_report_05402",
@@ -840,10 +849,17 @@
                     "cents": 800,
                     "currency": "USD"
                   }
+                },
+                {
+                  "name": "credit_report_00AP4",
+                  "amount": {
+                    "cents": 600,
+                    "currency": "USD"
+                  }
                 }
               ],
               "model_number": "05206",
-              "execution_mode": "manual",
+              "execution_mode": "automatic",
               "exclude_medical_debt": false,
               "exclude_student_debt": false
             },
@@ -860,7 +876,7 @@
             "bypass_document_verification_enabled": false
           },
           {
-            "id": 43178,
+            "id": 44231,
             "name": "criminal_report",
             "title": "National criminal report (US)",
             "description": "CIC criminal background report",
@@ -884,7 +900,7 @@
             "bypass_document_verification_enabled": false
           },
           {
-            "id": 43179,
+            "id": 44232,
             "name": "eviction_report",
             "title": "Housing court report",
             "description": "Housing court report",
@@ -907,7 +923,7 @@
             "bypass_document_verification_enabled": false
           },
           {
-            "id": 43180,
+            "id": 44233,
             "name": "submission_disclosure",
             "title": "Review the application",
             "description": ".",
@@ -930,8 +946,8 @@
           }
         ],
         "stream_chat_token": null,
-        "stream_chat_id": "applicant-customer-166165",
-        "stream_chat_name": "Berneice Dakota Raynor"
+        "stream_chat_id": "applicant-customer-166500",
+        "stream_chat_name": "Johnson Corey Schinner"
       }
     ],
     "status": "started",
@@ -944,13 +960,42 @@
     "allow_occupants": null
   },
   "fee": {
-    "cents": 0,
+    "cents": 3000,
     "currency": "USD"
   },
   "application_fee": {
     "cents": 0,
     "currency": "USD"
   },
+  "fee_items": [
+    {
+      "fee_type": "application_fee",
+      "description": "Application fee",
+      "amount": {
+        "cents": 0,
+        "currency": "USD"
+      },
+      "status": "due"
+    },
+    {
+      "fee_type": "holding_fee",
+      "description": "Holding fee",
+      "amount": {
+        "cents": 1000,
+        "currency": "USD"
+      },
+      "status": "due"
+    },
+    {
+      "fee_type": "administration_fee",
+      "description": "Administration fee",
+      "amount": {
+        "cents": 2000,
+        "currency": "USD"
+      },
+      "status": "due"
+    }
+  ],
   "can_checkout": false,
   "ineligible_to_checkout_reason": "requirements_not_met",
   "requirements": [
@@ -958,7 +1003,7 @@
       "requirement": "housing_history_more_than_2_years"
     }
   ],
-  "intercom_id": "applicant-5535",
+  "intercom_id": "applicant-5688",
   "is_manual": false,
   "discount_info": null,
   "invited_by_applicant_id": null,

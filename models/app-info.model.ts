@@ -1,5 +1,6 @@
 export interface Email{
   email: string;
+  inboxEmail: string;
   password: string;
   token: string;
   accountId: string;

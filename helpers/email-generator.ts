@@ -34,7 +34,10 @@ export async function createTestInbox() {
 
   // local part: keep it safely long (avoid 422 "not long enough")
   const local = randStr(12).toLowerCase();
-  const email = `${local}@${domain}`;
+  // Create the mailbox on mail.tm WITHOUT plus addressing
+  const inboxEmail = `${local}@${domain}`;
+  // But store/emit the address the system should use for sending
+  const email = `${local}+sandbox@${domain}`;
 
   // password: make it clearly long enough
   const password = `P@${randStr(14)}!`; // e.g. 17+ chars
@@ -43,7 +46,7 @@ export async function createTestInbox() {
   const createRes = await fetch(`${MAILTM_API}/accounts`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ address: email, password }),
+    body: JSON.stringify({ address: inboxEmail, password }),
   });
   await assertOk(createRes, "POST /accounts");
 
@@ -51,13 +54,13 @@ export async function createTestInbox() {
   const tokenRes = await fetch(`${MAILTM_API}/token`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ address: email, password }),
+    body: JSON.stringify({ address: inboxEmail, password }),
   });
   await assertOk(tokenRes, "POST /token");
 
   const { token, id } = (await tokenRes.json()) as { token: string; id: string };
 
-  return { email, password, token, accountId: id };
+  return { email, inboxEmail, password, token, accountId: id };
 }
 
 export async function getMessages(token: string) {

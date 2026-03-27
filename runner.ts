@@ -49,19 +49,19 @@ export async function run(link: string): Promise<void> {
 
     validateRequiredEnv();
 
-    const applicationToken = link.split("/").pop();
-    const validatedToken = validateApplicationToken(applicationToken);
+    let applicationToken = link.split("/").pop();
+    let validatedToken = validateApplicationToken(applicationToken);
 
     // Initialize authentication
     const tokenProvider = new AuthTokenProvider(baseUrl);
     // getBearerToken() returns AppInfo directly and also writes it to current-app.json for persistence
-    const app = await tokenProvider.getBearerToken(validatedToken);
+    let app = await tokenProvider.getBearerToken(validatedToken);
 
     // Validate and initialize API
     // Note: ApiClient is initialized once and reused across all workflows
     // to maintain consistent token state and enable automatic token refresh
     validateAppInfo(app);
-    const api = await initializeApi(app);
+    let api = await initializeApi(app);
 
     // Enroll application
     const { enrollResponse, email } = await enrollApplication(
@@ -180,6 +180,25 @@ export async function run(link: string): Promise<void> {
     );
     logger.info(`Completed application flow for application ID: ${app.id}. Applicant name is ${finalApplicant.first_name || ""} ${middleInitial}${finalApplicant.last_name || ""}`);
     
+    const applicants = app.applicants;
+    if(applicants && applicants.length > 1) {
+      //Pass invite flow for each applicant
+      for(let i = 1; i < applicants.length; i++) {
+        const applicant = applicants[i];
+        logger.info(`Starting application flow for applicant ID: ${applicant.id}`);
+        applicationToken = applicant.invite_magic_link!.split("/").pop();
+        validatedToken = validateApplicationToken(applicationToken);
+        // updateBearerToken() updates the bearer token for the applicant and writes it to current-app.json for persistence
+        app = await tokenProvider.updateBearerToken(validatedToken, app);
+        // Initialize API
+        // Note: ApiClient is initialized once and reused across all workflows
+        // to maintain consistent token state and enable automatic token refresh
+        validateAppInfo(app);
+        api = await initializeApi(app);
+        
+        // Start application flow
+      }
+    }
   } catch (error) {
     logger.error("Error running application flow:", error);
     throw error;

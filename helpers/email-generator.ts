@@ -34,9 +34,11 @@ export async function createTestInbox() {
 
   // local part: keep it safely long (avoid 422 "not long enough")
   const local = randStr(12).toLowerCase();
-  // Create the mailbox on mail.tm WITHOUT plus addressing
+  // Mail.tm account creation only accepts the base local part (no "+"). We register and
+  // authenticate with `inboxEmail`. The `email` field is the "+sandbox" variant used in
+  // app payloads and outbound mail; delivery still lands in the same inbox when the
+  // provider supports plus addressing for that domain.
   const inboxEmail = `${local}@${domain}`;
-  // But store/emit the address the system should use for sending
   const email = `${local}+sandbox@${domain}`;
 
   // password: make it clearly long enough

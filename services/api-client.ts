@@ -63,10 +63,17 @@ export class ApiClient {
     let response = await this.requestContext[method](endpoint, options);
 
     if (response.status() !== 401) {
-      if (/^[45]\d{2}$/.test(String(response.status())))
+      if (/^[45]\d{2}$/.test(String(response.status()))) {
+        const body = await response.text();
+        const snippet =
+          body.length > 2000 ? `${body.slice(0, 2000)}…(truncated)` : body;
+        const statusLine = [response.status(), response.statusText()]
+          .filter((s) => String(s).trim().length > 0)
+          .join(" ");
         throw new Error(
-          `Request failed with status : ${response.status()}\n${await response.text()}`
+          `${method.toUpperCase()} ${endpoint} failed (${statusLine}). Response: ${snippet || "(empty)"}`
         );
+      }
       return response;
     }
 

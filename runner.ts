@@ -64,7 +64,7 @@ export async function run(link: string): Promise<void> {
     let api = await initializeApi(app);
 
     // Enroll application
-    const { enrollResponse, email } = await enrollApplication(
+    const { enrollResponse, user, email } = await enrollApplication(
       api,
       app,
       validatedToken
@@ -74,7 +74,9 @@ export async function run(link: string): Promise<void> {
     // Setup verifications
     setupVerifications(app, enrollResponse);
     await writeAppInfo(APP_CONFIG.PATHS.CURRENT_APP, app);
-    logger.info(`Enrolled application ID: ${app.id} for ${email.email}`);
+    logger.info(`Enrolled application ID: ${app.id} for user ${user.full} with email ${email.email}`);
+    logger.info(`Applicant's email here: ${email.inboxEmail}`);
+    logger.info(`With password: ${email.password}`);
 
     // Start application flow
     await startApplicationFlow(api, app, writeTestData, {
@@ -200,7 +202,9 @@ export async function run(link: string): Promise<void> {
       }
     }
   } catch (error) {
-    logger.error("Error running application flow:", error);
+    const message =
+      error instanceof Error ? (error.stack ?? error.message) : String(error);
+    logger.error(`Error running application flow: ${message}`);
     throw error;
   }
 }
@@ -214,7 +218,9 @@ if (isDirectExecution) {
     process.argv[2] ||
     "https://screen.staging2.boompay.app/a/MCzt7UT5V2iZqbgRTSIv";
   run(magicLink).catch((error) => {
-    logger.error("Fatal error:", error);
+    const message =
+      error instanceof Error ? (error.stack ?? error.message) : String(error);
+    logger.error(`Fatal error: ${message}`);
     process.exit(1);
   });
 }

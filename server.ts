@@ -3,17 +3,20 @@ import path from "path";
 import { logEmitter } from "./services/logger-provider";
 import { APP_CONFIG, applyConfigOverrides, resetConfig } from "./config/app.config";
 import { run, resetRunnerState } from "./runner";
+import { registerWiremockRoutes } from "./wiremock-routes";
 
 const app = express();
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "web")));
+/** API routes must be registered before `express.static` so `/api/*` is never shadowed by files under `web/`. */
+registerWiremockRoutes(app);
 
 let isRunning = false;
 
-// Serve the UI
+// Serve the UI (after API routes)
 app.get("/", (_req, res) => {
   res.sendFile(path.join(__dirname, "web", "index.html"));
 });
+app.use(express.static(path.join(__dirname, "web")));
 
 // Return current config defaults
 app.get("/api/config", (_req, res) => {

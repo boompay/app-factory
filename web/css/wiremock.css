@@ -1,0 +1,565 @@
+/**
+ * WireMock admin UI (tab + modals). Depends on :root tokens from index.html.
+ */
+
+/* Tab layout: runner vs WireMock */
+.wiremock-view {
+  display: none;
+  height: calc(100vh - 60px);
+  flex-direction: column;
+  overflow: hidden;
+}
+.wiremock-view.active {
+  display: flex;
+}
+.runner-view {
+  display: grid;
+  height: calc(100vh - 60px);
+  overflow: hidden;
+}
+.runner-view.active {
+  display: grid;
+}
+.runner-view:not(.active) {
+  display: none;
+}
+
+.wm-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 20px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.wm-toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+.wm-owner-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+}
+.wm-owner-label select {
+  min-width: 140px;
+  padding: 6px 10px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+  color-scheme: light;
+}
+.wm-toolbar h3 {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+.wm-body {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+.wm-list-panel {
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  padding: 12px;
+}
+.wm-list-item {
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background 0.15s, border-color 0.15s;
+  font-size: 12px;
+}
+.wm-list-item:hover {
+  background: var(--bg);
+}
+.wm-list-item.selected {
+  background: var(--pink-light);
+  border-color: var(--pink);
+}
+.wm-list-item .method {
+  font-weight: 700;
+  font-family: "JetBrains Mono", monospace;
+  color: var(--pink);
+  margin-right: 8px;
+}
+.wm-list-item .url {
+  font-family: "JetBrains Mono", monospace;
+  color: var(--text);
+  word-break: break-all;
+}
+.wm-list-item .wm-mock-name {
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--text);
+  margin-bottom: 4px;
+  line-height: 1.3;
+  word-break: break-word;
+}
+.wm-list-item .wm-mock-route {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.wm-detail-panel {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: var(--terminal-bg);
+  overflow: hidden;
+}
+.wm-detail-split-area {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.wm-detail-body-wrap {
+  flex: 1 1 auto;
+  min-height: 72px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.wm-detail-body-wrap .json-block {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+.wm-log-resize-handle {
+  flex: 0 0 7px;
+  cursor: row-resize;
+  background: #21262d;
+  border-top: 1px solid #30363d;
+  border-bottom: 1px solid #30363d;
+  position: relative;
+  touch-action: none;
+}
+.wm-log-resize-handle::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 36px;
+  height: 3px;
+  border-radius: 2px;
+  background: #484f58;
+}
+.wm-log-resize-handle:hover {
+  background: #30363d;
+}
+.wm-log-panel {
+  flex: 0 0 180px;
+  min-height: 72px;
+  max-height: min(75vh, 600px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.wm-log-panel .wm-log-list {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+.wm-detail-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  border-bottom: 1px solid #21262d;
+  flex-shrink: 0;
+}
+.wm-detail-header .method-badge {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 700;
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: #21262d;
+  color: var(--terminal-green);
+}
+.wm-detail-actions {
+  margin-left: auto;
+  display: flex;
+  gap: 8px;
+}
+.btn-wm {
+  font-family: "Montserrat", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #30363d;
+  background: #161b22;
+  color: var(--terminal-text);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+.btn-wm:hover {
+  background: #21262d;
+  border-color: #484f58;
+}
+.btn-wm.primary {
+  background: var(--pink);
+  border-color: var(--pink);
+  color: white;
+}
+.btn-wm.primary:hover {
+  background: var(--pink-hover);
+}
+.btn-wm.danger {
+  color: var(--terminal-red);
+  border-color: #f97583;
+}
+.btn-wm.danger:hover {
+  background: rgba(249, 117, 131, 0.15);
+}
+.btn-wm:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+/* Used in WireMock detail + modals (modals are siblings of .wiremock-view) */
+.json-block {
+  flex: 1;
+  overflow: auto;
+  padding: 16px 20px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--terminal-text);
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+.json-block textarea {
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  padding: 16px 20px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--terminal-text);
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 0;
+  resize: none;
+  outline: none;
+  box-sizing: border-box;
+}
+.wm-empty {
+  color: var(--terminal-dim);
+  padding: 24px;
+  text-align: center;
+  font-size: 13px;
+}
+.wm-log-section {
+  padding: 12px 20px;
+  border-bottom: 1px solid #21262d;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+.wm-log-section h3 {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--terminal-text);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.wm-log-list {
+  padding: 12px 20px;
+}
+.wm-log-entry {
+  padding: 10px 12px;
+  margin-bottom: 6px;
+  border-radius: 8px;
+  background: #161b22;
+  border: 1px solid #21262d;
+  font-size: 12px;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+.wm-log-entry:hover {
+  border-color: #30363d;
+}
+.wm-log-entry .head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+.wm-log-entry .method {
+  font-weight: 700;
+  font-family: "JetBrains Mono", monospace;
+  color: var(--terminal-green);
+}
+.wm-log-entry .url {
+  font-family: "JetBrains Mono", monospace;
+  color: var(--terminal-text);
+  word-break: break-all;
+}
+.wm-log-entry .ts {
+  font-size: 11px;
+  color: var(--terminal-dim);
+}
+.wm-log-entry .body {
+  margin-top: 8px;
+  padding: 8px;
+  background: #0d1117;
+  border-radius: 6px;
+  font-size: 11px;
+  white-space: pre-wrap;
+  word-break: break-all;
+  color: var(--terminal-dim);
+  display: none;
+}
+.wm-log-entry.open .body {
+  display: block;
+}
+
+/* Modals (mock editor + response file) */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 300;
+  padding: 24px;
+}
+.modal-overlay.hidden {
+  display: none;
+}
+.modal {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  width: 100%;
+  max-width: 720px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+#wmEditMockModal.modal {
+  max-width: min(1200px, 96vw);
+  max-height: min(92vh, 1200px);
+  min-height: 320px;
+}
+#wmEditMockModal:not(.modal-xml-split) .modal-body {
+  min-height: min(48vh, 440px);
+}
+.modal-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.modal-header h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--text-muted);
+  padding: 0 4px;
+  line-height: 1;
+}
+.modal-body {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.modal-body .json-block {
+  border-radius: 0;
+}
+/* Mock editor: mapping + optional split response */
+.wm-modal-edit-split {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.wm-modal-edit-pane {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.wm-modal-edit-pane .json-block {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+.wm-modal-edit-pane .json-block textarea {
+  flex: 1;
+  min-height: 160px;
+}
+.wm-modal-edit-resize-handle {
+  flex: 0 0 7px;
+  cursor: row-resize;
+  background: #21262d;
+  border-top: 1px solid #30363d;
+  border-bottom: 1px solid #30363d;
+  position: relative;
+  touch-action: none;
+  flex-shrink: 0;
+}
+.wm-modal-edit-resize-handle::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 36px;
+  height: 3px;
+  border-radius: 2px;
+  background: #484f58;
+}
+.wm-modal-edit-resize-handle:hover {
+  background: #30363d;
+}
+.modal-footer {
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+.wm-xml-section-title {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--terminal-dim);
+  padding: 10px 20px 6px;
+  border-top: 1px solid #21262d;
+  flex-shrink: 0;
+}
+.wm-xml-block,
+.wm-json-block {
+  margin-top: 0 !important;
+  max-height: 45vh;
+  overflow: auto;
+}
+.modal-xml-wrap {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  border-top: 1px solid var(--border);
+  padding: 0 20px 12px;
+  flex: 1;
+}
+.modal-xml-wrap.hidden {
+  display: none !important;
+}
+.modal-xml-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin: 10px 0 6px;
+}
+#wmModalSplitBody {
+  flex: 1;
+  min-height: 180px;
+  max-height: 42vh;
+  width: 100%;
+  padding: 12px 14px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--terminal-text);
+  background: var(--terminal-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  resize: vertical;
+  outline: none;
+  box-sizing: border-box;
+}
+.modal.modal-xml-split {
+  max-width: min(1200px, 96vw);
+  max-height: min(92vh, 1200px);
+}
+.modal.modal-xml-split .modal-body {
+  min-height: min(70vh, 800px);
+}
+.modal.modal-xml-split .wm-modal-edit-pane .json-block textarea {
+  min-height: 100px;
+}
+.modal.modal-xml-split #wmModalSplitWrap {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding-bottom: 0;
+  border-top: none;
+}
+.modal.modal-xml-split #wmModalSplitBody {
+  flex: 1;
+  min-height: 100px;
+  max-height: none;
+  resize: none;
+}
+.modal.modal-file {
+  max-width: 960px;
+  max-height: 90vh;
+}
+.modal.modal-file .modal-body {
+  display: flex;
+  flex-direction: column;
+  min-height: 400px;
+}
+.modal.modal-file .modal-body textarea {
+  flex: 1;
+  min-height: 60vh;
+  width: 100%;
+  padding: 16px 20px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--terminal-text);
+  background: var(--terminal-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  resize: none;
+  outline: none;
+  box-sizing: border-box;
+}

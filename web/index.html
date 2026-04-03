@@ -85,6 +85,33 @@
       font-weight: 500;
     }
 
+    .nav-tabs {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-left: 20px;
+    }
+
+    .nav-tabs a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 6px 14px;
+      border-radius: 8px;
+      transition: color 0.15s, background 0.15s;
+    }
+
+    .nav-tabs a:hover {
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    .nav-tabs a.active {
+      color: var(--pink);
+      background: var(--pink-light);
+    }
+
     .status-badge {
       display: flex;
       align-items: center;
@@ -447,6 +474,7 @@
     .toast.error { background: #CF222E; }
     .toast.success { background: #1A7F37; }
 
+
     @keyframes toastIn {
       from { opacity: 0; transform: translateY(12px); }
       to { opacity: 1; transform: translateY(0); }
@@ -471,6 +499,7 @@
       }
     }
   </style>
+  <link rel="stylesheet" href="/css/wiremock.css">
 </head>
 <body>
 
@@ -482,6 +511,10 @@
         </svg>
       </div>
       <div class="header-title">App Factory <span>/ BoomScreen</span></div>
+      <nav class="nav-tabs">
+        <a href="#" id="tabRunner" class="active">Runner</a>
+        <a href="#" id="tabWiremock">WireMock</a>
+      </nav>
     </div>
     <div id="statusBadge" class="status-badge">
       <div class="status-dot"></div>
@@ -489,7 +522,7 @@
     </div>
   </header>
 
-  <div class="layout">
+  <div id="runnerView" class="runner-view active layout">
     <div class="form-panel">
       <!-- Magic Link -->
       <div class="magic-link-section">
@@ -659,6 +692,101 @@
           <div class="log-empty-icon">&#9889;</div>
           <p>Paste a magic link and hit Run</p>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="wiremockView" class="wiremock-view">
+    <div class="wm-toolbar">
+      <div class="wm-toolbar-left">
+        <h3>Mocks</h3>
+        <label class="wm-owner-label">Owner
+          <select id="wmOwnerSelect" aria-label="WireMock owner filter">
+            <option value="">— select —</option>
+            <option value="none">none</option>
+            <option value="Dan">Dan</option>
+            <option value="Nat">Nat</option>
+            <option value="And">And</option>
+            <option value="Alex">Alex</option>
+          </select>
+        </label>
+      </div>
+      <button type="button" class="btn-wm primary" id="wmAddMock">+ Add mock</button>
+    </div>
+    <div class="wm-body">
+      <div class="wm-list-panel">
+        <div id="wmList"></div>
+      </div>
+      <div class="wm-detail-panel">
+        <div class="wm-detail-header">
+          <span id="wmDetailMethod" class="method-badge">—</span>
+          <span id="wmDetailUrl" style="color:var(--terminal-text);font-size:12px;">Select a mock</span>
+          <div class="wm-detail-actions">
+            <button type="button" class="btn-wm" id="wmEditResponseFile" style="display:none;">Edit response file</button>
+            <button type="button" class="btn-wm" id="wmEditMock">Edit mock</button>
+            <button type="button" class="btn-wm" id="wmDuplicateMock">Duplicate</button>
+            <button type="button" class="btn-wm danger" id="wmDeleteMock">Delete</button>
+          </div>
+        </div>
+        <div class="wm-detail-split-area" id="wmDetailSplitArea">
+          <div class="wm-detail-body-wrap">
+            <div id="wmDetailBody" class="json-block"><span class="wm-empty">Select a mock from the list</span></div>
+          </div>
+          <div id="wmLogResizeHandle" class="wm-log-resize-handle" role="separator" aria-orientation="horizontal" aria-label="Resize request log panel" title="Drag to resize"></div>
+          <div class="wm-log-panel" id="wmLogPanel">
+            <div class="wm-log-section">
+              <h3 id="wmLogSectionTitle">Request log</h3>
+              <div style="display:flex;gap:8px;">
+                <button type="button" class="btn-wm" id="wmRefreshLog">Refresh</button>
+                <button type="button" class="btn-wm" id="wmResetLog">Reset log</button>
+              </div>
+            </div>
+            <div class="wm-log-list" id="wmLogList"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="wmModalOverlay" class="modal-overlay hidden">
+    <div id="wmEditMockModal" class="modal">
+      <div class="modal-header">
+        <h3 id="wmModalTitle">Edit mock</h3>
+        <button type="button" class="modal-close" id="wmModalClose">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div id="wmModalEditSplit" class="wm-modal-edit-split">
+          <div id="wmModalTopPane" class="wm-modal-edit-pane">
+            <div id="wmModalMappingLabel" class="modal-xml-label hidden">Stub mapping (JSON)</div>
+            <div class="json-block"><textarea id="wmModalBody" spellcheck="false"></textarea></div>
+          </div>
+          <div id="wmModalEditResizeHandle" class="wm-modal-edit-resize-handle hidden" role="separator" aria-orientation="horizontal" aria-hidden="true"></div>
+          <div id="wmModalSplitWrap" class="modal-xml-wrap hidden">
+            <div id="wmModalSplitLabel" class="modal-xml-label">Response body</div>
+            <textarea id="wmModalSplitBody" spellcheck="false"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-wm" id="wmModalCancel">Cancel</button>
+        <button type="button" class="btn-wm primary" id="wmModalSave">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="wmFileModalOverlay" class="modal-overlay hidden">
+    <div class="modal modal-file">
+      <div class="modal-header">
+        <h3 id="wmFileModalTitle">Edit response file</h3>
+        <button type="button" class="modal-close" id="wmFileModalClose">&times;</button>
+      </div>
+      <div class="modal-body">
+        <textarea id="wmFileModalBody" spellcheck="false"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-wm" id="wmFileFormatJson">Format JSON</button>
+        <button type="button" class="btn-wm" id="wmFileModalCancel">Cancel</button>
+        <button type="button" class="btn-wm primary" id="wmFileModalSave">Save</button>
       </div>
     </div>
   </div>
@@ -873,6 +1001,8 @@
     magicLinkInput.addEventListener("keydown", function(e) {
       if (e.key === "Enter" && !btnRun.disabled) btnRun.click();
     });
+
+    import("/js/wiremock-ui.js").then((m) => m.initWiremockUI({ showToast }));
 
     // Init
     loadConfig();

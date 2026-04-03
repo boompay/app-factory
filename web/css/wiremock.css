@@ -365,6 +365,14 @@
   flex-direction: column;
   overflow: hidden;
 }
+#wmEditMockModal.modal {
+  max-width: min(1200px, 96vw);
+  max-height: min(92vh, 1200px);
+  min-height: 320px;
+}
+#wmEditMockModal:not(.modal-xml-split) .modal-body {
+  min-height: min(48vh, 440px);
+}
 .modal-header {
   padding: 16px 20px;
   border-bottom: 1px solid var(--border);
@@ -390,9 +398,61 @@
   flex: 1;
   min-height: 0;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 .modal-body .json-block {
   border-radius: 0;
+}
+/* Mock editor: mapping + optional split response */
+.wm-modal-edit-split {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.wm-modal-edit-pane {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.wm-modal-edit-pane .json-block {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+.wm-modal-edit-pane .json-block textarea {
+  flex: 1;
+  min-height: 160px;
+}
+.wm-modal-edit-resize-handle {
+  flex: 0 0 7px;
+  cursor: row-resize;
+  background: #21262d;
+  border-top: 1px solid #30363d;
+  border-bottom: 1px solid #30363d;
+  position: relative;
+  touch-action: none;
+  flex-shrink: 0;
+}
+.wm-modal-edit-resize-handle::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 36px;
+  height: 3px;
+  border-radius: 2px;
+  background: #484f58;
+}
+.wm-modal-edit-resize-handle:hover {
+  background: #30363d;
 }
 .modal-footer {
   padding: 12px 20px;
@@ -454,16 +514,29 @@
   box-sizing: border-box;
 }
 .modal.modal-xml-split {
-  max-width: 920px;
+  max-width: min(1200px, 96vw);
+  max-height: min(92vh, 1200px);
 }
 .modal.modal-xml-split .modal-body {
+  min-height: min(70vh, 800px);
+}
+.modal.modal-xml-split .wm-modal-edit-pane .json-block textarea {
+  min-height: 100px;
+}
+.modal.modal-xml-split #wmModalSplitWrap {
+  flex: 1 1 auto;
+  min-height: 0;
   display: flex;
   flex-direction: column;
-  min-height: 0;
+  overflow: hidden;
+  padding-bottom: 0;
+  border-top: none;
 }
-.modal.modal-xml-split #wmModalBody {
-  min-height: 140px;
-  max-height: 32vh;
+.modal.modal-xml-split #wmModalSplitBody {
+  flex: 1;
+  min-height: 100px;
+  max-height: none;
+  resize: none;
 }
 .modal.modal-file {
   max-width: 960px;

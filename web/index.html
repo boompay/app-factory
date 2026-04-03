@@ -707,6 +707,7 @@
             <option value="Dan">Dan</option>
             <option value="Nat">Nat</option>
             <option value="And">And</option>
+            <option value="Alex">Alex</option>
           </select>
         </label>
       </div>
@@ -754,10 +755,16 @@
         <button type="button" class="modal-close" id="wmModalClose">&times;</button>
       </div>
       <div class="modal-body">
-        <div class="json-block"><textarea id="wmModalBody" spellcheck="false"></textarea></div>
-        <div id="wmModalSplitWrap" class="modal-xml-wrap hidden">
-          <div id="wmModalSplitLabel" class="modal-xml-label">Response body</div>
-          <textarea id="wmModalSplitBody" spellcheck="false"></textarea>
+        <div id="wmModalEditSplit" class="wm-modal-edit-split">
+          <div id="wmModalTopPane" class="wm-modal-edit-pane">
+            <div id="wmModalMappingLabel" class="modal-xml-label hidden">Stub mapping (JSON)</div>
+            <div class="json-block"><textarea id="wmModalBody" spellcheck="false"></textarea></div>
+          </div>
+          <div id="wmModalEditResizeHandle" class="wm-modal-edit-resize-handle hidden" role="separator" aria-orientation="horizontal" aria-hidden="true"></div>
+          <div id="wmModalSplitWrap" class="modal-xml-wrap hidden">
+            <div id="wmModalSplitLabel" class="modal-xml-label">Response body</div>
+            <textarea id="wmModalSplitBody" spellcheck="false"></textarea>
+          </div>
         </div>
       </div>
       <div class="modal-footer">

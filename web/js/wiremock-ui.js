@@ -26,6 +26,10 @@ export function initWiremockUI({ showToast }) {
   const wmModalSplitWrap = $("#wmModalSplitWrap");
   const wmModalSplitLabel = $("#wmModalSplitLabel");
   const wmModalSplitBody = $("#wmModalSplitBody");
+  const wmModalEditSplit = $("#wmModalEditSplit");
+  const wmModalTopPane = $("#wmModalTopPane");
+  const wmModalEditResizeHandle = $("#wmModalEditResizeHandle");
+  const wmModalMappingLabel = $("#wmModalMappingLabel");
   const wmEditMockModal = $("#wmEditMockModal");
   const wmModalClose = $("#wmModalClose");
   const wmModalCancel = $("#wmModalCancel");
@@ -370,8 +374,77 @@ export function initWiremockUI({ showToast }) {
     wmEditResponseFile.style.display = "none";
   }
 
+  const WM_MODAL_SPLIT_RATIO_KEY = "appFactory_wmModalSplitTopRatio";
+
+  function resetWmModalSplitLayout() {
+    wmModalTopPane.style.flex = "";
+    wmModalSplitWrap.style.flex = "";
+    wmModalSplitWrap.style.minHeight = "";
+    wmModalMappingLabel.classList.add("hidden");
+    wmModalEditResizeHandle.classList.add("hidden");
+    wmModalEditResizeHandle.setAttribute("aria-hidden", "true");
+  }
+
+  function applyWmModalSplitLayout() {
+    if (!wmEditMockModal.classList.contains("modal-xml-split")) return;
+    const total = wmModalEditSplit.getBoundingClientRect().height;
+    const handleH = wmModalEditResizeHandle.offsetHeight || 7;
+    const min = 80;
+    const usable = Math.max(0, total - handleH);
+    if (usable < min * 2) return;
+    const raw = localStorage.getItem(WM_MODAL_SPLIT_RATIO_KEY);
+    let ratio = raw != null ? parseFloat(raw) : 0.5;
+    if (!Number.isFinite(ratio)) ratio = 0.5;
+    ratio = Math.min(0.88, Math.max(0.12, ratio));
+    let topPx = Math.round(usable * ratio);
+    topPx = Math.min(usable - min, Math.max(min, topPx));
+    wmModalTopPane.style.flex = `0 0 ${topPx}px`;
+    wmModalSplitWrap.style.flex = "1 1 auto";
+    wmModalSplitWrap.style.minHeight = "0";
+  }
+
+  function initWmModalSplitResizer() {
+    wmModalEditResizeHandle.addEventListener("mousedown", (e) => {
+      if (wmModalEditResizeHandle.classList.contains("hidden")) return;
+      e.preventDefault();
+      const startY = e.clientY;
+      const startTopH = wmModalTopPane.getBoundingClientRect().height;
+      document.body.style.cursor = "row-resize";
+      document.body.style.userSelect = "none";
+
+      const onMove = (ev) => {
+        const splitH = wmModalEditSplit.getBoundingClientRect().height;
+        const handleH = wmModalEditResizeHandle.offsetHeight || 7;
+        const min = 80;
+        const max = Math.max(min + 1, splitH - handleH - min);
+        let next = startTopH + (ev.clientY - startY);
+        next = Math.min(max, Math.max(min, next));
+        wmModalTopPane.style.flex = `0 0 ${Math.round(next)}px`;
+      };
+
+      const onUp = () => {
+        document.removeEventListener("mousemove", onMove);
+        document.removeEventListener("mouseup", onUp);
+        document.body.style.cursor = "";
+        document.body.style.userSelect = "";
+        const splitH = wmModalEditSplit.getBoundingClientRect().height;
+        const handleH = wmModalEditResizeHandle.offsetHeight || 7;
+        const usable = Math.max(1, splitH - handleH);
+        const topH = wmModalTopPane.getBoundingClientRect().height;
+        const ratio = Math.min(0.95, Math.max(0.05, topH / usable));
+        localStorage.setItem(WM_MODAL_SPLIT_RATIO_KEY, String(ratio));
+      };
+
+      document.addEventListener("mousemove", onMove);
+      document.addEventListener("mouseup", onUp);
+    });
+  }
+
+  initWmModalSplitResizer();
+
   function openEditModal(title, body, onSave) {
     wmModalTitle.textContent = title;
+    resetWmModalSplitLayout();
     wmEditMockModal.classList.remove("modal-xml-split");
     wmModalSplitWrap.classList.add("hidden");
     wmModalSplitBody.value = "";
@@ -413,10 +486,22 @@ export function initWiremockUI({ showToast }) {
       delete jsonPart.response.body;
     }
 
+    if (splitKind) {
+      wmModalMappingLabel.classList.remove("hidden");
+      wmModalEditResizeHandle.classList.remove("hidden");
+      wmModalEditResizeHandle.setAttribute("aria-hidden", "false");
+    }
+
     wmModalBody.value =
       typeof jsonPart === "string" ? jsonPart : formatJson(jsonPart);
     wmModalOverlay.classList.remove("hidden");
     wmModalBody.focus();
+
+    if (splitKind) {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => applyWmModalSplitLayout());
+      });
+    }
 
     const save = async () => {
       let json;
@@ -443,6 +528,7 @@ export function initWiremockUI({ showToast }) {
         wmModalOverlay.classList.add("hidden");
         wmEditMockModal.classList.remove("modal-xml-split");
         wmModalSplitWrap.classList.add("hidden");
+        resetWmModalSplitLayout();
         loadWmMappings();
         showToast("Saved", "success");
       } catch (e) {
@@ -460,6 +546,7 @@ export function initWiremockUI({ showToast }) {
       wmModalOverlay.classList.add("hidden");
       wmEditMockModal.classList.remove("modal-xml-split");
       wmModalSplitWrap.classList.add("hidden");
+      resetWmModalSplitLayout();
       off();
     };
 

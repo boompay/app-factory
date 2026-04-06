@@ -103,14 +103,15 @@ export function initWiremockUI({ showToast }) {
   function requestsForStub(requests, stubId) {
     const stub = wmMappings.find((m) => m.id === stubId);
     if (!stub) return [];
-    return requests.filter((r) => {
-      if (
+    const matchedById = requests.filter(
+      (r) =>
         r.stubMapping &&
-        (r.stubMapping.id === stubId || r.stubMapping.uuid === stubId)
-      )
-        return true;
-      return requestMatchesStub(r, stub);
-    });
+        (r.stubMapping.id === stubId || r.stubMapping.uuid === stubId),
+    );
+    if (matchedById.length > 0) return matchedById;
+
+    // Fallback only for older/limited payloads that don't include matched stub metadata.
+    return requests.filter((r) => !r.stubMapping && requestMatchesStub(r, stub));
   }
 
   tabRunner.addEventListener("click", (e) => {
@@ -154,8 +155,23 @@ export function initWiremockUI({ showToast }) {
       opts.body = JSON.stringify(options.body);
     const res = await fetch("/api/wiremock" + path, opts);
     const text = await res.text();
-    if (!res.ok) throw new Error(text || res.statusText);
-    return text ? JSON.parse(text) : {};
+    if (!res.ok) {
+      let msg = "";
+      try {
+        const err = text ? JSON.parse(text) : null;
+        msg = err?.error || err?.message || err?.detail || "";
+      } catch (_) {
+        msg = text || "";
+      }
+      if (!msg) msg = `${res.status} ${res.statusText || "Request failed"}`.trim();
+      throw new Error(msg);
+    }
+    if (!text) return {};
+    try {
+      return JSON.parse(text);
+    } catch (_) {
+      return {};
+    }
   }
 
   async function loadWmMappings() {
@@ -679,9 +695,76 @@ export function initWiremockUI({ showToast }) {
   loadWmLogPanelHeight();
   initWmLogPanelResizer();
 
+  function getHeaderValue(headers, wantedName) {
+    if (!headers || !wantedName) return null;
+    const wanted = String(wantedName).toLowerCase();
+    if (Array.isArray(headers)) {
+      for (const h of headers) {
+        const key = (h.key || h.name || "").toLowerCase();
+        if (key !== wanted) continue;
+        if (typeof h.value === "string") return h.value;
+        if (Array.isArray(h.values) && h.values.length) return String(h.values[0]);
+      }
+      return null;
+    }
+    if (typeof headers === "object") {
+      for (const [k, v] of Object.entries(headers)) {
+        if (String(k).toLowerCase() !== wanted) continue;
+        if (typeof v === "string") return v;
+        if (Array.isArray(v) && v.length) return String(v[0]);
+      }
+    }
+    return null;
+  }
+
+  function parseTimestamp(input) {
+    if (input == null || input === "") return null;
+    if (typeof input === "number") {
+      const ms = input < 1e12 ? input * 1000 : input;
+      return Number.isFinite(ms) ? ms : null;
+    }
+    if (typeof input === "string") {
+      const trimmed = input.trim();
+      if (!trimmed) return null;
+      if (/^\d+$/.test(trimmed)) {
+        const n = Number(trimmed);
+        if (Number.isFinite(n)) return n < 1e12 ? n * 1000 : n;
+      }
+      const d = Date.parse(trimmed);
+      return Number.isNaN(d) ? null : d;
+    }
+    return null;
+  }
+
+  function extractRequestTimestamp(entry) {
+    const req = entry.request || entry || {};
+    const candidates = [
+      entry.loggedDate,
+      entry.loggedDateString,
+      req.loggedDate,
+      req.loggedDateString,
+      getHeaderValue(req.headers, "x-request-start"),
+      getHeaderValue(req.headers, "date"),
+      getHeaderValue(entry.response && entry.response.headers, "date"),
+    ];
+    for (const c of candidates) {
+      const ms = parseTimestamp(c);
+      if (ms != null) return ms;
+    }
+    return null;
+  }
+
   function renderWmLogList() {
     const list = wmSelectedId
-      ? requestsForStub(wmAllRequests, wmSelectedId).slice().reverse()
+      ? requestsForStub(wmAllRequests, wmSelectedId)
+          .map((item, idx) => ({ item, idx, ts: extractRequestTimestamp(item) }))
+          .sort((a, b) => {
+            if (a.ts != null && b.ts != null && a.ts !== b.ts) return b.ts - a.ts;
+            if (a.ts != null && b.ts == null) return -1;
+            if (a.ts == null && b.ts != null) return 1;
+            return b.idx - a.idx;
+          })
+          .map((x) => x.item)
       : [];
     wmLogSectionTitle.textContent = wmSelectedId
       ? "Request log for this mock"
@@ -703,7 +786,8 @@ export function initWiremockUI({ showToast }) {
       el.className = "wm-log-entry";
       const url = req.url || r.url || req.absoluteUrl || r.absoluteUrl || "—";
       const method = req.method || r.method || "—";
-      const ts = r.loggedDate ? new Date(r.loggedDate).toLocaleString() : "—";
+      const tsMs = extractRequestTimestamp(r);
+      const ts = tsMs != null ? new Date(tsMs).toLocaleString() : "—";
       const body = req.body || r.body || req.requestBody || r.requestBody || "";
       el.innerHTML =
         '<div class="head"><span class="method">' +
@@ -714,13 +798,26 @@ export function initWiremockUI({ showToast }) {
         "</span>" +
         '<span class="ts">' +
         escapeHtml(ts) +
-        "</span></div>" +
+        "</span>" +
+        (body
+          ? '<button type="button" class="wm-log-toggle" aria-label="Expand payload" title="Expand/collapse payload">▾</button>'
+          : "") +
+        "</div>" +
         (body
           ? '<div class="body">' +
             escapeHtml(typeof body === "string" ? body : formatJson(body)) +
             "</div>"
           : "");
-      if (body) el.addEventListener("click", () => el.classList.toggle("open"));
+      if (body) {
+        const toggleBtn = el.querySelector(".wm-log-toggle");
+        if (toggleBtn) {
+          toggleBtn.addEventListener("click", (ev) => {
+            ev.preventDefault();
+            ev.stopPropagation();
+            el.classList.toggle("open");
+          });
+        }
+      }
       wmLogList.appendChild(el);
     });
   }
@@ -728,10 +825,43 @@ export function initWiremockUI({ showToast }) {
   wmRefreshLog.addEventListener("click", loadWmRequests);
 
   $("#wmResetLog").addEventListener("click", async () => {
+    if (!wmSelectedId) {
+      showToast("Select a mock first");
+      return;
+    }
+    const scoped = requestsForStub(wmAllRequests, wmSelectedId);
+    const reqIds = scoped
+      .map((r) => r.id || (r.request && r.request.id))
+      .filter((id) => typeof id === "string" && id.length > 0);
+    if (reqIds.length === 0) {
+      showToast("No request log entries for this mock");
+      return;
+    }
     try {
-      await apiWiremock("/requests/reset", { method: "POST" });
-      loadWmRequests();
-      showToast("Log reset", "success");
+      let failed = 0;
+      let firstError = "";
+      for (const id of reqIds) {
+        try {
+          await apiWiremock("/requests/" + encodeURIComponent(id), {
+            method: "DELETE",
+          });
+        } catch (e) {
+          failed += 1;
+          if (!firstError && e && e.message) firstError = e.message;
+        }
+      }
+      await loadWmRequests();
+      if (failed === 0) {
+        showToast(`Removed ${reqIds.length} request log entr${reqIds.length === 1 ? "y" : "ies"}`, "success");
+      } else if (failed === reqIds.length) {
+        if (firstError.includes("404")) {
+          showToast("Cannot remove request by id (404). Restart app server to pick up new /api/wiremock/requests/:id route.");
+        } else {
+          showToast(`Failed to remove entries: ${firstError || "unknown error"}`);
+        }
+      } else {
+        showToast(`Removed ${reqIds.length - failed}/${reqIds.length} entries`);
+      }
     } catch (e) {
       showToast(e.message || "Reset failed");
     }

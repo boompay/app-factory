@@ -60,9 +60,58 @@ export function registerWiremockRoutes(app: Express): void {
     wiremockProxy(req, res, `/__admin/mappings/${req.params.id}`)
   );
   app.get("/api/wiremock/requests", (req, res) => wiremockProxy(req, res, "/__admin/requests"));
-  app.post("/api/wiremock/requests/reset", (req, res) =>
-    wiremockProxy(req, res, "/__admin/requests/reset", { method: "POST" })
+  app.delete("/api/wiremock/requests/:id", (req, res) =>
+    wiremockProxy(req, res, `/__admin/requests/${req.params.id}`, { method: "DELETE" })
   );
+  app.post("/api/wiremock/requests/reset", async (_req, res) => {
+    const candidates: Array<{ method: "POST" | "DELETE"; path: string; body?: unknown }> = [
+      { method: "POST", path: "/__admin/requests/reset" },
+      { method: "DELETE", path: "/__admin/requests" },
+      { method: "POST", path: "/__admin/requests/remove", body: {} },
+      { method: "POST", path: "/__admin/requests/reset/" },
+      { method: "DELETE", path: "/__admin/requests/" },
+    ];
+
+    let lastStatus = 502;
+    let lastText = "WireMock reset endpoint not available";
+    const attempts: string[] = [];
+
+    for (const candidate of candidates) {
+      try {
+        const response = await fetch(`${WIREMOCK_URL}${candidate.path}`, {
+          method: candidate.method,
+          headers: { "Content-Type": "application/json" },
+          body:
+            candidate.method === "POST" && candidate.body !== undefined
+              ? JSON.stringify(candidate.body)
+              : undefined,
+        });
+        const text = await response.text();
+        attempts.push(`${candidate.method} ${candidate.path} -> ${response.status}`);
+        if (response.ok) {
+          res
+            .status(response.status)
+            .set("Content-Type", response.headers.get("Content-Type") || "application/json")
+            .send(text || "{}");
+          return;
+        }
+        lastStatus = response.status;
+        lastText = text || `${response.status} ${response.statusText}`;
+        if (response.status !== 404 && response.status !== 405) break;
+      } catch (err: unknown) {
+        const detail = err instanceof Error ? err.message : String(err);
+        lastStatus = 502;
+        lastText = detail || "WireMock unreachable";
+        attempts.push(`${candidate.method} ${candidate.path} -> network error`);
+      }
+    }
+
+    res.status(lastStatus).json({
+      error: lastText || "Reset log failed",
+      attempts,
+      wiremockUrl: WIREMOCK_URL,
+    });
+  });
 
   app.get("/api/wiremock/files/:filename", async (req, res) => {
     if (!WIREMOCK_FILES_DIR) {

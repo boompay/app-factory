@@ -177,6 +177,7 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  color: var(--terminal-text);
 }
 .wm-log-panel .wm-log-list {
   flex: 1;
@@ -285,12 +286,15 @@
 .wm-log-section h3 {
   font-size: 12px;
   font-weight: 600;
-  color: var(--terminal-text);
+  color: #f0f3f6;
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
 .wm-log-list {
   padding: 12px 20px;
+}
+.wm-log-panel .wm-empty {
+  color: #c9d1d9;
 }
 .wm-log-entry {
   padding: 10px 12px;
@@ -299,7 +303,7 @@
   background: #161b22;
   border: 1px solid #21262d;
   font-size: 12px;
-  cursor: pointer;
+  cursor: text;
   transition: border-color 0.15s;
 }
 .wm-log-entry:hover {
@@ -318,12 +322,27 @@
 }
 .wm-log-entry .url {
   font-family: "JetBrains Mono", monospace;
-  color: var(--terminal-text);
+  color: #e6edf3;
   word-break: break-all;
 }
 .wm-log-entry .ts {
   font-size: 11px;
-  color: var(--terminal-dim);
+  color: #9da7b3;
+}
+.wm-log-entry .wm-log-toggle {
+  margin-left: auto;
+  border: 1px solid #30363d;
+  background: #0d1117;
+  color: #c9d1d9;
+  border-radius: 6px;
+  font-size: 11px;
+  line-height: 1;
+  padding: 3px 8px;
+  cursor: pointer;
+}
+.wm-log-entry .wm-log-toggle:hover {
+  background: #1a212b;
+  border-color: #4b5563;
 }
 .wm-log-entry .body {
   margin-top: 8px;
@@ -333,11 +352,14 @@
   font-size: 11px;
   white-space: pre-wrap;
   word-break: break-all;
-  color: var(--terminal-dim);
+  color: #d1d8e0;
   display: none;
 }
 .wm-log-entry.open .body {
   display: block;
+}
+.wm-log-entry.open .wm-log-toggle {
+  transform: rotate(180deg);
 }
 
 /* Modals (mock editor + response file) */

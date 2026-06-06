@@ -1,3 +1,26 @@
+export type IncomeSource = "Paystub" | "W2" | "Bank statement";
+
+export const INCOME_SOURCE_DETAILS: Record<
+  IncomeSource,
+  { apiType: string; filePath: string; documentType: string }
+> = {
+  Paystub: {
+    apiType: "paystub",
+    filePath: "./test-data/Paystub.pdf",
+    documentType: "paystub",
+  },
+  W2: {
+    apiType: "w2",
+    filePath: "./test-data/W2.pdf",
+    documentType: "w2",
+  },
+  "Bank statement": {
+    apiType: "bank_statement",
+    filePath: "./test-data/BankStatement.pdf",
+    documentType: "bank_statement",
+  },
+};
+
 export const APP_CONFIG = {
   ENV: "stg2",
   PATHS: {
@@ -31,6 +54,7 @@ export const APP_CONFIG = {
     LEAD_SOURCE: "Google",
     HOUSING_TYPE: "Own my home",
     EMERGENCY_CONTACT_RELATIONSHIP: "Other",
+    INCOME_SOURCE: "Paystub" as IncomeSource,
   },
   TIMEOUTS: {
     API_REQUEST: 10000,

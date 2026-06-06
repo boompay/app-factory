@@ -98,6 +98,7 @@ export class AuthTokenProvider {
     // Write file for persistence, but return the data directly to avoid file I/O dependency
     fs.writeFileSync(currentAppPath, JSON.stringify(appInfo, null, 2), "utf-8");
     this.logger.info(`Received bearer token: ${bearerToken}`);
+    this.logger.info(`Applicant phone is: ${this.phoneNumber}`);
     return appInfo;
   }
 
@@ -165,6 +166,7 @@ export class AuthTokenProvider {
     app.refresh_token = data.refresh_token;
     fs.writeFileSync(currentAppPath, JSON.stringify(app, null, 2), "utf-8");
     this.logger.info(`Updated bearer token: ${app.bearer_token}`);
+    this.logger.info(`Applicant phone is: ${applicant.phone}`);
     return app;
   }
 }

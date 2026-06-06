@@ -1,7 +1,7 @@
 import { ApiClient } from "../services";
 import { AppInfo, getCurrentApplicant } from "../models";
 import { PersonalDetailsStepConfig } from "../types";
-import { APP_CONFIG } from "../config";
+import { APP_CONFIG, INCOME_SOURCE_DETAILS } from "../config";
 import { LoggerProvider } from "../services";
 import {
   randomFullName,
@@ -53,7 +53,7 @@ export function createPersonalDetailsStepsConfig(
           contact_last_name: currentApplicant.last_name!,
           contact_middle_name: currentApplicant.middle_name!,
           contact_email: currentApplicant.email!.email,
-          contact_phone_number: currentApplicant.phone!,
+          contact_phone_number: `+1${currentApplicant.phone!}`
         },
       }),
     },
@@ -130,9 +130,11 @@ export async function submitHousingHistory(
   api: ApiClient,
   app: AppInfo
 ): Promise<void> {
+  var addressPayload;
   const address = await getRandomAddress("us");
   const apartNumber = randomInt(1, 100).toString();
-  const addressPayload = {
+  if (APP_CONFIG.DEFAULT_VALUES.HOUSING_TYPE === "Own my home") {
+   addressPayload = {
     data: {
       address: [
         {
@@ -157,7 +159,41 @@ export async function submitHousingHistory(
       ],
     },
   };
-
+  }
+  else {
+    const leaseDocumentAssetId = await uploadLeaseAgreement(api, app, "./test-data/LeaseAgreement.pdf");
+    addressPayload = {
+      data: {
+        address: [
+          {
+            housing_type: APP_CONFIG.DEFAULT_VALUES.HOUSING_TYPE,
+            rent: {
+              address: `${address.housenumber} ${address.street},${apartNumber}, ${address.city}, ${address.state} ${address.postcode}`,
+              address_components: {
+                address1: `${address.housenumber} ${address.street}`,
+                address2: apartNumber,
+                city: address.city,
+                state: address.state,
+                zip: address.postcode,
+                country: address.country_code!.toUpperCase() || "US",
+                county: address.county,
+              },
+              current_residence: true,
+              move_in_date: "2020-01-01",
+              monthly_payment: randomInt(1000, 3000),
+              reason_for_leaving: "Why not?",
+              landlord_name: "Franky",
+              landlord_email: "andrii+ll@boompay.app",
+              landlord_phone: "+14324536345",
+              lease_document: [
+                  leaseDocumentAssetId
+              ],
+            }
+          },
+        ],
+      },
+    };
+  }
   await api.providePersonalDetailsSteps(
     app.id!,
     app.verifications!.housing_history!,
@@ -166,6 +202,7 @@ export async function submitHousingHistory(
   );
   logger.info(`Submitted housing history`);
 }
+
 
 export async function submitCombinedIncome(
   api: ApiClient,
@@ -196,11 +233,14 @@ export async function submitCombinedIncome(
   app.incomeId = incomeVerificationDetails.id;
   logger.info(`Submitted first part of combined income verification: ${app.incomeId}`);
 
+  const incomeSourceConfig =
+    INCOME_SOURCE_DETAILS[APP_CONFIG.DEFAULT_VALUES.INCOME_SOURCE];
+
   const incomeSourcePayload = {
     income_id: app.incomeId,
-    type: "paystub"
-  }
-  
+    type: incomeSourceConfig.apiType,
+  };
+
   let incomeSourceResponse = await api.postIncomeVerificationDetails(
     app.id!,
     app.verifications!.combined_income!,
@@ -211,7 +251,12 @@ export async function submitCombinedIncome(
   app.incomeSourceId = incomeSourceDetails.id;
   logger.info(`Submitted second part of combined income verification: ${app.incomeSourceId}`);
 
-  await uploadDocument(api, app, "./test-data/Paystub.pdf", "paystub");
+  await uploadDocument(
+    api,
+    app,
+    incomeSourceConfig.filePath,
+    incomeSourceConfig.documentType
+  );
 
   await api.postIncomeVerificationDetails(
     app.id!,
@@ -355,12 +400,60 @@ export async function uploadSignature(
   }
 }
 
+/**
+ * Uploads a LeaseAgreement PDF file and returns the asset global_id
+ * @param api - The API client
+ * @param app - The application info
+ * @param filePath - Path to the LeaseAgreement PDF file
+ * @returns The global_id of the created asset
+ */
+export async function uploadLeaseAgreement(
+  api: ApiClient,
+  app: AppInfo,
+  filePath: string
+): Promise<string> {
+  // Reuse common helper with explicit SVG content type
+  const uploaded = await presignAndUploadFile(
+    api,
+    filePath,
+    "application/pdf"
+  );
+
+  // Step 3: Create asset and get global_id
+  const assetPayload = {
+    url: uploaded.url,
+    metadata: {
+      size: uploaded.size,
+      original_filename: uploaded.filename,
+      content_type: uploaded.contentType,
+    },
+  };
+
+  logger.info(`Creating asset record for LeaseAgreement`);
+  try {
+    const assetResponse = await api.createAsset(app.id!, assetPayload, undefined, 60000);
+    const assetData = await assetResponse.json();
+    
+    if (assetData.asset?.global_id) {
+      logger.info(`LeaseAgreement asset created successfully. Asset ID: ${assetData.asset.global_id}`);
+      return assetData.asset.global_id;
+    } else {
+      logger.error(`Failed to get asset ID from asset response: ${JSON.stringify(assetData)}`);
+      throw new Error("Failed to get asset ID from LeaseAgreement asset creation response");
+    }
+  } catch (error: any) {
+    const errorMessage = error?.message || String(error);
+    logger.error(`Failed to create LeaseAgreement asset after retries: ${errorMessage}`);
+    throw new Error(`LeaseAgreement asset creation failed: ${errorMessage}`);
+  }
+}
+
 export async function uploadDocument(
   api: ApiClient,
   app: AppInfo,
   filePath: string,
   documentType: string
-): Promise<void> {
+): Promise<string> {
   if (!app.incomeSourceId) {
     throw new Error("incomeSourceId is required for document upload");
   }
@@ -394,7 +487,8 @@ export async function uploadDocument(
   
   if (documentData.assets?.items?.length > 0) {
     logger.info(`Document uploaded successfully. Asset ID: ${documentData.assets.items[0].global_id}`);
-  } else {
-    logger.warn("Document upload completed but no assets returned in response");
+    return documentData.assets.items[0].global_id;
   }
+  logger.warn("Document upload completed but no assets returned in response");
+  throw new Error("Failed to get asset ID from document upload response");
 }

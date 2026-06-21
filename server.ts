@@ -100,6 +100,13 @@ app.post("/api/run", (req, res) => {
 });
 
 const PORT = 3500;
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`App Factory UI running at http://localhost:${PORT}`);
 });
+
+function shutdown(): void {
+  server.close(() => process.exit(0));
+}
+
+process.on("SIGINT", shutdown);
+process.on("SIGTERM", shutdown);

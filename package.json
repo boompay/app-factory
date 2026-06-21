@@ -3,7 +3,8 @@
     "start": "tsx runner.ts",
     "dev": "tsx runner.ts",
     "run": "tsx runner.ts",
-    "web": "tsx server.ts"
+    "web": "tsx scripts/free-port.ts 3500 && tsx server.ts",
+    "web:stop": "tsx scripts/free-port.ts 3500"
   },
   "devDependencies": {
     "@types/express": "^5.0.6",

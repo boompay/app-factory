@@ -1,43 +1,32 @@
 {
   "application": {
-    "id": 5006,
+    "id": 5603,
     "partner": {
-      "slug": "mark-brower-properties",
-      "name": "Boom Screen (Mark Brower)",
-      "email": "richard@markrent.com",
-      "logo_url": "https://boom-staging.s3.amazonaws.com/staging/f3d7aa21794fbd0a5a420f60bdf8991e.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6RCWFKPAV7ADZIA6%2F20260326%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260326T170859Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=8773364e11f135253cf87da501447814dd55ea5b83cd27e2fd393d248f91f39d",
-      "is_sites_and_communities": true,
-      "is_home_site_rent": false,
-      "id": 368,
-      "colors": {
-        "primary": {
-          "20": "#a4e2ff",
-          "50": "#71d2ff",
-          "100": "#3ec2ff",
-          "200": "#0bb1ff",
-          "300": "#0092d7",
-          "400": "#0070a4",
-          "500": "#004d71",
-          "600": "#004667",
-          "700": "#003f5d",
-          "800": "#003852",
-          "900": "#003148"
-        }
-      },
+      "slug": "rms1",
+      "name": "RMS1",
+      "email": "andrii+rm+s1@boompay.app",
+      "logo_url": null,
+      "is_sites_and_communities": false,
+      "is_home_site_rent": true,
+      "is_english_only": false,
+      "id": 687,
+      "colors": null,
       "base_border_radius": null,
       "font_family": null,
       "font_family_link": null,
       "google_analytics_id": null,
       "partner_features": [
-        "chat",
-        "property_owner"
+        "property_owner",
+        "chat"
       ],
-      "property_management_system": "manage_america"
+      "property_management_system": "rent_manager"
     },
+    "property_branding": {},
     "verification_template": {
       "has_move_in_date_limit": null,
       "max_move_in_days": null,
-      "criteria_rent_type": "home",
+      "min_move_in_days": 0,
+      "criteria_rent_type": "both",
       "settings": {
         "applicant": {
           "identity_verification": {
@@ -69,74 +58,75 @@
       },
       "allow_role": {
         "applicant": true,
-        "co_signer": true,
-        "occupant": true
+        "co_signer": false,
+        "occupant": false
       }
     },
     "unit": {
-      "id": 167923,
-      "title": "LostHope",
+      "id": 209548,
+      "title": "Lot #103",
       "property": {
-        "name": "District 14",
+        "name": "Flagstone Manufactured Housing",
         "address": {
-          "address1": "2345 Parsons Ave",
+          "address1": "14393 Montgomery Road",
           "address2": "",
-          "city": "Columbus",
+          "city": "Cincinnati",
           "state_or_province": "OH",
-          "postal_code": "43207",
+          "postal_code": "45122",
           "country": "US",
-          "lat": 39.9135102,
-          "lng": -82.9854536,
-          "one_line_address": "2345 Parsons Ave, Columbus, OH, 43207, US"
+          "lat": 39.289109,
+          "lng": -84.3014139,
+          "one_line_address": "14393 Montgomery Road, Cincinnati, OH, 45122, US"
         }
       },
       "monthly_rent_amount": {
-        "cents": 300000,
+        "cents": 80000,
         "currency": "USD"
       },
       "home_rent_amount": {
-        "cents": 100000,
+        "cents": 50000,
         "currency": "USD"
       },
       "site_rent_amount": {
-        "cents": 200000,
+        "cents": 30000,
         "currency": "USD"
       },
-      "criteria_rent_type": "home",
-      "available_at": "2025-09-30T00:00:00.000+00:00",
-      "partner_name": "Boom Screen (Mark Brower)"
+      "criteria_rent_type": "both",
+      "available_at": null,
+      "occupied": false,
+      "partner_name": "RMS1"
     },
     "monthly_rent_amount": {
-      "cents": 100000,
+      "cents": 80000,
       "currency": "USD"
     },
     "home_rent_amount": {
-      "cents": 100000,
+      "cents": 50000,
       "currency": "USD"
     },
     "site_rent_amount": {
-      "cents": 200000,
+      "cents": 30000,
       "currency": "USD"
     },
     "base_rent_amount": {
-      "cents": 100000,
+      "cents": 80000,
       "currency": "USD"
     },
     "applicants": [
       {
-        "id": 5688,
-        "application_id": 5006,
+        "id": 6317,
+        "application_id": 5603,
         "role": "applicant",
-        "first_name": "Johnson",
-        "last_name": "Schinner",
-        "middle_name": "Corey",
-        "email": "v99bp7ua8aj2@sharebot.net",
-        "application_status": "finished",
+        "first_name": "Albin",
+        "last_name": "Grady",
+        "middle_name": "Marlowe",
+        "email": "luxya3pcbnvc+sandbox@web-library.net",
+        "application_status": "submitted",
         "retry_identity_verification_status": "not_available",
         "fast_track_idv_status": "completed",
         "verifications": [
           {
-            "id": 44226,
+            "id": 48851,
             "name": "rental_application",
             "title": "verifications.personal-details.title",
             "description": "verifications.personal-details.description",
@@ -191,37 +181,37 @@
             "bypass_document_verification_enabled": false,
             "steps": [
               {
-                "id": 49802,
+                "id": 55270,
                 "index": 0,
                 "name": "personal_details"
               },
               {
-                "id": 49803,
+                "id": 55271,
                 "index": 1,
                 "name": "dependents"
               },
               {
-                "id": 49804,
+                "id": 55272,
                 "index": 2,
                 "name": "emergency_contacts"
               },
               {
-                "id": 49805,
+                "id": 55273,
                 "index": 3,
                 "name": "pets"
               },
               {
-                "id": 49806,
+                "id": 55274,
                 "index": 4,
                 "name": "vehicles"
               },
               {
-                "id": 49807,
+                "id": 55275,
                 "index": 5,
                 "name": "military_first_responder_teacher"
               },
               {
-                "id": 49808,
+                "id": 55276,
                 "index": 6,
                 "name": "lead_source"
               }
@@ -229,7 +219,7 @@
             "requirements": null
           },
           {
-            "id": 44227,
+            "id": 48852,
             "name": "housing_history",
             "title": "verifications.housing-history.title",
             "description": "verifications.housing-history.description",
@@ -238,18 +228,18 @@
             "settings": {
               "address_step_enabled": true,
               "rent_option_required": {
-                "landlord_phone": true,
-                "lease_document": false,
-                "monthly_payment": true,
-                "reason_for_leaving": true
+                "landlord_phone": "required",
+                "lease_document": "optional",
+                "monthly_payment": "required",
+                "reason_for_leaving": "required"
               },
               "other_option_required": {
-                "housing_status": true,
-                "reason_for_leaving": false
+                "housing_status": "required",
+                "reason_for_leaving": "optional"
               },
               "own_home_option_required": {
-                "reason_for_leaving": true,
-                "monthly_mortgage_payment": true
+                "reason_for_leaving": "required",
+                "monthly_mortgage_payment": "required"
               },
               "min_required_continuous_rental_history": 2
             },
@@ -266,7 +256,7 @@
             "bypass_document_verification_enabled": false,
             "steps": [
               {
-                "id": 49809,
+                "id": 55277,
                 "index": 0,
                 "name": "address"
               }
@@ -276,7 +266,7 @@
             }
           },
           {
-            "id": 44228,
+            "id": 48853,
             "name": "identity_verification",
             "title": "verifications.identity-verification.applicant-title",
             "description": "verifications.identity-verification.applicant-description",
@@ -284,6 +274,7 @@
             "vendor": "plaid",
             "settings": {
               "selfie_check": false,
+              "tin_verification": false,
               "identity_abuse_check": {
                 "stolen_identity_threshold": 90,
                 "synthetic_identity_threshold": 70
@@ -305,7 +296,7 @@
             "requirements": null
           },
           {
-            "id": 44229,
+            "id": 48854,
             "name": "combined_income_verification",
             "title": "verifications.combined-income.title",
             "description": "verifications.combined-income.description",
@@ -329,13 +320,16 @@
                 },
                 "bank_allowed": true,
                 "bank_statement": {
-                  "allowed": false,
+                  "allowed": true,
                   "timeframe": {
                     "unit": "month",
                     "value": 3
                   }
                 },
-                "payroll_allowed": true
+                "payroll_allowed": true,
+                "benefits_statement": {
+                  "allowed": true
+                }
               },
               "employment": {
                 "w2": {
@@ -366,10 +360,13 @@
                   "allowed": true,
                   "timeframe": {
                     "unit": "month",
-                    "value": 2
+                    "value": 3
                   }
                 },
-                "payroll_allowed": true
+                "payroll_allowed": true,
+                "benefits_statement": {
+                  "allowed": true
+                }
               },
               "offer_letter": {
                 "fields": {
@@ -402,13 +399,16 @@
                 },
                 "bank_allowed": true,
                 "bank_statement": {
-                  "allowed": false,
+                  "allowed": true,
                   "timeframe": {
                     "unit": "month",
                     "value": 3
                   }
                 },
-                "payroll_allowed": true
+                "payroll_allowed": true,
+                "benefits_statement": {
+                  "allowed": true
+                }
               },
               "housing_assistance_upload": "required",
               "housing_assistance_program_enabled": true,
@@ -423,33 +423,33 @@
             },
             "incomes": [
               {
-                "id": 854,
+                "id": 1317,
                 "type": "self_employment",
                 "status": "processing",
                 "pay_period": "monthly",
                 "amount": {
-                  "cents": 482400,
+                  "cents": 774600,
                   "currency": "USD"
                 },
-                "start_date": "2024-03-09",
+                "start_date": "2022-07-02",
                 "additional_data": {
-                  "company": "Rippin, Wiegand and Farrell",
-                  "job_title": "National Program Designer"
+                  "job_title": "Lead Group Agent",
+                  "company_name": "Yundt, Luettgen and Homenick"
                 }
               }
             ],
             "income_sources": [
               {
-                "id": 780,
-                "status": "processing",
+                "id": 1344,
+                "status": "submitted",
                 "type": "paystub",
-                "income_id": 854,
+                "income_id": 1317,
                 "items": [],
                 "has_available_items": false,
                 "additional_data": null,
                 "assets": [
                   {
-                    "asset_url": "https://boom-staging.s3.amazonaws.com/staging/752248f64fdec38c3fd5d997bcdd56da.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6RCWFKPAV7ADZIA6%2F20260326%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260326T170859Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=1e2da935866c38568e66b74d4d936ef3384c86fc0df48dad93425083343c347f",
+                    "asset_url": "https://boom-staging-nonprod.s3.us-east-2.amazonaws.com/staging/0456e2659692317a0caa8b5d833de2d0.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6RCWFKPAV7ADZIA6%2F20260621%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20260621T071434Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=de55b7fd270bca73a8f6a11e33efaed8441eba82723fcbd30695e2022fd828d9",
                     "asset_name": "Paystub.pdf"
                   }
                 ]
@@ -459,7 +459,7 @@
             "bypass_document_verification_enabled": null,
             "steps": [
               {
-                "id": 49810,
+                "id": 55278,
                 "index": 0,
                 "name": "combined_income"
               }
@@ -467,109 +467,7 @@
             "requirements": null
           },
           {
-            "id": 44230,
-            "name": "credit_report",
-            "title": "Credit report",
-            "description": "Equifax credit report and score",
-            "status": "pending",
-            "vendor": "equifax",
-            "settings": {
-              "vendor": "equifax",
-              "pricing": [
-                {
-                  "name": "credit_report_05402",
-                  "amount": {
-                    "cents": 600,
-                    "currency": "USD"
-                  }
-                },
-                {
-                  "name": "credit_report_05206",
-                  "amount": {
-                    "cents": 800,
-                    "currency": "USD"
-                  }
-                },
-                {
-                  "name": "credit_report_00AP4",
-                  "amount": {
-                    "cents": 600,
-                    "currency": "USD"
-                  }
-                }
-              ],
-              "model_number": "05206",
-              "execution_mode": "automatic",
-              "exclude_medical_debt": false,
-              "exclude_student_debt": false
-            },
-            "estimated_time": 0,
-            "index": 4,
-            "editable": false,
-            "progress": {
-              "total_steps": 0,
-              "filled_steps": 0
-            },
-            "incomes": [],
-            "income_sources": [],
-            "start_requirements": [],
-            "bypass_document_verification_enabled": false,
-            "steps": [],
-            "requirements": null
-          },
-          {
-            "id": 44231,
-            "name": "criminal_report",
-            "title": "National criminal report (US)",
-            "description": "CIC criminal background report",
-            "status": "pending",
-            "vendor": "cleara",
-            "settings": {
-              "vendor": "cleara",
-              "hide_report": false,
-              "execution_mode": "automatic"
-            },
-            "estimated_time": 0,
-            "index": 5,
-            "editable": false,
-            "progress": {
-              "total_steps": 0,
-              "filled_steps": 0
-            },
-            "incomes": [],
-            "income_sources": [],
-            "start_requirements": [],
-            "bypass_document_verification_enabled": false,
-            "steps": [],
-            "requirements": null
-          },
-          {
-            "id": 44232,
-            "name": "eviction_report",
-            "title": "Housing court report",
-            "description": "Housing court report",
-            "status": "pending",
-            "vendor": "cleara",
-            "settings": {
-              "vendor": "cleara",
-              "execution_mode": "automatic"
-            },
-            "estimated_time": 0,
-            "index": 6,
-            "editable": false,
-            "progress": {
-              "total_steps": 0,
-              "filled_steps": 0
-            },
-            "incomes": [],
-            "income_sources": [],
-            "start_requirements": [],
-            "bypass_document_verification_enabled": false,
-            "steps": [],
-            "requirements": null
-          },
-          {
-            "id": 44233,
+            "id": 48858,
             "name": "submission_disclosure",
             "title": "Review the application",
             "description": ".",
@@ -591,7 +489,7 @@
             "bypass_document_verification_enabled": false,
             "steps": [
               {
-                "id": 49811,
+                "id": 55279,
                 "index": 0,
                 "name": "submission_disclosure_step"
               }
@@ -599,48 +497,37 @@
             "requirements": null
           }
         ],
-        "stream_chat_token": null,
-        "stream_chat_id": "applicant-customer-166500",
-        "stream_chat_name": "Johnson Corey Schinner",
+        "stream_chat_token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiYXBwbGljYW50LWN1c3RvbWVyLTE2NzQwOCJ9.K7-PMlqQTgMazawTo4YRsIFvV0V2Rgx6Wxy4cbEiWp0",
+        "stream_chat_id": "applicant-customer-167408",
+        "stream_chat_name": "Albin Marlowe Grady",
         "application": {
-          "id": 5006,
+          "id": 5603,
           "partner": {
-            "slug": "mark-brower-properties",
-            "name": "Boom Screen (Mark Brower)",
-            "email": "richard@markrent.com",
-            "logo_url": "https://boom-staging.s3.amazonaws.com/staging/f3d7aa21794fbd0a5a420f60bdf8991e.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6RCWFKPAV7ADZIA6%2F20260326%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260326T170859Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=8773364e11f135253cf87da501447814dd55ea5b83cd27e2fd393d248f91f39d",
-            "is_sites_and_communities": true,
-            "is_home_site_rent": false,
-            "id": 368,
-            "colors": {
-              "primary": {
-                "20": "#a4e2ff",
-                "50": "#71d2ff",
-                "100": "#3ec2ff",
-                "200": "#0bb1ff",
-                "300": "#0092d7",
-                "400": "#0070a4",
-                "500": "#004d71",
-                "600": "#004667",
-                "700": "#003f5d",
-                "800": "#003852",
-                "900": "#003148"
-              }
-            },
+            "slug": "rms1",
+            "name": "RMS1",
+            "email": "andrii+rm+s1@boompay.app",
+            "logo_url": null,
+            "is_sites_and_communities": false,
+            "is_home_site_rent": true,
+            "is_english_only": false,
+            "id": 687,
+            "colors": null,
             "base_border_radius": null,
             "font_family": null,
             "font_family_link": null,
             "google_analytics_id": null,
             "partner_features": [
-              "chat",
-              "property_owner"
+              "property_owner",
+              "chat"
             ],
-            "property_management_system": "manage_america"
+            "property_management_system": "rent_manager"
           },
+          "property_branding": {},
           "verification_template": {
             "has_move_in_date_limit": null,
             "max_move_in_days": null,
-            "criteria_rent_type": "home",
+            "min_move_in_days": 0,
+            "criteria_rent_type": "both",
             "settings": {
               "applicant": {
                 "identity_verification": {
@@ -672,74 +559,75 @@
             },
             "allow_role": {
               "applicant": true,
-              "co_signer": true,
-              "occupant": true
+              "co_signer": false,
+              "occupant": false
             }
           },
           "unit": {
-            "id": 167923,
-            "title": "LostHope",
+            "id": 209548,
+            "title": "Lot #103",
             "property": {
-              "name": "District 14",
+              "name": "Flagstone Manufactured Housing",
               "address": {
-                "address1": "2345 Parsons Ave",
+                "address1": "14393 Montgomery Road",
                 "address2": "",
-                "city": "Columbus",
+                "city": "Cincinnati",
                 "state_or_province": "OH",
-                "postal_code": "43207",
+                "postal_code": "45122",
                 "country": "US",
-                "lat": 39.9135102,
-                "lng": -82.9854536,
-                "one_line_address": "2345 Parsons Ave, Columbus, OH, 43207, US"
+                "lat": 39.289109,
+                "lng": -84.3014139,
+                "one_line_address": "14393 Montgomery Road, Cincinnati, OH, 45122, US"
               }
             },
             "monthly_rent_amount": {
-              "cents": 300000,
+              "cents": 80000,
               "currency": "USD"
             },
             "home_rent_amount": {
-              "cents": 100000,
+              "cents": 50000,
               "currency": "USD"
             },
             "site_rent_amount": {
-              "cents": 200000,
+              "cents": 30000,
               "currency": "USD"
             },
-            "criteria_rent_type": "home",
-            "available_at": "2025-09-30T00:00:00.000+00:00",
-            "partner_name": "Boom Screen (Mark Brower)"
+            "criteria_rent_type": "both",
+            "available_at": null,
+            "occupied": false,
+            "partner_name": "RMS1"
           },
           "monthly_rent_amount": {
-            "cents": 100000,
+            "cents": 80000,
             "currency": "USD"
           },
           "home_rent_amount": {
-            "cents": 100000,
+            "cents": 50000,
             "currency": "USD"
           },
           "site_rent_amount": {
-            "cents": 200000,
+            "cents": 30000,
             "currency": "USD"
           },
           "base_rent_amount": {
-            "cents": 100000,
+            "cents": 80000,
             "currency": "USD"
           },
           "applicants": [
             {
-              "id": 5688,
-              "application_id": 5006,
+              "id": 6317,
+              "application_id": 5603,
               "role": "applicant",
-              "first_name": "Johnson",
-              "last_name": "Schinner",
-              "middle_name": "Corey",
-              "email": "v99bp7ua8aj2@sharebot.net",
-              "application_status": "finished",
+              "first_name": "Albin",
+              "last_name": "Grady",
+              "middle_name": "Marlowe",
+              "email": "luxya3pcbnvc+sandbox@web-library.net",
+              "application_status": "submitted",
               "retry_identity_verification_status": "not_available",
               "fast_track_idv_status": "completed",
               "verifications": [
                 {
-                  "id": 44226,
+                  "id": 48851,
                   "name": "rental_application",
                   "title": "verifications.personal-details.title",
                   "description": "verifications.personal-details.description",
@@ -794,7 +682,7 @@
                   "bypass_document_verification_enabled": false
                 },
                 {
-                  "id": 44227,
+                  "id": 48852,
                   "name": "housing_history",
                   "title": "verifications.housing-history.title",
                   "description": "verifications.housing-history.description",
@@ -803,18 +691,18 @@
                   "settings": {
                     "address_step_enabled": true,
                     "rent_option_required": {
-                      "landlord_phone": true,
-                      "lease_document": false,
-                      "monthly_payment": true,
-                      "reason_for_leaving": true
+                      "landlord_phone": "required",
+                      "lease_document": "optional",
+                      "monthly_payment": "required",
+                      "reason_for_leaving": "required"
                     },
                     "other_option_required": {
-                      "housing_status": true,
-                      "reason_for_leaving": false
+                      "housing_status": "required",
+                      "reason_for_leaving": "optional"
                     },
                     "own_home_option_required": {
-                      "reason_for_leaving": true,
-                      "monthly_mortgage_payment": true
+                      "reason_for_leaving": "required",
+                      "monthly_mortgage_payment": "required"
                     },
                     "min_required_continuous_rental_history": 2
                   },
@@ -831,7 +719,7 @@
                   "bypass_document_verification_enabled": false
                 },
                 {
-                  "id": 44228,
+                  "id": 48853,
                   "name": "identity_verification",
                   "title": "verifications.identity-verification.applicant-title",
                   "description": "verifications.identity-verification.applicant-description",
@@ -839,6 +727,7 @@
                   "vendor": "plaid",
                   "settings": {
                     "selfie_check": false,
+                    "tin_verification": false,
                     "identity_abuse_check": {
                       "stolen_identity_threshold": 90,
                       "synthetic_identity_threshold": 70
@@ -858,7 +747,7 @@
                   "bypass_document_verification_enabled": false
                 },
                 {
-                  "id": 44229,
+                  "id": 48854,
                   "name": "combined_income_verification",
                   "title": "verifications.combined-income.title",
                   "description": "verifications.combined-income.description",
@@ -882,13 +771,16 @@
                       },
                       "bank_allowed": true,
                       "bank_statement": {
-                        "allowed": false,
+                        "allowed": true,
                         "timeframe": {
                           "unit": "month",
                           "value": 3
                         }
                       },
-                      "payroll_allowed": true
+                      "payroll_allowed": true,
+                      "benefits_statement": {
+                        "allowed": true
+                      }
                     },
                     "employment": {
                       "w2": {
@@ -919,10 +811,13 @@
                         "allowed": true,
                         "timeframe": {
                           "unit": "month",
-                          "value": 2
+                          "value": 3
                         }
                       },
-                      "payroll_allowed": true
+                      "payroll_allowed": true,
+                      "benefits_statement": {
+                        "allowed": true
+                      }
                     },
                     "offer_letter": {
                       "fields": {
@@ -955,13 +850,16 @@
                       },
                       "bank_allowed": true,
                       "bank_statement": {
-                        "allowed": false,
+                        "allowed": true,
                         "timeframe": {
                           "unit": "month",
                           "value": 3
                         }
                       },
-                      "payroll_allowed": true
+                      "payroll_allowed": true,
+                      "benefits_statement": {
+                        "allowed": true
+                      }
                     },
                     "housing_assistance_upload": "required",
                     "housing_assistance_program_enabled": true,
@@ -976,33 +874,33 @@
                   },
                   "incomes": [
                     {
-                      "id": 854,
+                      "id": 1317,
                       "type": "self_employment",
                       "status": "processing",
                       "pay_period": "monthly",
                       "amount": {
-                        "cents": 482400,
+                        "cents": 774600,
                         "currency": "USD"
                       },
-                      "start_date": "2024-03-09",
+                      "start_date": "2022-07-02",
                       "additional_data": {
-                        "company": "Rippin, Wiegand and Farrell",
-                        "job_title": "National Program Designer"
+                        "job_title": "Lead Group Agent",
+                        "company_name": "Yundt, Luettgen and Homenick"
                       }
                     }
                   ],
                   "income_sources": [
                     {
-                      "id": 780,
-                      "status": "processing",
+                      "id": 1344,
+                      "status": "submitted",
                       "type": "paystub",
-                      "income_id": 854,
+                      "income_id": 1317,
                       "items": [],
                       "has_available_items": false,
                       "additional_data": null,
                       "assets": [
                         {
-                          "asset_url": "https://boom-staging.s3.amazonaws.com/staging/752248f64fdec38c3fd5d997bcdd56da.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6RCWFKPAV7ADZIA6%2F20260326%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260326T170859Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=1e2da935866c38568e66b74d4d936ef3384c86fc0df48dad93425083343c347f",
+                          "asset_url": "https://boom-staging-nonprod.s3.us-east-2.amazonaws.com/staging/0456e2659692317a0caa8b5d833de2d0.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6RCWFKPAV7ADZIA6%2F20260621%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20260621T071434Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=de55b7fd270bca73a8f6a11e33efaed8441eba82723fcbd30695e2022fd828d9",
                           "asset_name": "Paystub.pdf"
                         }
                       ]
@@ -1012,103 +910,7 @@
                   "bypass_document_verification_enabled": null
                 },
                 {
-                  "id": 44230,
-                  "name": "credit_report",
-                  "title": "Credit report",
-                  "description": "Equifax credit report and score",
-                  "status": "pending",
-                  "vendor": "equifax",
-                  "settings": {
-                    "vendor": "equifax",
-                    "pricing": [
-                      {
-                        "name": "credit_report_05402",
-                        "amount": {
-                          "cents": 600,
-                          "currency": "USD"
-                        }
-                      },
-                      {
-                        "name": "credit_report_05206",
-                        "amount": {
-                          "cents": 800,
-                          "currency": "USD"
-                        }
-                      },
-                      {
-                        "name": "credit_report_00AP4",
-                        "amount": {
-                          "cents": 600,
-                          "currency": "USD"
-                        }
-                      }
-                    ],
-                    "model_number": "05206",
-                    "execution_mode": "automatic",
-                    "exclude_medical_debt": false,
-                    "exclude_student_debt": false
-                  },
-                  "estimated_time": 0,
-                  "index": 4,
-                  "editable": false,
-                  "progress": {
-                    "total_steps": 0,
-                    "filled_steps": 0
-                  },
-                  "incomes": [],
-                  "income_sources": [],
-                  "start_requirements": [],
-                  "bypass_document_verification_enabled": false
-                },
-                {
-                  "id": 44231,
-                  "name": "criminal_report",
-                  "title": "National criminal report (US)",
-                  "description": "CIC criminal background report",
-                  "status": "pending",
-                  "vendor": "cleara",
-                  "settings": {
-                    "vendor": "cleara",
-                    "hide_report": false,
-                    "execution_mode": "automatic"
-                  },
-                  "estimated_time": 0,
-                  "index": 5,
-                  "editable": false,
-                  "progress": {
-                    "total_steps": 0,
-                    "filled_steps": 0
-                  },
-                  "incomes": [],
-                  "income_sources": [],
-                  "start_requirements": [],
-                  "bypass_document_verification_enabled": false
-                },
-                {
-                  "id": 44232,
-                  "name": "eviction_report",
-                  "title": "Housing court report",
-                  "description": "Housing court report",
-                  "status": "pending",
-                  "vendor": "cleara",
-                  "settings": {
-                    "vendor": "cleara",
-                    "execution_mode": "automatic"
-                  },
-                  "estimated_time": 0,
-                  "index": 6,
-                  "editable": false,
-                  "progress": {
-                    "total_steps": 0,
-                    "filled_steps": 0
-                  },
-                  "incomes": [],
-                  "income_sources": [],
-                  "start_requirements": [],
-                  "bypass_document_verification_enabled": false
-                },
-                {
-                  "id": 44233,
+                  "id": 48858,
                   "name": "submission_disclosure",
                   "title": "Review the application",
                   "description": ".",
@@ -1130,22 +932,24 @@
                   "bypass_document_verification_enabled": false
                 }
               ],
-              "stream_chat_token": null,
-              "stream_chat_id": "applicant-customer-166500",
-              "stream_chat_name": "Johnson Corey Schinner"
+              "stream_chat_token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiYXBwbGljYW50LWN1c3RvbWVyLTE2NzQwOCJ9.K7-PMlqQTgMazawTo4YRsIFvV0V2Rgx6Wxy4cbEiWp0",
+              "stream_chat_id": "applicant-customer-167408",
+              "stream_chat_name": "Albin Marlowe Grady"
             }
           ],
-          "status": "started",
+          "status": "submitted",
           "screening_status": "processing",
-          "desired_move_in_date": "2026-03-31",
+          "desired_move_in_date": "2026-06-30",
+          "desired_lease_term": null,
+          "lease_term_enabled": false,
           "conditions": [],
-          "partner_name_in_submission_disclosure": "District 14",
+          "partner_name_in_submission_disclosure": "RMS1",
           "has_multiple_applicants": null,
           "has_multiple_guarantors": null,
           "allow_occupants": null
         },
         "fee": {
-          "cents": 3000,
+          "cents": 0,
           "currency": "USD"
         },
         "application_fee": {
@@ -1161,312 +965,63 @@
               "currency": "USD"
             },
             "status": "due"
-          },
-          {
-            "fee_type": "holding_fee",
-            "description": "Holding fee",
-            "amount": {
-              "cents": 1000,
-              "currency": "USD"
-            },
-            "status": "due"
-          },
-          {
-            "fee_type": "administration_fee",
-            "description": "Administration fee",
-            "amount": {
-              "cents": 2000,
-              "currency": "USD"
-            },
-            "status": "due"
           }
         ],
         "can_checkout": true,
         "ineligible_to_checkout_reason": null,
         "requirements": [],
-        "intercom_id": "applicant-5688",
+        "intercom_id": "applicant-6317",
         "is_manual": false,
+        "application_started_at": "2026-06-21T07:13:56.239+00:00",
         "discount_info": null,
         "invited_by_applicant_id": null,
         "has_passed_invite_flow": true,
         "can_invite_others": true
       }
     ],
-    "status": "started",
+    "status": "submitted",
     "screening_status": "processing",
-    "desired_move_in_date": "2026-03-31",
+    "desired_move_in_date": "2026-06-30",
+    "desired_lease_term": null,
+    "lease_term_enabled": false,
     "conditions": [],
-    "partner_name_in_submission_disclosure": "District 14",
+    "partner_name_in_submission_disclosure": "RMS1",
     "has_multiple_applicants": null,
     "has_multiple_guarantors": null,
     "allow_occupants": null,
     "verifications": [
       {
-        "id": 44229,
-        "name": "combined_income_verification",
-        "title": "verifications.combined-income.title",
-        "description": "verifications.combined-income.description",
+        "id": 48858,
+        "name": "submission_disclosure",
+        "title": "Review the application",
+        "description": ".",
         "status": "finished",
         "vendor": "",
         "settings": {
-          "other": {
-            "w2": {
-              "allowed": true,
-              "timeframe": {
-                "unit": "year",
-                "value": 1
-              }
-            },
-            "paystub": {
-              "allowed": true,
-              "timeframe": {
-                "unit": "month",
-                "value": 3
-              }
-            },
-            "bank_allowed": true,
-            "bank_statement": {
-              "allowed": false,
-              "timeframe": {
-                "unit": "month",
-                "value": 3
-              }
-            },
-            "payroll_allowed": true
-          },
-          "employment": {
-            "w2": {
-              "allowed": true,
-              "timeframe": {
-                "unit": "year",
-                "value": 1
-              }
-            },
-            "fields": {
-              "job_title": "required",
-              "supervisor": {
-                "email": "required",
-                "phone": "required",
-                "last_name": "required",
-                "first_name": "required"
-              }
-            },
-            "paystub": {
-              "allowed": true,
-              "timeframe": {
-                "unit": "month",
-                "value": 3
-              }
-            },
-            "bank_allowed": true,
-            "bank_statement": {
-              "allowed": true,
-              "timeframe": {
-                "unit": "month",
-                "value": 2
-              }
-            },
-            "payroll_allowed": true
-          },
-          "offer_letter": {
-            "fields": {
-              "job_title": "required",
-              "supervisor": {
-                "email": "required",
-                "phone": "required",
-                "last_name": "required",
-                "first_name": "required"
-              }
-            }
-          },
-          "self_employment": {
-            "w2": {
-              "allowed": true,
-              "timeframe": {
-                "unit": "year",
-                "value": 1
-              }
-            },
-            "fields": {
-              "job_title": "required"
-            },
-            "paystub": {
-              "allowed": true,
-              "timeframe": {
-                "unit": "month",
-                "value": 3
-              }
-            },
-            "bank_allowed": true,
-            "bank_statement": {
-              "allowed": false,
-              "timeframe": {
-                "unit": "month",
-                "value": 3
-              }
-            },
-            "payroll_allowed": true
-          },
-          "housing_assistance_upload": "required",
-          "housing_assistance_program_enabled": true,
-          "combined_income_verification_enabled": true
+          "additional_text": ""
         },
-        "estimated_time": 900,
-        "index": 3,
+        "estimated_time": 60,
+        "index": 7,
         "editable": true,
         "progress": {
           "total_steps": 1,
-          "filled_steps": 0
+          "filled_steps": 1
         },
-        "incomes": [
-          {
-            "id": 854,
-            "type": "self_employment",
-            "status": "processing",
-            "pay_period": "monthly",
-            "amount": {
-              "cents": 482400,
-              "currency": "USD"
-            },
-            "start_date": "2024-03-09",
-            "additional_data": {
-              "company": "Rippin, Wiegand and Farrell",
-              "job_title": "National Program Designer"
-            }
-          }
-        ],
-        "income_sources": [
-          {
-            "id": 780,
-            "status": "processing",
-            "type": "paystub",
-            "income_id": 854,
-            "items": [],
-            "has_available_items": false,
-            "additional_data": null,
-            "assets": [
-              {
-                "asset_url": "https://boom-staging.s3.amazonaws.com/staging/752248f64fdec38c3fd5d997bcdd56da.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6RCWFKPAV7ADZIA6%2F20260326%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260326T170859Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=1e2da935866c38568e66b74d4d936ef3384c86fc0df48dad93425083343c347f",
-                "asset_name": "Paystub.pdf"
-              }
-            ]
-          }
-        ],
+        "incomes": [],
+        "income_sources": [],
         "start_requirements": [],
-        "bypass_document_verification_enabled": null,
+        "bypass_document_verification_enabled": false,
         "steps": [
           {
-            "id": 49810,
+            "id": 55279,
             "index": 0,
-            "name": "combined_income"
+            "name": "submission_disclosure_step"
           }
         ],
         "requirements": null
       },
       {
-        "id": 44230,
-        "name": "credit_report",
-        "title": "Credit report",
-        "description": "Equifax credit report and score",
-        "status": "pending",
-        "vendor": "equifax",
-        "settings": {
-          "vendor": "equifax",
-          "pricing": [
-            {
-              "name": "credit_report_05402",
-              "amount": {
-                "cents": 600,
-                "currency": "USD"
-              }
-            },
-            {
-              "name": "credit_report_05206",
-              "amount": {
-                "cents": 800,
-                "currency": "USD"
-              }
-            },
-            {
-              "name": "credit_report_00AP4",
-              "amount": {
-                "cents": 600,
-                "currency": "USD"
-              }
-            }
-          ],
-          "model_number": "05206",
-          "execution_mode": "automatic",
-          "exclude_medical_debt": false,
-          "exclude_student_debt": false
-        },
-        "estimated_time": 0,
-        "index": 4,
-        "editable": false,
-        "progress": {
-          "total_steps": 0,
-          "filled_steps": 0
-        },
-        "incomes": [],
-        "income_sources": [],
-        "start_requirements": [],
-        "bypass_document_verification_enabled": false,
-        "steps": [],
-        "requirements": null
-      },
-      {
-        "id": 44231,
-        "name": "criminal_report",
-        "title": "National criminal report (US)",
-        "description": "CIC criminal background report",
-        "status": "pending",
-        "vendor": "cleara",
-        "settings": {
-          "vendor": "cleara",
-          "hide_report": false,
-          "execution_mode": "automatic"
-        },
-        "estimated_time": 0,
-        "index": 5,
-        "editable": false,
-        "progress": {
-          "total_steps": 0,
-          "filled_steps": 0
-        },
-        "incomes": [],
-        "income_sources": [],
-        "start_requirements": [],
-        "bypass_document_verification_enabled": false,
-        "steps": [],
-        "requirements": null
-      },
-      {
-        "id": 44232,
-        "name": "eviction_report",
-        "title": "Housing court report",
-        "description": "Housing court report",
-        "status": "pending",
-        "vendor": "cleara",
-        "settings": {
-          "vendor": "cleara",
-          "execution_mode": "automatic"
-        },
-        "estimated_time": 0,
-        "index": 6,
-        "editable": false,
-        "progress": {
-          "total_steps": 0,
-          "filled_steps": 0
-        },
-        "incomes": [],
-        "income_sources": [],
-        "start_requirements": [],
-        "bypass_document_verification_enabled": false,
-        "steps": [],
-        "requirements": null
-      },
-      {
-        "id": 44226,
+        "id": 48851,
         "name": "rental_application",
         "title": "verifications.personal-details.title",
         "description": "verifications.personal-details.description",
@@ -1521,37 +1076,37 @@
         "bypass_document_verification_enabled": false,
         "steps": [
           {
-            "id": 49802,
+            "id": 55270,
             "index": 0,
             "name": "personal_details"
           },
           {
-            "id": 49803,
+            "id": 55271,
             "index": 1,
             "name": "dependents"
           },
           {
-            "id": 49804,
+            "id": 55272,
             "index": 2,
             "name": "emergency_contacts"
           },
           {
-            "id": 49805,
+            "id": 55273,
             "index": 3,
             "name": "pets"
           },
           {
-            "id": 49806,
+            "id": 55274,
             "index": 4,
             "name": "vehicles"
           },
           {
-            "id": 49807,
+            "id": 55275,
             "index": 5,
             "name": "military_first_responder_teacher"
           },
           {
-            "id": 49808,
+            "id": 55276,
             "index": 6,
             "name": "lead_source"
           }
@@ -1559,7 +1114,7 @@
         "requirements": null
       },
       {
-        "id": 44227,
+        "id": 48852,
         "name": "housing_history",
         "title": "verifications.housing-history.title",
         "description": "verifications.housing-history.description",
@@ -1568,18 +1123,18 @@
         "settings": {
           "address_step_enabled": true,
           "rent_option_required": {
-            "landlord_phone": true,
-            "lease_document": false,
-            "monthly_payment": true,
-            "reason_for_leaving": true
+            "landlord_phone": "required",
+            "lease_document": "optional",
+            "monthly_payment": "required",
+            "reason_for_leaving": "required"
           },
           "other_option_required": {
-            "housing_status": true,
-            "reason_for_leaving": false
+            "housing_status": "required",
+            "reason_for_leaving": "optional"
           },
           "own_home_option_required": {
-            "reason_for_leaving": true,
-            "monthly_mortgage_payment": true
+            "reason_for_leaving": "required",
+            "monthly_mortgage_payment": "required"
           },
           "min_required_continuous_rental_history": 2
         },
@@ -1596,7 +1151,7 @@
         "bypass_document_verification_enabled": false,
         "steps": [
           {
-            "id": 49809,
+            "id": 55277,
             "index": 0,
             "name": "address"
           }
@@ -1606,37 +1161,178 @@
         }
       },
       {
-        "id": 44233,
-        "name": "submission_disclosure",
-        "title": "Review the application",
-        "description": ".",
+        "id": 48854,
+        "name": "combined_income_verification",
+        "title": "verifications.combined-income.title",
+        "description": "verifications.combined-income.description",
         "status": "finished",
         "vendor": "",
         "settings": {
-          "additional_text": ""
+          "other": {
+            "w2": {
+              "allowed": true,
+              "timeframe": {
+                "unit": "year",
+                "value": 1
+              }
+            },
+            "paystub": {
+              "allowed": true,
+              "timeframe": {
+                "unit": "month",
+                "value": 3
+              }
+            },
+            "bank_allowed": true,
+            "bank_statement": {
+              "allowed": true,
+              "timeframe": {
+                "unit": "month",
+                "value": 3
+              }
+            },
+            "payroll_allowed": true,
+            "benefits_statement": {
+              "allowed": true
+            }
+          },
+          "employment": {
+            "w2": {
+              "allowed": true,
+              "timeframe": {
+                "unit": "year",
+                "value": 1
+              }
+            },
+            "fields": {
+              "job_title": "required",
+              "supervisor": {
+                "email": "required",
+                "phone": "required",
+                "last_name": "required",
+                "first_name": "required"
+              }
+            },
+            "paystub": {
+              "allowed": true,
+              "timeframe": {
+                "unit": "month",
+                "value": 3
+              }
+            },
+            "bank_allowed": true,
+            "bank_statement": {
+              "allowed": true,
+              "timeframe": {
+                "unit": "month",
+                "value": 3
+              }
+            },
+            "payroll_allowed": true,
+            "benefits_statement": {
+              "allowed": true
+            }
+          },
+          "offer_letter": {
+            "fields": {
+              "job_title": "required",
+              "supervisor": {
+                "email": "required",
+                "phone": "required",
+                "last_name": "required",
+                "first_name": "required"
+              }
+            }
+          },
+          "self_employment": {
+            "w2": {
+              "allowed": true,
+              "timeframe": {
+                "unit": "year",
+                "value": 1
+              }
+            },
+            "fields": {
+              "job_title": "required"
+            },
+            "paystub": {
+              "allowed": true,
+              "timeframe": {
+                "unit": "month",
+                "value": 3
+              }
+            },
+            "bank_allowed": true,
+            "bank_statement": {
+              "allowed": true,
+              "timeframe": {
+                "unit": "month",
+                "value": 3
+              }
+            },
+            "payroll_allowed": true,
+            "benefits_statement": {
+              "allowed": true
+            }
+          },
+          "housing_assistance_upload": "required",
+          "housing_assistance_program_enabled": true,
+          "combined_income_verification_enabled": true
         },
-        "estimated_time": 60,
-        "index": 7,
+        "estimated_time": 900,
+        "index": 3,
         "editable": true,
         "progress": {
           "total_steps": 1,
-          "filled_steps": 1
+          "filled_steps": 0
         },
-        "incomes": [],
-        "income_sources": [],
+        "incomes": [
+          {
+            "id": 1317,
+            "type": "self_employment",
+            "status": "processing",
+            "pay_period": "monthly",
+            "amount": {
+              "cents": 774600,
+              "currency": "USD"
+            },
+            "start_date": "2022-07-02",
+            "additional_data": {
+              "job_title": "Lead Group Agent",
+              "company_name": "Yundt, Luettgen and Homenick"
+            }
+          }
+        ],
+        "income_sources": [
+          {
+            "id": 1344,
+            "status": "submitted",
+            "type": "paystub",
+            "income_id": 1317,
+            "items": [],
+            "has_available_items": false,
+            "additional_data": null,
+            "assets": [
+              {
+                "asset_url": "https://boom-staging-nonprod.s3.us-east-2.amazonaws.com/staging/0456e2659692317a0caa8b5d833de2d0.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6RCWFKPAV7ADZIA6%2F20260621%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20260621T071434Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=de55b7fd270bca73a8f6a11e33efaed8441eba82723fcbd30695e2022fd828d9",
+                "asset_name": "Paystub.pdf"
+              }
+            ]
+          }
+        ],
         "start_requirements": [],
-        "bypass_document_verification_enabled": false,
+        "bypass_document_verification_enabled": null,
         "steps": [
           {
-            "id": 49811,
+            "id": 55278,
             "index": 0,
-            "name": "submission_disclosure_step"
+            "name": "combined_income"
           }
         ],
         "requirements": null
       },
       {
-        "id": 44228,
+        "id": 48853,
         "name": "identity_verification",
         "title": "verifications.identity-verification.applicant-title",
         "description": "verifications.identity-verification.applicant-description",
@@ -1644,6 +1340,7 @@
         "vendor": "plaid",
         "settings": {
           "selfie_check": false,
+          "tin_verification": false,
           "identity_abuse_check": {
             "stolen_identity_threshold": 90,
             "synthetic_identity_threshold": 70
@@ -1666,19 +1363,19 @@
       }
     ],
     "current_applicant": {
-      "id": 5688,
-      "application_id": 5006,
+      "id": 6317,
+      "application_id": 5603,
       "role": "applicant",
-      "first_name": "Johnson",
-      "last_name": "Schinner",
-      "middle_name": "Corey",
-      "email": "v99bp7ua8aj2@sharebot.net",
-      "application_status": "finished",
+      "first_name": "Albin",
+      "last_name": "Grady",
+      "middle_name": "Marlowe",
+      "email": "luxya3pcbnvc+sandbox@web-library.net",
+      "application_status": "submitted",
       "retry_identity_verification_status": "not_available",
       "fast_track_idv_status": "completed",
       "verifications": [
         {
-          "id": 44226,
+          "id": 48851,
           "name": "rental_application",
           "title": "verifications.personal-details.title",
           "description": "verifications.personal-details.description",
@@ -1733,37 +1430,37 @@
           "bypass_document_verification_enabled": false,
           "steps": [
             {
-              "id": 49802,
+              "id": 55270,
               "index": 0,
               "name": "personal_details"
             },
             {
-              "id": 49803,
+              "id": 55271,
               "index": 1,
               "name": "dependents"
             },
             {
-              "id": 49804,
+              "id": 55272,
               "index": 2,
               "name": "emergency_contacts"
             },
             {
-              "id": 49805,
+              "id": 55273,
               "index": 3,
               "name": "pets"
             },
             {
-              "id": 49806,
+              "id": 55274,
               "index": 4,
               "name": "vehicles"
             },
             {
-              "id": 49807,
+              "id": 55275,
               "index": 5,
               "name": "military_first_responder_teacher"
             },
             {
-              "id": 49808,
+              "id": 55276,
               "index": 6,
               "name": "lead_source"
             }
@@ -1771,7 +1468,7 @@
           "requirements": null
         },
         {
-          "id": 44227,
+          "id": 48852,
           "name": "housing_history",
           "title": "verifications.housing-history.title",
           "description": "verifications.housing-history.description",
@@ -1780,18 +1477,18 @@
           "settings": {
             "address_step_enabled": true,
             "rent_option_required": {
-              "landlord_phone": true,
-              "lease_document": false,
-              "monthly_payment": true,
-              "reason_for_leaving": true
+              "landlord_phone": "required",
+              "lease_document": "optional",
+              "monthly_payment": "required",
+              "reason_for_leaving": "required"
             },
             "other_option_required": {
-              "housing_status": true,
-              "reason_for_leaving": false
+              "housing_status": "required",
+              "reason_for_leaving": "optional"
             },
             "own_home_option_required": {
-              "reason_for_leaving": true,
-              "monthly_mortgage_payment": true
+              "reason_for_leaving": "required",
+              "monthly_mortgage_payment": "required"
             },
             "min_required_continuous_rental_history": 2
           },
@@ -1808,7 +1505,7 @@
           "bypass_document_verification_enabled": false,
           "steps": [
             {
-              "id": 49809,
+              "id": 55277,
               "index": 0,
               "name": "address"
             }
@@ -1818,7 +1515,7 @@
           }
         },
         {
-          "id": 44228,
+          "id": 48853,
           "name": "identity_verification",
           "title": "verifications.identity-verification.applicant-title",
           "description": "verifications.identity-verification.applicant-description",
@@ -1826,6 +1523,7 @@
           "vendor": "plaid",
           "settings": {
             "selfie_check": false,
+            "tin_verification": false,
             "identity_abuse_check": {
               "stolen_identity_threshold": 90,
               "synthetic_identity_threshold": 70
@@ -1847,7 +1545,7 @@
           "requirements": null
         },
         {
-          "id": 44229,
+          "id": 48854,
           "name": "combined_income_verification",
           "title": "verifications.combined-income.title",
           "description": "verifications.combined-income.description",
@@ -1871,13 +1569,16 @@
               },
               "bank_allowed": true,
               "bank_statement": {
-                "allowed": false,
+                "allowed": true,
                 "timeframe": {
                   "unit": "month",
                   "value": 3
                 }
               },
-              "payroll_allowed": true
+              "payroll_allowed": true,
+              "benefits_statement": {
+                "allowed": true
+              }
             },
             "employment": {
               "w2": {
@@ -1908,10 +1609,13 @@
                 "allowed": true,
                 "timeframe": {
                   "unit": "month",
-                  "value": 2
+                  "value": 3
                 }
               },
-              "payroll_allowed": true
+              "payroll_allowed": true,
+              "benefits_statement": {
+                "allowed": true
+              }
             },
             "offer_letter": {
               "fields": {
@@ -1944,13 +1648,16 @@
               },
               "bank_allowed": true,
               "bank_statement": {
-                "allowed": false,
+                "allowed": true,
                 "timeframe": {
                   "unit": "month",
                   "value": 3
                 }
               },
-              "payroll_allowed": true
+              "payroll_allowed": true,
+              "benefits_statement": {
+                "allowed": true
+              }
             },
             "housing_assistance_upload": "required",
             "housing_assistance_program_enabled": true,
@@ -1965,33 +1672,33 @@
           },
           "incomes": [
             {
-              "id": 854,
+              "id": 1317,
               "type": "self_employment",
               "status": "processing",
               "pay_period": "monthly",
               "amount": {
-                "cents": 482400,
+                "cents": 774600,
                 "currency": "USD"
               },
-              "start_date": "2024-03-09",
+              "start_date": "2022-07-02",
               "additional_data": {
-                "company": "Rippin, Wiegand and Farrell",
-                "job_title": "National Program Designer"
+                "job_title": "Lead Group Agent",
+                "company_name": "Yundt, Luettgen and Homenick"
               }
             }
           ],
           "income_sources": [
             {
-              "id": 780,
-              "status": "processing",
+              "id": 1344,
+              "status": "submitted",
               "type": "paystub",
-              "income_id": 854,
+              "income_id": 1317,
               "items": [],
               "has_available_items": false,
               "additional_data": null,
               "assets": [
                 {
-                  "asset_url": "https://boom-staging.s3.amazonaws.com/staging/752248f64fdec38c3fd5d997bcdd56da.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6RCWFKPAV7ADZIA6%2F20260326%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260326T170900Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=2a36e8e0974f57eaf97bf9c585e1bd2798d7e5b90a1ba02533898042aaa54d0c",
+                  "asset_url": "https://boom-staging-nonprod.s3.us-east-2.amazonaws.com/staging/0456e2659692317a0caa8b5d833de2d0.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6RCWFKPAV7ADZIA6%2F20260621%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20260621T071434Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=de55b7fd270bca73a8f6a11e33efaed8441eba82723fcbd30695e2022fd828d9",
                   "asset_name": "Paystub.pdf"
                 }
               ]
@@ -2001,7 +1708,7 @@
           "bypass_document_verification_enabled": null,
           "steps": [
             {
-              "id": 49810,
+              "id": 55278,
               "index": 0,
               "name": "combined_income"
             }
@@ -2009,109 +1716,7 @@
           "requirements": null
         },
         {
-          "id": 44230,
-          "name": "credit_report",
-          "title": "Credit report",
-          "description": "Equifax credit report and score",
-          "status": "pending",
-          "vendor": "equifax",
-          "settings": {
-            "vendor": "equifax",
-            "pricing": [
-              {
-                "name": "credit_report_05402",
-                "amount": {
-                  "cents": 600,
-                  "currency": "USD"
-                }
-              },
-              {
-                "name": "credit_report_05206",
-                "amount": {
-                  "cents": 800,
-                  "currency": "USD"
-                }
-              },
-              {
-                "name": "credit_report_00AP4",
-                "amount": {
-                  "cents": 600,
-                  "currency": "USD"
-                }
-              }
-            ],
-            "model_number": "05206",
-            "execution_mode": "automatic",
-            "exclude_medical_debt": false,
-            "exclude_student_debt": false
-          },
-          "estimated_time": 0,
-          "index": 4,
-          "editable": false,
-          "progress": {
-            "total_steps": 0,
-            "filled_steps": 0
-          },
-          "incomes": [],
-          "income_sources": [],
-          "start_requirements": [],
-          "bypass_document_verification_enabled": false,
-          "steps": [],
-          "requirements": null
-        },
-        {
-          "id": 44231,
-          "name": "criminal_report",
-          "title": "National criminal report (US)",
-          "description": "CIC criminal background report",
-          "status": "pending",
-          "vendor": "cleara",
-          "settings": {
-            "vendor": "cleara",
-            "hide_report": false,
-            "execution_mode": "automatic"
-          },
-          "estimated_time": 0,
-          "index": 5,
-          "editable": false,
-          "progress": {
-            "total_steps": 0,
-            "filled_steps": 0
-          },
-          "incomes": [],
-          "income_sources": [],
-          "start_requirements": [],
-          "bypass_document_verification_enabled": false,
-          "steps": [],
-          "requirements": null
-        },
-        {
-          "id": 44232,
-          "name": "eviction_report",
-          "title": "Housing court report",
-          "description": "Housing court report",
-          "status": "pending",
-          "vendor": "cleara",
-          "settings": {
-            "vendor": "cleara",
-            "execution_mode": "automatic"
-          },
-          "estimated_time": 0,
-          "index": 6,
-          "editable": false,
-          "progress": {
-            "total_steps": 0,
-            "filled_steps": 0
-          },
-          "incomes": [],
-          "income_sources": [],
-          "start_requirements": [],
-          "bypass_document_verification_enabled": false,
-          "steps": [],
-          "requirements": null
-        },
-        {
-          "id": 44233,
+          "id": 48858,
           "name": "submission_disclosure",
           "title": "Review the application",
           "description": ".",
@@ -2133,7 +1738,7 @@
           "bypass_document_verification_enabled": false,
           "steps": [
             {
-              "id": 49811,
+              "id": 55279,
               "index": 0,
               "name": "submission_disclosure_step"
             }
@@ -2141,48 +1746,37 @@
           "requirements": null
         }
       ],
-      "stream_chat_token": null,
-      "stream_chat_id": "applicant-customer-166500",
-      "stream_chat_name": "Johnson Corey Schinner",
+      "stream_chat_token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiYXBwbGljYW50LWN1c3RvbWVyLTE2NzQwOCJ9.K7-PMlqQTgMazawTo4YRsIFvV0V2Rgx6Wxy4cbEiWp0",
+      "stream_chat_id": "applicant-customer-167408",
+      "stream_chat_name": "Albin Marlowe Grady",
       "application": {
-        "id": 5006,
+        "id": 5603,
         "partner": {
-          "slug": "mark-brower-properties",
-          "name": "Boom Screen (Mark Brower)",
-          "email": "richard@markrent.com",
-          "logo_url": "https://boom-staging.s3.amazonaws.com/staging/f3d7aa21794fbd0a5a420f60bdf8991e.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6RCWFKPAV7ADZIA6%2F20260326%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260326T170900Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=1b37e23fb28e077f971d3bc352f6767a93c278aec328907a7e55de79c682dc4a",
-          "is_sites_and_communities": true,
-          "is_home_site_rent": false,
-          "id": 368,
-          "colors": {
-            "primary": {
-              "20": "#a4e2ff",
-              "50": "#71d2ff",
-              "100": "#3ec2ff",
-              "200": "#0bb1ff",
-              "300": "#0092d7",
-              "400": "#0070a4",
-              "500": "#004d71",
-              "600": "#004667",
-              "700": "#003f5d",
-              "800": "#003852",
-              "900": "#003148"
-            }
-          },
+          "slug": "rms1",
+          "name": "RMS1",
+          "email": "andrii+rm+s1@boompay.app",
+          "logo_url": null,
+          "is_sites_and_communities": false,
+          "is_home_site_rent": true,
+          "is_english_only": false,
+          "id": 687,
+          "colors": null,
           "base_border_radius": null,
           "font_family": null,
           "font_family_link": null,
           "google_analytics_id": null,
           "partner_features": [
-            "chat",
-            "property_owner"
+            "property_owner",
+            "chat"
           ],
-          "property_management_system": "manage_america"
+          "property_management_system": "rent_manager"
         },
+        "property_branding": {},
         "verification_template": {
           "has_move_in_date_limit": null,
           "max_move_in_days": null,
-          "criteria_rent_type": "home",
+          "min_move_in_days": 0,
+          "criteria_rent_type": "both",
           "settings": {
             "applicant": {
               "identity_verification": {
@@ -2214,74 +1808,75 @@
           },
           "allow_role": {
             "applicant": true,
-            "co_signer": true,
-            "occupant": true
+            "co_signer": false,
+            "occupant": false
           }
         },
         "unit": {
-          "id": 167923,
-          "title": "LostHope",
+          "id": 209548,
+          "title": "Lot #103",
           "property": {
-            "name": "District 14",
+            "name": "Flagstone Manufactured Housing",
             "address": {
-              "address1": "2345 Parsons Ave",
+              "address1": "14393 Montgomery Road",
               "address2": "",
-              "city": "Columbus",
+              "city": "Cincinnati",
               "state_or_province": "OH",
-              "postal_code": "43207",
+              "postal_code": "45122",
               "country": "US",
-              "lat": 39.9135102,
-              "lng": -82.9854536,
-              "one_line_address": "2345 Parsons Ave, Columbus, OH, 43207, US"
+              "lat": 39.289109,
+              "lng": -84.3014139,
+              "one_line_address": "14393 Montgomery Road, Cincinnati, OH, 45122, US"
             }
           },
           "monthly_rent_amount": {
-            "cents": 300000,
+            "cents": 80000,
             "currency": "USD"
           },
           "home_rent_amount": {
-            "cents": 100000,
+            "cents": 50000,
             "currency": "USD"
           },
           "site_rent_amount": {
-            "cents": 200000,
+            "cents": 30000,
             "currency": "USD"
           },
-          "criteria_rent_type": "home",
-          "available_at": "2025-09-30T00:00:00.000+00:00",
-          "partner_name": "Boom Screen (Mark Brower)"
+          "criteria_rent_type": "both",
+          "available_at": null,
+          "occupied": false,
+          "partner_name": "RMS1"
         },
         "monthly_rent_amount": {
-          "cents": 100000,
+          "cents": 80000,
           "currency": "USD"
         },
         "home_rent_amount": {
-          "cents": 100000,
+          "cents": 50000,
           "currency": "USD"
         },
         "site_rent_amount": {
-          "cents": 200000,
+          "cents": 30000,
           "currency": "USD"
         },
         "base_rent_amount": {
-          "cents": 100000,
+          "cents": 80000,
           "currency": "USD"
         },
         "applicants": [
           {
-            "id": 5688,
-            "application_id": 5006,
+            "id": 6317,
+            "application_id": 5603,
             "role": "applicant",
-            "first_name": "Johnson",
-            "last_name": "Schinner",
-            "middle_name": "Corey",
-            "email": "v99bp7ua8aj2@sharebot.net",
-            "application_status": "finished",
+            "first_name": "Albin",
+            "last_name": "Grady",
+            "middle_name": "Marlowe",
+            "email": "luxya3pcbnvc+sandbox@web-library.net",
+            "application_status": "submitted",
             "retry_identity_verification_status": "not_available",
             "fast_track_idv_status": "completed",
             "verifications": [
               {
-                "id": 44226,
+                "id": 48851,
                 "name": "rental_application",
                 "title": "verifications.personal-details.title",
                 "description": "verifications.personal-details.description",
@@ -2336,7 +1931,7 @@
                 "bypass_document_verification_enabled": false
               },
               {
-                "id": 44227,
+                "id": 48852,
                 "name": "housing_history",
                 "title": "verifications.housing-history.title",
                 "description": "verifications.housing-history.description",
@@ -2345,18 +1940,18 @@
                 "settings": {
                   "address_step_enabled": true,
                   "rent_option_required": {
-                    "landlord_phone": true,
-                    "lease_document": false,
-                    "monthly_payment": true,
-                    "reason_for_leaving": true
+                    "landlord_phone": "required",
+                    "lease_document": "optional",
+                    "monthly_payment": "required",
+                    "reason_for_leaving": "required"
                   },
                   "other_option_required": {
-                    "housing_status": true,
-                    "reason_for_leaving": false
+                    "housing_status": "required",
+                    "reason_for_leaving": "optional"
                   },
                   "own_home_option_required": {
-                    "reason_for_leaving": true,
-                    "monthly_mortgage_payment": true
+                    "reason_for_leaving": "required",
+                    "monthly_mortgage_payment": "required"
                   },
                   "min_required_continuous_rental_history": 2
                 },
@@ -2373,7 +1968,7 @@
                 "bypass_document_verification_enabled": false
               },
               {
-                "id": 44228,
+                "id": 48853,
                 "name": "identity_verification",
                 "title": "verifications.identity-verification.applicant-title",
                 "description": "verifications.identity-verification.applicant-description",
@@ -2381,6 +1976,7 @@
                 "vendor": "plaid",
                 "settings": {
                   "selfie_check": false,
+                  "tin_verification": false,
                   "identity_abuse_check": {
                     "stolen_identity_threshold": 90,
                     "synthetic_identity_threshold": 70
@@ -2400,7 +1996,7 @@
                 "bypass_document_verification_enabled": false
               },
               {
-                "id": 44229,
+                "id": 48854,
                 "name": "combined_income_verification",
                 "title": "verifications.combined-income.title",
                 "description": "verifications.combined-income.description",
@@ -2424,13 +2020,16 @@
                     },
                     "bank_allowed": true,
                     "bank_statement": {
-                      "allowed": false,
+                      "allowed": true,
                       "timeframe": {
                         "unit": "month",
                         "value": 3
                       }
                     },
-                    "payroll_allowed": true
+                    "payroll_allowed": true,
+                    "benefits_statement": {
+                      "allowed": true
+                    }
                   },
                   "employment": {
                     "w2": {
@@ -2461,10 +2060,13 @@
                       "allowed": true,
                       "timeframe": {
                         "unit": "month",
-                        "value": 2
+                        "value": 3
                       }
                     },
-                    "payroll_allowed": true
+                    "payroll_allowed": true,
+                    "benefits_statement": {
+                      "allowed": true
+                    }
                   },
                   "offer_letter": {
                     "fields": {
@@ -2497,13 +2099,16 @@
                     },
                     "bank_allowed": true,
                     "bank_statement": {
-                      "allowed": false,
+                      "allowed": true,
                       "timeframe": {
                         "unit": "month",
                         "value": 3
                       }
                     },
-                    "payroll_allowed": true
+                    "payroll_allowed": true,
+                    "benefits_statement": {
+                      "allowed": true
+                    }
                   },
                   "housing_assistance_upload": "required",
                   "housing_assistance_program_enabled": true,
@@ -2518,33 +2123,33 @@
                 },
                 "incomes": [
                   {
-                    "id": 854,
+                    "id": 1317,
                     "type": "self_employment",
                     "status": "processing",
                     "pay_period": "monthly",
                     "amount": {
-                      "cents": 482400,
+                      "cents": 774600,
                       "currency": "USD"
                     },
-                    "start_date": "2024-03-09",
+                    "start_date": "2022-07-02",
                     "additional_data": {
-                      "company": "Rippin, Wiegand and Farrell",
-                      "job_title": "National Program Designer"
+                      "job_title": "Lead Group Agent",
+                      "company_name": "Yundt, Luettgen and Homenick"
                     }
                   }
                 ],
                 "income_sources": [
                   {
-                    "id": 780,
-                    "status": "processing",
+                    "id": 1344,
+                    "status": "submitted",
                     "type": "paystub",
-                    "income_id": 854,
+                    "income_id": 1317,
                     "items": [],
                     "has_available_items": false,
                     "additional_data": null,
                     "assets": [
                       {
-                        "asset_url": "https://boom-staging.s3.amazonaws.com/staging/752248f64fdec38c3fd5d997bcdd56da.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6RCWFKPAV7ADZIA6%2F20260326%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260326T170900Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=2a36e8e0974f57eaf97bf9c585e1bd2798d7e5b90a1ba02533898042aaa54d0c",
+                        "asset_url": "https://boom-staging-nonprod.s3.us-east-2.amazonaws.com/staging/0456e2659692317a0caa8b5d833de2d0.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6RCWFKPAV7ADZIA6%2F20260621%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20260621T071434Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=de55b7fd270bca73a8f6a11e33efaed8441eba82723fcbd30695e2022fd828d9",
                         "asset_name": "Paystub.pdf"
                       }
                     ]
@@ -2554,103 +2159,7 @@
                 "bypass_document_verification_enabled": null
               },
               {
-                "id": 44230,
-                "name": "credit_report",
-                "title": "Credit report",
-                "description": "Equifax credit report and score",
-                "status": "pending",
-                "vendor": "equifax",
-                "settings": {
-                  "vendor": "equifax",
-                  "pricing": [
-                    {
-                      "name": "credit_report_05402",
-                      "amount": {
-                        "cents": 600,
-                        "currency": "USD"
-                      }
-                    },
-                    {
-                      "name": "credit_report_05206",
-                      "amount": {
-                        "cents": 800,
-                        "currency": "USD"
-                      }
-                    },
-                    {
-                      "name": "credit_report_00AP4",
-                      "amount": {
-                        "cents": 600,
-                        "currency": "USD"
-                      }
-                    }
-                  ],
-                  "model_number": "05206",
-                  "execution_mode": "automatic",
-                  "exclude_medical_debt": false,
-                  "exclude_student_debt": false
-                },
-                "estimated_time": 0,
-                "index": 4,
-                "editable": false,
-                "progress": {
-                  "total_steps": 0,
-                  "filled_steps": 0
-                },
-                "incomes": [],
-                "income_sources": [],
-                "start_requirements": [],
-                "bypass_document_verification_enabled": false
-              },
-              {
-                "id": 44231,
-                "name": "criminal_report",
-                "title": "National criminal report (US)",
-                "description": "CIC criminal background report",
-                "status": "pending",
-                "vendor": "cleara",
-                "settings": {
-                  "vendor": "cleara",
-                  "hide_report": false,
-                  "execution_mode": "automatic"
-                },
-                "estimated_time": 0,
-                "index": 5,
-                "editable": false,
-                "progress": {
-                  "total_steps": 0,
-                  "filled_steps": 0
-                },
-                "incomes": [],
-                "income_sources": [],
-                "start_requirements": [],
-                "bypass_document_verification_enabled": false
-              },
-              {
-                "id": 44232,
-                "name": "eviction_report",
-                "title": "Housing court report",
-                "description": "Housing court report",
-                "status": "pending",
-                "vendor": "cleara",
-                "settings": {
-                  "vendor": "cleara",
-                  "execution_mode": "automatic"
-                },
-                "estimated_time": 0,
-                "index": 6,
-                "editable": false,
-                "progress": {
-                  "total_steps": 0,
-                  "filled_steps": 0
-                },
-                "incomes": [],
-                "income_sources": [],
-                "start_requirements": [],
-                "bypass_document_verification_enabled": false
-              },
-              {
-                "id": 44233,
+                "id": 48858,
                 "name": "submission_disclosure",
                 "title": "Review the application",
                 "description": ".",
@@ -2672,22 +2181,24 @@
                 "bypass_document_verification_enabled": false
               }
             ],
-            "stream_chat_token": null,
-            "stream_chat_id": "applicant-customer-166500",
-            "stream_chat_name": "Johnson Corey Schinner"
+            "stream_chat_token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiYXBwbGljYW50LWN1c3RvbWVyLTE2NzQwOCJ9.K7-PMlqQTgMazawTo4YRsIFvV0V2Rgx6Wxy4cbEiWp0",
+            "stream_chat_id": "applicant-customer-167408",
+            "stream_chat_name": "Albin Marlowe Grady"
           }
         ],
-        "status": "started",
+        "status": "submitted",
         "screening_status": "processing",
-        "desired_move_in_date": "2026-03-31",
+        "desired_move_in_date": "2026-06-30",
+        "desired_lease_term": null,
+        "lease_term_enabled": false,
         "conditions": [],
-        "partner_name_in_submission_disclosure": "District 14",
+        "partner_name_in_submission_disclosure": "RMS1",
         "has_multiple_applicants": null,
         "has_multiple_guarantors": null,
         "allow_occupants": null
       },
       "fee": {
-        "cents": 3000,
+        "cents": 0,
         "currency": "USD"
       },
       "application_fee": {
@@ -2703,35 +2214,19 @@
             "currency": "USD"
           },
           "status": "due"
-        },
-        {
-          "fee_type": "holding_fee",
-          "description": "Holding fee",
-          "amount": {
-            "cents": 1000,
-            "currency": "USD"
-          },
-          "status": "due"
-        },
-        {
-          "fee_type": "administration_fee",
-          "description": "Administration fee",
-          "amount": {
-            "cents": 2000,
-            "currency": "USD"
-          },
-          "status": "due"
         }
       ],
       "can_checkout": true,
       "ineligible_to_checkout_reason": null,
       "requirements": [],
-      "intercom_id": "applicant-5688",
+      "intercom_id": "applicant-6317",
       "is_manual": false,
+      "application_started_at": "2026-06-21T07:13:56.239+00:00",
       "discount_info": null,
       "invited_by_applicant_id": null,
       "has_passed_invite_flow": true,
       "can_invite_others": true
-    }
+    },
+    "reverify_requests": []
   }
 }

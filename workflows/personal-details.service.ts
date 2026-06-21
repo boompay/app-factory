@@ -213,7 +213,7 @@ export async function submitCombinedIncome(
       type: "self_employment",
       start_date: employee.startDate,
       additional_data:{
-        company: employee.company,
+        company_name: employee.company,
         job_title: employee.jobTitle,
       },
       amount:{

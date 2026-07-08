@@ -1,21 +1,12 @@
 import { ApiClient } from "../services";
 import { AppInfo, getCurrentApplicant } from "../models";
 import { PersonalDetailsStepConfig } from "../types";
-import { APP_CONFIG, INCOME_SOURCE_DETAILS } from "../config";
+import { APP_CONFIG } from "../config";
 import { LoggerProvider } from "../services";
 import {
   randomFullName,
   generateRandomUsCaPhone,
-  getRandomAddress,
-  randomInt,
-  generateEmployeeData,
 } from "../helpers";
-import {
-  readFileAsBuffer,
-  uploadFileToS3Bucket,
-  PresignResponse,
-} from "../utils";
-import { CONTENT_TYPES } from "../constants";
 
 const logger = LoggerProvider.create("application-personal-details");
 
@@ -37,13 +28,14 @@ export async function submitPersonalDetailsSteps(
 }
 
 export function createPersonalDetailsStepsConfig(
-  app: AppInfo
+  app: AppInfo,
+  applicantIndex = 0
 ): PersonalDetailsStepConfig[] {
-  const currentApplicant = getCurrentApplicant(app);
+  const currentApplicant = getCurrentApplicant(app, applicantIndex);
   if (!currentApplicant) {
     throw new Error("Current applicant not found");
   }
-  
+
   return [
     {
       stepName: APP_CONFIG.STEP_NAMES.PERSONAL_DETAILS,
@@ -53,7 +45,7 @@ export function createPersonalDetailsStepsConfig(
           contact_last_name: currentApplicant.last_name!,
           contact_middle_name: currentApplicant.middle_name!,
           contact_email: currentApplicant.email!.email,
-          contact_phone_number: `+1${currentApplicant.phone!}`
+          contact_phone_number: `+1${currentApplicant.phone!}`,
         },
       }),
     },
@@ -115,380 +107,17 @@ export function createPersonalDetailsStepsConfig(
 
 export async function submitPersonalDetails(
   api: ApiClient,
-  app: AppInfo
+  app: AppInfo,
+  applicantIndex = 0
 ): Promise<void> {
-  const personalDetailsSteps = createPersonalDetailsStepsConfig(app);
+  const personalDetailsSteps = createPersonalDetailsStepsConfig(
+    app,
+    applicantIndex
+  );
   await submitPersonalDetailsSteps(
     api,
     app.id!,
     app.verifications!.personal_details!,
     personalDetailsSteps
   );
-}
-
-export async function submitHousingHistory(
-  api: ApiClient,
-  app: AppInfo
-): Promise<void> {
-  var addressPayload;
-  const address = await getRandomAddress("us");
-  const apartNumber = randomInt(1, 100).toString();
-  if (APP_CONFIG.DEFAULT_VALUES.HOUSING_TYPE === "Own my home") {
-   addressPayload = {
-    data: {
-      address: [
-        {
-          housing_type: APP_CONFIG.DEFAULT_VALUES.HOUSING_TYPE,
-          own_home: {
-            address: `${address.housenumber} ${address.street},${apartNumber}, ${address.city}, ${address.state} ${address.postcode}`,
-            address_components: {
-              address1: `${address.housenumber} ${address.street}`,
-              address2: apartNumber,
-              city: address.city,
-              state: address.state,
-              zip: address.postcode,
-              country: address.country_code!.toUpperCase() || "US",
-              county: address.county,
-            },
-            current_residence: true,
-            move_in_date: "2020-01-01",
-            monthly_mortgage_payment: randomInt(1000, 3000),
-            reason_for_leaving: "Just because",
-          },
-        },
-      ],
-    },
-  };
-  }
-  else {
-    const leaseDocumentAssetId = await uploadLeaseAgreement(api, app, "./test-data/LeaseAgreement.pdf");
-    addressPayload = {
-      data: {
-        address: [
-          {
-            housing_type: APP_CONFIG.DEFAULT_VALUES.HOUSING_TYPE,
-            rent: {
-              address: `${address.housenumber} ${address.street},${apartNumber}, ${address.city}, ${address.state} ${address.postcode}`,
-              address_components: {
-                address1: `${address.housenumber} ${address.street}`,
-                address2: apartNumber,
-                city: address.city,
-                state: address.state,
-                zip: address.postcode,
-                country: address.country_code!.toUpperCase() || "US",
-                county: address.county,
-              },
-              current_residence: true,
-              move_in_date: "2020-01-01",
-              monthly_payment: randomInt(1000, 3000),
-              reason_for_leaving: "Why not?",
-              landlord_name: "Franky",
-              landlord_email: "andrii+ll@boompay.app",
-              landlord_phone: "+14324536345",
-              lease_document: [
-                  leaseDocumentAssetId
-              ],
-            }
-          },
-        ],
-      },
-    };
-  }
-  await api.providePersonalDetailsSteps(
-    app.id!,
-    app.verifications!.housing_history!,
-    APP_CONFIG.STEP_NAMES.HOUSING_HISTORY,
-    addressPayload
-  );
-  logger.info(`Submitted housing history`);
-}
-
-
-export async function submitCombinedIncome(
-  api: ApiClient,
-  app: AppInfo
-): Promise<void> {
-  const employee = generateEmployeeData();
-  const employmentPayload = {
-      type: "self_employment",
-      start_date: employee.startDate,
-      additional_data:{
-        company_name: employee.company,
-        job_title: employee.jobTitle,
-      },
-      amount:{
-        cents: employee.monthlySalary * 100,
-        currency: "USD",
-      },
-      pay_period: "monthly"
-    };
-
-  let incomeVResponse = await api.postIncomeVerificationDetails(
-    app.id!,
-    app.verifications!.combined_income!,
-    "income",
-    employmentPayload
-  );
-  let incomeVerificationDetails = await incomeVResponse.json();
-  app.incomeId = incomeVerificationDetails.id;
-  logger.info(`Submitted first part of combined income verification: ${app.incomeId}`);
-
-  const incomeSourceConfig =
-    INCOME_SOURCE_DETAILS[APP_CONFIG.DEFAULT_VALUES.INCOME_SOURCE];
-
-  const incomeSourcePayload = {
-    income_id: app.incomeId,
-    type: incomeSourceConfig.apiType,
-  };
-
-  let incomeSourceResponse = await api.postIncomeVerificationDetails(
-    app.id!,
-    app.verifications!.combined_income!,
-    "income_sources",
-    incomeSourcePayload
-  );
-  let incomeSourceDetails = await incomeSourceResponse.json();
-  app.incomeSourceId = incomeSourceDetails.id;
-  logger.info(`Submitted second part of combined income verification: ${app.incomeSourceId}`);
-
-  await uploadDocument(
-    api,
-    app,
-    incomeSourceConfig.filePath,
-    incomeSourceConfig.documentType
-  );
-
-  await api.postIncomeVerificationDetails(
-    app.id!,
-    app.verifications!.combined_income!,
-    "finish"
-  );
-}
-
-export async function passSubmissionDisclosure(
-  api: ApiClient,
-  app: AppInfo
-): Promise<void> {
-  // Upload signature and get asset global_id
-  const signatureAssetId = await uploadSignature(api, app, "./test-data/signature.svg");
-  const currentApplicant = getCurrentApplicant(app);
-  if (!currentApplicant) {
-    throw new Error("Current applicant not found");
-  }
-  const middleInitial = currentApplicant.middle_name && currentApplicant.middle_name.length > 0 
-    ? `${currentApplicant.middle_name[0]}. ` 
-    : "";
-  const signatureAssetIdPayload = {
-    data: {
-      full_name: `${currentApplicant.first_name || ""} ${middleInitial}${currentApplicant.last_name || ""}`,
-      signature: signatureAssetId
-    }
-  };
-
-  await api.providePersonalDetailsSteps(
-    app.id!,
-    app.verifications!.submission_disclosure!,
-    APP_CONFIG.STEP_NAMES.SUBMISSION_DISCLOSURE,
-    signatureAssetIdPayload
-  );
-
-  logger.info(`Submitted submission disclosure`);
-  logger.info(`Signature uploaded with asset ID: ${signatureAssetId}`);
-}
-
-type UploadedFileInfo = {
-  url: string;
-  size: number;
-  filename: string;
-  contentType: string;
-};
-
-/**
- * Common helper that:
- * 1) requests a presigned URL
- * 2) reads the local file
- * 3) uploads the file to S3
- * and returns basic metadata about the uploaded file.
- */
-async function presignAndUploadFile(
-  api: ApiClient,
-  filePath: string,
-  explicitContentType?: string
-): Promise<UploadedFileInfo> {
-  const filename = filePath.split(/[/\\]/).pop() || "document";
-
-  const inferredContentType =
-    explicitContentType ??
-    (filename.endsWith(".pdf")
-      ? CONTENT_TYPES.PDF
-      : filename.endsWith(".svg")
-      ? "image/svg+xml"
-      : CONTENT_TYPES.OCTET_STREAM);
-
-  logger.info(`Getting presigned URL for file: ${filename}`);
-  const presignResponse = await api.getPresignedUrl(
-    filename,
-    inferredContentType
-  );
-  const presignData: PresignResponse = await presignResponse.json();
-
-  if (!presignData.url) {
-    throw new Error("Failed to get presigned URL: missing url in response");
-  }
-
-  logger.info(`Reading file from: ${filePath}`);
-  const fileBuffer = await readFileAsBuffer(filePath);
-  const fileSize = fileBuffer.length;
-
-  logger.info(`Uploading file to S3: ${presignData.url}`);
-  await uploadFileToS3Bucket(presignData.url, fileBuffer, inferredContentType);
-  logger.info(`File uploaded successfully to S3`);
-
-  return {
-    url: presignData.url,
-    size: fileSize,
-    filename,
-    contentType: inferredContentType,
-  };
-}
-
-/**
- * Uploads a signature SVG file and returns the asset global_id
- * @param api - The API client
- * @param app - The application info
- * @param filePath - Path to the SVG signature file
- * @returns The global_id of the created asset
- */
-export async function uploadSignature(
-  api: ApiClient,
-  app: AppInfo,
-  filePath: string
-): Promise<string> {
-  // Reuse common helper with explicit SVG content type
-  const uploaded = await presignAndUploadFile(
-    api,
-    filePath,
-    "image/svg+xml"
-  );
-
-  // Step 3: Create asset and get global_id
-  const assetPayload = {
-    url: uploaded.url,
-    metadata: {
-      size: uploaded.size,
-      original_filename: uploaded.filename,
-      content_type: uploaded.contentType,
-    },
-  };
-
-  logger.info(`Creating asset record for signature`);
-  try {
-    const assetResponse = await api.createAsset(app.id!, assetPayload, undefined, 60000);
-    const assetData = await assetResponse.json();
-    
-    if (assetData.asset?.global_id) {
-      logger.info(`Signature asset created successfully. Asset ID: ${assetData.asset.global_id}`);
-      return assetData.asset.global_id;
-    } else {
-      logger.error(`Failed to get asset ID from asset response: ${JSON.stringify(assetData)}`);
-      throw new Error("Failed to get asset ID from asset creation response");
-    }
-  } catch (error: any) {
-    const errorMessage = error?.message || String(error);
-    logger.error(`Failed to create signature asset after retries: ${errorMessage}`);
-    throw new Error(`Signature asset creation failed: ${errorMessage}`);
-  }
-}
-
-/**
- * Uploads a LeaseAgreement PDF file and returns the asset global_id
- * @param api - The API client
- * @param app - The application info
- * @param filePath - Path to the LeaseAgreement PDF file
- * @returns The global_id of the created asset
- */
-export async function uploadLeaseAgreement(
-  api: ApiClient,
-  app: AppInfo,
-  filePath: string
-): Promise<string> {
-  // Reuse common helper with explicit SVG content type
-  const uploaded = await presignAndUploadFile(
-    api,
-    filePath,
-    "application/pdf"
-  );
-
-  // Step 3: Create asset and get global_id
-  const assetPayload = {
-    url: uploaded.url,
-    metadata: {
-      size: uploaded.size,
-      original_filename: uploaded.filename,
-      content_type: uploaded.contentType,
-    },
-  };
-
-  logger.info(`Creating asset record for LeaseAgreement`);
-  try {
-    const assetResponse = await api.createAsset(app.id!, assetPayload, undefined, 60000);
-    const assetData = await assetResponse.json();
-    
-    if (assetData.asset?.global_id) {
-      logger.info(`LeaseAgreement asset created successfully. Asset ID: ${assetData.asset.global_id}`);
-      return assetData.asset.global_id;
-    } else {
-      logger.error(`Failed to get asset ID from asset response: ${JSON.stringify(assetData)}`);
-      throw new Error("Failed to get asset ID from LeaseAgreement asset creation response");
-    }
-  } catch (error: any) {
-    const errorMessage = error?.message || String(error);
-    logger.error(`Failed to create LeaseAgreement asset after retries: ${errorMessage}`);
-    throw new Error(`LeaseAgreement asset creation failed: ${errorMessage}`);
-  }
-}
-
-export async function uploadDocument(
-  api: ApiClient,
-  app: AppInfo,
-  filePath: string,
-  documentType: string
-): Promise<string> {
-  if (!app.incomeSourceId) {
-    throw new Error("incomeSourceId is required for document upload");
-  }
-
-  // Reuse common helper for presign + upload
-  const uploaded = await presignAndUploadFile(api, filePath);
-
-  // Step 3: Create document record
-  const documentPayload = {
-    documents: [
-      {
-        document_type: documentType,
-        url: uploaded.url,
-        metadata: {
-          size: uploaded.size,
-          original_filename: uploaded.filename,
-          content_type: uploaded.contentType,
-        },
-      },
-    ],
-  };
-
-  logger.info(`Creating document record for income source: ${app.incomeSourceId}`);
-  const documentResponse = await api.uploadDocumentsToIncomeSource(
-    app.id!,
-    app.verifications!.combined_income!,
-    app.incomeSourceId,
-    documentPayload
-  );
-  const documentData = await documentResponse.json();
-  
-  if (documentData.assets?.items?.length > 0) {
-    logger.info(`Document uploaded successfully. Asset ID: ${documentData.assets.items[0].global_id}`);
-    return documentData.assets.items[0].global_id;
-  }
-  logger.warn("Document upload completed but no assets returned in response");
-  throw new Error("Failed to get asset ID from document upload response");
 }

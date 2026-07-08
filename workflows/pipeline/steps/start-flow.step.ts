@@ -9,6 +9,6 @@ export const startFlowStep: PipelineStep = {
     await startApplicationFlow(ctx.api, ctx.app, writeTestData, {
       application: APP_CONFIG.PATHS.TEST_DATA_APPLICATION,
       applicant: APP_CONFIG.PATHS.TEST_DATA_APPLICANT,
-    });
+    }, ctx.applicantIndex);
   },
 };

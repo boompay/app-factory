@@ -9,10 +9,10 @@ export const submitStep: PipelineStep = {
   name: "submit",
   snapshot: { delayMs: 2000 },
   async execute(ctx) {
-    await submitApplication(ctx.api, ctx.app);
+    await submitApplication(ctx.api, ctx.app, ctx.applicantIndex);
   },
   async afterSnapshot(ctx) {
-    const finalApplicant = getCurrentApplicant(ctx.app);
+    const finalApplicant = getCurrentApplicant(ctx.app, ctx.applicantIndex);
     if (!finalApplicant) {
       throw new Error("Current applicant not found");
     }

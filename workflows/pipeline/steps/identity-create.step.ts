@@ -9,7 +9,7 @@ export const identityCreateStep: PipelineStep = {
   async execute(ctx) {
     logger.info("Starting identity verification process");
 
-    const currentApplicant = getCurrentApplicant(ctx.app);
+    const currentApplicant = getCurrentApplicant(ctx.app, ctx.applicantIndex);
     if (!currentApplicant?.id) {
       throw new Error("Current applicant not found or missing ID");
     }

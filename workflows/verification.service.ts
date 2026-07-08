@@ -1,5 +1,6 @@
 import { Verification } from "../types";
 import { APP_CONFIG } from "../config";
+import { AppInfo } from "../models";
 
 export function extractVerificationId(
   verifications: Verification[],
@@ -17,45 +18,54 @@ export function extractVerificationId(
   return verification.id.toString();
 }
 
-export function setupVerifications(app: any, enrollResponse: any): void {
+export function setupVerificationsFromApplicant(
+  app: AppInfo,
+  applicantData: { verifications: Verification[] }
+): void {
   if (!app.verifications) {
     app.verifications = {};
   }
 
-  const currentApplicant = enrollResponse.application.current_applicant;
-  if (!currentApplicant || !currentApplicant.verifications) {
-    throw new Error("Enroll response missing current_applicant.verifications");
+  if (!applicantData.verifications) {
+    throw new Error("Applicant data missing verifications");
   }
 
   app.verifications.personal_details = extractVerificationId(
-    currentApplicant.verifications,
+    applicantData.verifications,
     APP_CONFIG.VERIFICATION_NAMES.PERSONAL_DETAILS,
     "Personal details"
   );
 
   app.verifications.housing_history = extractVerificationId(
-    currentApplicant.verifications,
+    applicantData.verifications,
     APP_CONFIG.VERIFICATION_NAMES.HOUSING_HISTORY,
     "Housing history"
   );
 
   app.verifications.identity = extractVerificationId(
-    currentApplicant.verifications,
+    applicantData.verifications,
     APP_CONFIG.VERIFICATION_NAMES.IDENTITY,
     "Identity"
   );
 
   app.verifications.combined_income = extractVerificationId(
-    currentApplicant.verifications,
+    applicantData.verifications,
     APP_CONFIG.VERIFICATION_NAMES.COMBINED_INCOME,
     "Combined income"
   );
 
   app.verifications.submission_disclosure = extractVerificationId(
-    currentApplicant.verifications,
+    applicantData.verifications,
     APP_CONFIG.VERIFICATION_NAMES.SUBMISSION_DISCLOSURE,
     "Submission disclosure"
   );
-
 }
 
+export function setupVerifications(app: AppInfo, enrollResponse: any): void {
+  const currentApplicant = enrollResponse.application.current_applicant;
+  if (!currentApplicant || !currentApplicant.verifications) {
+    throw new Error("Enroll response missing current_applicant.verifications");
+  }
+
+  setupVerificationsFromApplicant(app, currentApplicant);
+}

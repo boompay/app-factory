@@ -1,9 +1,10 @@
 import { ApiClient, LoggerProvider } from "../services";
-import { AppInfo, Email, getCurrentApplicant } from "../models";
+import { AppInfo, getCurrentApplicant } from "../models";
 import { randomFullName, createTestInbox } from "../helpers";
 import { transformStatusFields } from "../utils";
 import { APP_CONFIG } from "../config";
 import { inviteCoApplicant } from "./applicant-invitation.service";
+import { Email } from "../models";
 
 const logger = LoggerProvider.create("application-enrollment");
 
@@ -47,15 +48,12 @@ export async function enrollApplication(
     },
   });
 
-  // Parse the JSON response
   const enrollResponse = await enrollResponseRaw.json();
 
-  // Update app with enrollment data
   app.id = enrollResponse.application.id;
   if (!app.applicants) {
     app.applicants = [];
   }
-  // Update or create the first applicant
   if (app.applicants.length === 0) {
     app.applicants.unshift({});
   }
@@ -68,61 +66,111 @@ export async function enrollApplication(
   return { enrollResponse, user, email };
 }
 
+export async function resolveApplicantId(
+  api: ApiClient,
+  app: AppInfo,
+  applicantIndex: number
+): Promise<string> {
+  const applicant = getCurrentApplicant(app, applicantIndex);
+  if (!applicant) {
+    throw new Error(`Applicant at index ${applicantIndex} not found`);
+  }
+
+  if (applicant.id) {
+    return applicant.id;
+  }
+
+  const appDetailsRaw = await api.getApplicationDetails(app.id!);
+  const appDetails = await appDetailsRaw.json();
+  const email = applicant.email?.email;
+  const apiApplicants = appDetails.application?.applicants ?? [];
+  const matchedApplicant =
+    apiApplicants.find((entry: { email?: string }) => entry.email === email) ??
+    appDetails.application?.current_applicant;
+
+  if (!matchedApplicant?.id) {
+    throw new Error(
+      `Could not resolve applicant ID for index ${applicantIndex}`
+    );
+  }
+
+  applicant.id = matchedApplicant.id;
+  return matchedApplicant.id;
+}
+
+export async function passApplicantInviteFlow(
+  api: ApiClient,
+  app: AppInfo,
+  applicantIndex: number,
+  writeTestData?: (filePath: string, data: any) => Promise<void>,
+  testDataPaths?: { applicant: string }
+): Promise<void> {
+  const applicantId = await resolveApplicantId(api, app, applicantIndex);
+  const passInviteResponseRaw = await api.passInviteFlow(applicantId);
+  const passInviteResponse = await passInviteResponseRaw.json();
+
+  if (writeTestData && testDataPaths) {
+    await writeTestData(testDataPaths.applicant, passInviteResponse);
+  }
+
+  logger.info(`Passed invite flow for applicant ID: ${applicantId}`);
+}
+
 export async function startApplicationFlow(
   api: ApiClient,
   app: AppInfo,
   writeTestData: (filePath: string, data: any) => Promise<void>,
-  testDataPaths: { application: string; applicant: string }
+  testDataPaths: { application: string; applicant: string },
+  applicantIndex = 0
 ): Promise<void> {
-  let applicantIndex = APP_CONFIG.ACTORS.APPLICANT;
+  let coApplicantCount = APP_CONFIG.ACTORS.APPLICANT;
   let occupantIndex = APP_CONFIG.ACTORS.OCCUPANT;
   let guarantorsIndex = APP_CONFIG.ACTORS.GUARANTOR;
   const startResponseRaw = await api.startApplication(app.id!);
   const startResponse = await startResponseRaw.json();
   await writeTestData(testDataPaths.application, startResponse);
 
-  const currentApplicant = getCurrentApplicant(app);
-  if (!currentApplicant || !currentApplicant.id) {
-    throw new Error("Current applicant not found or missing ID");
+  getCurrentApplicant(app, applicantIndex);
+
+  while (coApplicantCount > 0) {
+    await inviteCoApplicant(api, app, "applicant");
+    coApplicantCount--;
   }
-  
-  //Invite co-applicant if there are multiple applicants
-  while(applicantIndex > 0) {    
-    const { magicLink } = await inviteCoApplicant(api, app, "applicant");
-    applicantIndex--;
-  }
-  
-  //Invite occupants if there are occupants
-  while(occupantIndex > 0) {    
-    const { magicLink } = await inviteCoApplicant(api, app, "occupant");
+
+  while (occupantIndex > 0) {
+    await inviteCoApplicant(api, app, "occupant");
     occupantIndex--;
   }
-  
-  //Invite guarantors if there are guarantors
-  while(guarantorsIndex > 0) {    
-    const { magicLink } = await inviteCoApplicant(api, app, "co_signer");
+
+  while (guarantorsIndex > 0) {
+    await inviteCoApplicant(api, app, "co_signer");
     guarantorsIndex--;
   }
 
-  const passInviteResponseRaw = await api.passInviteFlow(currentApplicant.id);
-  const passInviteResponse = await passInviteResponseRaw.json();
-  await writeTestData(testDataPaths.applicant, passInviteResponse);
-  logger.info(`Passed invite flow for applicant ID: ${currentApplicant.id}`);
+  await passApplicantInviteFlow(
+    api,
+    app,
+    applicantIndex,
+    writeTestData,
+    { applicant: testDataPaths.applicant }
+  );
 }
 
 export async function submitApplication(
   api: ApiClient,
-  app: AppInfo
+  app: AppInfo,
+  applicantIndex = 0
 ): Promise<void> {
   const appResponseRaw = await api.getApplicationDetails(app.id!);
   const appResponse = await appResponseRaw.json();
-  
-  // Transform the response: status "started" → "submitted", application_status "finished" → "submitted"
+
   const payload = transformStatusFields(appResponse);
   await api.updateApplication(app.id!, payload);
-  const currentApplicant = getCurrentApplicant(app);
-  if (!currentApplicant || !currentApplicant.id || !currentApplicant.phone) {
+  const currentApplicant = getCurrentApplicant(app, applicantIndex);
+  if (!currentApplicant?.id || !currentApplicant.phone) {
     throw new Error("Current applicant not found or missing required fields");
   }
-  logger.info(`Application ${app.id!} for applicant ${currentApplicant.id} with phone number ${currentApplicant.phone} successfully submitted`);
+  logger.info(
+    `Application ${app.id!} for applicant ${currentApplicant.id} with phone number ${currentApplicant.phone} successfully submitted`
+  );
 }

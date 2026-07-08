@@ -2,7 +2,7 @@ import { LoggerProvider } from "./services";
 import {
   bootstrapRun,
   runApplicantPipeline,
-  runCoApplicantAuth,
+  runCoApplicants,
 } from "./workflows/pipeline";
 
 const logger = LoggerProvider.create("application-runner");
@@ -15,7 +15,7 @@ export async function run(link: string): Promise<void> {
   try {
     const ctx = await bootstrapRun(link);
     await runApplicantPipeline(ctx);
-    await runCoApplicantAuth(ctx);
+    await runCoApplicants(ctx);
   } catch (error) {
     const message =
       error instanceof Error ? (error.stack ?? error.message) : String(error);

@@ -48,11 +48,14 @@ export interface AppInfo {
 }
 
 /**
- * Gets the current applicant from the applicants array.
- * Returns the first applicant if available, or undefined if the array is empty.
+ * Gets the applicant at the given index in the applicants array.
  * @param app - The AppInfo object
- * @returns The current applicant or undefined
+ * @param applicantIndex - Index of the active applicant (defaults to primary)
+ * @returns The applicant or undefined
  */
-export function getCurrentApplicant(app: AppInfo): Applicant | undefined {
-  return app.applicants && app.applicants.length > 0 ? app.applicants[0] : undefined;
+export function getCurrentApplicant(
+  app: AppInfo,
+  applicantIndex = 0
+): Applicant | undefined {
+  return app.applicants?.[applicantIndex];
 }

@@ -1,6 +1,6 @@
 import { getCurrentApplicant } from "../../../models";
 import { LoggerProvider } from "../../../services";
-import { submitApplication } from "../../enrollment.service";
+import { submitApplication } from "../../submission.service";
 import { PipelineStep } from "../pipeline-step";
 
 const logger = LoggerProvider.create("application-runner");

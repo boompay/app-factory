@@ -1,4 +1,5 @@
-import { AuthTokenProvider, LoggerProvider } from "../../services";
+import { AuthTokenProvider, initializeApi, LoggerProvider } from "../../services";
+import { APP_CONFIG } from "../../config";
 import {
   clearLogFiles,
   extractBaseUrlFromLink,
@@ -7,8 +8,7 @@ import {
   validateRequiredEnv,
   writeAppInfo,
 } from "../../utils";
-import { APP_CONFIG } from "../../config";
-import { enrollApplication, initializeApi } from "../enrollment.service";
+import { enrollApplication } from "../enrollment.service";
 import { setupVerifications } from "../verification.service";
 import { RunContext } from "./run-context";
 

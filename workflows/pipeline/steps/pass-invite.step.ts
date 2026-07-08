@@ -1,6 +1,6 @@
 import { APP_CONFIG } from "../../../config";
 import { writeTestData } from "../../../utils";
-import { passApplicantInviteFlow } from "../../enrollment.service";
+import { passApplicantInviteFlow } from "../../invite-flow.service";
 import { PipelineStep } from "../pipeline-step";
 
 export const passInviteStep: PipelineStep = {

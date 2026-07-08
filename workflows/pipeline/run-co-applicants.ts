@@ -1,6 +1,6 @@
 import { LoggerProvider } from "../../services";
 import { validateAppInfo, validateApplicationToken } from "../../utils";
-import { initializeApi } from "../enrollment.service";
+import { initializeApi } from "../../services";
 import { CO_APPLICANT_PIPELINE } from "./applicant-pipeline";
 import { runApplicantPipeline } from "./run-applicant-pipeline";
 import { RunContext } from "./run-context";

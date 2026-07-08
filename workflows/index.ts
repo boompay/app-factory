@@ -6,4 +6,6 @@ export * from "./combined-income.service";
 export * from "./disclosure.service";
 export * from "./document-upload.service";
 export * from "./applicant-invitation.service";
+export * from "./invite-flow.service";
+export * from "./submission.service";
 export * from "./pipeline";

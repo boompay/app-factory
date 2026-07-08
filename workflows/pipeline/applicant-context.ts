@@ -1,6 +1,6 @@
 import { ApiClient } from "../../services";
 import { AppInfo, getCurrentApplicant } from "../../models";
-import { resolveApplicantId } from "../enrollment.service";
+import { resolveApplicantId } from "../invite-flow.service";
 import { setupVerificationsFromApplicant } from "../verification.service";
 
 export async function refreshApplicantContext(

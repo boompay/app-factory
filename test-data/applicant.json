@@ -1,17 +1,17 @@
 {
-  "id": 6317,
-  "application_id": 5603,
+  "id": 3454,
+  "application_id": 3160,
   "role": "applicant",
-  "first_name": "Albin",
-  "last_name": "Grady",
-  "middle_name": "Marlowe",
-  "email": "luxya3pcbnvc+sandbox@web-library.net",
+  "first_name": "Mertie",
+  "last_name": "Gibson",
+  "middle_name": "Rowan",
+  "email": "syq9vcxkzg4c+sandbox@web-library.net",
   "application_status": "started",
   "retry_identity_verification_status": "not_available",
   "fast_track_idv_status": "idle",
   "verifications": [
     {
-      "id": 48851,
+      "id": 26682,
       "name": "rental_application",
       "title": "verifications.personal-details.title",
       "description": "verifications.personal-details.description",
@@ -66,37 +66,37 @@
       "bypass_document_verification_enabled": false,
       "steps": [
         {
-          "id": 55270,
+          "id": 29534,
           "index": 0,
           "name": "personal_details"
         },
         {
-          "id": 55271,
+          "id": 29535,
           "index": 1,
           "name": "dependents"
         },
         {
-          "id": 55272,
+          "id": 29536,
           "index": 2,
           "name": "emergency_contacts"
         },
         {
-          "id": 55273,
+          "id": 29537,
           "index": 3,
           "name": "pets"
         },
         {
-          "id": 55274,
+          "id": 29538,
           "index": 4,
           "name": "vehicles"
         },
         {
-          "id": 55275,
+          "id": 29539,
           "index": 5,
           "name": "military_first_responder_teacher"
         },
         {
-          "id": 55276,
+          "id": 29540,
           "index": 6,
           "name": "lead_source"
         }
@@ -104,7 +104,7 @@
       "requirements": null
     },
     {
-      "id": 48852,
+      "id": 26683,
       "name": "housing_history",
       "title": "verifications.housing-history.title",
       "description": "verifications.housing-history.description",
@@ -141,7 +141,7 @@
       "bypass_document_verification_enabled": false,
       "steps": [
         {
-          "id": 55277,
+          "id": 29541,
           "index": 0,
           "name": "address"
         }
@@ -151,7 +151,7 @@
       }
     },
     {
-      "id": 48853,
+      "id": 26684,
       "name": "identity_verification",
       "title": "verifications.identity-verification.applicant-title",
       "description": "verifications.identity-verification.applicant-description",
@@ -181,7 +181,7 @@
       "requirements": null
     },
     {
-      "id": 48854,
+      "id": 26685,
       "name": "combined_income_verification",
       "title": "verifications.combined-income.title",
       "description": "verifications.combined-income.description",
@@ -225,9 +225,9 @@
             }
           },
           "fields": {
-            "job_title": "required",
+            "job_title": "optional",
             "supervisor": {
-              "email": "required",
+              "email": "optional",
               "phone": "required",
               "last_name": "required",
               "first_name": "required"
@@ -248,16 +248,13 @@
               "value": 3
             }
           },
-          "payroll_allowed": true,
-          "benefits_statement": {
-            "allowed": true
-          }
+          "payroll_allowed": true
         },
         "offer_letter": {
           "fields": {
-            "job_title": "required",
+            "job_title": "optional",
             "supervisor": {
-              "email": "required",
+              "email": "optional",
               "phone": "required",
               "last_name": "required",
               "first_name": "required"
@@ -290,10 +287,7 @@
               "value": 3
             }
           },
-          "payroll_allowed": true,
-          "benefits_statement": {
-            "allowed": true
-          }
+          "payroll_allowed": true
         },
         "housing_assistance_upload": "required",
         "housing_assistance_program_enabled": true,
@@ -314,7 +308,7 @@
       "bypass_document_verification_enabled": null,
       "steps": [
         {
-          "id": 55278,
+          "id": 29542,
           "index": 0,
           "name": "combined_income"
         }
@@ -322,7 +316,7 @@
       "requirements": null
     },
     {
-      "id": 48858,
+      "id": 26689,
       "name": "submission_disclosure",
       "title": "Review the application",
       "description": ".",
@@ -344,7 +338,7 @@
       "bypass_document_verification_enabled": false,
       "steps": [
         {
-          "id": 55279,
+          "id": 29543,
           "index": 0,
           "name": "submission_disclosure_step"
         }
@@ -352,32 +346,47 @@
       "requirements": null
     }
   ],
-  "stream_chat_token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiYXBwbGljYW50LWN1c3RvbWVyLTE2NzQwOCJ9.K7-PMlqQTgMazawTo4YRsIFvV0V2Rgx6Wxy4cbEiWp0",
-  "stream_chat_id": "applicant-customer-167408",
-  "stream_chat_name": "Albin Marlowe Grady",
+  "stream_chat_token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiYXBwbGljYW50LWN1c3RvbWVyLTE2MzQ5NiJ9.htnes8_wrxzQDMyVZCHheb-xa4waJhz1QxPBdHcY5gc",
+  "document_requests": [],
+  "stream_chat_id": "applicant-customer-163496",
+  "stream_chat_name": "Mertie Rowan Gibson",
   "application": {
-    "id": 5603,
+    "id": 3160,
     "partner": {
-      "slug": "rms1",
-      "name": "RMS1",
-      "email": "andrii+rm+s1@boompay.app",
+      "slug": "universal",
+      "name": "Universal",
+      "email": "andrii+universal@boompay.app",
       "logo_url": null,
-      "is_sites_and_communities": false,
+      "is_sites_and_communities": true,
       "is_home_site_rent": true,
       "is_english_only": false,
-      "id": 687,
+      "id": 600,
       "colors": null,
       "base_border_radius": null,
       "font_family": null,
       "font_family_link": null,
       "google_analytics_id": null,
       "partner_features": [
-        "property_owner",
         "chat"
       ],
-      "property_management_system": "rent_manager"
+      "property_management_system": ""
     },
-    "property_branding": {},
+    "property_branding": {
+      "palette": {
+        "20": "#ffaaf7",
+        "50": "#ffa4f1",
+        "100": "#ff8ad9",
+        "200": "#ff70c1",
+        "300": "#ff55aa",
+        "400": "#ff3694",
+        "500": "#e6007e",
+        "600": "#cc0069",
+        "700": "#b10054",
+        "800": "#970041",
+        "900": "#7d002e"
+      },
+      "primary_color": "#e6007e"
+    },
     "verification_template": {
       "has_move_in_date_limit": null,
       "max_move_in_days": null,
@@ -419,70 +428,70 @@
       }
     },
     "unit": {
-      "id": 209548,
-      "title": "Lot #103",
+      "id": 162144,
+      "title": "Autotest Unit 1",
       "property": {
-        "name": "Flagstone Manufactured Housing",
+        "name": "Jonh Wayne",
         "address": {
-          "address1": "14393 Montgomery Road",
-          "address2": "",
-          "city": "Cincinnati",
+          "address1": "441 W Chapel St",
+          "address2": "11",
+          "city": "Columbus",
           "state_or_province": "OH",
-          "postal_code": "45122",
+          "postal_code": "43215",
           "country": "US",
-          "lat": 39.289109,
-          "lng": -84.3014139,
-          "one_line_address": "14393 Montgomery Road, Cincinnati, OH, 45122, US"
+          "lat": null,
+          "lng": null,
+          "one_line_address": "441 W Chapel St, 11, Columbus, OH, 43215, US"
         }
       },
       "monthly_rent_amount": {
-        "cents": 80000,
+        "cents": 200000,
         "currency": "USD"
       },
       "home_rent_amount": {
-        "cents": 50000,
+        "cents": 100000,
         "currency": "USD"
       },
       "site_rent_amount": {
-        "cents": 30000,
+        "cents": 100000,
         "currency": "USD"
       },
       "criteria_rent_type": "both",
-      "available_at": null,
+      "available_at": "2026-07-07T00:00:00.000+00:00",
       "occupied": false,
-      "partner_name": "RMS1"
+      "partner_name": "Universal"
     },
     "monthly_rent_amount": {
-      "cents": 80000,
+      "cents": 200000,
       "currency": "USD"
     },
     "home_rent_amount": {
-      "cents": 50000,
+      "cents": 100000,
       "currency": "USD"
     },
     "site_rent_amount": {
-      "cents": 30000,
+      "cents": 100000,
       "currency": "USD"
     },
     "base_rent_amount": {
-      "cents": 80000,
+      "cents": 200000,
       "currency": "USD"
     },
     "applicants": [
       {
-        "id": 6317,
-        "application_id": 5603,
+        "id": 3454,
+        "application_id": 3160,
         "role": "applicant",
-        "first_name": "Albin",
-        "last_name": "Grady",
-        "middle_name": "Marlowe",
-        "email": "luxya3pcbnvc+sandbox@web-library.net",
+        "first_name": "Mertie",
+        "last_name": "Gibson",
+        "middle_name": "Rowan",
+        "email": "syq9vcxkzg4c+sandbox@web-library.net",
         "application_status": "started",
         "retry_identity_verification_status": "not_available",
         "fast_track_idv_status": "idle",
         "verifications": [
           {
-            "id": 48851,
+            "id": 26682,
             "name": "rental_application",
             "title": "verifications.personal-details.title",
             "description": "verifications.personal-details.description",
@@ -537,7 +546,7 @@
             "bypass_document_verification_enabled": false
           },
           {
-            "id": 48852,
+            "id": 26683,
             "name": "housing_history",
             "title": "verifications.housing-history.title",
             "description": "verifications.housing-history.description",
@@ -574,7 +583,7 @@
             "bypass_document_verification_enabled": false
           },
           {
-            "id": 48853,
+            "id": 26684,
             "name": "identity_verification",
             "title": "verifications.identity-verification.applicant-title",
             "description": "verifications.identity-verification.applicant-description",
@@ -602,7 +611,7 @@
             "bypass_document_verification_enabled": false
           },
           {
-            "id": 48854,
+            "id": 26685,
             "name": "combined_income_verification",
             "title": "verifications.combined-income.title",
             "description": "verifications.combined-income.description",
@@ -646,9 +655,9 @@
                   }
                 },
                 "fields": {
-                  "job_title": "required",
+                  "job_title": "optional",
                   "supervisor": {
-                    "email": "required",
+                    "email": "optional",
                     "phone": "required",
                     "last_name": "required",
                     "first_name": "required"
@@ -669,16 +678,13 @@
                     "value": 3
                   }
                 },
-                "payroll_allowed": true,
-                "benefits_statement": {
-                  "allowed": true
-                }
+                "payroll_allowed": true
               },
               "offer_letter": {
                 "fields": {
-                  "job_title": "required",
+                  "job_title": "optional",
                   "supervisor": {
-                    "email": "required",
+                    "email": "optional",
                     "phone": "required",
                     "last_name": "required",
                     "first_name": "required"
@@ -711,10 +717,7 @@
                     "value": 3
                   }
                 },
-                "payroll_allowed": true,
-                "benefits_statement": {
-                  "allowed": true
-                }
+                "payroll_allowed": true
               },
               "housing_assistance_upload": "required",
               "housing_assistance_program_enabled": true,
@@ -735,7 +738,7 @@
             "bypass_document_verification_enabled": null
           },
           {
-            "id": 48858,
+            "id": 26689,
             "name": "submission_disclosure",
             "title": "Review the application",
             "description": ".",
@@ -757,9 +760,10 @@
             "bypass_document_verification_enabled": false
           }
         ],
-        "stream_chat_token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiYXBwbGljYW50LWN1c3RvbWVyLTE2NzQwOCJ9.K7-PMlqQTgMazawTo4YRsIFvV0V2Rgx6Wxy4cbEiWp0",
-        "stream_chat_id": "applicant-customer-167408",
-        "stream_chat_name": "Albin Marlowe Grady"
+        "stream_chat_token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiYXBwbGljYW50LWN1c3RvbWVyLTE2MzQ5NiJ9.htnes8_wrxzQDMyVZCHheb-xa4waJhz1QxPBdHcY5gc",
+        "document_requests": [],
+        "stream_chat_id": "applicant-customer-163496",
+        "stream_chat_name": "Mertie Rowan Gibson"
       }
     ],
     "status": "started",
@@ -768,7 +772,7 @@
     "desired_lease_term": null,
     "lease_term_enabled": false,
     "conditions": [],
-    "partner_name_in_submission_disclosure": "RMS1",
+    "partner_name_in_submission_disclosure": "Jonh Wayne",
     "has_multiple_applicants": null,
     "has_multiple_guarantors": null,
     "allow_occupants": null
@@ -799,9 +803,9 @@
       "requirement": "housing_history_more_than_2_years"
     }
   ],
-  "intercom_id": "applicant-6317",
+  "intercom_id": "applicant-3454",
   "is_manual": false,
-  "application_started_at": "2026-06-21T07:13:56.239+00:00",
+  "application_started_at": "2026-07-07T19:28:40.341+00:00",
   "discount_info": null,
   "invited_by_applicant_id": null,
   "has_passed_invite_flow": true,

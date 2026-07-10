@@ -106,6 +106,17 @@ export class ApiClient {
       timeout: timeoutMs,
     } as ApiRequestOptions);
   }
+
+  /**
+   * Checks a magic link / sign-in token. Accessible to invited applicants
+   * without full application read permissions.
+   */
+  public async checkMagicLink(token: string): Promise<any> {
+    return this.get("/screen/magic_links/check", {
+      params: { token },
+      timeout: 10000,
+    } as ApiRequestOptions);
+  }
   
   /**
    * Makes a POST request to update an application.

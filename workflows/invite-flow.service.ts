@@ -1,8 +1,8 @@
 import { LoggerProvider } from "../services";
 import { APP_CONFIG } from "../config";
-import { ApplicationDetailsResponse } from "../types";
 import { writeTestData } from "../utils";
 import { inviteCoApplicant } from "./applicant-invitation.service";
+import { fetchApplicantFromMagicLinkCheck } from "./co-applicant-context.service";
 import { getApplicant, RunContext } from "./run-context";
 
 const logger = LoggerProvider.create("application-invite-flow");
@@ -14,22 +14,20 @@ export async function resolveApplicantId(ctx: RunContext): Promise<string> {
     return applicant.id;
   }
 
-  const appDetailsRaw = await ctx.api.getApplicationDetails(ctx.app.id!);
-  const appDetails = (await appDetailsRaw.json()) as ApplicationDetailsResponse;
-  const email = applicant.email?.email;
-  const apiApplicants = appDetails.application?.applicants ?? [];
-  const matchedApplicant =
-    apiApplicants.find((entry) => entry.email === email) ??
-    appDetails.application?.current_applicant;
-
-  if (!matchedApplicant?.id) {
-    throw new Error(
-      `Could not resolve applicant ID for index ${ctx.applicantIndex}`
-    );
+  const fromMagicLinkCheck = await fetchApplicantFromMagicLinkCheck(
+    ctx.api,
+    applicant
+  );
+  if (fromMagicLinkCheck?.id != null) {
+    applicant.id = String(fromMagicLinkCheck.id);
+    return applicant.id;
   }
 
-  applicant.id = matchedApplicant.id;
-  return matchedApplicant.id;
+  throw new Error(
+    `Could not resolve applicant ID for index ${ctx.applicantIndex}. ` +
+      `Co-applicant tokens cannot read GET /screen/applications/{id} (403). ` +
+      `Ensure applicant.id is stored at invite time or returned by magic_links/check.`
+  );
 }
 
 /**

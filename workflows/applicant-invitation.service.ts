@@ -62,6 +62,7 @@ export async function inviteCoApplicant(
   }
   
   app.applicants.push({
+    role,
     invite_magic_link: magicLink,
     email: nextMail,
     first_name: nextUser.first,

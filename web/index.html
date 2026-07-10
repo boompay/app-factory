@@ -546,7 +546,7 @@
           <div class="field-grid cols-3">
             <div class="field">
               <label>Applicants</label>
-              <input type="number" id="cfg-ACTORS-APPLICANT" min="1" max="10">
+              <input type="number" id="cfg-ACTORS-APPLICANT" min="0" max="10">
             </div>
             <div class="field">
               <label>Occupants</label>
@@ -856,13 +856,29 @@
       statusText.textContent = running ? "Running" : "Idle";
     }
 
+    const CONFIG_SECTIONS = ["ACTORS", "DEFAULT_VALUES", "TIMEOUTS", "RETRY"];
+
+    function parseConfigFieldId(id) {
+      const idBody = id.replace("cfg-", "");
+      for (const section of CONFIG_SECTIONS) {
+        if (idBody.startsWith(section + "-")) {
+          return {
+            section,
+            key: idBody.slice(section.length + 1),
+          };
+        }
+      }
+      return null;
+    }
+
     // Collect overrides from form
     function collectOverrides() {
       const overrides = {};
       document.querySelectorAll("[id^='cfg-']").forEach((el) => {
-        const parts = el.id.replace("cfg-", "").split("-");
-        const section = parts[0];
-        const key = parts.slice(1).join("_");
+        const parsed = parseConfigFieldId(el.id);
+        if (!parsed) return;
+
+        const { section, key } = parsed;
         if (!overrides[section]) overrides[section] = {};
         const val = el.value;
         if (el.type === "number") {

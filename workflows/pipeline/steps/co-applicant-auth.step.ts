@@ -1,7 +1,7 @@
-import { initializeApi, LoggerProvider } from "../../services";
-import { validateAppInfo } from "../../utils";
-import { getApplicantSignInLink } from "../../utils/sign-in-link";
-import { getApplicant } from "../run-context";
+import { initializeApi, LoggerProvider } from "../../../services";
+import { validateAppInfo } from "../../../utils";
+import { getApplicantSignInLink } from "../../../utils/sign-in-link";
+import { getApplicant } from "../../run-context";
 import { PipelineStep } from "../pipeline-step";
 
 const logger = LoggerProvider.create("application-co-applicant-auth");

@@ -12,7 +12,7 @@ import { refreshApplicantContextStep } from "./steps/refresh-applicant-context.s
 import { startFlowStep } from "./steps/start-flow.step";
 import { submitStep } from "./steps/submit.step";
 
-const SHARED_VERIFICATION_STEPS: PipelineStep[] = [
+const VERIFICATION_STEPS: PipelineStep[] = [
   identityCreateStep,
   personalDetailsStep,
   housingHistoryStep,
@@ -20,17 +20,17 @@ const SHARED_VERIFICATION_STEPS: PipelineStep[] = [
   moveInDateStep,
   disclosureStep,
   identityVerifyStep,
-  submitStep,
 ];
 
 export const PRIMARY_APPLICANT_PIPELINE: PipelineStep[] = [
   startFlowStep,
-  ...SHARED_VERIFICATION_STEPS,
+  ...VERIFICATION_STEPS,
+  submitStep,
 ];
 
 export const CO_APPLICANT_PIPELINE: PipelineStep[] = [
   coApplicantAuthStep,
   passInviteStep,
   refreshApplicantContextStep,
-  ...SHARED_VERIFICATION_STEPS,
+  ...VERIFICATION_STEPS,
 ];

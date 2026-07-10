@@ -1,29 +1,64 @@
-import { LoggerProvider } from "../services";
+import { ApiClient, LoggerProvider } from "../services";
 import { AppInfo, Email } from "../models";
 import { ApplicationDetailsResponse } from "../types";
 import { randomFullName, createTestInbox } from "../helpers";
 import { writeAppInfo } from "../utils";
 import { APP_CONFIG } from "../config";
+import { fetchApplicantFromMagicLinkCheck } from "./co-applicant-context.service";
 
 const logger = LoggerProvider.create("applicant-invitation");
+
+type MagicLinkEntry = {
+  applicant_id?: string | number;
+  id?: string | number;
+  application_link?: string;
+  email?: string;
+};
+
+function applicantEmails(email: Email): string[] {
+  return [email.email, email.inboxEmail].filter(Boolean);
+}
 
 async function resolveInvitedApplicantId(
   api: ApiClient,
   app: AppInfo,
-  email: string,
-  magicLinkEntry?: { applicant_id?: string | number }
+  email: Email,
+  magicLinkEntry?: MagicLinkEntry
 ): Promise<string | undefined> {
   if (magicLinkEntry?.applicant_id != null) {
     return String(magicLinkEntry.applicant_id);
   }
+  if (magicLinkEntry?.id != null) {
+    return String(magicLinkEntry.id);
+  }
 
-  const appDetailsRaw = await api.getApplicationDetails(app.id!);
-  const appDetails = (await appDetailsRaw.json()) as ApplicationDetailsResponse;
-  const matched = appDetails.application?.applicants?.find(
-    (entry) => entry.email === email
-  );
+  if (magicLinkEntry?.application_link) {
+    const fromCheck = await fetchApplicantFromMagicLinkCheck(api, {
+      sign_in_link: magicLinkEntry.application_link,
+    });
+    if (fromCheck?.id != null) {
+      return String(fromCheck.id);
+    }
+  }
 
-  return matched?.id != null ? String(matched.id) : undefined;
+  const emails = applicantEmails(email);
+  for (let attempt = 0; attempt < 3; attempt++) {
+    const appDetailsRaw = await api.getApplicationDetails(app.id!);
+    const appDetails = (await appDetailsRaw.json()) as ApplicationDetailsResponse;
+    const matched = appDetails.application?.applicants?.find(
+      (entry) => entry.email != null && emails.includes(entry.email)
+    );
+
+    if (matched?.id != null) {
+      return String(matched.id);
+    }
+
+    if (attempt < 2) {
+      await new Promise((resolve) => setTimeout(resolve, 500));
+    }
+  }
+
+  return undefined;
 }
 
 /**
@@ -73,7 +108,8 @@ export async function inviteCoApplicant(
   const magicLinksResp = await api.getMagicLinks(app.id);
   const magicLinksData = await magicLinksResp.json();
   const magicLinkEntry = magicLinksData.magic_links.find(
-    (link: { email?: string }) => link.email === nextMail.email
+    (link: { email?: string }) =>
+      link.email === nextMail.email || link.email === nextMail.inboxEmail
   );
   const magicLink = magicLinkEntry?.application_link;
 
@@ -84,7 +120,7 @@ export async function inviteCoApplicant(
   const applicantId = await resolveInvitedApplicantId(
     api,
     app,
-    email.email,
+    nextMail,
     magicLinkEntry
   );
 
@@ -107,6 +143,11 @@ export async function inviteCoApplicant(
   logger.info(`Co-applicant invited successfully. Magic link: ${magicLink}`);
   if (applicantId) {
     logger.info(`Resolved co-applicant ID at invite time: ${applicantId}`);
+  } else {
+    logger.warn(
+      `Could not resolve co-applicant ID at invite time for ${nextMail.email}. ` +
+        `Will retry via magic_links/check or primary API during co-applicant pipeline.`
+    );
   }
 
   return { magicLink, email };

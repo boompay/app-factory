@@ -1,4 +1,5 @@
 import { ApiClient } from "../services";
+import { EnrollResponse } from "../types";
 import { AppInfo, Email } from "../models";
 import { randomFullName, createTestInbox } from "../helpers";
 
@@ -7,7 +8,7 @@ export async function enrollApplication(
   app: AppInfo,
   applicationToken: string
 ): Promise<{
-  enrollResponse: unknown;
+  enrollResponse: EnrollResponse;
   user: ReturnType<typeof randomFullName>;
   email: Email;
 }> {
@@ -25,7 +26,7 @@ export async function enrollApplication(
     },
   });
 
-  const enrollResponse = await enrollResponseRaw.json();
+  const enrollResponse = (await enrollResponseRaw.json()) as EnrollResponse;
 
   app.id = enrollResponse.application.id;
   if (!app.applicants) {
@@ -35,6 +36,7 @@ export async function enrollApplication(
     app.applicants.unshift({});
   }
   app.applicants[0].id = enrollResponse.application.current_applicant.id;
+  app.applicants[0]!.role = "applicant";
   app.applicants[0]!.email = email;
   app.applicants[0]!.first_name = user.first;
   app.applicants[0]!.last_name = user.last;

@@ -32,6 +32,3 @@ export const CO_APPLICANT_PIPELINE: PipelineStep[] = [
   refreshApplicantContextStep,
   ...SHARED_VERIFICATION_STEPS,
 ];
-
-/** @deprecated Use PRIMARY_APPLICANT_PIPELINE */
-export const APPLICANT_PIPELINE = PRIMARY_APPLICANT_PIPELINE;

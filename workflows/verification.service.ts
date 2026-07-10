@@ -1,4 +1,5 @@
 import { Verification } from "../types";
+import { EnrollResponse } from "../types";
 import { APP_CONFIG } from "../config";
 import { AppInfo } from "../models";
 
@@ -61,7 +62,10 @@ export function setupVerificationsFromApplicant(
   );
 }
 
-export function setupVerifications(app: AppInfo, enrollResponse: any): void {
+export function setupVerifications(
+  app: AppInfo,
+  enrollResponse: EnrollResponse
+): void {
   const currentApplicant = enrollResponse.application.current_applicant;
   if (!currentApplicant || !currentApplicant.verifications) {
     throw new Error("Enroll response missing current_applicant.verifications");

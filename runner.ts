@@ -7,10 +7,6 @@ import {
 
 const logger = LoggerProvider.create("application-runner");
 
-export function resetRunnerState(): void {
-  // Reserved for future per-run state in the pipeline.
-}
-
 export async function run(link: string): Promise<void> {
   try {
     const ctx = await bootstrapRun(link);

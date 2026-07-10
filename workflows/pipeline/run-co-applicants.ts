@@ -12,7 +12,10 @@ async function switchToApplicant(
   applicantIndex: number
 ): Promise<void> {
   const applicant = ctx.app.applicants![applicantIndex];
-  logger.info(`Starting application flow for applicant ID: ${applicant.id ?? "pending"}`);
+  const role = applicant.role ?? "applicant";
+  logger.info(
+    `Starting ${role} flow for applicant ID: ${applicant.id ?? "pending"} (index ${applicantIndex})`
+  );
 
   const applicationToken = applicant.invite_magic_link!.split("/").pop();
   const validatedToken = validateApplicationToken(applicationToken);

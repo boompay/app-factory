@@ -2,7 +2,7 @@ import express from "express";
 import path from "path";
 import { logEmitter } from "./services/logger-provider";
 import { APP_CONFIG, applyConfigOverrides, resetConfig } from "./config/app.config";
-import { run, resetRunnerState } from "./runner";
+import { run } from "./runner";
 import { registerWiremockRoutes } from "./wiremock-routes";
 
 const app = express();
@@ -67,7 +67,6 @@ app.post("/api/run", (req, res) => {
 
   isRunning = true;
   resetConfig();
-  resetRunnerState();
   if (overrides) {
     applyConfigOverrides(overrides);
   }

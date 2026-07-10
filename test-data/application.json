@@ -1,30 +1,42 @@
 {
   "application": {
-    "id": 3165,
+    "id": 6286,
     "partner": {
-      "slug": "universal",
-      "name": "Universal",
-      "email": "andrii+universal@boompay.app",
+      "slug": "rms1",
+      "name": "RMS1",
+      "email": "andrii+rm+s1@boompay.app",
       "logo_url": null,
-      "is_sites_and_communities": true,
+      "is_sites_and_communities": false,
       "is_home_site_rent": true,
       "is_english_only": false,
-      "id": 600,
-      "colors": null,
+      "is_inscribe_w2_verification": true,
+      "id": 687,
+      "colors": {
+        "primary": {
+          "20": "#8a8a8a",
+          "50": "#737373",
+          "100": "#5c5c5c",
+          "200": "#454545",
+          "300": "#2e2e2e",
+          "400": "#171717",
+          "500": "#000000",
+          "600": "#000000",
+          "700": "#000000",
+          "800": "#000000",
+          "900": "#000000"
+        }
+      },
       "base_border_radius": null,
       "font_family": null,
       "font_family_link": null,
       "google_analytics_id": null,
       "partner_features": [
+        "property_owner",
         "chat"
       ],
-      "property_management_system": ""
+      "property_management_system": "rent_manager"
     },
-    "property_branding": {
-      "landlord_name": "Flagstone Manufactured Housing",
-      "landlord_email": "SCarpenter@gmall.com",
-      "landlord_phone": "(513)555-9643"
-    },
+    "property_branding": {},
     "verification_template": {
       "has_move_in_date_limit": null,
       "max_move_in_days": null,
@@ -66,7 +78,7 @@
       }
     },
     "unit": {
-      "id": 162345,
+      "id": 209548,
       "title": "Lot #103",
       "property": {
         "name": "Flagstone Manufactured Housing",
@@ -97,7 +109,7 @@
       "criteria_rent_type": "both",
       "available_at": null,
       "occupied": false,
-      "partner_name": "Universal"
+      "partner_name": "RMS1"
     },
     "monthly_rent_amount": {
       "cents": 80000,
@@ -117,19 +129,19 @@
     },
     "applicants": [
       {
-        "id": 3459,
-        "application_id": 3165,
+        "id": 7009,
+        "application_id": 6286,
         "role": "applicant",
-        "first_name": "Jamar",
-        "last_name": "Hermiston",
-        "middle_name": "Noah",
-        "email": "gehxynpzizdk+sandbox@web-library.net",
-        "application_status": "submitted",
+        "first_name": "Beaulah",
+        "last_name": "Ohara",
+        "middle_name": "Parker",
+        "email": "2k_8psnz091-+sandbox@web-library.net",
+        "application_status": "finished",
         "retry_identity_verification_status": "not_available",
         "fast_track_idv_status": "completed",
         "verifications": [
           {
-            "id": 26722,
+            "id": 52589,
             "name": "rental_application",
             "title": "verifications.personal-details.title",
             "description": "verifications.personal-details.description",
@@ -184,37 +196,37 @@
             "bypass_document_verification_enabled": false,
             "steps": [
               {
-                "id": 29584,
+                "id": 61572,
                 "index": 0,
                 "name": "personal_details"
               },
               {
-                "id": 29585,
+                "id": 61573,
                 "index": 1,
                 "name": "dependents"
               },
               {
-                "id": 29586,
+                "id": 61574,
                 "index": 2,
                 "name": "emergency_contacts"
               },
               {
-                "id": 29587,
+                "id": 61575,
                 "index": 3,
                 "name": "pets"
               },
               {
-                "id": 29588,
+                "id": 61576,
                 "index": 4,
                 "name": "vehicles"
               },
               {
-                "id": 29589,
+                "id": 61577,
                 "index": 5,
                 "name": "military_first_responder_teacher"
               },
               {
-                "id": 29590,
+                "id": 61578,
                 "index": 6,
                 "name": "lead_source"
               }
@@ -222,7 +234,7 @@
             "requirements": null
           },
           {
-            "id": 26723,
+            "id": 52590,
             "name": "housing_history",
             "title": "verifications.housing-history.title",
             "description": "verifications.housing-history.description",
@@ -259,7 +271,7 @@
             "bypass_document_verification_enabled": false,
             "steps": [
               {
-                "id": 29591,
+                "id": 61579,
                 "index": 0,
                 "name": "address"
               }
@@ -269,7 +281,7 @@
             }
           },
           {
-            "id": 26724,
+            "id": 52591,
             "name": "identity_verification",
             "title": "verifications.identity-verification.applicant-title",
             "description": "verifications.identity-verification.applicant-description",
@@ -299,7 +311,7 @@
             "requirements": null
           },
           {
-            "id": 26725,
+            "id": 52592,
             "name": "combined_income_verification",
             "title": "verifications.combined-income.title",
             "description": "verifications.combined-income.description",
@@ -343,9 +355,9 @@
                   }
                 },
                 "fields": {
-                  "job_title": "optional",
+                  "job_title": "required",
                   "supervisor": {
-                    "email": "optional",
+                    "email": "required",
                     "phone": "required",
                     "last_name": "required",
                     "first_name": "required"
@@ -366,13 +378,16 @@
                     "value": 3
                   }
                 },
-                "payroll_allowed": true
+                "payroll_allowed": true,
+                "benefits_statement": {
+                  "allowed": true
+                }
               },
               "offer_letter": {
                 "fields": {
-                  "job_title": "optional",
+                  "job_title": "required",
                   "supervisor": {
-                    "email": "optional",
+                    "email": "required",
                     "phone": "required",
                     "last_name": "required",
                     "first_name": "required"
@@ -405,7 +420,10 @@
                     "value": 3
                   }
                 },
-                "payroll_allowed": true
+                "payroll_allowed": true,
+                "benefits_statement": {
+                  "allowed": true
+                }
               },
               "housing_assistance_upload": "required",
               "housing_assistance_program_enabled": true,
@@ -420,33 +438,33 @@
             },
             "incomes": [
               {
-                "id": 410,
+                "id": 1442,
                 "type": "self_employment",
                 "status": "processing",
                 "pay_period": "monthly",
                 "amount": {
-                  "cents": 551400,
+                  "cents": 421900,
                   "currency": "USD"
                 },
-                "start_date": "2022-12-06",
+                "start_date": "2015-07-25",
                 "additional_data": {
-                  "job_title": "Customer Optimization Director",
-                  "company_name": "Welch LLC"
+                  "job_title": "Chief Implementation Consultant",
+                  "company_name": "Bradtke, Towne and Reynolds"
                 }
               }
             ],
             "income_sources": [
               {
-                "id": 322,
-                "status": "submitted",
+                "id": 1508,
+                "status": "processing",
                 "type": "paystub",
-                "income_id": 410,
+                "income_id": 1442,
                 "items": [],
                 "has_available_items": false,
                 "additional_data": null,
                 "assets": [
                   {
-                    "asset_url": "https://boom-staging-nonprod.s3.us-east-2.amazonaws.com/staging/8d50b526e4d364cc4d8a1481b9ad4306.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6RCWFKPAV7ADZIA6%2F20260708%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20260708T190658Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=59cc4b6418348b696c078ae35cd33ad99d3756bb32f72dedcd2206746cc56478",
+                    "asset_url": "https://boom-staging-nonprod.s3.us-east-2.amazonaws.com/staging/f654d904e411b49d466127a9040d9807.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6RCWFKPAV7ADZIA6%2F20260710%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20260710T042244Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=5fa82cbbc09caf45d4a3119c83560a10a036564e7281032bc2f11af39ef97636",
                     "asset_name": "Paystub.pdf"
                   }
                 ]
@@ -456,7 +474,7 @@
             "bypass_document_verification_enabled": null,
             "steps": [
               {
-                "id": 29592,
+                "id": 61580,
                 "index": 0,
                 "name": "combined_income"
               }
@@ -464,7 +482,7 @@
             "requirements": null
           },
           {
-            "id": 26729,
+            "id": 52595,
             "name": "submission_disclosure",
             "title": "Review the application",
             "description": ".",
@@ -474,7 +492,7 @@
               "additional_text": ""
             },
             "estimated_time": 60,
-            "index": 7,
+            "index": 6,
             "editable": true,
             "progress": {
               "total_steps": 1,
@@ -486,7 +504,7 @@
             "bypass_document_verification_enabled": false,
             "steps": [
               {
-                "id": 29593,
+                "id": 61581,
                 "index": 0,
                 "name": "submission_disclosure_step"
               }
@@ -494,35 +512,48 @@
             "requirements": null
           }
         ],
-        "stream_chat_token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiYXBwbGljYW50LWN1c3RvbWVyLTE2MzUxMSJ9.Am4JFvAPZO-AWej8kiNq3AD-d24z2_chZFOv1XWqeH8",
-        "stream_chat_id": "applicant-customer-163511",
-        "stream_chat_name": "Jamar Noah Hermiston",
+        "stream_chat_token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiYXBwbGljYW50LWN1c3RvbWVyLTE2ODE4MiJ9.nAFkjc8x-3su2_YoXdy5V1ZL_VnjBKykPLAppdU5-Qo",
+        "document_requests": [],
+        "stream_chat_id": "applicant-customer-168182",
+        "stream_chat_name": "Beaulah Parker Ohara",
         "application": {
-          "id": 3165,
+          "id": 6286,
           "partner": {
-            "slug": "universal",
-            "name": "Universal",
-            "email": "andrii+universal@boompay.app",
+            "slug": "rms1",
+            "name": "RMS1",
+            "email": "andrii+rm+s1@boompay.app",
             "logo_url": null,
-            "is_sites_and_communities": true,
+            "is_sites_and_communities": false,
             "is_home_site_rent": true,
             "is_english_only": false,
-            "id": 600,
-            "colors": null,
+            "is_inscribe_w2_verification": true,
+            "id": 687,
+            "colors": {
+              "primary": {
+                "20": "#8a8a8a",
+                "50": "#737373",
+                "100": "#5c5c5c",
+                "200": "#454545",
+                "300": "#2e2e2e",
+                "400": "#171717",
+                "500": "#000000",
+                "600": "#000000",
+                "700": "#000000",
+                "800": "#000000",
+                "900": "#000000"
+              }
+            },
             "base_border_radius": null,
             "font_family": null,
             "font_family_link": null,
             "google_analytics_id": null,
             "partner_features": [
+              "property_owner",
               "chat"
             ],
-            "property_management_system": ""
+            "property_management_system": "rent_manager"
           },
-          "property_branding": {
-            "landlord_name": "Flagstone Manufactured Housing",
-            "landlord_email": "SCarpenter@gmall.com",
-            "landlord_phone": "(513)555-9643"
-          },
+          "property_branding": {},
           "verification_template": {
             "has_move_in_date_limit": null,
             "max_move_in_days": null,
@@ -564,7 +595,7 @@
             }
           },
           "unit": {
-            "id": 162345,
+            "id": 209548,
             "title": "Lot #103",
             "property": {
               "name": "Flagstone Manufactured Housing",
@@ -595,7 +626,7 @@
             "criteria_rent_type": "both",
             "available_at": null,
             "occupied": false,
-            "partner_name": "Universal"
+            "partner_name": "RMS1"
           },
           "monthly_rent_amount": {
             "cents": 80000,
@@ -615,19 +646,19 @@
           },
           "applicants": [
             {
-              "id": 3459,
-              "application_id": 3165,
+              "id": 7009,
+              "application_id": 6286,
               "role": "applicant",
-              "first_name": "Jamar",
-              "last_name": "Hermiston",
-              "middle_name": "Noah",
-              "email": "gehxynpzizdk+sandbox@web-library.net",
-              "application_status": "submitted",
+              "first_name": "Beaulah",
+              "last_name": "Ohara",
+              "middle_name": "Parker",
+              "email": "2k_8psnz091-+sandbox@web-library.net",
+              "application_status": "finished",
               "retry_identity_verification_status": "not_available",
               "fast_track_idv_status": "completed",
               "verifications": [
                 {
-                  "id": 26722,
+                  "id": 52589,
                   "name": "rental_application",
                   "title": "verifications.personal-details.title",
                   "description": "verifications.personal-details.description",
@@ -682,7 +713,7 @@
                   "bypass_document_verification_enabled": false
                 },
                 {
-                  "id": 26723,
+                  "id": 52590,
                   "name": "housing_history",
                   "title": "verifications.housing-history.title",
                   "description": "verifications.housing-history.description",
@@ -719,7 +750,7 @@
                   "bypass_document_verification_enabled": false
                 },
                 {
-                  "id": 26724,
+                  "id": 52591,
                   "name": "identity_verification",
                   "title": "verifications.identity-verification.applicant-title",
                   "description": "verifications.identity-verification.applicant-description",
@@ -747,7 +778,7 @@
                   "bypass_document_verification_enabled": false
                 },
                 {
-                  "id": 26725,
+                  "id": 52592,
                   "name": "combined_income_verification",
                   "title": "verifications.combined-income.title",
                   "description": "verifications.combined-income.description",
@@ -791,9 +822,9 @@
                         }
                       },
                       "fields": {
-                        "job_title": "optional",
+                        "job_title": "required",
                         "supervisor": {
-                          "email": "optional",
+                          "email": "required",
                           "phone": "required",
                           "last_name": "required",
                           "first_name": "required"
@@ -814,13 +845,16 @@
                           "value": 3
                         }
                       },
-                      "payroll_allowed": true
+                      "payroll_allowed": true,
+                      "benefits_statement": {
+                        "allowed": true
+                      }
                     },
                     "offer_letter": {
                       "fields": {
-                        "job_title": "optional",
+                        "job_title": "required",
                         "supervisor": {
-                          "email": "optional",
+                          "email": "required",
                           "phone": "required",
                           "last_name": "required",
                           "first_name": "required"
@@ -853,7 +887,10 @@
                           "value": 3
                         }
                       },
-                      "payroll_allowed": true
+                      "payroll_allowed": true,
+                      "benefits_statement": {
+                        "allowed": true
+                      }
                     },
                     "housing_assistance_upload": "required",
                     "housing_assistance_program_enabled": true,
@@ -868,33 +905,33 @@
                   },
                   "incomes": [
                     {
-                      "id": 410,
+                      "id": 1442,
                       "type": "self_employment",
                       "status": "processing",
                       "pay_period": "monthly",
                       "amount": {
-                        "cents": 551400,
+                        "cents": 421900,
                         "currency": "USD"
                       },
-                      "start_date": "2022-12-06",
+                      "start_date": "2015-07-25",
                       "additional_data": {
-                        "job_title": "Customer Optimization Director",
-                        "company_name": "Welch LLC"
+                        "job_title": "Chief Implementation Consultant",
+                        "company_name": "Bradtke, Towne and Reynolds"
                       }
                     }
                   ],
                   "income_sources": [
                     {
-                      "id": 322,
-                      "status": "submitted",
+                      "id": 1508,
+                      "status": "processing",
                       "type": "paystub",
-                      "income_id": 410,
+                      "income_id": 1442,
                       "items": [],
                       "has_available_items": false,
                       "additional_data": null,
                       "assets": [
                         {
-                          "asset_url": "https://boom-staging-nonprod.s3.us-east-2.amazonaws.com/staging/8d50b526e4d364cc4d8a1481b9ad4306.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6RCWFKPAV7ADZIA6%2F20260708%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20260708T190658Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=59cc4b6418348b696c078ae35cd33ad99d3756bb32f72dedcd2206746cc56478",
+                          "asset_url": "https://boom-staging-nonprod.s3.us-east-2.amazonaws.com/staging/f654d904e411b49d466127a9040d9807.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6RCWFKPAV7ADZIA6%2F20260710%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20260710T042244Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=5fa82cbbc09caf45d4a3119c83560a10a036564e7281032bc2f11af39ef97636",
                           "asset_name": "Paystub.pdf"
                         }
                       ]
@@ -904,7 +941,7 @@
                   "bypass_document_verification_enabled": null
                 },
                 {
-                  "id": 26729,
+                  "id": 52595,
                   "name": "submission_disclosure",
                   "title": "Review the application",
                   "description": ".",
@@ -914,7 +951,7 @@
                     "additional_text": ""
                   },
                   "estimated_time": 60,
-                  "index": 7,
+                  "index": 6,
                   "editable": true,
                   "progress": {
                     "total_steps": 1,
@@ -926,28 +963,29 @@
                   "bypass_document_verification_enabled": false
                 }
               ],
-              "stream_chat_token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiYXBwbGljYW50LWN1c3RvbWVyLTE2MzUxMSJ9.Am4JFvAPZO-AWej8kiNq3AD-d24z2_chZFOv1XWqeH8",
-              "stream_chat_id": "applicant-customer-163511",
-              "stream_chat_name": "Jamar Noah Hermiston"
+              "stream_chat_token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiYXBwbGljYW50LWN1c3RvbWVyLTE2ODE4MiJ9.nAFkjc8x-3su2_YoXdy5V1ZL_VnjBKykPLAppdU5-Qo",
+              "document_requests": [],
+              "stream_chat_id": "applicant-customer-168182",
+              "stream_chat_name": "Beaulah Parker Ohara"
             }
           ],
-          "status": "submitted",
+          "status": "started",
           "screening_status": "processing",
           "desired_move_in_date": "2026-07-31",
           "desired_lease_term": null,
           "lease_term_enabled": false,
           "conditions": [],
-          "partner_name_in_submission_disclosure": "Flagstone Manufactured Housing",
+          "partner_name_in_submission_disclosure": "RMS1",
           "has_multiple_applicants": null,
           "has_multiple_guarantors": null,
           "allow_occupants": null
         },
         "fee": {
-          "cents": 0,
+          "cents": 6000,
           "currency": "USD"
         },
         "application_fee": {
-          "cents": 0,
+          "cents": 6000,
           "currency": "USD"
         },
         "fee_items": [
@@ -955,7 +993,7 @@
             "fee_type": "application_fee",
             "description": "Application fee",
             "amount": {
-              "cents": 0,
+              "cents": 6000,
               "currency": "USD"
             },
             "status": "due"
@@ -964,75 +1002,28 @@
         "can_checkout": true,
         "ineligible_to_checkout_reason": null,
         "requirements": [],
-        "intercom_id": "applicant-3459",
+        "intercom_id": "applicant-7009",
         "is_manual": false,
-        "application_started_at": "2026-07-08T19:06:20.241+00:00",
+        "application_started_at": "2026-07-10T04:22:11.267+00:00",
         "discount_info": null,
         "invited_by_applicant_id": null,
         "has_passed_invite_flow": true,
         "can_invite_others": true
       }
     ],
-    "status": "submitted",
+    "status": "started",
     "screening_status": "processing",
     "desired_move_in_date": "2026-07-31",
     "desired_lease_term": null,
     "lease_term_enabled": false,
     "conditions": [],
-    "partner_name_in_submission_disclosure": "Flagstone Manufactured Housing",
+    "partner_name_in_submission_disclosure": "RMS1",
     "has_multiple_applicants": null,
     "has_multiple_guarantors": null,
     "allow_occupants": null,
     "verifications": [
       {
-        "id": 26723,
-        "name": "housing_history",
-        "title": "verifications.housing-history.title",
-        "description": "verifications.housing-history.description",
-        "status": "finished",
-        "vendor": "",
-        "settings": {
-          "address_step_enabled": true,
-          "rent_option_required": {
-            "landlord_phone": "required",
-            "lease_document": "optional",
-            "monthly_payment": "required",
-            "reason_for_leaving": "required"
-          },
-          "other_option_required": {
-            "housing_status": "required",
-            "reason_for_leaving": "optional"
-          },
-          "own_home_option_required": {
-            "reason_for_leaving": "required",
-            "monthly_mortgage_payment": "required"
-          },
-          "min_required_continuous_rental_history": 2
-        },
-        "estimated_time": 600,
-        "index": 1,
-        "editable": true,
-        "progress": {
-          "total_steps": 1,
-          "filled_steps": 1
-        },
-        "incomes": [],
-        "income_sources": [],
-        "start_requirements": [],
-        "bypass_document_verification_enabled": false,
-        "steps": [
-          {
-            "id": 29591,
-            "index": 0,
-            "name": "address"
-          }
-        ],
-        "requirements": {
-          "min_years_continuous_rental_history": 2
-        }
-      },
-      {
-        "id": 26725,
+        "id": 52592,
         "name": "combined_income_verification",
         "title": "verifications.combined-income.title",
         "description": "verifications.combined-income.description",
@@ -1076,9 +1067,9 @@
               }
             },
             "fields": {
-              "job_title": "optional",
+              "job_title": "required",
               "supervisor": {
-                "email": "optional",
+                "email": "required",
                 "phone": "required",
                 "last_name": "required",
                 "first_name": "required"
@@ -1099,13 +1090,16 @@
                 "value": 3
               }
             },
-            "payroll_allowed": true
+            "payroll_allowed": true,
+            "benefits_statement": {
+              "allowed": true
+            }
           },
           "offer_letter": {
             "fields": {
-              "job_title": "optional",
+              "job_title": "required",
               "supervisor": {
-                "email": "optional",
+                "email": "required",
                 "phone": "required",
                 "last_name": "required",
                 "first_name": "required"
@@ -1138,7 +1132,10 @@
                 "value": 3
               }
             },
-            "payroll_allowed": true
+            "payroll_allowed": true,
+            "benefits_statement": {
+              "allowed": true
+            }
           },
           "housing_assistance_upload": "required",
           "housing_assistance_program_enabled": true,
@@ -1153,33 +1150,33 @@
         },
         "incomes": [
           {
-            "id": 410,
+            "id": 1442,
             "type": "self_employment",
             "status": "processing",
             "pay_period": "monthly",
             "amount": {
-              "cents": 551400,
+              "cents": 421900,
               "currency": "USD"
             },
-            "start_date": "2022-12-06",
+            "start_date": "2015-07-25",
             "additional_data": {
-              "job_title": "Customer Optimization Director",
-              "company_name": "Welch LLC"
+              "job_title": "Chief Implementation Consultant",
+              "company_name": "Bradtke, Towne and Reynolds"
             }
           }
         ],
         "income_sources": [
           {
-            "id": 322,
-            "status": "submitted",
+            "id": 1508,
+            "status": "processing",
             "type": "paystub",
-            "income_id": 410,
+            "income_id": 1442,
             "items": [],
             "has_available_items": false,
             "additional_data": null,
             "assets": [
               {
-                "asset_url": "https://boom-staging-nonprod.s3.us-east-2.amazonaws.com/staging/8d50b526e4d364cc4d8a1481b9ad4306.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6RCWFKPAV7ADZIA6%2F20260708%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20260708T190658Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=59cc4b6418348b696c078ae35cd33ad99d3756bb32f72dedcd2206746cc56478",
+                "asset_url": "https://boom-staging-nonprod.s3.us-east-2.amazonaws.com/staging/f654d904e411b49d466127a9040d9807.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6RCWFKPAV7ADZIA6%2F20260710%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20260710T042243Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=c66f8db6a0f24fb593bb6e20863e5f61ba871fe613a872c381fa99443b83bbe9",
                 "asset_name": "Paystub.pdf"
               }
             ]
@@ -1189,7 +1186,7 @@
         "bypass_document_verification_enabled": null,
         "steps": [
           {
-            "id": 29592,
+            "id": 61580,
             "index": 0,
             "name": "combined_income"
           }
@@ -1197,7 +1194,84 @@
         "requirements": null
       },
       {
-        "id": 26722,
+        "id": 52590,
+        "name": "housing_history",
+        "title": "verifications.housing-history.title",
+        "description": "verifications.housing-history.description",
+        "status": "finished",
+        "vendor": "",
+        "settings": {
+          "address_step_enabled": true,
+          "rent_option_required": {
+            "landlord_phone": "required",
+            "lease_document": "optional",
+            "monthly_payment": "required",
+            "reason_for_leaving": "required"
+          },
+          "other_option_required": {
+            "housing_status": "required",
+            "reason_for_leaving": "optional"
+          },
+          "own_home_option_required": {
+            "reason_for_leaving": "required",
+            "monthly_mortgage_payment": "required"
+          },
+          "min_required_continuous_rental_history": 2
+        },
+        "estimated_time": 600,
+        "index": 1,
+        "editable": true,
+        "progress": {
+          "total_steps": 1,
+          "filled_steps": 1
+        },
+        "incomes": [],
+        "income_sources": [],
+        "start_requirements": [],
+        "bypass_document_verification_enabled": false,
+        "steps": [
+          {
+            "id": 61579,
+            "index": 0,
+            "name": "address"
+          }
+        ],
+        "requirements": {
+          "min_years_continuous_rental_history": 2
+        }
+      },
+      {
+        "id": 52591,
+        "name": "identity_verification",
+        "title": "verifications.identity-verification.applicant-title",
+        "description": "verifications.identity-verification.applicant-description",
+        "status": "verified",
+        "vendor": "plaid",
+        "settings": {
+          "selfie_check": false,
+          "tin_verification": false,
+          "identity_abuse_check": {
+            "stolen_identity_threshold": 90,
+            "synthetic_identity_threshold": 70
+          },
+          "prevent_apply_if_failed": false
+        },
+        "estimated_time": 300,
+        "index": 2,
+        "editable": false,
+        "progress": {
+          "total_steps": 0,
+          "filled_steps": 0
+        },
+        "incomes": [],
+        "income_sources": [],
+        "start_requirements": [],
+        "bypass_document_verification_enabled": false,
+        "steps": [],
+        "requirements": null
+      },
+      {
+        "id": 52589,
         "name": "rental_application",
         "title": "verifications.personal-details.title",
         "description": "verifications.personal-details.description",
@@ -1252,37 +1326,37 @@
         "bypass_document_verification_enabled": false,
         "steps": [
           {
-            "id": 29584,
+            "id": 61572,
             "index": 0,
             "name": "personal_details"
           },
           {
-            "id": 29585,
+            "id": 61573,
             "index": 1,
             "name": "dependents"
           },
           {
-            "id": 29586,
+            "id": 61574,
             "index": 2,
             "name": "emergency_contacts"
           },
           {
-            "id": 29587,
+            "id": 61575,
             "index": 3,
             "name": "pets"
           },
           {
-            "id": 29588,
+            "id": 61576,
             "index": 4,
             "name": "vehicles"
           },
           {
-            "id": 29589,
+            "id": 61577,
             "index": 5,
             "name": "military_first_responder_teacher"
           },
           {
-            "id": 29590,
+            "id": 61578,
             "index": 6,
             "name": "lead_source"
           }
@@ -1290,7 +1364,7 @@
         "requirements": null
       },
       {
-        "id": 26729,
+        "id": 52595,
         "name": "submission_disclosure",
         "title": "Review the application",
         "description": ".",
@@ -1300,7 +1374,7 @@
           "additional_text": ""
         },
         "estimated_time": 60,
-        "index": 7,
+        "index": 6,
         "editable": true,
         "progress": {
           "total_steps": 1,
@@ -1312,58 +1386,28 @@
         "bypass_document_verification_enabled": false,
         "steps": [
           {
-            "id": 29593,
+            "id": 61581,
             "index": 0,
             "name": "submission_disclosure_step"
           }
         ],
         "requirements": null
-      },
-      {
-        "id": 26724,
-        "name": "identity_verification",
-        "title": "verifications.identity-verification.applicant-title",
-        "description": "verifications.identity-verification.applicant-description",
-        "status": "verified",
-        "vendor": "plaid",
-        "settings": {
-          "selfie_check": false,
-          "tin_verification": false,
-          "identity_abuse_check": {
-            "stolen_identity_threshold": 90,
-            "synthetic_identity_threshold": 70
-          },
-          "prevent_apply_if_failed": false
-        },
-        "estimated_time": 300,
-        "index": 2,
-        "editable": false,
-        "progress": {
-          "total_steps": 0,
-          "filled_steps": 0
-        },
-        "incomes": [],
-        "income_sources": [],
-        "start_requirements": [],
-        "bypass_document_verification_enabled": false,
-        "steps": [],
-        "requirements": null
       }
     ],
     "current_applicant": {
-      "id": 3459,
-      "application_id": 3165,
+      "id": 7009,
+      "application_id": 6286,
       "role": "applicant",
-      "first_name": "Jamar",
-      "last_name": "Hermiston",
-      "middle_name": "Noah",
-      "email": "gehxynpzizdk+sandbox@web-library.net",
-      "application_status": "submitted",
+      "first_name": "Beaulah",
+      "last_name": "Ohara",
+      "middle_name": "Parker",
+      "email": "2k_8psnz091-+sandbox@web-library.net",
+      "application_status": "finished",
       "retry_identity_verification_status": "not_available",
       "fast_track_idv_status": "completed",
       "verifications": [
         {
-          "id": 26722,
+          "id": 52589,
           "name": "rental_application",
           "title": "verifications.personal-details.title",
           "description": "verifications.personal-details.description",
@@ -1418,37 +1462,37 @@
           "bypass_document_verification_enabled": false,
           "steps": [
             {
-              "id": 29584,
+              "id": 61572,
               "index": 0,
               "name": "personal_details"
             },
             {
-              "id": 29585,
+              "id": 61573,
               "index": 1,
               "name": "dependents"
             },
             {
-              "id": 29586,
+              "id": 61574,
               "index": 2,
               "name": "emergency_contacts"
             },
             {
-              "id": 29587,
+              "id": 61575,
               "index": 3,
               "name": "pets"
             },
             {
-              "id": 29588,
+              "id": 61576,
               "index": 4,
               "name": "vehicles"
             },
             {
-              "id": 29589,
+              "id": 61577,
               "index": 5,
               "name": "military_first_responder_teacher"
             },
             {
-              "id": 29590,
+              "id": 61578,
               "index": 6,
               "name": "lead_source"
             }
@@ -1456,7 +1500,7 @@
           "requirements": null
         },
         {
-          "id": 26723,
+          "id": 52590,
           "name": "housing_history",
           "title": "verifications.housing-history.title",
           "description": "verifications.housing-history.description",
@@ -1493,7 +1537,7 @@
           "bypass_document_verification_enabled": false,
           "steps": [
             {
-              "id": 29591,
+              "id": 61579,
               "index": 0,
               "name": "address"
             }
@@ -1503,7 +1547,7 @@
           }
         },
         {
-          "id": 26724,
+          "id": 52591,
           "name": "identity_verification",
           "title": "verifications.identity-verification.applicant-title",
           "description": "verifications.identity-verification.applicant-description",
@@ -1533,7 +1577,7 @@
           "requirements": null
         },
         {
-          "id": 26725,
+          "id": 52592,
           "name": "combined_income_verification",
           "title": "verifications.combined-income.title",
           "description": "verifications.combined-income.description",
@@ -1577,9 +1621,9 @@
                 }
               },
               "fields": {
-                "job_title": "optional",
+                "job_title": "required",
                 "supervisor": {
-                  "email": "optional",
+                  "email": "required",
                   "phone": "required",
                   "last_name": "required",
                   "first_name": "required"
@@ -1600,13 +1644,16 @@
                   "value": 3
                 }
               },
-              "payroll_allowed": true
+              "payroll_allowed": true,
+              "benefits_statement": {
+                "allowed": true
+              }
             },
             "offer_letter": {
               "fields": {
-                "job_title": "optional",
+                "job_title": "required",
                 "supervisor": {
-                  "email": "optional",
+                  "email": "required",
                   "phone": "required",
                   "last_name": "required",
                   "first_name": "required"
@@ -1639,7 +1686,10 @@
                   "value": 3
                 }
               },
-              "payroll_allowed": true
+              "payroll_allowed": true,
+              "benefits_statement": {
+                "allowed": true
+              }
             },
             "housing_assistance_upload": "required",
             "housing_assistance_program_enabled": true,
@@ -1654,33 +1704,33 @@
           },
           "incomes": [
             {
-              "id": 410,
+              "id": 1442,
               "type": "self_employment",
               "status": "processing",
               "pay_period": "monthly",
               "amount": {
-                "cents": 551400,
+                "cents": 421900,
                 "currency": "USD"
               },
-              "start_date": "2022-12-06",
+              "start_date": "2015-07-25",
               "additional_data": {
-                "job_title": "Customer Optimization Director",
-                "company_name": "Welch LLC"
+                "job_title": "Chief Implementation Consultant",
+                "company_name": "Bradtke, Towne and Reynolds"
               }
             }
           ],
           "income_sources": [
             {
-              "id": 322,
-              "status": "submitted",
+              "id": 1508,
+              "status": "processing",
               "type": "paystub",
-              "income_id": 410,
+              "income_id": 1442,
               "items": [],
               "has_available_items": false,
               "additional_data": null,
               "assets": [
                 {
-                  "asset_url": "https://boom-staging-nonprod.s3.us-east-2.amazonaws.com/staging/8d50b526e4d364cc4d8a1481b9ad4306.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6RCWFKPAV7ADZIA6%2F20260708%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20260708T190658Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=59cc4b6418348b696c078ae35cd33ad99d3756bb32f72dedcd2206746cc56478",
+                  "asset_url": "https://boom-staging-nonprod.s3.us-east-2.amazonaws.com/staging/f654d904e411b49d466127a9040d9807.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6RCWFKPAV7ADZIA6%2F20260710%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20260710T042244Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=5fa82cbbc09caf45d4a3119c83560a10a036564e7281032bc2f11af39ef97636",
                   "asset_name": "Paystub.pdf"
                 }
               ]
@@ -1690,7 +1740,7 @@
           "bypass_document_verification_enabled": null,
           "steps": [
             {
-              "id": 29592,
+              "id": 61580,
               "index": 0,
               "name": "combined_income"
             }
@@ -1698,7 +1748,7 @@
           "requirements": null
         },
         {
-          "id": 26729,
+          "id": 52595,
           "name": "submission_disclosure",
           "title": "Review the application",
           "description": ".",
@@ -1708,7 +1758,7 @@
             "additional_text": ""
           },
           "estimated_time": 60,
-          "index": 7,
+          "index": 6,
           "editable": true,
           "progress": {
             "total_steps": 1,
@@ -1720,7 +1770,7 @@
           "bypass_document_verification_enabled": false,
           "steps": [
             {
-              "id": 29593,
+              "id": 61581,
               "index": 0,
               "name": "submission_disclosure_step"
             }
@@ -1728,35 +1778,48 @@
           "requirements": null
         }
       ],
-      "stream_chat_token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiYXBwbGljYW50LWN1c3RvbWVyLTE2MzUxMSJ9.Am4JFvAPZO-AWej8kiNq3AD-d24z2_chZFOv1XWqeH8",
-      "stream_chat_id": "applicant-customer-163511",
-      "stream_chat_name": "Jamar Noah Hermiston",
+      "stream_chat_token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiYXBwbGljYW50LWN1c3RvbWVyLTE2ODE4MiJ9.nAFkjc8x-3su2_YoXdy5V1ZL_VnjBKykPLAppdU5-Qo",
+      "document_requests": [],
+      "stream_chat_id": "applicant-customer-168182",
+      "stream_chat_name": "Beaulah Parker Ohara",
       "application": {
-        "id": 3165,
+        "id": 6286,
         "partner": {
-          "slug": "universal",
-          "name": "Universal",
-          "email": "andrii+universal@boompay.app",
+          "slug": "rms1",
+          "name": "RMS1",
+          "email": "andrii+rm+s1@boompay.app",
           "logo_url": null,
-          "is_sites_and_communities": true,
+          "is_sites_and_communities": false,
           "is_home_site_rent": true,
           "is_english_only": false,
-          "id": 600,
-          "colors": null,
+          "is_inscribe_w2_verification": true,
+          "id": 687,
+          "colors": {
+            "primary": {
+              "20": "#8a8a8a",
+              "50": "#737373",
+              "100": "#5c5c5c",
+              "200": "#454545",
+              "300": "#2e2e2e",
+              "400": "#171717",
+              "500": "#000000",
+              "600": "#000000",
+              "700": "#000000",
+              "800": "#000000",
+              "900": "#000000"
+            }
+          },
           "base_border_radius": null,
           "font_family": null,
           "font_family_link": null,
           "google_analytics_id": null,
           "partner_features": [
+            "property_owner",
             "chat"
           ],
-          "property_management_system": ""
+          "property_management_system": "rent_manager"
         },
-        "property_branding": {
-          "landlord_name": "Flagstone Manufactured Housing",
-          "landlord_email": "SCarpenter@gmall.com",
-          "landlord_phone": "(513)555-9643"
-        },
+        "property_branding": {},
         "verification_template": {
           "has_move_in_date_limit": null,
           "max_move_in_days": null,
@@ -1798,7 +1861,7 @@
           }
         },
         "unit": {
-          "id": 162345,
+          "id": 209548,
           "title": "Lot #103",
           "property": {
             "name": "Flagstone Manufactured Housing",
@@ -1829,7 +1892,7 @@
           "criteria_rent_type": "both",
           "available_at": null,
           "occupied": false,
-          "partner_name": "Universal"
+          "partner_name": "RMS1"
         },
         "monthly_rent_amount": {
           "cents": 80000,
@@ -1849,19 +1912,19 @@
         },
         "applicants": [
           {
-            "id": 3459,
-            "application_id": 3165,
+            "id": 7009,
+            "application_id": 6286,
             "role": "applicant",
-            "first_name": "Jamar",
-            "last_name": "Hermiston",
-            "middle_name": "Noah",
-            "email": "gehxynpzizdk+sandbox@web-library.net",
-            "application_status": "submitted",
+            "first_name": "Beaulah",
+            "last_name": "Ohara",
+            "middle_name": "Parker",
+            "email": "2k_8psnz091-+sandbox@web-library.net",
+            "application_status": "finished",
             "retry_identity_verification_status": "not_available",
             "fast_track_idv_status": "completed",
             "verifications": [
               {
-                "id": 26722,
+                "id": 52589,
                 "name": "rental_application",
                 "title": "verifications.personal-details.title",
                 "description": "verifications.personal-details.description",
@@ -1916,7 +1979,7 @@
                 "bypass_document_verification_enabled": false
               },
               {
-                "id": 26723,
+                "id": 52590,
                 "name": "housing_history",
                 "title": "verifications.housing-history.title",
                 "description": "verifications.housing-history.description",
@@ -1953,7 +2016,7 @@
                 "bypass_document_verification_enabled": false
               },
               {
-                "id": 26724,
+                "id": 52591,
                 "name": "identity_verification",
                 "title": "verifications.identity-verification.applicant-title",
                 "description": "verifications.identity-verification.applicant-description",
@@ -1981,7 +2044,7 @@
                 "bypass_document_verification_enabled": false
               },
               {
-                "id": 26725,
+                "id": 52592,
                 "name": "combined_income_verification",
                 "title": "verifications.combined-income.title",
                 "description": "verifications.combined-income.description",
@@ -2025,9 +2088,9 @@
                       }
                     },
                     "fields": {
-                      "job_title": "optional",
+                      "job_title": "required",
                       "supervisor": {
-                        "email": "optional",
+                        "email": "required",
                         "phone": "required",
                         "last_name": "required",
                         "first_name": "required"
@@ -2048,13 +2111,16 @@
                         "value": 3
                       }
                     },
-                    "payroll_allowed": true
+                    "payroll_allowed": true,
+                    "benefits_statement": {
+                      "allowed": true
+                    }
                   },
                   "offer_letter": {
                     "fields": {
-                      "job_title": "optional",
+                      "job_title": "required",
                       "supervisor": {
-                        "email": "optional",
+                        "email": "required",
                         "phone": "required",
                         "last_name": "required",
                         "first_name": "required"
@@ -2087,7 +2153,10 @@
                         "value": 3
                       }
                     },
-                    "payroll_allowed": true
+                    "payroll_allowed": true,
+                    "benefits_statement": {
+                      "allowed": true
+                    }
                   },
                   "housing_assistance_upload": "required",
                   "housing_assistance_program_enabled": true,
@@ -2102,33 +2171,33 @@
                 },
                 "incomes": [
                   {
-                    "id": 410,
+                    "id": 1442,
                     "type": "self_employment",
                     "status": "processing",
                     "pay_period": "monthly",
                     "amount": {
-                      "cents": 551400,
+                      "cents": 421900,
                       "currency": "USD"
                     },
-                    "start_date": "2022-12-06",
+                    "start_date": "2015-07-25",
                     "additional_data": {
-                      "job_title": "Customer Optimization Director",
-                      "company_name": "Welch LLC"
+                      "job_title": "Chief Implementation Consultant",
+                      "company_name": "Bradtke, Towne and Reynolds"
                     }
                   }
                 ],
                 "income_sources": [
                   {
-                    "id": 322,
-                    "status": "submitted",
+                    "id": 1508,
+                    "status": "processing",
                     "type": "paystub",
-                    "income_id": 410,
+                    "income_id": 1442,
                     "items": [],
                     "has_available_items": false,
                     "additional_data": null,
                     "assets": [
                       {
-                        "asset_url": "https://boom-staging-nonprod.s3.us-east-2.amazonaws.com/staging/8d50b526e4d364cc4d8a1481b9ad4306.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6RCWFKPAV7ADZIA6%2F20260708%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20260708T190658Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=59cc4b6418348b696c078ae35cd33ad99d3756bb32f72dedcd2206746cc56478",
+                        "asset_url": "https://boom-staging-nonprod.s3.us-east-2.amazonaws.com/staging/f654d904e411b49d466127a9040d9807.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6RCWFKPAV7ADZIA6%2F20260710%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20260710T042244Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=5fa82cbbc09caf45d4a3119c83560a10a036564e7281032bc2f11af39ef97636",
                         "asset_name": "Paystub.pdf"
                       }
                     ]
@@ -2138,7 +2207,7 @@
                 "bypass_document_verification_enabled": null
               },
               {
-                "id": 26729,
+                "id": 52595,
                 "name": "submission_disclosure",
                 "title": "Review the application",
                 "description": ".",
@@ -2148,7 +2217,7 @@
                   "additional_text": ""
                 },
                 "estimated_time": 60,
-                "index": 7,
+                "index": 6,
                 "editable": true,
                 "progress": {
                   "total_steps": 1,
@@ -2160,28 +2229,29 @@
                 "bypass_document_verification_enabled": false
               }
             ],
-            "stream_chat_token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiYXBwbGljYW50LWN1c3RvbWVyLTE2MzUxMSJ9.Am4JFvAPZO-AWej8kiNq3AD-d24z2_chZFOv1XWqeH8",
-            "stream_chat_id": "applicant-customer-163511",
-            "stream_chat_name": "Jamar Noah Hermiston"
+            "stream_chat_token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiYXBwbGljYW50LWN1c3RvbWVyLTE2ODE4MiJ9.nAFkjc8x-3su2_YoXdy5V1ZL_VnjBKykPLAppdU5-Qo",
+            "document_requests": [],
+            "stream_chat_id": "applicant-customer-168182",
+            "stream_chat_name": "Beaulah Parker Ohara"
           }
         ],
-        "status": "submitted",
+        "status": "started",
         "screening_status": "processing",
         "desired_move_in_date": "2026-07-31",
         "desired_lease_term": null,
         "lease_term_enabled": false,
         "conditions": [],
-        "partner_name_in_submission_disclosure": "Flagstone Manufactured Housing",
+        "partner_name_in_submission_disclosure": "RMS1",
         "has_multiple_applicants": null,
         "has_multiple_guarantors": null,
         "allow_occupants": null
       },
       "fee": {
-        "cents": 0,
+        "cents": 6000,
         "currency": "USD"
       },
       "application_fee": {
-        "cents": 0,
+        "cents": 6000,
         "currency": "USD"
       },
       "fee_items": [
@@ -2189,7 +2259,7 @@
           "fee_type": "application_fee",
           "description": "Application fee",
           "amount": {
-            "cents": 0,
+            "cents": 6000,
             "currency": "USD"
           },
           "status": "due"
@@ -2198,13 +2268,14 @@
       "can_checkout": true,
       "ineligible_to_checkout_reason": null,
       "requirements": [],
-      "intercom_id": "applicant-3459",
+      "intercom_id": "applicant-7009",
       "is_manual": false,
-      "application_started_at": "2026-07-08T19:06:20.241+00:00",
+      "application_started_at": "2026-07-10T04:22:11.267+00:00",
       "discount_info": null,
       "invited_by_applicant_id": null,
       "has_passed_invite_flow": true,
       "can_invite_others": true
-    }
+    },
+    "reverify_requests": []
   }
 }

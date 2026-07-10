@@ -1,5 +1,6 @@
 import { LoggerProvider } from "../services";
 import { APP_CONFIG } from "../config";
+import { ApplicationDetailsResponse } from "../types";
 import { writeTestData } from "../utils";
 import { inviteCoApplicant } from "./applicant-invitation.service";
 import { getApplicant, RunContext } from "./run-context";
@@ -14,11 +15,11 @@ export async function resolveApplicantId(ctx: RunContext): Promise<string> {
   }
 
   const appDetailsRaw = await ctx.api.getApplicationDetails(ctx.app.id!);
-  const appDetails = await appDetailsRaw.json();
+  const appDetails = (await appDetailsRaw.json()) as ApplicationDetailsResponse;
   const email = applicant.email?.email;
   const apiApplicants = appDetails.application?.applicants ?? [];
   const matchedApplicant =
-    apiApplicants.find((entry: { email?: string }) => entry.email === email) ??
+    apiApplicants.find((entry) => entry.email === email) ??
     appDetails.application?.current_applicant;
 
   if (!matchedApplicant?.id) {

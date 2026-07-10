@@ -8,6 +8,7 @@ export interface Email{
 
 export interface Applicant {
   id?: string;
+  role?: string;
   invite_magic_link?: string;
   phone?: string;
   otp?: number;
@@ -48,14 +49,19 @@ export interface AppInfo {
 }
 
 /**
- * Gets the applicant at the given index in the applicants array.
- * @param app - The AppInfo object
- * @param applicantIndex - Index of the active applicant (defaults to primary)
- * @returns The applicant or undefined
+ * Returns the applicant at the given index in the applicants array.
  */
-export function getCurrentApplicant(
+export function getApplicantAt(
   app: AppInfo,
   applicantIndex = 0
 ): Applicant | undefined {
   return app.applicants?.[applicantIndex];
+}
+
+/** @deprecated Use getApplicantAt or getApplicant(ctx) from workflows/run-context */
+export function getCurrentApplicant(
+  app: AppInfo,
+  applicantIndex = 0
+): Applicant | undefined {
+  return getApplicantAt(app, applicantIndex);
 }

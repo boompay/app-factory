@@ -1,5 +1,5 @@
 import { ApiClient, AuthTokenProvider } from "../services";
-import { Applicant, AppInfo, getCurrentApplicant } from "../models";
+import { Applicant, AppInfo, getApplicantAt } from "../models";
 
 export interface RunContext {
   api: ApiClient;
@@ -10,7 +10,7 @@ export interface RunContext {
 }
 
 export function getApplicant(ctx: RunContext): Applicant {
-  const applicant = getCurrentApplicant(ctx.app, ctx.applicantIndex);
+  const applicant = getApplicantAt(ctx.app, ctx.applicantIndex);
   if (!applicant) {
     throw new Error(`Applicant at index ${ctx.applicantIndex} not found`);
   }

@@ -1,28 +1,17 @@
 import { LoggerProvider } from "../../services";
-import { validateAppInfo, validateApplicationToken } from "../../utils";
-import { initializeApi } from "../../services";
+import { getApplicant } from "../run-context";
 import { CO_APPLICANT_PIPELINE } from "./applicant-pipeline";
 import { runApplicantPipeline } from "./run-applicant-pipeline";
 import { RunContext } from "./run-context";
 
 const logger = LoggerProvider.create("application-runner");
 
-async function switchToApplicant(
-  ctx: RunContext,
-  applicantIndex: number
-): Promise<void> {
-  const applicant = ctx.app.applicants![applicantIndex];
+function prepareCoApplicant(ctx: RunContext, applicantIndex: number): void {
+  const applicant = getApplicant(ctx);
   const role = applicant.role ?? "applicant";
   logger.info(
-    `Starting ${role} flow for applicant ID: ${applicant.id ?? "pending"} (index ${applicantIndex})`
+    `Preparing ${role} pipeline (index ${applicantIndex}, id ${applicant.id ?? "pending"})`
   );
-
-  const applicationToken = applicant.invite_magic_link!.split("/").pop();
-  const validatedToken = validateApplicationToken(applicationToken);
-
-  ctx.app = await ctx.tokenProvider.updateBearerToken(validatedToken, ctx.app);
-  validateAppInfo(ctx.app);
-  ctx.api = await initializeApi(ctx.app);
   ctx.applicantIndex = applicantIndex;
 }
 
@@ -33,7 +22,7 @@ export async function runCoApplicants(ctx: RunContext): Promise<void> {
   }
 
   for (let i = 1; i < applicants.length; i++) {
-    await switchToApplicant(ctx, i);
+    prepareCoApplicant(ctx, i);
     await runApplicantPipeline(ctx, CO_APPLICANT_PIPELINE);
   }
 }

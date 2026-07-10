@@ -9,6 +9,8 @@ export interface Email{
 export interface Applicant {
   id?: string;
   role?: string;
+  /** Co-applicant entry URL: /auth/sign-in?token=...&unitId=...&applicationId=... */
+  sign_in_link?: string;
   invite_magic_link?: string;
   phone?: string;
   otp?: number;

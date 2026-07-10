@@ -1,17 +1,12 @@
-import { ApiClient } from "../services";
-import { AppInfo } from "../models";
 import { APP_CONFIG, INCOME_SOURCE_DETAILS } from "../config";
 import { LoggerProvider } from "../services";
 import { generateEmployeeData } from "../helpers";
 import { uploadDocument } from "./document-upload.service";
+import { RunContext } from "./run-context";
 
 const logger = LoggerProvider.create("application-combined-income");
 
-export async function submitCombinedIncome(
-  api: ApiClient,
-  app: AppInfo,
-  _applicantIndex = 0
-): Promise<void> {
+export async function submitCombinedIncome(ctx: RunContext): Promise<void> {
   const employee = generateEmployeeData();
   const employmentPayload = {
     type: "self_employment",
@@ -27,48 +22,48 @@ export async function submitCombinedIncome(
     pay_period: "monthly",
   };
 
-  const incomeVResponse = await api.postIncomeVerificationDetails(
-    app.id!,
-    app.verifications!.combined_income!,
+  const incomeVResponse = await ctx.api.postIncomeVerificationDetails(
+    ctx.app.id!,
+    ctx.app.verifications!.combined_income!,
     "income",
     employmentPayload
   );
   const incomeVerificationDetails = await incomeVResponse.json();
-  app.incomeId = incomeVerificationDetails.id;
+  ctx.app.incomeId = incomeVerificationDetails.id;
   logger.info(
-    `Submitted first part of combined income verification: ${app.incomeId}`
+    `Submitted first part of combined income verification: ${ctx.app.incomeId}`
   );
 
   const incomeSourceConfig =
     INCOME_SOURCE_DETAILS[APP_CONFIG.DEFAULT_VALUES.INCOME_SOURCE];
 
   const incomeSourcePayload = {
-    income_id: app.incomeId,
+    income_id: ctx.app.incomeId,
     type: incomeSourceConfig.apiType,
   };
 
-  const incomeSourceResponse = await api.postIncomeVerificationDetails(
-    app.id!,
-    app.verifications!.combined_income!,
+  const incomeSourceResponse = await ctx.api.postIncomeVerificationDetails(
+    ctx.app.id!,
+    ctx.app.verifications!.combined_income!,
     "income_sources",
     incomeSourcePayload
   );
   const incomeSourceDetails = await incomeSourceResponse.json();
-  app.incomeSourceId = incomeSourceDetails.id;
+  ctx.app.incomeSourceId = incomeSourceDetails.id;
   logger.info(
-    `Submitted second part of combined income verification: ${app.incomeSourceId}`
+    `Submitted second part of combined income verification: ${ctx.app.incomeSourceId}`
   );
 
   await uploadDocument(
-    api,
-    app,
+    ctx.api,
+    ctx.app,
     incomeSourceConfig.filePath,
     incomeSourceConfig.documentType
   );
 
-  await api.postIncomeVerificationDetails(
-    app.id!,
-    app.verifications!.combined_income!,
+  await ctx.api.postIncomeVerificationDetails(
+    ctx.app.id!,
+    ctx.app.verifications!.combined_income!,
     "finish"
   );
 }

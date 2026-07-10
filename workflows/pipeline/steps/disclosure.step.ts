@@ -5,6 +5,6 @@ export const disclosureStep: PipelineStep = {
   name: "disclosure",
   snapshot: true,
   async execute(ctx) {
-    await passSubmissionDisclosure(ctx.api, ctx.app, ctx.applicantIndex);
+    await passSubmissionDisclosure(ctx);
   },
 };

@@ -1,25 +1,17 @@
-import { ApiClient } from "../services";
-import { AppInfo, getCurrentApplicant } from "../models";
 import { APP_CONFIG } from "../config";
 import { LoggerProvider } from "../services";
 import { uploadSignature } from "./document-upload.service";
+import { getApplicant, RunContext } from "./run-context";
 
 const logger = LoggerProvider.create("application-disclosure");
 
-export async function passSubmissionDisclosure(
-  api: ApiClient,
-  app: AppInfo,
-  applicantIndex = 0
-): Promise<void> {
+export async function passSubmissionDisclosure(ctx: RunContext): Promise<void> {
   const signatureAssetId = await uploadSignature(
-    api,
-    app,
+    ctx.api,
+    ctx.app,
     "./test-data/signature.svg"
   );
-  const currentApplicant = getCurrentApplicant(app, applicantIndex);
-  if (!currentApplicant) {
-    throw new Error("Current applicant not found");
-  }
+  const currentApplicant = getApplicant(ctx);
 
   const middleInitial =
     currentApplicant.middle_name && currentApplicant.middle_name.length > 0
@@ -32,9 +24,9 @@ export async function passSubmissionDisclosure(
     },
   };
 
-  await api.providePersonalDetailsSteps(
-    app.id!,
-    app.verifications!.submission_disclosure!,
+  await ctx.api.providePersonalDetailsSteps(
+    ctx.app.id!,
+    ctx.app.verifications!.submission_disclosure!,
     APP_CONFIG.STEP_NAMES.SUBMISSION_DISCLOSURE,
     signatureAssetIdPayload
   );

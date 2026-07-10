@@ -1,21 +1,13 @@
-import { ApiClient } from "../services";
-import { AppInfo, getCurrentApplicant } from "../models";
 import { APP_CONFIG } from "../config";
 import { LoggerProvider } from "../services";
 import { getRandomAddress, randomInt } from "../helpers";
 import { uploadLeaseAgreement } from "./document-upload.service";
+import { getApplicant, RunContext } from "./run-context";
 
 const logger = LoggerProvider.create("application-housing-history");
 
-export async function submitHousingHistory(
-  api: ApiClient,
-  app: AppInfo,
-  applicantIndex = 0
-): Promise<void> {
-  const currentApplicant = getCurrentApplicant(app, applicantIndex);
-  if (!currentApplicant) {
-    throw new Error("Current applicant not found");
-  }
+export async function submitHousingHistory(ctx: RunContext): Promise<void> {
+  getApplicant(ctx);
 
   const address = await getRandomAddress("us");
   const apartNumber = randomInt(1, 100).toString();
@@ -49,8 +41,8 @@ export async function submitHousingHistory(
     };
   } else {
     const leaseDocumentAssetId = await uploadLeaseAgreement(
-      api,
-      app,
+      ctx.api,
+      ctx.app,
       "./test-data/LeaseAgreement.pdf"
     );
     addressPayload = {
@@ -84,9 +76,9 @@ export async function submitHousingHistory(
     };
   }
 
-  await api.providePersonalDetailsSteps(
-    app.id!,
-    app.verifications!.housing_history!,
+  await ctx.api.providePersonalDetailsSteps(
+    ctx.app.id!,
+    ctx.app.verifications!.housing_history!,
     APP_CONFIG.STEP_NAMES.HOUSING_HISTORY,
     addressPayload
   );

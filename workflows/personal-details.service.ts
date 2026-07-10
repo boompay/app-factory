@@ -1,5 +1,4 @@
 import { ApiClient } from "../services";
-import { AppInfo, getCurrentApplicant } from "../models";
 import { PersonalDetailsStepConfig } from "../types";
 import { APP_CONFIG } from "../config";
 import { LoggerProvider } from "../services";
@@ -7,6 +6,7 @@ import {
   randomFullName,
   generateRandomUsCaPhone,
 } from "../helpers";
+import { getApplicant, RunContext } from "./run-context";
 
 const logger = LoggerProvider.create("application-personal-details");
 
@@ -28,13 +28,9 @@ export async function submitPersonalDetailsSteps(
 }
 
 export function createPersonalDetailsStepsConfig(
-  app: AppInfo,
-  applicantIndex = 0
+  ctx: RunContext
 ): PersonalDetailsStepConfig[] {
-  const currentApplicant = getCurrentApplicant(app, applicantIndex);
-  if (!currentApplicant) {
-    throw new Error("Current applicant not found");
-  }
+  const currentApplicant = getApplicant(ctx);
 
   return [
     {
@@ -105,19 +101,12 @@ export function createPersonalDetailsStepsConfig(
   ];
 }
 
-export async function submitPersonalDetails(
-  api: ApiClient,
-  app: AppInfo,
-  applicantIndex = 0
-): Promise<void> {
-  const personalDetailsSteps = createPersonalDetailsStepsConfig(
-    app,
-    applicantIndex
-  );
+export async function submitPersonalDetails(ctx: RunContext): Promise<void> {
+  const personalDetailsSteps = createPersonalDetailsStepsConfig(ctx);
   await submitPersonalDetailsSteps(
-    api,
-    app.id!,
-    app.verifications!.personal_details!,
+    ctx.api,
+    ctx.app.id!,
+    ctx.app.verifications!.personal_details!,
     personalDetailsSteps
   );
 }

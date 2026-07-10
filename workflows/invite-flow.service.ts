@@ -1,25 +1,19 @@
-import { ApiClient, LoggerProvider } from "../services";
-import { AppInfo, getCurrentApplicant } from "../models";
+import { LoggerProvider } from "../services";
 import { APP_CONFIG } from "../config";
+import { writeTestData } from "../utils";
 import { inviteCoApplicant } from "./applicant-invitation.service";
+import { getApplicant, RunContext } from "./run-context";
 
 const logger = LoggerProvider.create("application-invite-flow");
 
-export async function resolveApplicantId(
-  api: ApiClient,
-  app: AppInfo,
-  applicantIndex: number
-): Promise<string> {
-  const applicant = getCurrentApplicant(app, applicantIndex);
-  if (!applicant) {
-    throw new Error(`Applicant at index ${applicantIndex} not found`);
-  }
+export async function resolveApplicantId(ctx: RunContext): Promise<string> {
+  const applicant = getApplicant(ctx);
 
   if (applicant.id) {
     return applicant.id;
   }
 
-  const appDetailsRaw = await api.getApplicationDetails(app.id!);
+  const appDetailsRaw = await ctx.api.getApplicationDetails(ctx.app.id!);
   const appDetails = await appDetailsRaw.json();
   const email = applicant.email?.email;
   const apiApplicants = appDetails.application?.applicants ?? [];
@@ -29,7 +23,7 @@ export async function resolveApplicantId(
 
   if (!matchedApplicant?.id) {
     throw new Error(
-      `Could not resolve applicant ID for index ${applicantIndex}`
+      `Could not resolve applicant ID for index ${ctx.applicantIndex}`
     );
   }
 
@@ -42,18 +36,18 @@ export async function resolveApplicantId(
  * Used by the primary pipeline (after invites) and the co-applicant pipeline.
  */
 export async function passApplicantInviteFlow(
-  api: ApiClient,
-  app: AppInfo,
-  applicantIndex: number,
-  writeTestData?: (filePath: string, data: unknown) => Promise<void>,
-  testDataPaths?: { applicant: string }
+  ctx: RunContext,
+  options: { persistTestData?: boolean } = { persistTestData: true }
 ): Promise<void> {
-  const applicantId = await resolveApplicantId(api, app, applicantIndex);
-  const passInviteResponseRaw = await api.passInviteFlow(applicantId);
+  const applicantId = await resolveApplicantId(ctx);
+  const passInviteResponseRaw = await ctx.api.passInviteFlow(applicantId);
   const passInviteResponse = await passInviteResponseRaw.json();
 
-  if (writeTestData && testDataPaths) {
-    await writeTestData(testDataPaths.applicant, passInviteResponse);
+  if (options.persistTestData) {
+    await writeTestData(
+      APP_CONFIG.PATHS.TEST_DATA_APPLICANT,
+      passInviteResponse
+    );
   }
 
   logger.info(`Passed invite flow for applicant ID: ${applicantId}`);
@@ -64,45 +58,32 @@ export async function passApplicantInviteFlow(
  * Only runs for the primary applicant — co-applicants use passApplicantInviteFlow directly.
  */
 export async function startPrimaryApplicationFlow(
-  api: ApiClient,
-  app: AppInfo,
-  writeTestData: (filePath: string, data: unknown) => Promise<void>,
-  testDataPaths: { application: string; applicant: string },
-  applicantIndex = 0
+  ctx: RunContext
 ): Promise<void> {
   let coApplicantCount = APP_CONFIG.ACTORS.APPLICANT;
   let occupantIndex = APP_CONFIG.ACTORS.OCCUPANT;
   let guarantorsIndex = APP_CONFIG.ACTORS.GUARANTOR;
 
-  const startResponseRaw = await api.startApplication(app.id!);
+  const startResponseRaw = await ctx.api.startApplication(ctx.app.id!);
   const startResponse = await startResponseRaw.json();
-  await writeTestData(testDataPaths.application, startResponse);
+  await writeTestData(APP_CONFIG.PATHS.TEST_DATA_APPLICATION, startResponse);
 
-  const currentApplicant = getCurrentApplicant(app, applicantIndex);
-  if (!currentApplicant) {
-    throw new Error("Current applicant not found");
-  }
+  getApplicant(ctx);
 
   while (coApplicantCount > 0) {
-    await inviteCoApplicant(api, app, "applicant");
+    await inviteCoApplicant(ctx.api, ctx.app, "applicant");
     coApplicantCount--;
   }
 
   while (occupantIndex > 0) {
-    await inviteCoApplicant(api, app, "occupant");
+    await inviteCoApplicant(ctx.api, ctx.app, "occupant");
     occupantIndex--;
   }
 
   while (guarantorsIndex > 0) {
-    await inviteCoApplicant(api, app, "co_signer");
+    await inviteCoApplicant(ctx.api, ctx.app, "co_signer");
     guarantorsIndex--;
   }
 
-  await passApplicantInviteFlow(
-    api,
-    app,
-    applicantIndex,
-    writeTestData,
-    { applicant: testDataPaths.applicant }
-  );
+  await passApplicantInviteFlow(ctx);
 }

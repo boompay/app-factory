@@ -5,6 +5,6 @@ export const combinedIncomeStep: PipelineStep = {
   name: "combined-income",
   snapshot: true,
   async execute(ctx) {
-    await submitCombinedIncome(ctx.api, ctx.app, ctx.applicantIndex);
+    await submitCombinedIncome(ctx);
   },
 };

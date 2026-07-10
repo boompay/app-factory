@@ -5,6 +5,6 @@ export const housingHistoryStep: PipelineStep = {
   name: "housing-history",
   snapshot: true,
   async execute(ctx) {
-    await submitHousingHistory(ctx.api, ctx.app, ctx.applicantIndex);
+    await submitHousingHistory(ctx);
   },
 };

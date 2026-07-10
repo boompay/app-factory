@@ -1,5 +1,5 @@
-import { getCurrentApplicant } from "../../../models";
 import { LoggerProvider } from "../../../services";
+import { getApplicant } from "../../run-context";
 import { submitApplication } from "../../submission.service";
 import { PipelineStep } from "../pipeline-step";
 
@@ -9,13 +9,10 @@ export const submitStep: PipelineStep = {
   name: "submit",
   snapshot: { delayMs: 2000 },
   async execute(ctx) {
-    await submitApplication(ctx.api, ctx.app, ctx.applicantIndex);
+    await submitApplication(ctx);
   },
   async afterSnapshot(ctx) {
-    const finalApplicant = getCurrentApplicant(ctx.app, ctx.applicantIndex);
-    if (!finalApplicant) {
-      throw new Error("Current applicant not found");
-    }
+    const finalApplicant = getApplicant(ctx);
 
     const middleInitial =
       finalApplicant.middle_name && finalApplicant.middle_name.length > 0

@@ -8,7 +8,7 @@ import {
   getApplicantSignInLink,
   parseApplicantSignInLink,
 } from "../utils/sign-in-link";
-import { applyApplicantIdFromMagicLinkCheck } from "../utils/magic-link-check";
+import { extractApplicantFromMagicLinkCheck } from "../utils/magic-link-check";
 
 export class AuthTokenProvider {
   private authUrl: string;
@@ -163,7 +163,10 @@ export class AuthTokenProvider {
     }
 
     const checkData = await responseCheck.json();
-    applyApplicantIdFromMagicLinkCheck(applicant, checkData);
+    const fromCheck = extractApplicantFromMagicLinkCheck(checkData);
+    if (fromCheck?.id != null) {
+      applicant.id = String(fromCheck.id);
+    }
     const unitId =
       unitIdFromLink ||
       checkData?.magic_link?.unit_id ||

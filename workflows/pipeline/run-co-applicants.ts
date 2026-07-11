@@ -7,12 +7,12 @@ import { RunContext } from "./run-context";
 const logger = LoggerProvider.create("application-runner");
 
 function prepareCoApplicant(ctx: RunContext, applicantIndex: number): void {
+  ctx.applicantIndex = applicantIndex;
   const applicant = getApplicant(ctx);
   const role = applicant.role ?? "applicant";
   logger.info(
     `Preparing ${role} pipeline (index ${applicantIndex}, id ${applicant.id ?? "pending"})`
   );
-  ctx.applicantIndex = applicantIndex;
 }
 
 export async function runCoApplicants(ctx: RunContext): Promise<void> {

@@ -22,10 +22,7 @@ export function extractApplicantFromMagicLinkCheck(
   return (
     data.current_applicant ??
     data.applicant ??
-    data.magic_link?.current_applicant ??
-    (data.magic_link?.applicant_id
-      ? { id: data.magic_link.applicant_id }
-      : undefined)
+    data.magic_link?.current_applicant
   );
 }
 

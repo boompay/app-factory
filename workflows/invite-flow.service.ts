@@ -34,6 +34,29 @@ async function resolveApplicantIdFromPrimaryApi(
 export async function resolveApplicantId(ctx: RunContext): Promise<string> {
   const applicant = getApplicant(ctx);
 
+  if (isCoApplicantRun(ctx)) {
+    const fromMagicLinkCheck = await fetchApplicantFromMagicLinkCheck(
+      ctx.api,
+      applicant
+    );
+    if (fromMagicLinkCheck?.id != null) {
+      applicant.id = String(fromMagicLinkCheck.id);
+      logger.info(
+        `Resolved co-applicant ID ${applicant.id} via magic_links/check (index ${ctx.applicantIndex})`
+      );
+      return applicant.id;
+    }
+
+    const fromPrimary = await resolveApplicantIdFromPrimaryApi(ctx);
+    if (fromPrimary) {
+      applicant.id = fromPrimary;
+      logger.info(
+        `Resolved co-applicant ID ${fromPrimary} via primary API (index ${ctx.applicantIndex})`
+      );
+      return fromPrimary;
+    }
+  }
+
   if (applicant.id) {
     return applicant.id;
   }
@@ -45,17 +68,6 @@ export async function resolveApplicantId(ctx: RunContext): Promise<string> {
   if (fromMagicLinkCheck?.id != null) {
     applicant.id = String(fromMagicLinkCheck.id);
     return applicant.id;
-  }
-
-  if (isCoApplicantRun(ctx)) {
-    const fromPrimary = await resolveApplicantIdFromPrimaryApi(ctx);
-    if (fromPrimary) {
-      applicant.id = fromPrimary;
-      logger.info(
-        `Resolved co-applicant ID ${fromPrimary} via primary API (index ${ctx.applicantIndex})`
-      );
-      return fromPrimary;
-    }
   }
 
   throw new Error(

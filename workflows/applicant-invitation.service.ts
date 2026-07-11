@@ -25,22 +25,6 @@ async function resolveInvitedApplicantId(
   email: Email,
   magicLinkEntry?: MagicLinkEntry
 ): Promise<string | undefined> {
-  if (magicLinkEntry?.applicant_id != null) {
-    return String(magicLinkEntry.applicant_id);
-  }
-  if (magicLinkEntry?.id != null) {
-    return String(magicLinkEntry.id);
-  }
-
-  if (magicLinkEntry?.application_link) {
-    const fromCheck = await fetchApplicantFromMagicLinkCheck(api, {
-      sign_in_link: magicLinkEntry.application_link,
-    });
-    if (fromCheck?.id != null) {
-      return String(fromCheck.id);
-    }
-  }
-
   const emails = applicantEmails(email);
   for (let attempt = 0; attempt < 3; attempt++) {
     const appDetailsRaw = await api.getApplicationDetails(app.id!);
@@ -55,6 +39,15 @@ async function resolveInvitedApplicantId(
 
     if (attempt < 2) {
       await new Promise((resolve) => setTimeout(resolve, 500));
+    }
+  }
+
+  if (magicLinkEntry?.application_link) {
+    const fromCheck = await fetchApplicantFromMagicLinkCheck(api, {
+      sign_in_link: magicLinkEntry.application_link,
+    });
+    if (fromCheck?.id != null) {
+      return String(fromCheck.id);
     }
   }
 

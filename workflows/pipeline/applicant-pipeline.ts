@@ -35,4 +35,5 @@ export const CO_APPLICANT_PIPELINE: PipelineStep[] = [
   passInviteStep,
   refreshApplicantContextStep,
   ...VERIFICATION_STEPS,
+  submitStep,
 ];

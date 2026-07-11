@@ -1,18 +1,13 @@
 import { LoggerProvider } from "../services";
 import { transformStatusFields } from "../utils";
-import { getApplicant, isCoApplicantRun, RunContext } from "./run-context";
+import { getApplicant, getSnapshotApi, RunContext } from "./run-context";
 
 const logger = LoggerProvider.create("application-submission");
 
 export async function submitApplication(ctx: RunContext): Promise<void> {
-  if (isCoApplicantRun(ctx)) {
-    logger.info(
-      `Skipping full application submit for co-applicant index ${ctx.applicantIndex} — primary applicant submits the application`
-    );
-    return;
-  }
-
-  const appResponseRaw = await ctx.api.getApplicationDetails(ctx.app.id!);
+  const appResponseRaw = await getSnapshotApi(ctx).getApplicationDetails(
+    ctx.app.id!
+  );
   const appResponse = await appResponseRaw.json();
 
   const payload = transformStatusFields(appResponse);

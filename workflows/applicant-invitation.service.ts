@@ -1,13 +1,91 @@
 import { ApiClient, LoggerProvider } from "../services";
 import { AppInfo, Email } from "../models";
+import { ApplicationDetailsResponse } from "../types";
 import { randomFullName, createTestInbox } from "../helpers";
 import { writeAppInfo } from "../utils";
 import { APP_CONFIG } from "../config";
+import { fetchApplicantFromMagicLinkCheck } from "./co-applicant-context.service";
 
 const logger = LoggerProvider.create("applicant-invitation");
 
+type MagicLinkEntry = {
+  applicant_id?: string | number;
+  id?: string | number;
+  application_link?: string;
+  email?: string;
+};
+
+function applicantEmails(email: Email): string[] {
+  return [email.email, email.inboxEmail].filter(Boolean);
+}
+
+async function resolveInvitedApplicantId(
+  api: ApiClient,
+  app: AppInfo,
+  email: Email,
+  magicLinkEntry?: MagicLinkEntry
+): Promise<string | undefined> {
+  const emails = applicantEmails(email);
+  for (let attempt = 0; attempt < 3; attempt++) {
+    const appDetailsRaw = await api.getApplicationDetails(app.id!);
+    const appDetails = (await appDetailsRaw.json()) as ApplicationDetailsResponse;
+    const matched = appDetails.application?.applicants?.find(
+      (entry) => entry.email != null && emails.includes(entry.email)
+    );
+
+    if (matched?.id != null) {
+      return String(matched.id);
+    }
+
+    if (attempt < 2) {
+      await new Promise((resolve) => setTimeout(resolve, 500));
+    }
+  }
+
+  if (magicLinkEntry?.application_link) {
+    const fromCheck = await fetchApplicantFromMagicLinkCheck(api, {
+      sign_in_link: magicLinkEntry.application_link,
+    });
+    if (fromCheck?.id != null) {
+      return String(fromCheck.id);
+    }
+  }
+
+  return undefined;
+}
+
+async function ensureApplicationFlagsForRole(
+  api: ApiClient,
+  app: AppInfo,
+  role: string
+): Promise<void> {
+  const patchFlags =
+    APP_CONFIG.ACTOR_PATCH_FLAGS[
+      role as keyof typeof APP_CONFIG.ACTOR_PATCH_FLAGS
+    ];
+  if (!patchFlags) {
+    return;
+  }
+
+  const appDetails = await api.getApplicationDetails(app.id!);
+  const appData = await appDetails.json();
+  const application = appData.application ?? {};
+  const flagsToSet = Object.fromEntries(
+    Object.entries(patchFlags).filter(([key]) => !application[key])
+  );
+
+  if (Object.keys(flagsToSet).length === 0) {
+    return;
+  }
+
+  logger.info(
+    `Setting ${Object.keys(flagsToSet).join(", ")} for ${role} invite`
+  );
+  await api.patchApplication(app.id!, flagsToSet);
+}
+
 /**
- * Invites a new co-applicant to the application
+ * Invites an additional actor (co-applicant, occupant, or guarantor).
  * @param api - The API client
  * @param app - The application info
  * @returns The magic link for the new applicant and the email object
@@ -21,26 +99,21 @@ export async function inviteCoApplicant(
     throw new Error("Application ID is required");
   }
 
-  // Ensure has_multiple_applicants is set to true
-  const appDetails = await api.getApplicationDetails(app.id);
-  const appData = await appDetails.json();
-  
-  if (!appData.application.has_multiple_applicants && role === "applicant") {
-    logger.info("Setting has_multiple_applicants to true");
-    await api.patchApplication(app.id, { has_multiple_applicants: true });
-  }
-  
-  if (!appData.application.has_multiple_guarantors && role === "co_signer") {
-    logger.info("Setting has_multiple_guarantors to true");
-    await api.patchApplication(app.id, { has_multiple_guarantors: true });
+  await ensureApplicationFlagsForRole(api, app, role);
+
+  const invitedCount = app.applicants?.length ?? 0;
+  if (invitedCount > 1) {
+    const delayMs = APP_CONFIG.TIMEOUTS.INVITE_DELAY_MS;
+    logger.info(
+      `Waiting ${delayMs}ms before next invite (mail.tm rate limit)`
+    );
+    await new Promise((resolve) => setTimeout(resolve, delayMs));
   }
 
-  // Generate new applicant data
-  let nextUser = randomFullName();
-  let nextMail = await createTestInbox();
-  let email = nextMail;
+  const nextUser = randomFullName();
+  const nextMail = await createTestInbox();
+  const email = nextMail;
 
-  // Invite the co-applicant
   const nextApplicantInvitePayload = {
     application_id: app.id,
     email: email.email,
@@ -49,20 +122,36 @@ export async function inviteCoApplicant(
     role: role,
   };
 
-  logger.info(`Inviting co-applicant: ${email.email}`);
+  logger.info(`Inviting ${role}: ${email.email}`);
   await api.inviteCoApplicant(nextApplicantInvitePayload);
 
-  // Get the magic link for the new applicant
   const magicLinksResp = await api.getMagicLinks(app.id);
   const magicLinksData = await magicLinksResp.json();
-  const magicLink = magicLinksData.magic_links.filter((link: any) => link.email === nextMail.email)[0].application_link;
-  // Add the new applicant to the app info
+  const magicLinkEntry = magicLinksData.magic_links.find(
+    (link: { email?: string }) =>
+      link.email === nextMail.email || link.email === nextMail.inboxEmail
+  );
+  const magicLink = magicLinkEntry?.application_link;
+
+  if (!magicLink) {
+    throw new Error(`Magic link not found for invited applicant ${email.email}`);
+  }
+
+  const applicantId = await resolveInvitedApplicantId(
+    api,
+    app,
+    nextMail,
+    magicLinkEntry
+  );
+
   if (!app.applicants) {
     app.applicants = [];
   }
-  
+
   app.applicants.push({
+    id: applicantId,
     role,
+    sign_in_link: magicLink,
     invite_magic_link: magicLink,
     email: nextMail,
     first_name: nextUser.first,
@@ -70,9 +159,16 @@ export async function inviteCoApplicant(
     middle_name: nextUser.middle,
   });
 
-  // Save updated app info
   await writeAppInfo(APP_CONFIG.PATHS.CURRENT_APP, app);
-  logger.info(`Co-applicant invited successfully. Magic link: ${magicLink}`);
+  logger.info(`Invited actor recorded successfully. Magic link: ${magicLink}`);
+  if (applicantId) {
+    logger.info(`Resolved co-applicant ID at invite time: ${applicantId}`);
+  } else {
+    logger.info(
+      `Co-applicant invite recorded for ${nextMail.email}. ` +
+        `Applicant ID will be assigned after co-applicant enroll.`
+    );
+  }
 
   return { magicLink, email };
 }

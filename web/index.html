@@ -546,15 +546,15 @@
           <div class="field-grid cols-3">
             <div class="field">
               <label>Applicants</label>
-              <input type="number" id="cfg-ACTORS-APPLICANT" min="0" max="10">
+              <input type="number" id="cfg-ACTORS-APPLICANT" min="0" max="10" value="0" placeholder="0">
             </div>
             <div class="field">
               <label>Occupants</label>
-              <input type="number" id="cfg-ACTORS-OCCUPANT" min="0" max="10">
+              <input type="number" id="cfg-ACTORS-OCCUPANT" min="0" max="10" value="0" placeholder="0">
             </div>
             <div class="field">
               <label>Guarantors</label>
-              <input type="number" id="cfg-ACTORS-GARANTOR" min="0" max="10">
+              <input type="number" id="cfg-ACTORS-GUARANTOR" min="0" max="10" value="0" placeholder="0">
             </div>
           </div>
         </div>
@@ -832,7 +832,7 @@
         for (const [section, values] of Object.entries(config)) {
           for (const [key, val] of Object.entries(values)) {
             const el = document.getElementById("cfg-" + section + "-" + key);
-            if (el) el.value = val;
+            if (el) el.value = val ?? 0;
           }
         }
       } catch (e) {
@@ -882,7 +882,8 @@
         if (!overrides[section]) overrides[section] = {};
         const val = el.value;
         if (el.type === "number") {
-          overrides[section][key] = Number(val);
+          const num = Number(val);
+          overrides[section][key] = Number.isFinite(num) ? num : 0;
         } else {
           overrides[section][key] = val;
         }

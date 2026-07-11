@@ -49,6 +49,7 @@ export async function bootstrapRun(magicLink: string): Promise<RunContext> {
 
   return {
     api,
+    primaryApi: api,
     app,
     tokenProvider,
     applicantIndex: 0,

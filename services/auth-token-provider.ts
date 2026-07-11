@@ -3,7 +3,12 @@ import { request } from "playwright";
 import { Logger } from "winston";
 import { LoggerProvider } from "./logger-provider";
 import { generateRandomUsCaPhone, randomInt } from "../helpers/index";
-import { AppInfo } from "../models";
+import { AppInfo, getApplicantAt } from "../models";
+import {
+  getApplicantSignInLink,
+  parseApplicantSignInLink,
+} from "../utils/sign-in-link";
+import { extractApplicantFromMagicLinkCheck } from "../utils/magic-link-check";
 
 export class AuthTokenProvider {
   private authUrl: string;
@@ -39,20 +44,26 @@ export class AuthTokenProvider {
         },
       }
     );
-    
+
     if (!responseCheck.ok()) {
       const errorText = await responseCheck.text();
-      this.logger.error(`Failed to check magic link: ${responseCheck.status()} ${errorText}`);
-      throw new Error(`Failed to check magic link: ${responseCheck.status()} ${errorText}`);
+      this.logger.error(
+        `Failed to check magic link: ${responseCheck.status()} ${errorText}`
+      );
+      throw new Error(
+        `Failed to check magic link: ${responseCheck.status()} ${errorText}`
+      );
     }
-    
+
     let data = await responseCheck.json();
-    
+
     if (!data || !data.magic_link || !data.magic_link.unit_id) {
       this.logger.error(`Invalid magic link response: ${JSON.stringify(data)}`);
-      throw new Error("Invalid magic link response: missing magic_link or unit_id");
+      throw new Error(
+        "Invalid magic link response: missing magic_link or unit_id"
+      );
     }
-    
+
     const unitId = data.magic_link.unit_id;
 
     const responseSendOtp = await apiRequestContext.post(
@@ -95,18 +106,38 @@ export class AuthTokenProvider {
         },
       ],
     };
-    // Write file for persistence, but return the data directly to avoid file I/O dependency
     fs.writeFileSync(currentAppPath, JSON.stringify(appInfo, null, 2), "utf-8");
     this.logger.info(`Received bearer token: ${bearerToken}`);
     this.logger.info(`Applicant phone is: ${this.phoneNumber}`);
     return appInfo;
   }
 
-  public async updateBearerToken(applicationToken: string, app: AppInfo): Promise<AppInfo> {
+  /**
+   * Authenticates a co-applicant via their dedicated sign-in URL
+   * (/auth/sign-in?token=...&unitId=...&applicationId=...).
+   */
+  public async authenticateCoApplicant(
+    signInLink: string,
+    app: AppInfo,
+    applicantIndex: number
+  ): Promise<AppInfo> {
     const currentAppPath = "./current-app.json";
+    const { token, unitId: unitIdFromLink, applicationId } =
+      parseApplicantSignInLink(signInLink);
+
+    const applicant = getApplicantAt(app, applicantIndex);
+    if (!applicant) {
+      throw new Error(`Applicant at index ${applicantIndex} not found`);
+    }
+
     this.logger.info(
-      `Updating bearer token for application token: ${applicationToken}`
+      `Authenticating co-applicant via sign-in link (index ${applicantIndex}, applicationId=${applicationId ?? app.id})`
     );
+    this.logger.info(`Sign-in URL: ${signInLink}`);
+
+    applicant.phone = generateRandomUsCaPhone("national");
+    applicant.otp = randomInt(100000, 999999);
+
     const apiRequestContext = await request.newContext({
       baseURL: this.authUrl,
       extraHTTPHeaders: {
@@ -117,41 +148,50 @@ export class AuthTokenProvider {
     const responseCheck = await apiRequestContext.get(
       "/screen/magic_links/check",
       {
-        params: {
-          token: applicationToken,
-        },
+        params: { token },
       }
     );
-    
+
     if (!responseCheck.ok()) {
       const errorText = await responseCheck.text();
-      this.logger.error(`Failed to check magic link: ${responseCheck.status()} ${errorText}`);
-      throw new Error(`Failed to check magic link: ${responseCheck.status()} ${errorText}`);
+      this.logger.error(
+        `Failed to check co-applicant sign-in token: ${responseCheck.status()} ${errorText}`
+      );
+      throw new Error(
+        `Failed to check co-applicant sign-in token: ${responseCheck.status()} ${errorText}`
+      );
     }
-    
-    let applicant = app.applicants?.find((applicant) => applicant.invite_magic_link?.includes(applicationToken));
-    if (!applicant) {
-      this.logger.error(`Applicant not found in app info: ${JSON.stringify(app)}`);
-      throw new Error(`Applicant not found in app info: ${JSON.stringify(app)}`);
+
+    const checkData = await responseCheck.json();
+    const fromCheck = extractApplicantFromMagicLinkCheck(checkData);
+    if (fromCheck?.id != null) {
+      applicant.id = String(fromCheck.id);
     }
-    applicant.phone = generateRandomUsCaPhone("national");
-    applicant.otp = randomInt(100000, 999999);
+    const unitId =
+      unitIdFromLink ||
+      checkData?.magic_link?.unit_id ||
+      app.unit_id;
+
+    if (!unitId) {
+      throw new Error("Could not resolve unit_id for co-applicant sign-in");
+    }
 
     const responseSendOtp = await apiRequestContext.post(
       "/screen/auth/send_otp",
       {
         data: {
           phone: applicant.phone,
-          unit_id: app.unit_id,
-          token: applicationToken,
+          unit_id: unitId,
+          token,
         },
       }
     );
-    let data = await responseSendOtp.json().catch(() => ({} as any));
-    if (!data.success) {
-      this.logger.error(`Failed to send OTP: ${JSON.stringify(data)}`);
-      throw new Error("Failed to send OTP");
+    const otpData = await responseSendOtp.json().catch(() => ({} as any));
+    if (!otpData.success) {
+      this.logger.error(`Failed to send OTP: ${JSON.stringify(otpData)}`);
+      throw new Error("Failed to send OTP for co-applicant");
     }
+
     const responseSignIn = await apiRequestContext.post(
       "/screen/auth/jwt/sign_in",
       {
@@ -161,12 +201,36 @@ export class AuthTokenProvider {
         },
       }
     );
-    data = await responseSignIn.json().catch(() => ({} as any));
-    app.bearer_token = data.access_token;
-    app.refresh_token = data.refresh_token;
+    const signInData = await responseSignIn.json().catch(() => ({} as any));
+
+    app.unit_id = unitId;
+    app.app_token = token;
+    app.bearer_token = signInData.access_token;
+    app.refresh_token = signInData.refresh_token;
+    applicant.sign_in_link = signInLink;
+    applicant.invite_magic_link = signInLink;
+
     fs.writeFileSync(currentAppPath, JSON.stringify(app, null, 2), "utf-8");
-    this.logger.info(`Updated bearer token: ${app.bearer_token}`);
+    this.logger.info(`Co-applicant authenticated. Bearer token updated.`);
     this.logger.info(`Applicant phone is: ${applicant.phone}`);
+
     return app;
+  }
+
+  /** @deprecated Use authenticateCoApplicant with a sign-in URL instead */
+  public async updateBearerToken(
+    applicationToken: string,
+    app: AppInfo
+  ): Promise<AppInfo> {
+    const applicant = app.applicants?.find((entry) =>
+      entry.invite_magic_link?.includes(applicationToken)
+    );
+    if (!applicant) {
+      throw new Error(`Applicant not found for token: ${applicationToken}`);
+    }
+
+    const applicantIndex = app.applicants!.indexOf(applicant);
+    const signInLink = getApplicantSignInLink(applicant);
+    return this.authenticateCoApplicant(signInLink, app, applicantIndex);
   }
 }

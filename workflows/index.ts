@@ -9,6 +9,7 @@ export * from "./applicant-invitation.service";
 export * from "./invite-flow.service";
 export * from "./submission.service";
 export * from "./applicant-context.service";
+export * from "./co-applicant-context.service";
 export * from "./identity-verification.service";
 export * from "./move-in-date.service";
 export * from "./run-context";

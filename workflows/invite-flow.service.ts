@@ -1,35 +1,84 @@
 import { LoggerProvider } from "../services";
 import { APP_CONFIG } from "../config";
-import { ApplicationDetailsResponse } from "../types";
 import { writeTestData } from "../utils";
 import { inviteCoApplicant } from "./applicant-invitation.service";
-import { getApplicant, RunContext } from "./run-context";
+import { fetchApplicantFromMagicLinkCheck } from "./co-applicant-context.service";
+import { getApplicant, isCoApplicantRun, RunContext } from "./run-context";
+import { setupVerificationsFromApplicant } from "./verification.service";
 
 const logger = LoggerProvider.create("application-invite-flow");
 
+function inviteRole(actorKey: keyof typeof APP_CONFIG.ACTOR_ROLES): string {
+  return APP_CONFIG.ACTOR_ROLES[actorKey];
+}
+
+async function resolveApplicantIdFromPrimaryApi(
+  ctx: RunContext
+): Promise<string | undefined> {
+  const applicant = getApplicant(ctx);
+  const emails = [
+    applicant.email?.email,
+    applicant.email?.inboxEmail,
+  ].filter(Boolean) as string[];
+
+  if (emails.length === 0) {
+    return undefined;
+  }
+
+  const appDetailsRaw = await ctx.primaryApi.getApplicationDetails(ctx.app.id!);
+  const appDetails = await appDetailsRaw.json();
+  const apiApplicants = appDetails.application?.applicants ?? [];
+  const matched = apiApplicants.find(
+    (entry: { email?: string }) =>
+      entry.email != null && emails.includes(entry.email)
+  );
+
+  return matched?.id != null ? String(matched.id) : undefined;
+}
+
 export async function resolveApplicantId(ctx: RunContext): Promise<string> {
   const applicant = getApplicant(ctx);
+
+  if (isCoApplicantRun(ctx)) {
+    const fromMagicLinkCheck = await fetchApplicantFromMagicLinkCheck(
+      ctx.api,
+      applicant
+    );
+    if (fromMagicLinkCheck?.id != null) {
+      applicant.id = String(fromMagicLinkCheck.id);
+      logger.info(
+        `Resolved co-applicant ID ${applicant.id} via magic_links/check (index ${ctx.applicantIndex})`
+      );
+      return applicant.id;
+    }
+
+    const fromPrimary = await resolveApplicantIdFromPrimaryApi(ctx);
+    if (fromPrimary) {
+      applicant.id = fromPrimary;
+      logger.info(
+        `Resolved co-applicant ID ${fromPrimary} via primary API (index ${ctx.applicantIndex})`
+      );
+      return fromPrimary;
+    }
+  }
 
   if (applicant.id) {
     return applicant.id;
   }
 
-  const appDetailsRaw = await ctx.api.getApplicationDetails(ctx.app.id!);
-  const appDetails = (await appDetailsRaw.json()) as ApplicationDetailsResponse;
-  const email = applicant.email?.email;
-  const apiApplicants = appDetails.application?.applicants ?? [];
-  const matchedApplicant =
-    apiApplicants.find((entry) => entry.email === email) ??
-    appDetails.application?.current_applicant;
-
-  if (!matchedApplicant?.id) {
-    throw new Error(
-      `Could not resolve applicant ID for index ${ctx.applicantIndex}`
-    );
+  const fromMagicLinkCheck = await fetchApplicantFromMagicLinkCheck(
+    ctx.api,
+    applicant
+  );
+  if (fromMagicLinkCheck?.id != null) {
+    applicant.id = String(fromMagicLinkCheck.id);
+    return applicant.id;
   }
 
-  applicant.id = matchedApplicant.id;
-  return matchedApplicant.id;
+  throw new Error(
+    `Could not resolve applicant ID for index ${ctx.applicantIndex}. ` +
+      `For invited co-applicants, run co-applicant-enroll before pass-invite.`
+  );
 }
 
 /**
@@ -49,6 +98,10 @@ export async function passApplicantInviteFlow(
       APP_CONFIG.PATHS.TEST_DATA_APPLICANT,
       passInviteResponse
     );
+  }
+
+  if (Array.isArray(passInviteResponse.verifications)) {
+    setupVerificationsFromApplicant(ctx.app, passInviteResponse);
   }
 
   logger.info(`Passed invite flow for applicant ID: ${applicantId}`);
@@ -71,18 +124,22 @@ export async function startPrimaryApplicationFlow(
 
   getApplicant(ctx);
 
+  logger.info(
+    `Invite plan: ${coApplicantCount} co-applicant(s), ${occupantIndex} occupant(s), ${guarantorsIndex} guarantor(s)`
+  );
+
   while (coApplicantCount > 0) {
-    await inviteCoApplicant(ctx.api, ctx.app, "applicant");
+    await inviteCoApplicant(ctx.api, ctx.app, inviteRole("APPLICANT"));
     coApplicantCount--;
   }
 
   while (occupantIndex > 0) {
-    await inviteCoApplicant(ctx.api, ctx.app, "occupant");
+    await inviteCoApplicant(ctx.api, ctx.app, inviteRole("OCCUPANT"));
     occupantIndex--;
   }
 
   while (guarantorsIndex > 0) {
-    await inviteCoApplicant(ctx.api, ctx.app, "co_signer");
+    await inviteCoApplicant(ctx.api, ctx.app, inviteRole("GUARANTOR"));
     guarantorsIndex--;
   }
 

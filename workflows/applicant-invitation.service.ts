@@ -101,6 +101,15 @@ export async function inviteCoApplicant(
 
   await ensureApplicationFlagsForRole(api, app, role);
 
+  const invitedCount = app.applicants?.length ?? 0;
+  if (invitedCount > 1) {
+    const delayMs = APP_CONFIG.TIMEOUTS.INVITE_DELAY_MS;
+    logger.info(
+      `Waiting ${delayMs}ms before next invite (mail.tm rate limit)`
+    );
+    await new Promise((resolve) => setTimeout(resolve, delayMs));
+  }
+
   const nextUser = randomFullName();
   const nextMail = await createTestInbox();
   const email = nextMail;

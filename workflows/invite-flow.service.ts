@@ -4,6 +4,7 @@ import { writeTestData } from "../utils";
 import { inviteCoApplicant } from "./applicant-invitation.service";
 import { fetchApplicantFromMagicLinkCheck } from "./co-applicant-context.service";
 import { getApplicant, isCoApplicantRun, RunContext } from "./run-context";
+import { setupVerificationsFromApplicant } from "./verification.service";
 
 const logger = LoggerProvider.create("application-invite-flow");
 
@@ -93,6 +94,10 @@ export async function passApplicantInviteFlow(
       APP_CONFIG.PATHS.TEST_DATA_APPLICANT,
       passInviteResponse
     );
+  }
+
+  if (Array.isArray(passInviteResponse.verifications)) {
+    setupVerificationsFromApplicant(ctx.app, passInviteResponse);
   }
 
   logger.info(`Passed invite flow for applicant ID: ${applicantId}`);

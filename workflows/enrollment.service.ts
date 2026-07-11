@@ -4,6 +4,7 @@ import { AppInfo, Email } from "../models";
 import { randomFullName, createTestInbox } from "../helpers";
 import { getApplicantSignInLink, parseApplicantSignInLink } from "../utils/sign-in-link";
 import { getApplicant, RunContext } from "./run-context";
+import { setupVerificationsFromApplicant } from "./verification.service";
 
 const logger = LoggerProvider.create("application-enrollment");
 
@@ -106,6 +107,14 @@ export async function enrollCoApplicant(ctx: RunContext): Promise<void> {
 
   applicant.id = String(applicantId);
   ctx.app.id = enrollResponse.application.id;
+
+  const enrollVerifications =
+    enrollResponse.application?.current_applicant?.verifications;
+  if (enrollVerifications?.length) {
+    setupVerificationsFromApplicant(ctx.app, {
+      verifications: enrollVerifications,
+    });
+  }
 
   logger.info(
     `Co-applicant enrolled with applicant ID ${applicant.id} (index ${ctx.applicantIndex})`

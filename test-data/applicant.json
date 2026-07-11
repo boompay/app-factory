@@ -1,17 +1,17 @@
 {
-  "id": 3665,
-  "application_id": 3366,
+  "id": 3675,
+  "application_id": 3371,
   "role": "applicant",
-  "first_name": "Marilie",
-  "last_name": "Strosin",
-  "middle_name": "Sawyer",
-  "email": "ug6r_thmx1yd+sandbox@web-library.net",
+  "first_name": "Ivah",
+  "last_name": "Dibbert",
+  "middle_name": "Rowan",
+  "email": "ik7e0rg7v8et+sandbox@web-library.net",
   "application_status": "pending",
   "retry_identity_verification_status": "not_available",
   "fast_track_idv_status": "idle",
   "verifications": [
     {
-      "id": 28059,
+      "id": 28157,
       "name": "rental_application",
       "title": "verifications.personal-details.title",
       "description": "verifications.personal-details.description",
@@ -66,37 +66,37 @@
       "bypass_document_verification_enabled": false,
       "steps": [
         {
-          "id": 31219,
+          "id": 31319,
           "index": 0,
           "name": "personal_details"
         },
         {
-          "id": 31220,
+          "id": 31320,
           "index": 1,
           "name": "dependents"
         },
         {
-          "id": 31221,
+          "id": 31321,
           "index": 2,
           "name": "emergency_contacts"
         },
         {
-          "id": 31222,
+          "id": 31322,
           "index": 3,
           "name": "pets"
         },
         {
-          "id": 31223,
+          "id": 31323,
           "index": 4,
           "name": "vehicles"
         },
         {
-          "id": 31224,
+          "id": 31324,
           "index": 5,
           "name": "military_first_responder_teacher"
         },
         {
-          "id": 31225,
+          "id": 31325,
           "index": 6,
           "name": "lead_source"
         }
@@ -104,7 +104,7 @@
       "requirements": null
     },
     {
-      "id": 28060,
+      "id": 28158,
       "name": "housing_history",
       "title": "verifications.housing-history.title",
       "description": "verifications.housing-history.description",
@@ -141,7 +141,7 @@
       "bypass_document_verification_enabled": false,
       "steps": [
         {
-          "id": 31226,
+          "id": 31326,
           "index": 0,
           "name": "address"
         }
@@ -151,7 +151,7 @@
       }
     },
     {
-      "id": 28062,
+      "id": 28160,
       "name": "identity_verification",
       "title": "verifications.identity-verification.applicant-title",
       "description": "verifications.identity-verification.applicant-description",
@@ -181,7 +181,7 @@
       "requirements": null
     },
     {
-      "id": 28063,
+      "id": 28161,
       "name": "combined_income_verification",
       "title": "verifications.combined-income.title",
       "description": "verifications.combined-income.description",
@@ -308,7 +308,7 @@
       "bypass_document_verification_enabled": null,
       "steps": [
         {
-          "id": 31227,
+          "id": 31327,
           "index": 0,
           "name": "combined_income"
         }
@@ -316,7 +316,7 @@
       "requirements": null
     },
     {
-      "id": 28068,
+      "id": 28166,
       "name": "submission_disclosure",
       "title": "Review the application",
       "description": ".",
@@ -338,7 +338,7 @@
       "bypass_document_verification_enabled": false,
       "steps": [
         {
-          "id": 31228,
+          "id": 31328,
           "index": 0,
           "name": "submission_disclosure_step"
         }
@@ -346,12 +346,12 @@
       "requirements": null
     }
   ],
-  "stream_chat_token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiYXBwbGljYW50LWN1c3RvbWVyLTE2NTc0NSJ9.RgR_iJK09T68HTbJX8QcqV_VrqLe0vWgNkAbaMTX__w",
+  "stream_chat_token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiYXBwbGljYW50LWN1c3RvbWVyLTE2NTc1NSJ9.oZOJYvemV_AZBPngfCtbtNT0gYeIa_vfjI_-s5drfjA",
   "document_requests": [],
-  "stream_chat_id": "applicant-customer-165745",
-  "stream_chat_name": "Marilie Sawyer Strosin",
+  "stream_chat_id": "applicant-customer-165755",
+  "stream_chat_name": "Ivah Rowan Dibbert",
   "application": {
-    "id": 3366,
+    "id": 3371,
     "partner": {
       "slug": "multi-pms-yardi",
       "name": "Multi PMS Yardi",
@@ -414,8 +414,8 @@
       }
     },
     "unit": {
-      "id": 206167,
-      "title": "225",
+      "id": 206039,
+      "title": "203",
       "property": {
         "name": "Test Property Boom 5",
         "address": {
@@ -437,7 +437,7 @@
       "home_rent_amount": null,
       "site_rent_amount": null,
       "criteria_rent_type": "both",
-      "available_at": "2014-09-04T00:00:00.000+00:00",
+      "available_at": "2014-01-01T00:00:00.000+00:00",
       "occupied": false,
       "partner_name": "Multi PMS Yardi"
     },
@@ -453,19 +453,19 @@
     },
     "applicants": [
       {
-        "id": 3665,
-        "application_id": 3366,
+        "id": 3675,
+        "application_id": 3371,
         "role": "applicant",
-        "first_name": "Marilie",
-        "last_name": "Strosin",
-        "middle_name": "Sawyer",
-        "email": "ug6r_thmx1yd+sandbox@web-library.net",
+        "first_name": "Ivah",
+        "last_name": "Dibbert",
+        "middle_name": "Rowan",
+        "email": "ik7e0rg7v8et+sandbox@web-library.net",
         "application_status": "pending",
         "retry_identity_verification_status": "not_available",
         "fast_track_idv_status": "idle",
         "verifications": [
           {
-            "id": 28059,
+            "id": 28157,
             "name": "rental_application",
             "title": "verifications.personal-details.title",
             "description": "verifications.personal-details.description",
@@ -520,7 +520,7 @@
             "bypass_document_verification_enabled": false
           },
           {
-            "id": 28060,
+            "id": 28158,
             "name": "housing_history",
             "title": "verifications.housing-history.title",
             "description": "verifications.housing-history.description",
@@ -557,7 +557,7 @@
             "bypass_document_verification_enabled": false
           },
           {
-            "id": 28062,
+            "id": 28160,
             "name": "identity_verification",
             "title": "verifications.identity-verification.applicant-title",
             "description": "verifications.identity-verification.applicant-description",
@@ -585,7 +585,7 @@
             "bypass_document_verification_enabled": false
           },
           {
-            "id": 28063,
+            "id": 28161,
             "name": "combined_income_verification",
             "title": "verifications.combined-income.title",
             "description": "verifications.combined-income.description",
@@ -712,7 +712,7 @@
             "bypass_document_verification_enabled": null
           },
           {
-            "id": 28068,
+            "id": 28166,
             "name": "submission_disclosure",
             "title": "Review the application",
             "description": ".",
@@ -734,25 +734,25 @@
             "bypass_document_verification_enabled": false
           }
         ],
-        "stream_chat_token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiYXBwbGljYW50LWN1c3RvbWVyLTE2NTc0NSJ9.RgR_iJK09T68HTbJX8QcqV_VrqLe0vWgNkAbaMTX__w",
+        "stream_chat_token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiYXBwbGljYW50LWN1c3RvbWVyLTE2NTc1NSJ9.oZOJYvemV_AZBPngfCtbtNT0gYeIa_vfjI_-s5drfjA",
         "document_requests": [],
-        "stream_chat_id": "applicant-customer-165745",
-        "stream_chat_name": "Marilie Sawyer Strosin"
+        "stream_chat_id": "applicant-customer-165755",
+        "stream_chat_name": "Ivah Rowan Dibbert"
       },
       {
-        "id": 3664,
-        "application_id": 3366,
+        "id": 3674,
+        "application_id": 3371,
         "role": "applicant",
-        "first_name": "Rylee",
-        "last_name": "Hirthe",
-        "middle_name": "Harper",
-        "email": "zxm910inqleh+sandbox@web-library.net",
+        "first_name": "Rashad",
+        "last_name": "Farrell",
+        "middle_name": "Dakota",
+        "email": "kqcuh6-dfbdv+sandbox@web-library.net",
         "application_status": "submitted",
         "retry_identity_verification_status": "not_available",
         "fast_track_idv_status": "completed",
         "verifications": [
           {
-            "id": 28049,
+            "id": 28147,
             "name": "rental_application",
             "title": "verifications.personal-details.title",
             "description": "verifications.personal-details.description",
@@ -807,7 +807,7 @@
             "bypass_document_verification_enabled": false
           },
           {
-            "id": 28050,
+            "id": 28148,
             "name": "housing_history",
             "title": "verifications.housing-history.title",
             "description": "verifications.housing-history.description",
@@ -844,7 +844,7 @@
             "bypass_document_verification_enabled": false
           },
           {
-            "id": 28052,
+            "id": 28150,
             "name": "identity_verification",
             "title": "verifications.identity-verification.applicant-title",
             "description": "verifications.identity-verification.applicant-description",
@@ -872,7 +872,7 @@
             "bypass_document_verification_enabled": false
           },
           {
-            "id": 28053,
+            "id": 28151,
             "name": "combined_income_verification",
             "title": "verifications.combined-income.title",
             "description": "verifications.combined-income.description",
@@ -993,33 +993,33 @@
             },
             "incomes": [
               {
-                "id": 540,
+                "id": 550,
                 "type": "self_employment",
                 "status": "processing",
                 "pay_period": "monthly",
                 "amount": {
-                  "cents": 514800,
+                  "cents": 308200,
                   "currency": "USD"
                 },
-                "start_date": "2013-12-07",
+                "start_date": "2021-10-06",
                 "additional_data": {
-                  "job_title": "Legacy Paradigm Representative",
-                  "company_name": "Terry, Ondricka and Gorczany"
+                  "job_title": "Forward Security Designer",
+                  "company_name": "Jaskolski Group"
                 }
               }
             ],
             "income_sources": [
               {
-                "id": 488,
+                "id": 498,
                 "status": "submitted",
                 "type": "paystub",
-                "income_id": 540,
+                "income_id": 550,
                 "items": [],
                 "has_available_items": false,
                 "additional_data": null,
                 "assets": [
                   {
-                    "asset_url": "https://boom-staging-nonprod.s3.us-east-2.amazonaws.com/staging/6213ff8d5c3dba8d46abd7411aa6057c.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6RCWFKPAV7ADZIA6%2F20260711%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20260711T155111Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=efe15168a398d3fe05be8a4ae8e582386a6d5a776baa2e1df8b5bc375a2af226",
+                    "asset_url": "https://boom-staging-nonprod.s3.us-east-2.amazonaws.com/staging/420b49b65262b3a167c7e0daa3baed60.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6RCWFKPAV7ADZIA6%2F20260711%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20260711T173954Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=3608942704c9b9ad06be259acec7104c6cdce2b588158cc6d9b50b735db9dbc2",
                     "asset_name": "Paystub.pdf"
                   }
                 ]
@@ -1029,7 +1029,7 @@
             "bypass_document_verification_enabled": null
           },
           {
-            "id": 28058,
+            "id": 28156,
             "name": "submission_disclosure",
             "title": "Review the application",
             "description": ".",
@@ -1051,10 +1051,1492 @@
             "bypass_document_verification_enabled": false
           }
         ],
-        "stream_chat_token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiYXBwbGljYW50LWN1c3RvbWVyLTE2NTc0NCJ9.LdwCEmyLNSM-JK3w0tmFKkCp5WvPbePT4SLLs9ncO5s",
+        "stream_chat_token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiYXBwbGljYW50LWN1c3RvbWVyLTE2NTc1NCJ9.cCUQVcbJs69kcK9sEbzfAaoJLFfWW8Q4Zv-S8k_4qt8",
         "document_requests": [],
-        "stream_chat_id": "applicant-customer-165744",
-        "stream_chat_name": "Rylee Harper Hirthe"
+        "stream_chat_id": "applicant-customer-165754",
+        "stream_chat_name": "Rashad Dakota Farrell"
+      },
+      {
+        "id": 3673,
+        "application_id": 3371,
+        "role": "applicant",
+        "first_name": "Claudie",
+        "last_name": "Romaguera",
+        "middle_name": "Brooklyn",
+        "email": "ujxmsmbjt5ha+sandbox@web-library.net",
+        "application_status": "submitted",
+        "retry_identity_verification_status": "not_available",
+        "fast_track_idv_status": "completed",
+        "verifications": [
+          {
+            "id": 28137,
+            "name": "rental_application",
+            "title": "verifications.personal-details.title",
+            "description": "verifications.personal-details.description",
+            "status": "finished",
+            "vendor": "",
+            "settings": {
+              "pets_step_enabled": true,
+              "pets_step_required": {
+                "age": "optional",
+                "name": "optional",
+                "breed": "required",
+                "photo": "optional",
+                "weight": "required",
+                "supporting_documents": "optional"
+              },
+              "additional_questions": [],
+              "vehicles_step_enabled": true,
+              "vehicles_step_required": {
+                "make": "required",
+                "year": "required",
+                "color": "required",
+                "model": "required",
+                "license_plate_state": "required",
+                "license_plate_number": "required"
+              },
+              "dependents_step_enabled": true,
+              "dependents_step_required": {
+                "dob": "required"
+              },
+              "lead_source_step_enabled": true,
+              "lead_source_step_required": true,
+              "personal_details_step_enabled": true,
+              "emergency_contacts_step_enabled": true,
+              "emergency_contacts_step_required": {
+                "email": "optional",
+                "phone_number": "required",
+                "relationship": "optional"
+              },
+              "additional_questions_step_enabled": false,
+              "military_first_responder_teacher_step_enabled": true
+            },
+            "estimated_time": 480,
+            "index": 0,
+            "editable": true,
+            "progress": {
+              "total_steps": 7,
+              "filled_steps": 7
+            },
+            "incomes": [],
+            "income_sources": [],
+            "start_requirements": [],
+            "bypass_document_verification_enabled": false
+          },
+          {
+            "id": 28138,
+            "name": "housing_history",
+            "title": "verifications.housing-history.title",
+            "description": "verifications.housing-history.description",
+            "status": "finished",
+            "vendor": "",
+            "settings": {
+              "address_step_enabled": true,
+              "rent_option_required": {
+                "landlord_phone": "required",
+                "lease_document": "optional",
+                "monthly_payment": "required",
+                "reason_for_leaving": "required"
+              },
+              "other_option_required": {
+                "housing_status": "required",
+                "reason_for_leaving": "optional"
+              },
+              "own_home_option_required": {
+                "reason_for_leaving": "required",
+                "monthly_mortgage_payment": "required"
+              },
+              "min_required_continuous_rental_history": 2
+            },
+            "estimated_time": 600,
+            "index": 1,
+            "editable": true,
+            "progress": {
+              "total_steps": 1,
+              "filled_steps": 1
+            },
+            "incomes": [],
+            "income_sources": [],
+            "start_requirements": [],
+            "bypass_document_verification_enabled": false
+          },
+          {
+            "id": 28140,
+            "name": "identity_verification",
+            "title": "verifications.identity-verification.applicant-title",
+            "description": "verifications.identity-verification.applicant-description",
+            "status": "verified",
+            "vendor": "plaid",
+            "settings": {
+              "selfie_check": false,
+              "tin_verification": false,
+              "identity_abuse_check": {
+                "stolen_identity_threshold": 90,
+                "synthetic_identity_threshold": 70
+              },
+              "prevent_apply_if_failed": false
+            },
+            "estimated_time": 300,
+            "index": 3,
+            "editable": false,
+            "progress": {
+              "total_steps": 0,
+              "filled_steps": 0
+            },
+            "incomes": [],
+            "income_sources": [],
+            "start_requirements": [],
+            "bypass_document_verification_enabled": false
+          },
+          {
+            "id": 28141,
+            "name": "combined_income_verification",
+            "title": "verifications.combined-income.title",
+            "description": "verifications.combined-income.description",
+            "status": "finished",
+            "vendor": "",
+            "settings": {
+              "other": {
+                "w2": {
+                  "allowed": true,
+                  "timeframe": {
+                    "unit": "year",
+                    "value": 1
+                  }
+                },
+                "paystub": {
+                  "allowed": true,
+                  "timeframe": {
+                    "unit": "month",
+                    "value": 3
+                  }
+                },
+                "bank_allowed": true,
+                "bank_statement": {
+                  "allowed": true,
+                  "timeframe": {
+                    "unit": "month",
+                    "value": 3
+                  }
+                },
+                "payroll_allowed": true,
+                "benefits_statement": {
+                  "allowed": true
+                }
+              },
+              "employment": {
+                "w2": {
+                  "allowed": true,
+                  "timeframe": {
+                    "unit": "year",
+                    "value": 1
+                  }
+                },
+                "fields": {
+                  "job_title": "optional",
+                  "supervisor": {
+                    "email": "optional",
+                    "phone": "required",
+                    "last_name": "required",
+                    "first_name": "required"
+                  }
+                },
+                "paystub": {
+                  "allowed": true,
+                  "timeframe": {
+                    "unit": "month",
+                    "value": 3
+                  }
+                },
+                "bank_allowed": true,
+                "bank_statement": {
+                  "allowed": true,
+                  "timeframe": {
+                    "unit": "month",
+                    "value": 3
+                  }
+                },
+                "payroll_allowed": true
+              },
+              "offer_letter": {
+                "fields": {
+                  "job_title": "optional",
+                  "supervisor": {
+                    "email": "optional",
+                    "phone": "required",
+                    "last_name": "required",
+                    "first_name": "required"
+                  }
+                }
+              },
+              "self_employment": {
+                "w2": {
+                  "allowed": true,
+                  "timeframe": {
+                    "unit": "year",
+                    "value": 1
+                  }
+                },
+                "fields": {
+                  "job_title": "required"
+                },
+                "paystub": {
+                  "allowed": true,
+                  "timeframe": {
+                    "unit": "month",
+                    "value": 3
+                  }
+                },
+                "bank_allowed": true,
+                "bank_statement": {
+                  "allowed": true,
+                  "timeframe": {
+                    "unit": "month",
+                    "value": 3
+                  }
+                },
+                "payroll_allowed": true
+              },
+              "housing_assistance_upload": "required",
+              "housing_assistance_program_enabled": true,
+              "combined_income_verification_enabled": true
+            },
+            "estimated_time": 900,
+            "index": 4,
+            "editable": true,
+            "progress": {
+              "total_steps": 1,
+              "filled_steps": 0
+            },
+            "incomes": [
+              {
+                "id": 549,
+                "type": "self_employment",
+                "status": "verified",
+                "pay_period": "monthly",
+                "amount": {
+                  "cents": 551900,
+                  "currency": "USD"
+                },
+                "start_date": "2013-05-06",
+                "additional_data": {
+                  "job_title": "Future Quality Administrator",
+                  "company_name": "Boehm, Klocko and Bahringer"
+                }
+              }
+            ],
+            "income_sources": [
+              {
+                "id": 497,
+                "status": "finished",
+                "type": "paystub",
+                "income_id": 549,
+                "items": [
+                  {
+                    "id": 355,
+                    "income_source_id": 497,
+                    "income_id": 549,
+                    "data": {
+                      "document": {
+                        "assets": [
+                          {
+                            "asset": {
+                              "url": "https://boom-staging-nonprod.s3.us-east-2.amazonaws.com/staging/5445718e3ff3005cc7b9e43f7888e4d1.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6RCWFKPAV7ADZIA6%2F20260711%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20260711T173938Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=c0c9a6454932b9bc0934ddfac08abaef83467ed4d145dc2bb1a62421a4926eff",
+                              "size": 61821,
+                              "filename": "Paystub.pdf",
+                              "extension": "pdf",
+                              "content_type": "application/pdf"
+                            },
+                            "global_id": "gid://boom/BoomScreen::Asset/574559"
+                          }
+                        ],
+                        "warnings": [],
+                        "income_sources": [
+                          {
+                            "employer": "FINANCE AND INSURANCE COMPANY",
+                            "end_date": "2024-02-28",
+                            "pay_stubs": [
+                              {
+                                "uuid": "fdc96a35-7d4b-46af-8905-4faeda797d67",
+                                "asset": {
+                                  "asset": {
+                                    "url": "https://boom-staging-nonprod.s3.us-east-2.amazonaws.com/staging/5445718e3ff3005cc7b9e43f7888e4d1.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6RCWFKPAV7ADZIA6%2F20260711%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20260711T173938Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=c0c9a6454932b9bc0934ddfac08abaef83467ed4d145dc2bb1a62421a4926eff",
+                                    "size": 61821,
+                                    "filename": "Paystub.pdf",
+                                    "extension": "pdf",
+                                    "content_type": "application/pdf"
+                                  },
+                                  "global_id": "gid://boom/BoomScreen::Asset/574559"
+                                },
+                                "status": "COMPLETED",
+                                "net_pay": {
+                                  "totals": {
+                                    "ytd_pay": {
+                                      "currency": null
+                                    },
+                                    "current_pay": {
+                                      "currency": null
+                                    },
+                                    "description": null,
+                                    "canonical_description": null
+                                  },
+                                  "distribution_details": []
+                                },
+                                "doc_uuid": "da30a013-7b5c-41d1-8b47-64a8950763f3",
+                                "earnings": {
+                                  "totals": [
+                                    {
+                                      "ytd_pay": {
+                                        "cents": 952800,
+                                        "currency": "USD"
+                                      },
+                                      "current_pay": {
+                                        "cents": 80800,
+                                        "currency": "USD"
+                                      },
+                                      "description": "GROSS PAY",
+                                      "current_hours": null,
+                                      "canonical_description": null
+                                    }
+                                  ],
+                                  "subtotals": [
+                                    {
+                                      "ytd_pay": {
+                                        "cents": 41250,
+                                        "currency": "USD"
+                                      },
+                                      "current_pay": {
+                                        "cents": 3750,
+                                        "currency": "USD"
+                                      },
+                                      "description": "STIPEND",
+                                      "current_rate": null,
+                                      "current_hours": null,
+                                      "canonical_description": "ALLOWANCE"
+                                    },
+                                    {
+                                      "ytd_pay": {
+                                        "cents": 874750,
+                                        "currency": "USD"
+                                      },
+                                      "current_pay": {
+                                        "cents": 77050,
+                                        "currency": "USD"
+                                      },
+                                      "description": "TECH WAGES",
+                                      "current_rate": "33.50",
+                                      "current_hours": "23.0",
+                                      "canonical_description": "REGULAR PAY"
+                                    },
+                                    {
+                                      "ytd_pay": {
+                                        "cents": 36800,
+                                        "currency": "USD"
+                                      },
+                                      "current_pay": {
+                                        "cents": 0,
+                                        "currency": "USD"
+                                      },
+                                      "description": "PTO",
+                                      "current_rate": null,
+                                      "current_hours": null,
+                                      "canonical_description": "PAID TIME OFF"
+                                    }
+                                  ]
+                                },
+                                "employee": {
+                                  "name": "JILL SMITH",
+                                  "address": {
+                                    "city": "OCROLUS",
+                                    "line1": "789 MAIN STREET",
+                                    "line2": null,
+                                    "state_code": "NY",
+                                    "postal_code": "12345"
+                                  },
+                                  "taxpayer_id": {
+                                    "id_type": "SSN",
+                                    "last_4_digits": "6666"
+                                  },
+                                  "marital_status": "NOT LISTED"
+                                },
+                                "employer": {
+                                  "name": "FINANCE AND INSURANCE COMPANY",
+                                  "address": {
+                                    "city": "OCROLUS",
+                                    "line1": "456 RENTERS WAY",
+                                    "line2": null,
+                                    "state_code": "NY",
+                                    "postal_code": "12345"
+                                  }
+                                },
+                                "book_uuid": "f9a651df-a5ab-428d-8bbb-8a73afff3b2e",
+                                "deductions": {
+                                  "totals": [
+                                    {
+                                      "ytd_pay": null,
+                                      "current_pay": null,
+                                      "description": "DEDUCTIONS",
+                                      "current_hours": null,
+                                      "canonical_description": null
+                                    },
+                                    {
+                                      "ytd_pay": null,
+                                      "current_pay": null,
+                                      "description": "DEDUCTIONS",
+                                      "current_hours": null,
+                                      "canonical_description": null
+                                    }
+                                  ],
+                                  "subtotals": [
+                                    {
+                                      "ytd_pay": {
+                                        "cents": 59074,
+                                        "currency": "USD"
+                                      },
+                                      "current_pay": {
+                                        "cents": 5010,
+                                        "currency": "USD"
+                                      },
+                                      "description": "FICA W/H",
+                                      "current_rate": null,
+                                      "current_hours": null,
+                                      "canonical_description": "FICA"
+                                    },
+                                    {
+                                      "ytd_pay": {
+                                        "cents": 13817,
+                                        "currency": "USD"
+                                      },
+                                      "current_pay": {
+                                        "cents": 1172,
+                                        "currency": "USD"
+                                      },
+                                      "description": "MEDI W/H",
+                                      "current_rate": null,
+                                      "current_hours": null,
+                                      "canonical_description": "MEDICARE TAX"
+                                    },
+                                    {
+                                      "ytd_pay": {
+                                        "cents": 28585,
+                                        "currency": "USD"
+                                      },
+                                      "current_pay": {
+                                        "cents": 2424,
+                                        "currency": "USD"
+                                      },
+                                      "description": "SIMPLE IRA",
+                                      "current_rate": null,
+                                      "current_hours": null,
+                                      "canonical_description": "INVESTMENTS"
+                                    }
+                                  ]
+                                },
+                                "doc_analysis": {
+                                  "detect_status": "COMPLETED",
+                                  "form_analysis": [
+                                    {
+                                      "signals": [
+                                        {
+                                          "identifier": "rai_grp_unusual_pdf_structure_document",
+                                          "display_name": "Unusual PDF structure",
+                                          "signal_count": 1,
+                                          "supporting_data": []
+                                        },
+                                        {
+                                          "identifier": "rai_has_known_producer_document",
+                                          "display_name": "Produced in Google Sheets",
+                                          "signal_count": 1,
+                                          "supporting_data": [
+                                            {
+                                              "values": [
+                                                {
+                                                  "key": "Name",
+                                                  "value": "Google Sheets",
+                                                  "data_type": "str"
+                                                },
+                                                {
+                                                  "key": "Description",
+                                                  "value": "Online spreadsheet tool",
+                                                  "data_type": "str"
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ],
+                                      "form_type": "PAYSTUB",
+                                      "form_uuid": "24eb571d-dac7-4135-9850-bddab84f67c2",
+                                      "visualizations": [],
+                                      "form_authenticity": {
+                                        "score": 80,
+                                        "version": "1.0",
+                                        "reason_codes": [
+                                          {
+                                            "code": "WEAK_SIGNAL",
+                                            "confidence": "MEDIUM",
+                                            "description": "The document contains minor irregularities that may result from document creation, processing, or image quality issues. Additional review may be required to determine whether the detected changes are significant."
+                                          }
+                                        ],
+                                        "authenticity_status": "MEDIUM"
+                                      },
+                                      "form_dashboard_url": "https://dashboard.ocrolus.com/books/f9a651df-a5ab-428d-8bbb-8a73afff3b2e?selectedUploadPks=152319705&selectedDocType=paystubs&detectPaneOpen=True&detectTab=1&selectedDocId=24eb571d-dac7-4135-9850-bddab84f67c2"
+                                    },
+                                    {
+                                      "signals": [
+                                        {
+                                          "identifier": "rai_grp_unusual_pdf_structure_document",
+                                          "display_name": "Unusual PDF structure",
+                                          "signal_count": 1,
+                                          "supporting_data": []
+                                        },
+                                        {
+                                          "identifier": "rai_has_known_producer_document",
+                                          "display_name": "Produced in Google Sheets",
+                                          "signal_count": 1,
+                                          "supporting_data": [
+                                            {
+                                              "values": [
+                                                {
+                                                  "key": "Name",
+                                                  "value": "Google Sheets",
+                                                  "data_type": "str"
+                                                },
+                                                {
+                                                  "key": "Description",
+                                                  "value": "Online spreadsheet tool",
+                                                  "data_type": "str"
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ],
+                                      "form_type": "PAYSTUB",
+                                      "form_uuid": "35e222dc-78fb-4c45-ab00-8ca3ff81cb39",
+                                      "visualizations": [],
+                                      "form_authenticity": {
+                                        "score": 80,
+                                        "version": "1.0",
+                                        "reason_codes": [
+                                          {
+                                            "code": "WEAK_SIGNAL",
+                                            "confidence": "MEDIUM",
+                                            "description": "The document contains minor irregularities that may result from document creation, processing, or image quality issues. Additional review may be required to determine whether the detected changes are significant."
+                                          }
+                                        ],
+                                        "authenticity_status": "MEDIUM"
+                                      },
+                                      "form_dashboard_url": "https://dashboard.ocrolus.com/books/f9a651df-a5ab-428d-8bbb-8a73afff3b2e?selectedUploadPks=152319705&selectedDocType=paystubs&detectPaneOpen=True&detectTab=1&selectedDocId=35e222dc-78fb-4c45-ab00-8ca3ff81cb39"
+                                    },
+                                    {
+                                      "signals": [
+                                        {
+                                          "identifier": "rai_grp_unusual_pdf_structure_document",
+                                          "display_name": "Unusual PDF structure",
+                                          "signal_count": 1,
+                                          "supporting_data": []
+                                        },
+                                        {
+                                          "identifier": "rai_has_known_producer_document",
+                                          "display_name": "Produced in Google Sheets",
+                                          "signal_count": 1,
+                                          "supporting_data": [
+                                            {
+                                              "values": [
+                                                {
+                                                  "key": "Name",
+                                                  "value": "Google Sheets",
+                                                  "data_type": "str"
+                                                },
+                                                {
+                                                  "key": "Description",
+                                                  "value": "Online spreadsheet tool",
+                                                  "data_type": "str"
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ],
+                                      "form_type": "PAYSTUB",
+                                      "form_uuid": "fdc96a35-7d4b-46af-8905-4faeda797d67",
+                                      "visualizations": [],
+                                      "form_authenticity": {
+                                        "score": 80,
+                                        "version": "1.0",
+                                        "reason_codes": [
+                                          {
+                                            "code": "WEAK_SIGNAL",
+                                            "confidence": "MEDIUM",
+                                            "description": "The document contains minor irregularities that may result from document creation, processing, or image quality issues. Additional review may be required to determine whether the detected changes are significant."
+                                          }
+                                        ],
+                                        "authenticity_status": "MEDIUM"
+                                      },
+                                      "form_dashboard_url": "https://dashboard.ocrolus.com/books/f9a651df-a5ab-428d-8bbb-8a73afff3b2e?selectedUploadPks=152319705&selectedDocType=paystubs&detectPaneOpen=True&detectTab=1&selectedDocId=fdc96a35-7d4b-46af-8905-4faeda797d67"
+                                    }
+                                  ],
+                                  "uploaded_doc_type": "PAYSTUB",
+                                  "uploaded_doc_uuid": "da30a013-7b5c-41d1-8b47-64a8950763f3",
+                                  "is_image_based_pdf": false
+                                },
+                                "total_net_pay": {
+                                  "cents": 0,
+                                  "currency": "USD"
+                                },
+                                "paystub_details": {
+                                  "pay_date": "2024-02-02",
+                                  "pay_frequency": null,
+                                  "paystub_provider": null,
+                                  "pay_period_end_date": "2024-02-01",
+                                  "pay_period_start_date": "2024-01-20",
+                                  "pay_frequency_captured": "NOT LISTED"
+                                },
+                                "total_gross_pay": {
+                                  "cents": 80800,
+                                  "currency": "USD"
+                                },
+                                "doc_page_numbers": [
+                                  3
+                                ],
+                                "pay_distribution": [],
+                                "rejection_reason": null,
+                                "employment_details": {
+                                  "hire_date": null,
+                                  "pay_basis": "NOT LISTED",
+                                  "hourly_rate": {
+                                    "amount": null,
+                                    "currency": null
+                                  },
+                                  "annual_salary": {
+                                    "amount": null,
+                                    "currency": null
+                                  }
+                                },
+                                "total_net_pay_amount": 0,
+                                "total_gross_pay_amount": 808,
+                                "uploaded_image_bucket_uuid": null
+                              },
+                              {
+                                "uuid": "24eb571d-dac7-4135-9850-bddab84f67c2",
+                                "asset": {
+                                  "asset": {
+                                    "url": "https://boom-staging-nonprod.s3.us-east-2.amazonaws.com/staging/5445718e3ff3005cc7b9e43f7888e4d1.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6RCWFKPAV7ADZIA6%2F20260711%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20260711T173938Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=c0c9a6454932b9bc0934ddfac08abaef83467ed4d145dc2bb1a62421a4926eff",
+                                    "size": 61821,
+                                    "filename": "Paystub.pdf",
+                                    "extension": "pdf",
+                                    "content_type": "application/pdf"
+                                  },
+                                  "global_id": "gid://boom/BoomScreen::Asset/574559"
+                                },
+                                "status": "COMPLETED",
+                                "net_pay": {
+                                  "totals": {
+                                    "ytd_pay": {
+                                      "currency": null
+                                    },
+                                    "current_pay": {
+                                      "currency": null
+                                    },
+                                    "description": null,
+                                    "canonical_description": null
+                                  },
+                                  "distribution_details": []
+                                },
+                                "doc_uuid": "da30a013-7b5c-41d1-8b47-64a8950763f3",
+                                "earnings": {
+                                  "totals": [
+                                    {
+                                      "ytd_pay": {
+                                        "cents": 1117275,
+                                        "currency": "USD"
+                                      },
+                                      "current_pay": {
+                                        "cents": 77350,
+                                        "currency": "USD"
+                                      },
+                                      "description": "GROSS PAY",
+                                      "current_hours": null,
+                                      "canonical_description": null
+                                    }
+                                  ],
+                                  "subtotals": [
+                                    {
+                                      "ytd_pay": {
+                                        "cents": 48750,
+                                        "currency": "USD"
+                                      },
+                                      "current_pay": {
+                                        "cents": 3750,
+                                        "currency": "USD"
+                                      },
+                                      "description": "STIPEND",
+                                      "current_rate": null,
+                                      "current_hours": null,
+                                      "canonical_description": "ALLOWANCE"
+                                    },
+                                    {
+                                      "ytd_pay": {
+                                        "cents": 999525,
+                                        "currency": "USD"
+                                      },
+                                      "current_pay": {
+                                        "cents": 55200,
+                                        "currency": "USD"
+                                      },
+                                      "description": "TECH WAGES",
+                                      "current_rate": "23.00",
+                                      "current_hours": "24.0",
+                                      "canonical_description": "REGULAR PAY"
+                                    },
+                                    {
+                                      "ytd_pay": {
+                                        "cents": 69000,
+                                        "currency": "USD"
+                                      },
+                                      "current_pay": {
+                                        "cents": 18400,
+                                        "currency": "USD"
+                                      },
+                                      "description": "PTO",
+                                      "current_rate": "23.00",
+                                      "current_hours": "8.0",
+                                      "canonical_description": "PAID TIME OFF"
+                                    }
+                                  ]
+                                },
+                                "employee": {
+                                  "name": "JILL SMITH",
+                                  "address": {
+                                    "city": "OCROLUS",
+                                    "line1": "789 MAIN STREET",
+                                    "line2": null,
+                                    "state_code": "NY",
+                                    "postal_code": "12345"
+                                  },
+                                  "taxpayer_id": {
+                                    "id_type": "SSN",
+                                    "last_4_digits": "6666"
+                                  },
+                                  "marital_status": "NOT LISTED"
+                                },
+                                "employer": {
+                                  "name": "FINANCE AND INSURANCE COMPANY",
+                                  "address": {
+                                    "city": "OCROLUS",
+                                    "line1": "456 RENTERS WAY",
+                                    "line2": null,
+                                    "state_code": "NY",
+                                    "postal_code": "12345"
+                                  }
+                                },
+                                "book_uuid": "f9a651df-a5ab-428d-8bbb-8a73afff3b2e",
+                                "deductions": {
+                                  "totals": [
+                                    {
+                                      "ytd_pay": null,
+                                      "current_pay": null,
+                                      "description": "DEDUCTIONS",
+                                      "current_hours": null,
+                                      "canonical_description": null
+                                    },
+                                    {
+                                      "ytd_pay": null,
+                                      "current_pay": null,
+                                      "description": "DEDUCTIONS",
+                                      "current_hours": null,
+                                      "canonical_description": null
+                                    }
+                                  ],
+                                  "subtotals": [
+                                    {
+                                      "ytd_pay": {
+                                        "cents": 69272,
+                                        "currency": "USD"
+                                      },
+                                      "current_pay": {
+                                        "cents": 4796,
+                                        "currency": "USD"
+                                      },
+                                      "description": "FICA W/H",
+                                      "current_rate": null,
+                                      "current_hours": null,
+                                      "canonical_description": "FICA"
+                                    },
+                                    {
+                                      "ytd_pay": {
+                                        "cents": 16200,
+                                        "currency": "USD"
+                                      },
+                                      "current_pay": {
+                                        "cents": 1122,
+                                        "currency": "USD"
+                                      },
+                                      "description": "MEDI W/H",
+                                      "current_rate": null,
+                                      "current_hours": null,
+                                      "canonical_description": "MEDICARE TAX"
+                                    },
+                                    {
+                                      "ytd_pay": {
+                                        "cents": 33520,
+                                        "currency": "USD"
+                                      },
+                                      "current_pay": {
+                                        "cents": 2321,
+                                        "currency": "USD"
+                                      },
+                                      "description": "SIMPLE IRA",
+                                      "current_rate": null,
+                                      "current_hours": null,
+                                      "canonical_description": "INVESTMENTS"
+                                    }
+                                  ]
+                                },
+                                "doc_analysis": {
+                                  "detect_status": "COMPLETED",
+                                  "form_analysis": [
+                                    {
+                                      "signals": [
+                                        {
+                                          "identifier": "rai_grp_unusual_pdf_structure_document",
+                                          "display_name": "Unusual PDF structure",
+                                          "signal_count": 1,
+                                          "supporting_data": []
+                                        },
+                                        {
+                                          "identifier": "rai_has_known_producer_document",
+                                          "display_name": "Produced in Google Sheets",
+                                          "signal_count": 1,
+                                          "supporting_data": [
+                                            {
+                                              "values": [
+                                                {
+                                                  "key": "Name",
+                                                  "value": "Google Sheets",
+                                                  "data_type": "str"
+                                                },
+                                                {
+                                                  "key": "Description",
+                                                  "value": "Online spreadsheet tool",
+                                                  "data_type": "str"
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ],
+                                      "form_type": "PAYSTUB",
+                                      "form_uuid": "24eb571d-dac7-4135-9850-bddab84f67c2",
+                                      "visualizations": [],
+                                      "form_authenticity": {
+                                        "score": 80,
+                                        "version": "1.0",
+                                        "reason_codes": [
+                                          {
+                                            "code": "WEAK_SIGNAL",
+                                            "confidence": "MEDIUM",
+                                            "description": "The document contains minor irregularities that may result from document creation, processing, or image quality issues. Additional review may be required to determine whether the detected changes are significant."
+                                          }
+                                        ],
+                                        "authenticity_status": "MEDIUM"
+                                      },
+                                      "form_dashboard_url": "https://dashboard.ocrolus.com/books/f9a651df-a5ab-428d-8bbb-8a73afff3b2e?selectedUploadPks=152319705&selectedDocType=paystubs&detectPaneOpen=True&detectTab=1&selectedDocId=24eb571d-dac7-4135-9850-bddab84f67c2"
+                                    },
+                                    {
+                                      "signals": [
+                                        {
+                                          "identifier": "rai_grp_unusual_pdf_structure_document",
+                                          "display_name": "Unusual PDF structure",
+                                          "signal_count": 1,
+                                          "supporting_data": []
+                                        },
+                                        {
+                                          "identifier": "rai_has_known_producer_document",
+                                          "display_name": "Produced in Google Sheets",
+                                          "signal_count": 1,
+                                          "supporting_data": [
+                                            {
+                                              "values": [
+                                                {
+                                                  "key": "Name",
+                                                  "value": "Google Sheets",
+                                                  "data_type": "str"
+                                                },
+                                                {
+                                                  "key": "Description",
+                                                  "value": "Online spreadsheet tool",
+                                                  "data_type": "str"
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ],
+                                      "form_type": "PAYSTUB",
+                                      "form_uuid": "35e222dc-78fb-4c45-ab00-8ca3ff81cb39",
+                                      "visualizations": [],
+                                      "form_authenticity": {
+                                        "score": 80,
+                                        "version": "1.0",
+                                        "reason_codes": [
+                                          {
+                                            "code": "WEAK_SIGNAL",
+                                            "confidence": "MEDIUM",
+                                            "description": "The document contains minor irregularities that may result from document creation, processing, or image quality issues. Additional review may be required to determine whether the detected changes are significant."
+                                          }
+                                        ],
+                                        "authenticity_status": "MEDIUM"
+                                      },
+                                      "form_dashboard_url": "https://dashboard.ocrolus.com/books/f9a651df-a5ab-428d-8bbb-8a73afff3b2e?selectedUploadPks=152319705&selectedDocType=paystubs&detectPaneOpen=True&detectTab=1&selectedDocId=35e222dc-78fb-4c45-ab00-8ca3ff81cb39"
+                                    },
+                                    {
+                                      "signals": [
+                                        {
+                                          "identifier": "rai_grp_unusual_pdf_structure_document",
+                                          "display_name": "Unusual PDF structure",
+                                          "signal_count": 1,
+                                          "supporting_data": []
+                                        },
+                                        {
+                                          "identifier": "rai_has_known_producer_document",
+                                          "display_name": "Produced in Google Sheets",
+                                          "signal_count": 1,
+                                          "supporting_data": [
+                                            {
+                                              "values": [
+                                                {
+                                                  "key": "Name",
+                                                  "value": "Google Sheets",
+                                                  "data_type": "str"
+                                                },
+                                                {
+                                                  "key": "Description",
+                                                  "value": "Online spreadsheet tool",
+                                                  "data_type": "str"
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ],
+                                      "form_type": "PAYSTUB",
+                                      "form_uuid": "fdc96a35-7d4b-46af-8905-4faeda797d67",
+                                      "visualizations": [],
+                                      "form_authenticity": {
+                                        "score": 80,
+                                        "version": "1.0",
+                                        "reason_codes": [
+                                          {
+                                            "code": "WEAK_SIGNAL",
+                                            "confidence": "MEDIUM",
+                                            "description": "The document contains minor irregularities that may result from document creation, processing, or image quality issues. Additional review may be required to determine whether the detected changes are significant."
+                                          }
+                                        ],
+                                        "authenticity_status": "MEDIUM"
+                                      },
+                                      "form_dashboard_url": "https://dashboard.ocrolus.com/books/f9a651df-a5ab-428d-8bbb-8a73afff3b2e?selectedUploadPks=152319705&selectedDocType=paystubs&detectPaneOpen=True&detectTab=1&selectedDocId=fdc96a35-7d4b-46af-8905-4faeda797d67"
+                                    }
+                                  ],
+                                  "uploaded_doc_type": "PAYSTUB",
+                                  "uploaded_doc_uuid": "da30a013-7b5c-41d1-8b47-64a8950763f3",
+                                  "is_image_based_pdf": false
+                                },
+                                "total_net_pay": {
+                                  "cents": 0,
+                                  "currency": "USD"
+                                },
+                                "paystub_details": {
+                                  "pay_date": "2024-02-29",
+                                  "pay_frequency": "BI_WEEKLY",
+                                  "paystub_provider": null,
+                                  "pay_period_end_date": "2024-02-28",
+                                  "pay_period_start_date": "2024-02-15",
+                                  "pay_frequency_captured": "NOT LISTED"
+                                },
+                                "total_gross_pay": {
+                                  "cents": 77350,
+                                  "currency": "USD"
+                                },
+                                "doc_page_numbers": [
+                                  1
+                                ],
+                                "pay_distribution": [],
+                                "rejection_reason": null,
+                                "employment_details": {
+                                  "hire_date": null,
+                                  "pay_basis": "NOT LISTED",
+                                  "hourly_rate": {
+                                    "amount": null,
+                                    "currency": null
+                                  },
+                                  "annual_salary": {
+                                    "amount": null,
+                                    "currency": null
+                                  }
+                                },
+                                "total_net_pay_amount": 0,
+                                "total_gross_pay_amount": 773.5,
+                                "uploaded_image_bucket_uuid": null
+                              },
+                              {
+                                "uuid": "35e222dc-78fb-4c45-ab00-8ca3ff81cb39",
+                                "asset": {
+                                  "asset": {
+                                    "url": "https://boom-staging-nonprod.s3.us-east-2.amazonaws.com/staging/5445718e3ff3005cc7b9e43f7888e4d1.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6RCWFKPAV7ADZIA6%2F20260711%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20260711T173938Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=c0c9a6454932b9bc0934ddfac08abaef83467ed4d145dc2bb1a62421a4926eff",
+                                    "size": 61821,
+                                    "filename": "Paystub.pdf",
+                                    "extension": "pdf",
+                                    "content_type": "application/pdf"
+                                  },
+                                  "global_id": "gid://boom/BoomScreen::Asset/574559"
+                                },
+                                "status": "COMPLETED",
+                                "net_pay": {
+                                  "totals": {
+                                    "ytd_pay": {
+                                      "currency": null
+                                    },
+                                    "current_pay": {
+                                      "currency": null
+                                    },
+                                    "description": null,
+                                    "canonical_description": null
+                                  },
+                                  "distribution_details": []
+                                },
+                                "doc_uuid": "da30a013-7b5c-41d1-8b47-64a8950763f3",
+                                "earnings": {
+                                  "totals": [
+                                    {
+                                      "ytd_pay": {
+                                        "cents": 1039925,
+                                        "currency": "USD"
+                                      },
+                                      "current_pay": {
+                                        "cents": 87125,
+                                        "currency": "USD"
+                                      },
+                                      "description": "GROSS PAY",
+                                      "current_hours": null,
+                                      "canonical_description": null
+                                    }
+                                  ],
+                                  "subtotals": [
+                                    {
+                                      "ytd_pay": {
+                                        "cents": 45000,
+                                        "currency": "USD"
+                                      },
+                                      "current_pay": {
+                                        "cents": 3750,
+                                        "currency": "USD"
+                                      },
+                                      "description": "STIPEND",
+                                      "current_rate": null,
+                                      "current_hours": null,
+                                      "canonical_description": "ALLOWANCE"
+                                    },
+                                    {
+                                      "ytd_pay": {
+                                        "cents": 944325,
+                                        "currency": "USD"
+                                      },
+                                      "current_pay": {
+                                        "cents": 69575,
+                                        "currency": "USD"
+                                      },
+                                      "description": "TECH WAGES",
+                                      "current_rate": "30.25",
+                                      "current_hours": "23.0",
+                                      "canonical_description": "REGULAR PAY"
+                                    },
+                                    {
+                                      "ytd_pay": {
+                                        "cents": 50600,
+                                        "currency": "USD"
+                                      },
+                                      "current_pay": {
+                                        "cents": 13800,
+                                        "currency": "USD"
+                                      },
+                                      "description": "PTO",
+                                      "current_rate": "8.00",
+                                      "current_hours": "23.0",
+                                      "canonical_description": "PAID TIME OFF"
+                                    }
+                                  ]
+                                },
+                                "employee": {
+                                  "name": "JILL SMITH",
+                                  "address": {
+                                    "city": "OCROLUS",
+                                    "line1": "789 MAIN STREET",
+                                    "line2": null,
+                                    "state_code": "NY",
+                                    "postal_code": "12345"
+                                  },
+                                  "taxpayer_id": {
+                                    "id_type": "SSN",
+                                    "last_4_digits": "6666"
+                                  },
+                                  "marital_status": "NOT LISTED"
+                                },
+                                "employer": {
+                                  "name": "FINANCE AND INSURANCE COMPANY",
+                                  "address": {
+                                    "city": "OCROLUS",
+                                    "line1": "456 RENTERS WAY",
+                                    "line2": null,
+                                    "state_code": "NY",
+                                    "postal_code": "12345"
+                                  }
+                                },
+                                "book_uuid": "f9a651df-a5ab-428d-8bbb-8a73afff3b2e",
+                                "deductions": {
+                                  "totals": [
+                                    {
+                                      "ytd_pay": null,
+                                      "current_pay": null,
+                                      "description": "DEDUCTIONS",
+                                      "current_hours": null,
+                                      "canonical_description": null
+                                    },
+                                    {
+                                      "ytd_pay": null,
+                                      "current_pay": null,
+                                      "description": "DEDUCTIONS",
+                                      "current_hours": null,
+                                      "canonical_description": null
+                                    }
+                                  ],
+                                  "subtotals": [
+                                    {
+                                      "ytd_pay": {
+                                        "cents": 64476,
+                                        "currency": "USD"
+                                      },
+                                      "current_pay": {
+                                        "cents": 5402,
+                                        "currency": "USD"
+                                      },
+                                      "description": "FICA W/H",
+                                      "current_rate": null,
+                                      "current_hours": null,
+                                      "canonical_description": "FICA"
+                                    },
+                                    {
+                                      "ytd_pay": {
+                                        "cents": 15080,
+                                        "currency": "USD"
+                                      },
+                                      "current_pay": {
+                                        "cents": 1263,
+                                        "currency": "USD"
+                                      },
+                                      "description": "MEDI W/H",
+                                      "current_rate": null,
+                                      "current_hours": null,
+                                      "canonical_description": "MEDICARE TAX"
+                                    },
+                                    {
+                                      "ytd_pay": {
+                                        "cents": 31199,
+                                        "currency": "USD"
+                                      },
+                                      "current_pay": {
+                                        "cents": 2614,
+                                        "currency": "USD"
+                                      },
+                                      "description": "SIMPLE IRA",
+                                      "current_rate": null,
+                                      "current_hours": null,
+                                      "canonical_description": "INVESTMENTS"
+                                    }
+                                  ]
+                                },
+                                "doc_analysis": {
+                                  "detect_status": "COMPLETED",
+                                  "form_analysis": [
+                                    {
+                                      "signals": [
+                                        {
+                                          "identifier": "rai_grp_unusual_pdf_structure_document",
+                                          "display_name": "Unusual PDF structure",
+                                          "signal_count": 1,
+                                          "supporting_data": []
+                                        },
+                                        {
+                                          "identifier": "rai_has_known_producer_document",
+                                          "display_name": "Produced in Google Sheets",
+                                          "signal_count": 1,
+                                          "supporting_data": [
+                                            {
+                                              "values": [
+                                                {
+                                                  "key": "Name",
+                                                  "value": "Google Sheets",
+                                                  "data_type": "str"
+                                                },
+                                                {
+                                                  "key": "Description",
+                                                  "value": "Online spreadsheet tool",
+                                                  "data_type": "str"
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ],
+                                      "form_type": "PAYSTUB",
+                                      "form_uuid": "24eb571d-dac7-4135-9850-bddab84f67c2",
+                                      "visualizations": [],
+                                      "form_authenticity": {
+                                        "score": 80,
+                                        "version": "1.0",
+                                        "reason_codes": [
+                                          {
+                                            "code": "WEAK_SIGNAL",
+                                            "confidence": "MEDIUM",
+                                            "description": "The document contains minor irregularities that may result from document creation, processing, or image quality issues. Additional review may be required to determine whether the detected changes are significant."
+                                          }
+                                        ],
+                                        "authenticity_status": "MEDIUM"
+                                      },
+                                      "form_dashboard_url": "https://dashboard.ocrolus.com/books/f9a651df-a5ab-428d-8bbb-8a73afff3b2e?selectedUploadPks=152319705&selectedDocType=paystubs&detectPaneOpen=True&detectTab=1&selectedDocId=24eb571d-dac7-4135-9850-bddab84f67c2"
+                                    },
+                                    {
+                                      "signals": [
+                                        {
+                                          "identifier": "rai_grp_unusual_pdf_structure_document",
+                                          "display_name": "Unusual PDF structure",
+                                          "signal_count": 1,
+                                          "supporting_data": []
+                                        },
+                                        {
+                                          "identifier": "rai_has_known_producer_document",
+                                          "display_name": "Produced in Google Sheets",
+                                          "signal_count": 1,
+                                          "supporting_data": [
+                                            {
+                                              "values": [
+                                                {
+                                                  "key": "Name",
+                                                  "value": "Google Sheets",
+                                                  "data_type": "str"
+                                                },
+                                                {
+                                                  "key": "Description",
+                                                  "value": "Online spreadsheet tool",
+                                                  "data_type": "str"
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ],
+                                      "form_type": "PAYSTUB",
+                                      "form_uuid": "35e222dc-78fb-4c45-ab00-8ca3ff81cb39",
+                                      "visualizations": [],
+                                      "form_authenticity": {
+                                        "score": 80,
+                                        "version": "1.0",
+                                        "reason_codes": [
+                                          {
+                                            "code": "WEAK_SIGNAL",
+                                            "confidence": "MEDIUM",
+                                            "description": "The document contains minor irregularities that may result from document creation, processing, or image quality issues. Additional review may be required to determine whether the detected changes are significant."
+                                          }
+                                        ],
+                                        "authenticity_status": "MEDIUM"
+                                      },
+                                      "form_dashboard_url": "https://dashboard.ocrolus.com/books/f9a651df-a5ab-428d-8bbb-8a73afff3b2e?selectedUploadPks=152319705&selectedDocType=paystubs&detectPaneOpen=True&detectTab=1&selectedDocId=35e222dc-78fb-4c45-ab00-8ca3ff81cb39"
+                                    },
+                                    {
+                                      "signals": [
+                                        {
+                                          "identifier": "rai_grp_unusual_pdf_structure_document",
+                                          "display_name": "Unusual PDF structure",
+                                          "signal_count": 1,
+                                          "supporting_data": []
+                                        },
+                                        {
+                                          "identifier": "rai_has_known_producer_document",
+                                          "display_name": "Produced in Google Sheets",
+                                          "signal_count": 1,
+                                          "supporting_data": [
+                                            {
+                                              "values": [
+                                                {
+                                                  "key": "Name",
+                                                  "value": "Google Sheets",
+                                                  "data_type": "str"
+                                                },
+                                                {
+                                                  "key": "Description",
+                                                  "value": "Online spreadsheet tool",
+                                                  "data_type": "str"
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ],
+                                      "form_type": "PAYSTUB",
+                                      "form_uuid": "fdc96a35-7d4b-46af-8905-4faeda797d67",
+                                      "visualizations": [],
+                                      "form_authenticity": {
+                                        "score": 80,
+                                        "version": "1.0",
+                                        "reason_codes": [
+                                          {
+                                            "code": "WEAK_SIGNAL",
+                                            "confidence": "MEDIUM",
+                                            "description": "The document contains minor irregularities that may result from document creation, processing, or image quality issues. Additional review may be required to determine whether the detected changes are significant."
+                                          }
+                                        ],
+                                        "authenticity_status": "MEDIUM"
+                                      },
+                                      "form_dashboard_url": "https://dashboard.ocrolus.com/books/f9a651df-a5ab-428d-8bbb-8a73afff3b2e?selectedUploadPks=152319705&selectedDocType=paystubs&detectPaneOpen=True&detectTab=1&selectedDocId=fdc96a35-7d4b-46af-8905-4faeda797d67"
+                                    }
+                                  ],
+                                  "uploaded_doc_type": "PAYSTUB",
+                                  "uploaded_doc_uuid": "da30a013-7b5c-41d1-8b47-64a8950763f3",
+                                  "is_image_based_pdf": false
+                                },
+                                "total_net_pay": {
+                                  "cents": 0,
+                                  "currency": "USD"
+                                },
+                                "paystub_details": {
+                                  "pay_date": "2024-02-15",
+                                  "pay_frequency": null,
+                                  "paystub_provider": null,
+                                  "pay_period_end_date": "2024-02-14",
+                                  "pay_period_start_date": "2024-02-02",
+                                  "pay_frequency_captured": "NOT LISTED"
+                                },
+                                "total_gross_pay": {
+                                  "cents": 87125,
+                                  "currency": "USD"
+                                },
+                                "doc_page_numbers": [
+                                  2
+                                ],
+                                "pay_distribution": [],
+                                "rejection_reason": null,
+                                "employment_details": {
+                                  "hire_date": null,
+                                  "pay_basis": "NOT LISTED",
+                                  "hourly_rate": {
+                                    "amount": null,
+                                    "currency": null
+                                  },
+                                  "annual_salary": {
+                                    "amount": null,
+                                    "currency": null
+                                  }
+                                },
+                                "total_net_pay_amount": 0,
+                                "total_gross_pay_amount": 871.25,
+                                "uploaded_image_bucket_uuid": null
+                              }
+                            ],
+                            "start_date": "2024-01-20",
+                            "net_monthly_income": {
+                              "cents": 0,
+                              "currency": "USD"
+                            },
+                            "gross_monthly_income": {
+                              "cents": 186511,
+                              "currency": "USD"
+                            },
+                            "total_net_pay_amount": 0,
+                            "total_gross_pay_amount": 2452.75,
+                            "net_monthly_income_amount": 0,
+                            "gross_monthly_income_amount": 1865.11
+                          }
+                        ],
+                        "total_net_pay_amount": 0,
+                        "total_gross_pay_amount": 2452.75
+                      },
+                      "income_count": 1,
+                      "net_income_summary": [
+                        {
+                          "month": "2024-02",
+                          "sources": [
+                            {
+                              "net_pay": null,
+                              "pay_date": "2024-02-02",
+                              "description": "FINANCE AND INSURANCE COMPANY"
+                            },
+                            {
+                              "net_pay": null,
+                              "pay_date": "2024-02-29",
+                              "description": "FINANCE AND INSURANCE COMPANY"
+                            },
+                            {
+                              "net_pay": null,
+                              "pay_date": "2024-02-15",
+                              "description": "FINANCE AND INSURANCE COMPANY"
+                            }
+                          ],
+                          "total_net": {
+                            "cents": 0,
+                            "currency": "USD"
+                          }
+                        }
+                      ],
+                      "net_monthly_income": null,
+                      "gross_monthly_income": {
+                        "cents": 186511,
+                        "currency": "USD"
+                      },
+                      "rejected_documents_count": 0
+                    }
+                  }
+                ],
+                "has_available_items": false,
+                "additional_data": {},
+                "assets": [
+                  {
+                    "asset_url": "https://boom-staging-nonprod.s3.us-east-2.amazonaws.com/staging/5445718e3ff3005cc7b9e43f7888e4d1.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6RCWFKPAV7ADZIA6%2F20260711%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20260711T173954Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=64e34bdc91b16211cf824d238fcff25ecfda61b00ca101189ebd9edb44420636",
+                    "asset_name": "Paystub.pdf"
+                  }
+                ]
+              }
+            ],
+            "start_requirements": [],
+            "bypass_document_verification_enabled": null
+          },
+          {
+            "id": 28146,
+            "name": "submission_disclosure",
+            "title": "Review the application",
+            "description": ".",
+            "status": "finished",
+            "vendor": "",
+            "settings": {
+              "additional_text": ""
+            },
+            "estimated_time": 60,
+            "index": 9,
+            "editable": true,
+            "progress": {
+              "total_steps": 1,
+              "filled_steps": 1
+            },
+            "incomes": [],
+            "income_sources": [],
+            "start_requirements": [],
+            "bypass_document_verification_enabled": false
+          }
+        ],
+        "stream_chat_token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiYXBwbGljYW50LWN1c3RvbWVyLTE2NTc1MyJ9.F5Nk2RnqqIfJt--5l5sElECMrPCyOn1ZPe3aIcMc7LY",
+        "document_requests": [],
+        "stream_chat_id": "applicant-customer-165753",
+        "stream_chat_name": "Claudie Brooklyn Romaguera"
       }
     ],
     "status": "started",
@@ -1094,11 +2576,11 @@
       "requirement": "housing_history_more_than_2_years"
     }
   ],
-  "intercom_id": "applicant-3665",
+  "intercom_id": "applicant-3675",
   "is_manual": false,
   "application_started_at": null,
   "discount_info": null,
-  "invited_by_applicant_id": 3664,
+  "invited_by_applicant_id": 3673,
   "has_passed_invite_flow": true,
   "can_invite_others": true
 }

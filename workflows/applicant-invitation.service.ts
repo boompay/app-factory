@@ -137,9 +137,9 @@ export async function inviteCoApplicant(
   if (applicantId) {
     logger.info(`Resolved co-applicant ID at invite time: ${applicantId}`);
   } else {
-    logger.warn(
-      `Could not resolve co-applicant ID at invite time for ${nextMail.email}. ` +
-        `Will retry via magic_links/check or primary API during co-applicant pipeline.`
+    logger.info(
+      `Co-applicant invite recorded for ${nextMail.email}. ` +
+        `Applicant ID will be assigned after co-applicant enroll.`
     );
   }
 

@@ -72,8 +72,7 @@ export async function resolveApplicantId(ctx: RunContext): Promise<string> {
 
   throw new Error(
     `Could not resolve applicant ID for index ${ctx.applicantIndex}. ` +
-      `Co-applicant tokens cannot read GET /screen/applications/{id} (403). ` +
-      `Ensure applicant.id is stored at invite time or returned by magic_links/check.`
+      `For invited co-applicants, run co-applicant-enroll before pass-invite.`
   );
 }
 

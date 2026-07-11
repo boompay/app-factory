@@ -6,6 +6,7 @@ import { identityCreateStep } from "./steps/identity-create.step";
 import { identityVerifyStep } from "./steps/identity-verify.step";
 import { moveInDateStep } from "./steps/move-in-date.step";
 import { coApplicantAuthStep } from "./steps/co-applicant-auth.step";
+import { coApplicantEnrollStep } from "./steps/co-applicant-enroll.step";
 import { passInviteStep } from "./steps/pass-invite.step";
 import { personalDetailsStep } from "./steps/personal-details.step";
 import { refreshApplicantContextStep } from "./steps/refresh-applicant-context.step";
@@ -30,6 +31,7 @@ export const PRIMARY_APPLICANT_PIPELINE: PipelineStep[] = [
 
 export const CO_APPLICANT_PIPELINE: PipelineStep[] = [
   coApplicantAuthStep,
+  coApplicantEnrollStep,
   passInviteStep,
   refreshApplicantContextStep,
   ...VERIFICATION_STEPS,

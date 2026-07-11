@@ -54,8 +54,38 @@ async function resolveInvitedApplicantId(
   return undefined;
 }
 
+async function ensureApplicationFlagsForRole(
+  api: ApiClient,
+  app: AppInfo,
+  role: string
+): Promise<void> {
+  const patchFlags =
+    APP_CONFIG.ACTOR_PATCH_FLAGS[
+      role as keyof typeof APP_CONFIG.ACTOR_PATCH_FLAGS
+    ];
+  if (!patchFlags) {
+    return;
+  }
+
+  const appDetails = await api.getApplicationDetails(app.id!);
+  const appData = await appDetails.json();
+  const application = appData.application ?? {};
+  const flagsToSet = Object.fromEntries(
+    Object.entries(patchFlags).filter(([key]) => !application[key])
+  );
+
+  if (Object.keys(flagsToSet).length === 0) {
+    return;
+  }
+
+  logger.info(
+    `Setting ${Object.keys(flagsToSet).join(", ")} for ${role} invite`
+  );
+  await api.patchApplication(app.id!, flagsToSet);
+}
+
 /**
- * Invites a new co-applicant to the application
+ * Invites an additional actor (co-applicant, occupant, or guarantor).
  * @param api - The API client
  * @param app - The application info
  * @returns The magic link for the new applicant and the email object
@@ -69,19 +99,7 @@ export async function inviteCoApplicant(
     throw new Error("Application ID is required");
   }
 
-  // Ensure has_multiple_applicants is set to true
-  const appDetails = await api.getApplicationDetails(app.id);
-  const appData = await appDetails.json();
-
-  if (!appData.application.has_multiple_applicants && role === "applicant") {
-    logger.info("Setting has_multiple_applicants to true");
-    await api.patchApplication(app.id, { has_multiple_applicants: true });
-  }
-
-  if (!appData.application.has_multiple_guarantors && role === "co_signer") {
-    logger.info("Setting has_multiple_guarantors to true");
-    await api.patchApplication(app.id, { has_multiple_guarantors: true });
-  }
+  await ensureApplicationFlagsForRole(api, app, role);
 
   const nextUser = randomFullName();
   const nextMail = await createTestInbox();
@@ -95,7 +113,7 @@ export async function inviteCoApplicant(
     role: role,
   };
 
-  logger.info(`Inviting co-applicant: ${email.email}`);
+  logger.info(`Inviting ${role}: ${email.email}`);
   await api.inviteCoApplicant(nextApplicantInvitePayload);
 
   const magicLinksResp = await api.getMagicLinks(app.id);
@@ -133,7 +151,7 @@ export async function inviteCoApplicant(
   });
 
   await writeAppInfo(APP_CONFIG.PATHS.CURRENT_APP, app);
-  logger.info(`Co-applicant invited successfully. Magic link: ${magicLink}`);
+  logger.info(`Invited actor recorded successfully. Magic link: ${magicLink}`);
   if (applicantId) {
     logger.info(`Resolved co-applicant ID at invite time: ${applicantId}`);
   } else {

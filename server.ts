@@ -22,6 +22,7 @@ app.use(express.static(path.join(__dirname, "web")));
 app.get("/api/config", (_req, res) => {
   res.json({
     ACTORS: APP_CONFIG.ACTORS,
+    ACTOR_ROLES: APP_CONFIG.ACTOR_ROLES,
     DEFAULT_VALUES: APP_CONFIG.DEFAULT_VALUES,
     TIMEOUTS: APP_CONFIG.TIMEOUTS,
     RETRY: APP_CONFIG.RETRY,

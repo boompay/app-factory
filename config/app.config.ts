@@ -73,11 +73,29 @@ export const APP_CONFIG = {
     OCCUPANT: 0,
     GUARANTOR: 0,
   },
+  ACTOR_ROLES: {
+    APPLICANT: "applicant",
+    OCCUPANT: "occupant",
+    GUARANTOR: "co_signer",
+  },
+  ACTOR_PATCH_FLAGS: {
+    applicant: { has_multiple_applicants: true },
+    occupant: { has_multiple_occupants: true },
+    co_signer: { has_multiple_guarantors: true },
+  },
 };
 
 const DEFAULT_CONFIG = JSON.parse(JSON.stringify(APP_CONFIG));
 
 export function applyConfigOverrides(overrides: Record<string, any>): void {
+  if (overrides.ACTORS?.GARANTOR != null && overrides.ACTORS.GUARANTOR == null) {
+    overrides.ACTORS.GUARANTOR = overrides.ACTORS.GARANTOR;
+  }
+
+  if (overrides.ACTORS?.GUARANTORS != null && overrides.ACTORS.GUARANTOR == null) {
+    overrides.ACTORS.GUARANTOR = overrides.ACTORS.GUARANTORS;
+  }
+
   for (const section of ["ACTORS", "DEFAULT_VALUES", "TIMEOUTS", "RETRY"] as const) {
     if (overrides[section]) {
       Object.assign(APP_CONFIG[section], overrides[section]);

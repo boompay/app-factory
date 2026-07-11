@@ -8,6 +8,10 @@ import { setupVerificationsFromApplicant } from "./verification.service";
 
 const logger = LoggerProvider.create("application-invite-flow");
 
+function inviteRole(actorKey: keyof typeof APP_CONFIG.ACTOR_ROLES): string {
+  return APP_CONFIG.ACTOR_ROLES[actorKey];
+}
+
 async function resolveApplicantIdFromPrimaryApi(
   ctx: RunContext
 ): Promise<string | undefined> {
@@ -120,18 +124,22 @@ export async function startPrimaryApplicationFlow(
 
   getApplicant(ctx);
 
+  logger.info(
+    `Invite plan: ${coApplicantCount} co-applicant(s), ${occupantIndex} occupant(s), ${guarantorsIndex} guarantor(s)`
+  );
+
   while (coApplicantCount > 0) {
-    await inviteCoApplicant(ctx.api, ctx.app, "applicant");
+    await inviteCoApplicant(ctx.api, ctx.app, inviteRole("APPLICANT"));
     coApplicantCount--;
   }
 
   while (occupantIndex > 0) {
-    await inviteCoApplicant(ctx.api, ctx.app, "occupant");
+    await inviteCoApplicant(ctx.api, ctx.app, inviteRole("OCCUPANT"));
     occupantIndex--;
   }
 
   while (guarantorsIndex > 0) {
-    await inviteCoApplicant(ctx.api, ctx.app, "co_signer");
+    await inviteCoApplicant(ctx.api, ctx.app, inviteRole("GUARANTOR"));
     guarantorsIndex--;
   }
 

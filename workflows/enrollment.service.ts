@@ -111,6 +111,7 @@ export async function enrollCoApplicant(ctx: RunContext): Promise<void> {
   const enrollVerifications =
     enrollResponse.application?.current_applicant?.verifications;
   if (enrollVerifications?.length) {
+    ctx.currentApplicantVerifications = enrollVerifications;
     setupVerificationsFromApplicant(ctx.app, {
       verifications: enrollVerifications,
     });

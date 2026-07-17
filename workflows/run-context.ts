@@ -1,5 +1,6 @@
 import { ApiClient, AuthTokenProvider } from "../services";
 import { Applicant, AppInfo, getApplicantAt } from "../models";
+import { Verification } from "../types";
 
 export interface RunContext {
   api: ApiClient;
@@ -9,6 +10,8 @@ export interface RunContext {
   tokenProvider: AuthTokenProvider;
   applicantIndex: number;
   magicLink: string;
+  /** Verifications returned by the latest applicant-specific API response. */
+  currentApplicantVerifications?: Verification[];
 }
 
 export function getApplicant(ctx: RunContext): Applicant {

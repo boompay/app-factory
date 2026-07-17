@@ -14,6 +14,13 @@ const logger = LoggerProvider.create("application-applicant-context");
 async function fetchApplicantVerifications(
   ctx: RunContext
 ): Promise<Verification[] | undefined> {
+  if (ctx.currentApplicantVerifications?.length) {
+    logger.info(
+      `Using verifications returned by applicant flow for index ${ctx.applicantIndex}`
+    );
+    return ctx.currentApplicantVerifications;
+  }
+
   const applicant = getApplicant(ctx);
 
   const fromMagicLinkCheck = await fetchApplicantFromMagicLinkCheck(

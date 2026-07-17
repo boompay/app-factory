@@ -8,6 +8,7 @@ const logger = LoggerProvider.create("application-runner");
 
 function prepareCoApplicant(ctx: RunContext, applicantIndex: number): void {
   ctx.applicantIndex = applicantIndex;
+  ctx.currentApplicantVerifications = undefined;
   const applicant = getApplicant(ctx);
   const role = applicant.role ?? "applicant";
   logger.info(

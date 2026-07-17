@@ -101,6 +101,7 @@ export async function passApplicantInviteFlow(
   }
 
   if (Array.isArray(passInviteResponse.verifications)) {
+    ctx.currentApplicantVerifications = passInviteResponse.verifications;
     setupVerificationsFromApplicant(ctx.app, passInviteResponse);
   }
 

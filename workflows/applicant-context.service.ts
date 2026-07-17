@@ -1,4 +1,5 @@
 import { LoggerProvider } from "../services";
+import { APP_CONFIG } from "../config";
 import { Verification } from "../types";
 import { getApplicant, isCoApplicantRun, RunContext } from "./run-context";
 import { resolveApplicantId } from "./invite-flow.service";
@@ -10,9 +11,9 @@ import {
 
 const logger = LoggerProvider.create("application-applicant-context");
 
-async function resolveApplicantVerifications(
+async function fetchApplicantVerifications(
   ctx: RunContext
-): Promise<Verification[]> {
+): Promise<Verification[] | undefined> {
   const applicant = getApplicant(ctx);
 
   const fromMagicLinkCheck = await fetchApplicantFromMagicLinkCheck(
@@ -36,10 +37,46 @@ async function resolveApplicantVerifications(
     }
   }
 
+  return undefined;
+}
+
+async function resolveApplicantVerifications(
+  ctx: RunContext
+): Promise<Verification[]> {
+  const waitMs = APP_CONFIG.TIMEOUTS.APPLICANT_VERIFICATIONS_WAIT;
+  const intervalMs = APP_CONFIG.TIMEOUTS.APPLICANT_VERIFICATIONS_INTERVAL;
+  const deadline = Date.now() + waitMs;
+  let attempt = 1;
+
+  while (true) {
+    const verifications = await fetchApplicantVerifications(ctx);
+    if (verifications) {
+      return verifications;
+    }
+
+    const remainingMs = deadline - Date.now();
+    if (remainingMs <= 0) {
+      break;
+    }
+
+    if (attempt === 1) {
+      logger.info(
+        `Verifications are not available yet for applicant index ${ctx.applicantIndex}. ` +
+          `Waiting up to ${waitMs}ms for backend processing.`
+      );
+    }
+
+    await new Promise((resolve) =>
+      setTimeout(resolve, Math.min(intervalMs, remainingMs))
+    );
+    attempt++;
+  }
+
   throw new Error(
     `Verifications not found for applicant at index ${ctx.applicantIndex}. ` +
       `Tried magic_links/check` +
-      (isCoApplicantRun(ctx) ? " and primary API application details." : ".")
+      (isCoApplicantRun(ctx) ? " and primary API application details." : ".") +
+      ` Waited ${waitMs}ms (${attempt} attempts).`
   );
 }
 
